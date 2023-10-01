@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Npgsql;
+using QLSV.DAO;
 
 namespace QLSV
 {
@@ -17,6 +19,14 @@ namespace QLSV
 		public Form1()
 		{
 			InitializeComponent();
+			LoadAccount();
+		}
+
+		private void LoadAccount()
+		{
+			string query = "SELECT * FROM account;";
+			DataProvider source = new DataProvider();
+			DataTable account = source.ExcuteQuery(query);
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -27,6 +37,12 @@ namespace QLSV
 		private void btn_exit_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+		private void btn_login_Click(object sender, EventArgs e)
+		{
+			string userName = tb_userName.Text;
+			string password = tb_password.Text;
 		}
 	}
 }
