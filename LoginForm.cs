@@ -28,7 +28,7 @@ namespace QLSV
 
 		private void btn_exit_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			Application.Exit();
 		}
 
 		private void btn_login_Click(object sender, EventArgs e)
@@ -37,7 +37,23 @@ namespace QLSV
 			string password = tb_password.Text;
 			if (Login(userName, password)) 
 			{
-				MessageBox.Show("Đăng nhập thành công!");
+				this.Hide();
+				switch (GetRole(userName, password))
+				{
+					case 1:
+						StudentForm student = new StudentForm();
+						student.ShowDialog();
+						break;
+					case 2:
+						LecturerForm lecturer = new LecturerForm();
+						lecturer.ShowDialog();
+						break;
+					case 3:
+						ManagerForm manager = new ManagerForm();
+						manager.ShowDialog();
+						break;
+				}
+				this.Show();
 			}
 			else
 			{
@@ -47,6 +63,10 @@ namespace QLSV
 		private bool Login(string userName, string password)
 		{
 			return AccountDAO.Instance.Login(userName, password);
+		}
+		private int GetRole(string userName, string password)
+		{
+			return AccountDAO.Instance.GetRole(userName, password);
 		}
 	}
 }

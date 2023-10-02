@@ -23,13 +23,32 @@ namespace QLSV.DAO
 			}
 		}
 		private AccountDAO() { }
-		public bool Login(string username, string password)
+
+		public DataTable GetAccount(string userName, string password)
 		{
-			string query = "SELECT * FROM USP_Login( :username , :password )";
+			string query = "SELECT * FROM USP_Login( :userName , :password )";
 
-			DataTable res = DataProvider.Instance.ExcuteQuery(query, new object[] {username, password});
+			DataTable res = DataProvider.Instance.ExcuteQuery(query, new object[] { userName, password });
 
-			return res.Rows.Count > 0;
+			return res;
+		}
+
+		public bool Login(string userName, string password)
+		{
+			return GetAccount(userName, password).Rows.Count > 0;
+		}
+		public int GetRole(string userName, string password)
+		{
+			int res = 0;
+
+			DataTable account = GetAccount(userName, password);
+
+			if (account.Rows.Count > 0)
+			{
+				res = int.Parse(account.Rows[0]["role"].ToString());
+			}
+
+			return res;
 		}
 	}
 }
