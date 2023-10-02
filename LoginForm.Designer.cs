@@ -1,6 +1,6 @@
 ﻿namespace QLSV
 {
-	partial class Form1
+	partial class LoginForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -31,18 +31,18 @@
 			this.pic_login = new System.Windows.Forms.PictureBox();
 			this.lb_login = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.lb_userName = new System.Windows.Forms.Label();
 			this.tb_userName = new System.Windows.Forms.TextBox();
+			this.lb_userName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.lb_password = new System.Windows.Forms.Label();
 			this.tb_password = new System.Windows.Forms.TextBox();
+			this.lb_password = new System.Windows.Forms.Label();
 			this.btn_login = new System.Windows.Forms.Button();
 			this.btn_exit = new System.Windows.Forms.Button();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.pn_login = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.pic_login)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.pn_login.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pic_login
@@ -77,17 +77,6 @@
 			this.panel2.Size = new System.Drawing.Size(417, 96);
 			this.panel2.TabIndex = 1;
 			// 
-			// lb_userName
-			// 
-			this.lb_userName.AutoSize = true;
-			this.lb_userName.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_userName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.lb_userName.Location = new System.Drawing.Point(11, 6);
-			this.lb_userName.Name = "lb_userName";
-			this.lb_userName.Size = new System.Drawing.Size(134, 23);
-			this.lb_userName.TabIndex = 0;
-			this.lb_userName.Text = "Tên đăng nhập";
-			// 
 			// tb_userName
 			// 
 			this.tb_userName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -103,6 +92,17 @@
 			this.tb_userName.Size = new System.Drawing.Size(386, 45);
 			this.tb_userName.TabIndex = 1;
 			// 
+			// lb_userName
+			// 
+			this.lb_userName.AutoSize = true;
+			this.lb_userName.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_userName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.lb_userName.Location = new System.Drawing.Point(11, 6);
+			this.lb_userName.Name = "lb_userName";
+			this.lb_userName.Size = new System.Drawing.Size(134, 23);
+			this.lb_userName.TabIndex = 0;
+			this.lb_userName.Text = "Tên đăng nhập";
+			// 
 			// panel3
 			// 
 			this.panel3.Controls.Add(this.tb_password);
@@ -111,17 +111,6 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(417, 96);
 			this.panel3.TabIndex = 2;
-			// 
-			// lb_password
-			// 
-			this.lb_password.AutoSize = true;
-			this.lb_password.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_password.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.lb_password.Location = new System.Drawing.Point(11, 6);
-			this.lb_password.Name = "lb_password";
-			this.lb_password.Size = new System.Drawing.Size(89, 23);
-			this.lb_password.TabIndex = 0;
-			this.lb_password.Text = "Mật khẩu";
 			// 
 			// tb_password
 			// 
@@ -134,6 +123,17 @@
 			this.tb_password.Name = "tb_password";
 			this.tb_password.Size = new System.Drawing.Size(386, 45);
 			this.tb_password.TabIndex = 1;
+			// 
+			// lb_password
+			// 
+			this.lb_password.AutoSize = true;
+			this.lb_password.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_password.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.lb_password.Location = new System.Drawing.Point(11, 6);
+			this.lb_password.Name = "lb_password";
+			this.lb_password.Size = new System.Drawing.Size(89, 23);
+			this.lb_password.TabIndex = 0;
+			this.lb_password.Text = "Mật khẩu";
 			// 
 			// btn_login
 			// 
@@ -161,28 +161,29 @@
 			this.btn_exit.UseVisualStyleBackColor = false;
 			this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
 			// 
-			// panel1
+			// pn_login
 			// 
-			this.panel1.BackColor = System.Drawing.Color.PaleTurquoise;
-			this.panel1.Controls.Add(this.btn_exit);
-			this.panel1.Controls.Add(this.btn_login);
-			this.panel1.Controls.Add(this.panel3);
-			this.panel1.Controls.Add(this.panel2);
-			this.panel1.Controls.Add(this.lb_login);
-			this.panel1.Location = new System.Drawing.Point(496, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(471, 501);
-			this.panel1.TabIndex = 1;
+			this.pn_login.BackColor = System.Drawing.Color.PaleTurquoise;
+			this.pn_login.Controls.Add(this.btn_exit);
+			this.pn_login.Controls.Add(this.btn_login);
+			this.pn_login.Controls.Add(this.panel3);
+			this.pn_login.Controls.Add(this.panel2);
+			this.pn_login.Controls.Add(this.lb_login);
+			this.pn_login.Location = new System.Drawing.Point(496, 0);
+			this.pn_login.Name = "pn_login";
+			this.pn_login.Size = new System.Drawing.Size(471, 501);
+			this.pn_login.TabIndex = 1;
 			// 
-			// Form1
+			// LoginForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(966, 501);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.pn_login);
 			this.Controls.Add(this.pic_login);
-			this.Name = "Form1";
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Name = "LoginForm";
 			this.Text = "Quản Lý Sinh Viên";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pic_login)).EndInit();
@@ -190,8 +191,8 @@
 			this.panel2.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.pn_login.ResumeLayout(false);
+			this.pn_login.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -208,7 +209,7 @@
 		private System.Windows.Forms.Label lb_password;
 		private System.Windows.Forms.Button btn_login;
 		private System.Windows.Forms.Button btn_exit;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel pn_login;
 	}
 }
 

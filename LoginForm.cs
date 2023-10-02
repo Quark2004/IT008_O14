@@ -14,19 +14,11 @@ using QLSV.DAO;
 
 namespace QLSV
 {
-	public partial class Form1 : Form
+	public partial class LoginForm : Form
 	{
-		public Form1()
+		public LoginForm()
 		{
 			InitializeComponent();
-			LoadAccount();
-		}
-
-		private void LoadAccount()
-		{
-			string query = "SELECT * FROM account;";
-			DataProvider source = new DataProvider();
-			DataTable account = source.ExcuteQuery(query);
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -43,6 +35,18 @@ namespace QLSV
 		{
 			string userName = tb_userName.Text;
 			string password = tb_password.Text;
+			if (Login(userName, password)) 
+			{
+				MessageBox.Show("Đăng nhập thành công!");
+			}
+			else
+			{
+				MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+			}
+		}
+		private bool Login(string userName, string password)
+		{
+			return AccountDAO.Instance.Login(userName, password);
 		}
 	}
 }
