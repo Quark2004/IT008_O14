@@ -37,6 +37,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Name = "StudentForm";
 			this.Text = "Sinh Viên";
+			this.Load += new System.EventHandler(this.StudentForm_Load);
 			this.ResumeLayout(false);
 
 		}

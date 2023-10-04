@@ -119,7 +119,7 @@
 			this.tb_password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_password.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_password.Location = new System.Drawing.Point(16, 42);
-			this.tb_password.MaxLength = 20;
+			this.tb_password.MaxLength = 15;
 			this.tb_password.Multiline = true;
 			this.tb_password.Name = "tb_password";
 			this.tb_password.Size = new System.Drawing.Size(386, 40);
