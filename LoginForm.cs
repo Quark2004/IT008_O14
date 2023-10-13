@@ -11,6 +11,7 @@ using System.Windows.Forms.VisualStyles;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Npgsql;
 using QLSV.DAO;
+using System.Reflection;
 
 namespace QLSV
 {
@@ -67,6 +68,32 @@ namespace QLSV
 		private int GetRole(string userName, string password)
 		{
 			return AccountDAO.Instance.GetRole(userName, password);
+		}
+
+		private void tb_userName_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter && tb_userName.Text != "")
+			{
+				tb_password.Focus();
+			}
+		}
+
+		private void tb_password_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter && tb_password.Text != "")
+			{
+				btn_login.PerformClick();
+			}
+		}
+
+		private void btn_login_MouseHover(object sender, EventArgs e)
+		{
+			btn_login.Cursor = System.Windows.Forms.Cursors.Hand;
+		}
+
+		private void btn_exit_MouseHover(object sender, EventArgs e)
+		{
+			btn_exit.Cursor = System.Windows.Forms.Cursors.Hand;
 		}
 	}
 }

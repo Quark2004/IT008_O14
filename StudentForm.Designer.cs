@@ -30,9 +30,12 @@
 		{
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Score = new System.Windows.Forms.TabPage();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
 			this.tab_courseRegister = new System.Windows.Forms.TabPage();
 			this.tabCtr_Student.SuspendLayout();
+			this.tab_Score.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
@@ -55,6 +58,7 @@
 			this.tab_Score.BackColor = System.Drawing.Color.LightGray;
 			this.tab_Score.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Score.Controls.Add(this.dataGridView1);
 			this.tab_Score.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tab_Score.ForeColor = System.Drawing.SystemColors.Control;
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
@@ -63,6 +67,16 @@
 			this.tab_Score.Size = new System.Drawing.Size(768, 386);
 			this.tab_Score.TabIndex = 0;
 			this.tab_Score.Text = "    Điểm";
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(6, 6);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowHeadersWidth = 51;
+			this.dataGridView1.RowTemplate.Height = 24;
+			this.dataGridView1.Size = new System.Drawing.Size(754, 372);
+			this.dataGridView1.TabIndex = 0;
 			// 
 			// tab_Schedule
 			// 
@@ -97,6 +111,8 @@
 			this.Text = "Sinh Viên";
 			this.Load += new System.EventHandler(this.StudentForm_Load);
 			this.tabCtr_Student.ResumeLayout(false);
+			this.tab_Score.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -107,5 +123,6 @@
 		private System.Windows.Forms.TabPage tab_Score;
 		private System.Windows.Forms.TabPage tab_Schedule;
 		private System.Windows.Forms.TabPage tab_courseRegister;
+		private System.Windows.Forms.DataGridView dataGridView1;
 	}
 }

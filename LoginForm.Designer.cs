@@ -84,13 +84,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tb_userName.BackColor = System.Drawing.Color.White;
 			this.tb_userName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tb_userName.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tb_userName.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_userName.Location = new System.Drawing.Point(16, 42);
 			this.tb_userName.MaxLength = 20;
-			this.tb_userName.Multiline = true;
 			this.tb_userName.Name = "tb_userName";
-			this.tb_userName.Size = new System.Drawing.Size(386, 40);
+			this.tb_userName.Size = new System.Drawing.Size(386, 39);
 			this.tb_userName.TabIndex = 1;
+			this.tb_userName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_userName_KeyDown);
 			// 
 			// lb_userName
 			// 
@@ -117,13 +117,13 @@
 			this.tb_password.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
 			this.tb_password.BackColor = System.Drawing.Color.White;
 			this.tb_password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tb_password.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tb_password.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tb_password.Location = new System.Drawing.Point(16, 42);
 			this.tb_password.MaxLength = 15;
-			this.tb_password.Multiline = true;
 			this.tb_password.Name = "tb_password";
-			this.tb_password.Size = new System.Drawing.Size(386, 40);
+			this.tb_password.Size = new System.Drawing.Size(386, 39);
 			this.tb_password.TabIndex = 2;
+			this.tb_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_password_KeyDown);
 			// 
 			// lb_password
 			// 
@@ -148,6 +148,7 @@
 			this.btn_login.Text = "ĐĂNG NHẬP";
 			this.btn_login.UseVisualStyleBackColor = false;
 			this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+			this.btn_login.MouseHover += new System.EventHandler(this.btn_login_MouseHover);
 			// 
 			// btn_exit
 			// 
@@ -161,6 +162,7 @@
 			this.btn_exit.Text = "THOÁT";
 			this.btn_exit.UseVisualStyleBackColor = false;
 			this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
+			this.btn_exit.MouseHover += new System.EventHandler(this.btn_exit_MouseHover);
 			// 
 			// pn_login
 			// 
@@ -185,6 +187,7 @@
 			this.Controls.Add(this.pic_login);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "LoginForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Đăng Nhập";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pic_login)).EndInit();
