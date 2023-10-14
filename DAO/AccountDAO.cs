@@ -26,7 +26,7 @@ namespace QLSV.DAO
 
 		public DataTable GetAccount(string userName, string password)
 		{
-			string query = "SELECT * FROM USP_Login( :userName , :password )";
+			string query = "SELECT * FROM Account_Login( :userName , :password )";
 
 			DataTable res = DataProvider.Instance.ExcuteQuery(query, new object[] { userName, password });
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QLSV.DAO;
+using QLSV.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,27 @@ namespace QLSV
 {
 	public partial class StudentForm : Form
 	{
-		public StudentForm()
+
+		public StudentForm(string id)
 		{
 			InitializeComponent();
+			ID = id;
+			LoadInfo();
 		}
 
-		private void StudentForm_Load(object sender, EventArgs e)
+		public string ID { get; set; }
+
+		#region Method
+		void LoadInfo()
 		{
-
+			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
+			lb_ID.Text = info.Id;
+			lb_Name.Text = info.Name;
+			lb_Birthday.Text = info.Birthday;
+			lb_Class.Text = info.ClassId;
+			lb_Gender.Text = info.Gender;
 		}
+		#endregion
+
 	}
 }

@@ -42,7 +42,7 @@ namespace QLSV
 				switch (GetRole(userName, password))
 				{
 					case 1:
-						StudentForm student = new StudentForm();
+						StudentForm student = new StudentForm(userName);
 						student.ShowDialog();
 						break;
 					case 2:
