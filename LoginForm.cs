@@ -46,11 +46,11 @@ namespace QLSV
 						student.ShowDialog();
 						break;
 					case 2:
-						LecturerForm lecturer = new LecturerForm();
+						LecturerForm lecturer = new LecturerForm(userName);
 						lecturer.ShowDialog();
 						break;
 					case 3:
-						ManagerForm manager = new ManagerForm();
+						ManagerForm manager = new ManagerForm(userName);
 						manager.ShowDialog();
 						break;
 				}

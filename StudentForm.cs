@@ -30,7 +30,7 @@ namespace QLSV
 			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
 			lb_ID.Text = info.Id;
 			lb_Name.Text = info.Name;
-			lb_Birthday.Text = info.Birthday;
+			lb_Birthday.Text = info.Birthday.ToShortDateString();
 			lb_Class.Text = info.ClassId;
 			lb_Gender.Text = info.Gender;
 		}

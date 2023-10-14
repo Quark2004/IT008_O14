@@ -56,14 +56,14 @@
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.tab_Score = new System.Windows.Forms.TabPage();
-			this.data_Score = new System.Windows.Forms.DataGridView();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.tab_Score.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.data_Score)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
@@ -84,7 +84,7 @@
 			// 
 			// tab_Info
 			// 
-			this.tab_Info.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.tab_Info.BackColor = System.Drawing.Color.Silver;
 			this.tab_Info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.tab_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tab_Info.Controls.Add(this.panel2);
@@ -101,7 +101,9 @@
 			// 
 			// panel2
 			// 
+			this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label17);
 			this.panel2.Controls.Add(this.lb_Class);
 			this.panel2.Controls.Add(this.lb_Gender);
 			this.panel2.Controls.Add(this.lb_Birthday);
@@ -112,9 +114,9 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.label10);
-			this.panel2.Location = new System.Drawing.Point(151, 115);
+			this.panel2.Location = new System.Drawing.Point(145, 32);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(311, 254);
+			this.panel2.Size = new System.Drawing.Size(311, 307);
 			this.panel2.TabIndex = 6;
 			// 
 			// lb_Class
@@ -209,7 +211,10 @@
 			// 
 			// panel1
 			// 
+			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel1.Controls.Add(this.label18);
+			this.panel1.Controls.Add(this.label16);
 			this.panel1.Controls.Add(this.label15);
 			this.panel1.Controls.Add(this.label14);
 			this.panel1.Controls.Add(this.label13);
@@ -220,9 +225,9 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(35, 115);
+			this.panel1.Location = new System.Drawing.Point(29, 32);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(117, 254);
+			this.panel1.Size = new System.Drawing.Size(117, 307);
 			this.panel1.TabIndex = 5;
 			// 
 			// label15
@@ -329,7 +334,7 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(509, 148);
+			this.pictureBox1.Location = new System.Drawing.Point(514, 94);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(223, 187);
 			this.pictureBox1.TabIndex = 0;
@@ -359,7 +364,6 @@
 			// 
 			// tab_Score
 			// 
-			this.tab_Score.Controls.Add(this.data_Score);
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
@@ -368,15 +372,33 @@
 			this.tab_Score.Text = "   Điểm";
 			this.tab_Score.UseVisualStyleBackColor = true;
 			// 
-			// data_Score
+			// label16
 			// 
-			this.data_Score.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.data_Score.Location = new System.Drawing.Point(7, 7);
-			this.data_Score.Name = "data_Score";
-			this.data_Score.RowHeadersWidth = 51;
-			this.data_Score.RowTemplate.Height = 24;
-			this.data_Score.Size = new System.Drawing.Size(754, 372);
-			this.data_Score.TabIndex = 1;
+			this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label16.Location = new System.Drawing.Point(-1, 254);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(117, 52);
+			this.label16.TabIndex = 10;
+			// 
+			// label17
+			// 
+			this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label17.Location = new System.Drawing.Point(-1, 254);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(311, 52);
+			this.label17.TabIndex = 10;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.label18.Location = new System.Drawing.Point(3, 268);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(44, 23);
+			this.label18.TabIndex = 11;
+			this.label18.Text = "Lớp";
+			this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// StudentForm
 			// 
@@ -395,8 +417,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.tab_Score.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.data_Score)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -408,7 +428,6 @@
 		private System.Windows.Forms.TabPage tab_Schedule;
 		private System.Windows.Forms.TabPage tab_CourseRegister;
 		private System.Windows.Forms.TabPage tab_Score;
-		private System.Windows.Forms.DataGridView data_Score;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label1;
@@ -432,5 +451,8 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label16;
 	}
 }

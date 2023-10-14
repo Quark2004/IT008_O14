@@ -12,7 +12,7 @@ namespace QLSV
 {
 	public partial class ManagerForm : Form
 	{
-		public ManagerForm()
+		public ManagerForm(string id)
 		{
 			InitializeComponent();
 		}

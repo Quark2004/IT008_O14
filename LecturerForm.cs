@@ -12,7 +12,7 @@ namespace QLSV
 {
 	public partial class LecturerForm : Form
 	{
-		public LecturerForm()
+		public LecturerForm(string id)
 		{
 			InitializeComponent();
 		}
