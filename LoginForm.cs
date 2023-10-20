@@ -36,29 +36,49 @@ namespace QLSV
 		{
 			string userName = tb_userName.Text;
 			string password = tb_password.Text;
-			if (Login(userName, password)) 
+
+			if (userName == "")
 			{
-				this.Hide();
-				switch (GetRole(userName, password))
+				MessageBox.Show("Yêu cầu nhập MSSV!");
+				return;
+			}
+
+			if (password == "")
+			{
+				MessageBox.Show("Yêu cầu nhập mật khẩu!");
+				return;
+			}
+
+			if (userName.All(Char.IsDigit))
+			{
+				if (Login(userName, password))
 				{
-					case 1:
-						StudentForm student = new StudentForm(userName);
-						student.ShowDialog();
-						break;
-					case 2:
-						LecturerForm lecturer = new LecturerForm(userName);
-						lecturer.ShowDialog();
-						break;
-					case 3:
-						ManagerForm manager = new ManagerForm(userName);
-						manager.ShowDialog();
-						break;
+					this.Hide();
+					switch (GetRole(userName, password))
+					{
+						case 1:
+							StudentForm student = new StudentForm(userName);
+							student.ShowDialog();
+							break;
+						case 2:
+							LecturerForm lecturer = new LecturerForm(userName);
+							lecturer.ShowDialog();
+							break;
+						case 3:
+							ManagerForm manager = new ManagerForm(userName);
+							manager.ShowDialog();
+							break;
+					}
+					this.Show();
 				}
-				this.Show();
+				else
+				{
+					MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+				}
 			}
 			else
 			{
-				MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+				MessageBox.Show("MSSV chỉ bao gồm các chữ số!");
 			}
 		}
 		private bool Login(string userName, string password)
@@ -76,11 +96,15 @@ namespace QLSV
 			{
 				tb_password.Focus();
 			}
+			else if (e.KeyCode == Keys.Enter && tb_userName.Text == "")
+			{
+				btn_login.PerformClick();
+			}
 		}
 
 		private void tb_password_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter && tb_password.Text != "")
+			if (e.KeyCode == Keys.Enter)
 			{
 				btn_login.PerformClick();
 			}

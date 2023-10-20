@@ -90,9 +90,9 @@
 			this.lb_userName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.lb_userName.Location = new System.Drawing.Point(11, 6);
 			this.lb_userName.Name = "lb_userName";
-			this.lb_userName.Size = new System.Drawing.Size(134, 23);
+			this.lb_userName.Size = new System.Drawing.Size(58, 23);
 			this.lb_userName.TabIndex = 0;
-			this.lb_userName.Text = "Tên đăng nhập";
+			this.lb_userName.Text = "MSSV";
 			// 
 			// panel3
 			// 

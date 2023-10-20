@@ -31,6 +31,8 @@
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.lb_Department = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
 			this.lb_Class = new System.Windows.Forms.Label();
 			this.lb_Gender = new System.Windows.Forms.Label();
 			this.lb_Birthday = new System.Windows.Forms.Label();
@@ -42,6 +44,8 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
@@ -56,14 +60,23 @@
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.tab_Score = new System.Windows.Forms.TabPage();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
+			this.label29 = new System.Windows.Forms.Label();
+			this.label28 = new System.Windows.Forms.Label();
+			this.label27 = new System.Windows.Forms.Label();
+			this.label26 = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.label24 = new System.Windows.Forms.Label();
+			this.label23 = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.tab_Score.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
@@ -79,7 +92,7 @@
 			this.tabCtr_Student.Name = "tabCtr_Student";
 			this.tabCtr_Student.SelectedIndex = 0;
 			this.tabCtr_Student.ShowToolTips = true;
-			this.tabCtr_Student.Size = new System.Drawing.Size(776, 426);
+			this.tabCtr_Student.Size = new System.Drawing.Size(1002, 500);
 			this.tabCtr_Student.TabIndex = 0;
 			// 
 			// tab_Info
@@ -95,7 +108,7 @@
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
 			this.tab_Info.Name = "tab_Info";
 			this.tab_Info.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Info.Size = new System.Drawing.Size(768, 386);
+			this.tab_Info.Size = new System.Drawing.Size(994, 460);
 			this.tab_Info.TabIndex = 0;
 			this.tab_Info.Text = "Thông tin";
 			// 
@@ -103,6 +116,7 @@
 			// 
 			this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.lb_Department);
 			this.panel2.Controls.Add(this.label17);
 			this.panel2.Controls.Add(this.lb_Class);
 			this.panel2.Controls.Add(this.lb_Gender);
@@ -114,10 +128,28 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.label10);
-			this.panel2.Location = new System.Drawing.Point(145, 32);
+			this.panel2.Location = new System.Drawing.Point(174, 73);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(311, 307);
 			this.panel2.TabIndex = 6;
+			// 
+			// lb_Department
+			// 
+			this.lb_Department.AutoSize = true;
+			this.lb_Department.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_Department.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.lb_Department.Location = new System.Drawing.Point(6, 268);
+			this.lb_Department.Name = "lb_Department";
+			this.lb_Department.Size = new System.Drawing.Size(0, 23);
+			this.lb_Department.TabIndex = 11;
+			// 
+			// label17
+			// 
+			this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label17.Location = new System.Drawing.Point(-1, 254);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(311, 52);
+			this.label17.TabIndex = 10;
 			// 
 			// lb_Class
 			// 
@@ -225,10 +257,30 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(29, 32);
+			this.panel1.Location = new System.Drawing.Point(58, 73);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(117, 307);
 			this.panel1.TabIndex = 5;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.label18.Location = new System.Drawing.Point(3, 268);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(55, 23);
+			this.label18.TabIndex = 11;
+			this.label18.Text = "Khoa";
+			this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label16
+			// 
+			this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label16.Location = new System.Drawing.Point(-1, 254);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(117, 52);
+			this.label16.TabIndex = 10;
 			// 
 			// label15
 			// 
@@ -334,77 +386,176 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(514, 94);
+			this.pictureBox1.Location = new System.Drawing.Point(558, 108);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(223, 187);
+			this.pictureBox1.Size = new System.Drawing.Size(272, 238);
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
 			// tab_Schedule
 			// 
-			this.tab_Schedule.BackColor = System.Drawing.Color.LightGray;
+			this.tab_Schedule.BackColor = System.Drawing.Color.Silver;
 			this.tab_Schedule.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tab_Schedule.Location = new System.Drawing.Point(4, 36);
 			this.tab_Schedule.Name = "tab_Schedule";
 			this.tab_Schedule.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Schedule.Size = new System.Drawing.Size(768, 386);
+			this.tab_Schedule.Size = new System.Drawing.Size(994, 460);
 			this.tab_Schedule.TabIndex = 1;
 			this.tab_Schedule.Text = "Lịch học";
 			// 
 			// tab_CourseRegister
 			// 
-			this.tab_CourseRegister.BackColor = System.Drawing.Color.LightGray;
+			this.tab_CourseRegister.BackColor = System.Drawing.Color.Silver;
 			this.tab_CourseRegister.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
 			this.tab_CourseRegister.Name = "tab_CourseRegister";
 			this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CourseRegister.Size = new System.Drawing.Size(768, 386);
+			this.tab_CourseRegister.Size = new System.Drawing.Size(994, 460);
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
 			// 
 			// tab_Score
 			// 
+			this.tab_Score.BackColor = System.Drawing.Color.Silver;
+			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Score.Controls.Add(this.label29);
+			this.tab_Score.Controls.Add(this.label28);
+			this.tab_Score.Controls.Add(this.label27);
+			this.tab_Score.Controls.Add(this.label26);
+			this.tab_Score.Controls.Add(this.label25);
+			this.tab_Score.Controls.Add(this.label24);
+			this.tab_Score.Controls.Add(this.label23);
+			this.tab_Score.Controls.Add(this.label22);
+			this.tab_Score.Controls.Add(this.label21);
+			this.tab_Score.Controls.Add(this.label20);
+			this.tab_Score.Controls.Add(this.label19);
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(768, 386);
+			this.tab_Score.Size = new System.Drawing.Size(994, 460);
 			this.tab_Score.TabIndex = 3;
 			this.tab_Score.Text = "   Điểm";
-			this.tab_Score.UseVisualStyleBackColor = true;
 			// 
-			// label16
+			// label29
 			// 
-			this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label16.Location = new System.Drawing.Point(-1, 254);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(117, 52);
-			this.label16.TabIndex = 10;
+			this.label29.BackColor = System.Drawing.Color.Gainsboro;
+			this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label29.Location = new System.Drawing.Point(884, 3);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(106, 42);
+			this.label29.TabIndex = 10;
+			this.label29.Text = "Điểm HP";
+			this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// label17
+			// label28
 			// 
-			this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label17.Location = new System.Drawing.Point(-1, 254);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(311, 52);
-			this.label17.TabIndex = 10;
+			this.label28.BackColor = System.Drawing.Color.Gainsboro;
+			this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label28.Location = new System.Drawing.Point(780, 3);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(105, 42);
+			this.label28.TabIndex = 9;
+			this.label28.Text = "Điểm CK";
+			this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// label18
+			// label27
 			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.label18.Location = new System.Drawing.Point(3, 268);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(44, 23);
-			this.label18.TabIndex = 11;
-			this.label18.Text = "Lớp";
-			this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label27.BackColor = System.Drawing.Color.Gainsboro;
+			this.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label27.Location = new System.Drawing.Point(676, 3);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(105, 42);
+			this.label27.TabIndex = 8;
+			this.label27.Text = "Điểm TH";
+			this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label26
+			// 
+			this.label26.BackColor = System.Drawing.Color.Gainsboro;
+			this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label26.Location = new System.Drawing.Point(578, 3);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(99, 42);
+			this.label26.TabIndex = 7;
+			this.label26.Text = "Điểm GK";
+			this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label25
+			// 
+			this.label25.BackColor = System.Drawing.Color.Gainsboro;
+			this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label25.Location = new System.Drawing.Point(480, 3);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(99, 42);
+			this.label25.TabIndex = 6;
+			this.label25.Text = "Điểm QT";
+			this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label24
+			// 
+			this.label24.BackColor = System.Drawing.Color.Gainsboro;
+			this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label24.Location = new System.Drawing.Point(395, 3);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(86, 42);
+			this.label24.TabIndex = 5;
+			this.label24.Text = "Tín chỉ";
+			this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label23
+			// 
+			this.label23.BackColor = System.Drawing.Color.Gainsboro;
+			this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label23.Location = new System.Drawing.Point(125, 3);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(271, 42);
+			this.label23.TabIndex = 4;
+			this.label23.Text = "Tên HP";
+			this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label22
+			// 
+			this.label22.BackColor = System.Drawing.Color.Gainsboro;
+			this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label22.Location = new System.Drawing.Point(48, 3);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(78, 42);
+			this.label22.TabIndex = 3;
+			this.label22.Text = "Mã HP";
+			this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label21
+			// 
+			this.label21.BackColor = System.Drawing.Color.Gainsboro;
+			this.label21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label21.Location = new System.Drawing.Point(2, 3);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(47, 42);
+			this.label21.TabIndex = 2;
+			// 
+			// label20
+			// 
+			this.label20.BackColor = System.Drawing.Color.Gainsboro;
+			this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label20.Location = new System.Drawing.Point(2, 3);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(988, 42);
+			this.label20.TabIndex = 1;
+			// 
+			// label19
+			// 
+			this.label19.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label19.Location = new System.Drawing.Point(2, 3);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(988, 452);
+			this.label19.TabIndex = 0;
 			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(1026, 524);
 			this.Controls.Add(this.tabCtr_Student);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "StudentForm";
@@ -417,6 +568,7 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.tab_Score.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -454,5 +606,17 @@
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label lb_Department;
+		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label29;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.Label label23;
 	}
 }

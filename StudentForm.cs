@@ -33,6 +33,7 @@ namespace QLSV
 			lb_Birthday.Text = info.Birthday.ToShortDateString();
 			lb_Class.Text = info.ClassId;
 			lb_Gender.Text = info.Gender;
+			lb_Department.Text = info.Department;
 		}
 		#endregion
 

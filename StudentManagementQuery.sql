@@ -64,4 +64,3 @@ INSERT INTO account VALUES('22521161', 'quark724', 1);
 INSERT INTO account VALUES('22529507', 'mylove', 2);
 INSERT INTO account VALUES('admin', 'admin', 3);
 INSERT INTO student VALUES('22521161', 'Hồ Văn Phương', '07-02-2004', 'Nam', 'KTPM2022.2');
-

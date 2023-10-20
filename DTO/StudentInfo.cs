@@ -15,12 +15,14 @@ namespace QLSV.DTO
 		private DateTime birthday;
 		private string gender;
 		private string classId;
+		private string department;
 
 		public string Id { get => id; set => id = value; }
 		public string Name { get => name; set => name = value; }
 		public string Gender { get => gender; set => gender = value; }
 		public string ClassId { get => classId; set => classId = value; }
 		public DateTime Birthday { get => birthday; set => birthday = value; }
+		public string Department { get => department; set => department = value; }
 
 		public StudentInfo(DataRow row)
 		{
@@ -29,15 +31,17 @@ namespace QLSV.DTO
 			this.Birthday = (DateTime)row["birthday"];
 			this.Gender = row["gender"].ToString();
 			this.ClassId = row["class_id"].ToString();
+			this.Department = row["department"].ToString();
 		}
 
-		public StudentInfo(string id, string name, DateTime birthday, string gender, string classId)
+		public StudentInfo(string id, string name, DateTime birthday, string gender, string classId, string department)
 		{
 			this.Id = id;
 			this.Name = name;
 			this.Birthday = birthday;
 			this.Gender = gender;
 			this.ClassId = classId;
+			this.Department = department;
 		}
 	}
 }

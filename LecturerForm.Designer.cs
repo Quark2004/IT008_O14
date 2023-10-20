@@ -37,7 +37,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Name = "LecturerForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "LecturerForm";
+			this.Text = "Giảng Viên";
 			this.ResumeLayout(false);
 
 		}

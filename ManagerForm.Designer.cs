@@ -37,7 +37,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Name = "ManagerForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "ManagerForm";
+			this.Text = "Quản Lí";
 			this.ResumeLayout(false);
 
 		}
