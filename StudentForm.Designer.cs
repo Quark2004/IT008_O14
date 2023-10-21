@@ -440,7 +440,7 @@
 			// 
 			this.label29.BackColor = System.Drawing.Color.Gainsboro;
 			this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label29.Location = new System.Drawing.Point(884, 3);
+			this.label29.Location = new System.Drawing.Point(887, -1);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(106, 42);
 			this.label29.TabIndex = 10;
@@ -451,7 +451,7 @@
 			// 
 			this.label28.BackColor = System.Drawing.Color.Gainsboro;
 			this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label28.Location = new System.Drawing.Point(780, 3);
+			this.label28.Location = new System.Drawing.Point(783, -1);
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(105, 42);
 			this.label28.TabIndex = 9;
@@ -462,7 +462,7 @@
 			// 
 			this.label27.BackColor = System.Drawing.Color.Gainsboro;
 			this.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label27.Location = new System.Drawing.Point(676, 3);
+			this.label27.Location = new System.Drawing.Point(679, -1);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(105, 42);
 			this.label27.TabIndex = 8;
@@ -473,7 +473,7 @@
 			// 
 			this.label26.BackColor = System.Drawing.Color.Gainsboro;
 			this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label26.Location = new System.Drawing.Point(578, 3);
+			this.label26.Location = new System.Drawing.Point(581, -1);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(99, 42);
 			this.label26.TabIndex = 7;
@@ -484,7 +484,7 @@
 			// 
 			this.label25.BackColor = System.Drawing.Color.Gainsboro;
 			this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label25.Location = new System.Drawing.Point(480, 3);
+			this.label25.Location = new System.Drawing.Point(483, -1);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(99, 42);
 			this.label25.TabIndex = 6;
@@ -495,7 +495,7 @@
 			// 
 			this.label24.BackColor = System.Drawing.Color.Gainsboro;
 			this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label24.Location = new System.Drawing.Point(395, 3);
+			this.label24.Location = new System.Drawing.Point(398, -1);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(86, 42);
 			this.label24.TabIndex = 5;
@@ -506,9 +506,9 @@
 			// 
 			this.label23.BackColor = System.Drawing.Color.Gainsboro;
 			this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label23.Location = new System.Drawing.Point(125, 3);
+			this.label23.Location = new System.Drawing.Point(122, -1);
 			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(271, 42);
+			this.label23.Size = new System.Drawing.Size(277, 42);
 			this.label23.TabIndex = 4;
 			this.label23.Text = "Tên HP";
 			this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -517,7 +517,7 @@
 			// 
 			this.label22.BackColor = System.Drawing.Color.Gainsboro;
 			this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label22.Location = new System.Drawing.Point(48, 3);
+			this.label22.Location = new System.Drawing.Point(45, -1);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(78, 42);
 			this.label22.TabIndex = 3;
@@ -528,7 +528,7 @@
 			// 
 			this.label21.BackColor = System.Drawing.Color.Gainsboro;
 			this.label21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label21.Location = new System.Drawing.Point(2, 3);
+			this.label21.Location = new System.Drawing.Point(-1, -1);
 			this.label21.Name = "label21";
 			this.label21.Size = new System.Drawing.Size(47, 42);
 			this.label21.TabIndex = 2;
@@ -537,18 +537,18 @@
 			// 
 			this.label20.BackColor = System.Drawing.Color.Gainsboro;
 			this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label20.Location = new System.Drawing.Point(2, 3);
+			this.label20.Location = new System.Drawing.Point(-1, -1);
 			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(988, 42);
+			this.label20.Size = new System.Drawing.Size(994, 42);
 			this.label20.TabIndex = 1;
 			// 
 			// label19
 			// 
 			this.label19.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label19.Location = new System.Drawing.Point(2, 3);
+			this.label19.Location = new System.Drawing.Point(-1, -1);
 			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(988, 452);
+			this.label19.Size = new System.Drawing.Size(994, 460);
 			this.label19.TabIndex = 0;
 			// 
 			// StudentForm
