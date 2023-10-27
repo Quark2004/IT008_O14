@@ -28,9 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
 			this.lb_Department = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
 			this.lb_Class = new System.Windows.Forms.Label();
@@ -58,24 +66,53 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
+			this.data_Schedule = new System.Windows.Forms.DataGridView();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
-			this.tab_Score = new System.Windows.Forms.TabPage();
-			this.label29 = new System.Windows.Forms.Label();
-			this.label28 = new System.Windows.Forms.Label();
-			this.label27 = new System.Windows.Forms.Label();
-			this.label26 = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
-			this.label24 = new System.Windows.Forms.Label();
-			this.label23 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.btn_Find = new System.Windows.Forms.Button();
+			this.tb_Filter = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
+			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
+			this.tab_Score = new System.Windows.Forms.TabPage();
+			this.lv_Score = new System.Windows.Forms.ListView();
+			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.MaHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TenHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TinChi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemQT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemGK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemTH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemCK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SoTin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.HocKi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NgayBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NgayKt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.tab_Schedule.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.data_Schedule)).BeginInit();
+			this.tab_CourseRegister.SuspendLayout();
+			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).BeginInit();
 			this.tab_Score.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -88,11 +125,11 @@
 			this.tabCtr_Student.Controls.Add(this.tab_Score);
 			this.tabCtr_Student.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabCtr_Student.ItemSize = new System.Drawing.Size(120, 32);
-			this.tabCtr_Student.Location = new System.Drawing.Point(12, 12);
+			this.tabCtr_Student.Location = new System.Drawing.Point(0, 0);
 			this.tabCtr_Student.Name = "tabCtr_Student";
 			this.tabCtr_Student.SelectedIndex = 0;
 			this.tabCtr_Student.ShowToolTips = true;
-			this.tabCtr_Student.Size = new System.Drawing.Size(1002, 500);
+			this.tabCtr_Student.Size = new System.Drawing.Size(1182, 554);
 			this.tabCtr_Student.TabIndex = 0;
 			// 
 			// tab_Info
@@ -108,7 +145,7 @@
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
 			this.tab_Info.Name = "tab_Info";
 			this.tab_Info.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Info.Size = new System.Drawing.Size(994, 460);
+			this.tab_Info.Size = new System.Drawing.Size(1174, 514);
 			this.tab_Info.TabIndex = 0;
 			this.tab_Info.Text = "Thông tin";
 			// 
@@ -116,6 +153,8 @@
 			// 
 			this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label20);
+			this.panel2.Controls.Add(this.label19);
 			this.panel2.Controls.Add(this.lb_Department);
 			this.panel2.Controls.Add(this.label17);
 			this.panel2.Controls.Add(this.lb_Class);
@@ -132,6 +171,30 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(311, 307);
 			this.panel2.TabIndex = 6;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.label20.Location = new System.Drawing.Point(6, 219);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(74, 23);
+			this.label20.TabIndex = 12;
+			this.label20.Text = "Đại học";
+			this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label19.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.label19.Location = new System.Drawing.Point(6, 268);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(96, 23);
+			this.label19.TabIndex = 12;
+			this.label19.Text = "Chính quy";
+			this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// lb_Department
 			// 
@@ -269,9 +332,9 @@
 			this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label18.Location = new System.Drawing.Point(3, 268);
 			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(55, 23);
+			this.label18.Size = new System.Drawing.Size(107, 23);
 			this.label18.TabIndex = 11;
-			this.label18.Text = "Khoa";
+			this.label18.Text = "Hệ đào tạo:";
 			this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label16
@@ -289,9 +352,9 @@
 			this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label15.Location = new System.Drawing.Point(3, 219);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(44, 23);
+			this.label15.Size = new System.Drawing.Size(114, 23);
 			this.label15.TabIndex = 9;
-			this.label15.Text = "Lớp";
+			this.label15.Text = "Bậc đào tạo:";
 			this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label14
@@ -301,9 +364,9 @@
 			this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label14.Location = new System.Drawing.Point(3, 166);
 			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(85, 23);
+			this.label14.Size = new System.Drawing.Size(90, 23);
 			this.label14.TabIndex = 8;
-			this.label14.Text = "Giới tính";
+			this.label14.Text = "Giới tính:";
 			this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label13
@@ -313,9 +376,9 @@
 			this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label13.Location = new System.Drawing.Point(3, 116);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(95, 23);
+			this.label13.Size = new System.Drawing.Size(100, 23);
 			this.label13.TabIndex = 7;
-			this.label13.Text = "Ngày sinh";
+			this.label13.Text = "Ngày sinh:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label12
@@ -325,9 +388,9 @@
 			this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label12.Location = new System.Drawing.Point(3, 66);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(58, 23);
+			this.label12.Size = new System.Drawing.Size(66, 23);
 			this.label12.TabIndex = 6;
-			this.label12.Text = "MSSV";
+			this.label12.Text = "Mã SV:";
 			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label11
@@ -337,9 +400,9 @@
 			this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.label11.Location = new System.Drawing.Point(3, 12);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(91, 23);
+			this.label11.Size = new System.Drawing.Size(96, 23);
 			this.label11.TabIndex = 5;
-			this.label11.Text = "Họ và tên";
+			this.label11.Text = "Họ và tên:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label5
@@ -386,7 +449,7 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(558, 108);
+			this.pictureBox1.Location = new System.Drawing.Point(699, 113);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(272, 238);
 			this.pictureBox1.TabIndex = 0;
@@ -396,166 +459,407 @@
 			// 
 			this.tab_Schedule.BackColor = System.Drawing.Color.Silver;
 			this.tab_Schedule.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Schedule.Controls.Add(this.data_Schedule);
 			this.tab_Schedule.Location = new System.Drawing.Point(4, 36);
 			this.tab_Schedule.Name = "tab_Schedule";
 			this.tab_Schedule.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Schedule.Size = new System.Drawing.Size(994, 460);
+			this.tab_Schedule.Size = new System.Drawing.Size(1174, 514);
 			this.tab_Schedule.TabIndex = 1;
 			this.tab_Schedule.Text = "Lịch học";
+			// 
+			// data_Schedule
+			// 
+			this.data_Schedule.AllowUserToResizeColumns = false;
+			this.data_Schedule.AllowUserToResizeRows = false;
+			this.data_Schedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_Schedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.data_Schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.data_Schedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Category,
+            this.Monday,
+            this.Tuesday,
+            this.Wednesday,
+            this.Thursday,
+            this.Friday,
+            this.Saturday});
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_Schedule.DefaultCellStyle = dataGridViewCellStyle2;
+			this.data_Schedule.Location = new System.Drawing.Point(-1, -1);
+			this.data_Schedule.Name = "data_Schedule";
+			this.data_Schedule.ReadOnly = true;
+			this.data_Schedule.RowHeadersVisible = false;
+			this.data_Schedule.RowHeadersWidth = 51;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_Schedule.RowsDefaultCellStyle = dataGridViewCellStyle3;
+			this.data_Schedule.RowTemplate.Height = 24;
+			this.data_Schedule.Size = new System.Drawing.Size(1171, 511);
+			this.data_Schedule.TabIndex = 0;
 			// 
 			// tab_CourseRegister
 			// 
 			this.tab_CourseRegister.BackColor = System.Drawing.Color.Silver;
 			this.tab_CourseRegister.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_CourseRegister.Controls.Add(this.panel3);
+			this.tab_CourseRegister.Controls.Add(this.data_CourseRegistration);
 			this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
 			this.tab_CourseRegister.Name = "tab_CourseRegister";
 			this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CourseRegister.Size = new System.Drawing.Size(994, 460);
+			this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 514);
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
+			// 
+			// panel3
+			// 
+			this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel3.Controls.Add(this.btn_Find);
+			this.panel3.Controls.Add(this.tb_Filter);
+			this.panel3.Controls.Add(this.label21);
+			this.panel3.Location = new System.Drawing.Point(0, -1);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(1170, 67);
+			this.panel3.TabIndex = 2;
+			// 
+			// btn_Find
+			// 
+			this.btn_Find.Location = new System.Drawing.Point(636, 12);
+			this.btn_Find.Name = "btn_Find";
+			this.btn_Find.Size = new System.Drawing.Size(136, 46);
+			this.btn_Find.TabIndex = 2;
+			this.btn_Find.Text = "Tìm kiếm";
+			this.btn_Find.UseVisualStyleBackColor = true;
+			// 
+			// tb_Filter
+			// 
+			this.tb_Filter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tb_Filter.Location = new System.Drawing.Point(65, 19);
+			this.tb_Filter.Name = "tb_Filter";
+			this.tb_Filter.Size = new System.Drawing.Size(536, 34);
+			this.tb_Filter.TabIndex = 1;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(7, 22);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(52, 27);
+			this.label21.TabIndex = 0;
+			this.label21.Text = "Lọc:";
+			// 
+			// data_CourseRegistration
+			// 
+			this.data_CourseRegistration.AllowUserToResizeColumns = false;
+			this.data_CourseRegistration.AllowUserToResizeRows = false;
+			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			this.data_CourseRegistration.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.data_CourseRegistration.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TrangThai,
+            this.TenMon,
+            this.MaLop,
+            this.TenGV,
+            this.SoTin,
+            this.Thu,
+            this.Tiet,
+            this.Phong,
+            this.HocKi,
+            this.NamHoc,
+            this.NgayBD,
+            this.NgayKt});
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle5;
+			this.data_CourseRegistration.Location = new System.Drawing.Point(0, 64);
+			this.data_CourseRegistration.Name = "data_CourseRegistration";
+			this.data_CourseRegistration.ReadOnly = true;
+			this.data_CourseRegistration.RowHeadersVisible = false;
+			this.data_CourseRegistration.RowHeadersWidth = 51;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle6;
+			this.data_CourseRegistration.RowTemplate.Height = 24;
+			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 446);
+			this.data_CourseRegistration.TabIndex = 1;
 			// 
 			// tab_Score
 			// 
 			this.tab_Score.BackColor = System.Drawing.Color.Silver;
 			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tab_Score.Controls.Add(this.label29);
-			this.tab_Score.Controls.Add(this.label28);
-			this.tab_Score.Controls.Add(this.label27);
-			this.tab_Score.Controls.Add(this.label26);
-			this.tab_Score.Controls.Add(this.label25);
-			this.tab_Score.Controls.Add(this.label24);
-			this.tab_Score.Controls.Add(this.label23);
-			this.tab_Score.Controls.Add(this.label22);
-			this.tab_Score.Controls.Add(this.label21);
-			this.tab_Score.Controls.Add(this.label20);
-			this.tab_Score.Controls.Add(this.label19);
+			this.tab_Score.Controls.Add(this.lv_Score);
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(994, 460);
+			this.tab_Score.Size = new System.Drawing.Size(1174, 514);
 			this.tab_Score.TabIndex = 3;
 			this.tab_Score.Text = "   Điểm";
 			// 
-			// label29
+			// lv_Score
 			// 
-			this.label29.BackColor = System.Drawing.Color.Gainsboro;
-			this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label29.Location = new System.Drawing.Point(887, -1);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(106, 42);
-			this.label29.TabIndex = 10;
-			this.label29.Text = "Điểm HP";
-			this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lv_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lv_Score.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.STT,
+            this.MaHP,
+            this.TenHP,
+            this.TinChi,
+            this.DiemQT,
+            this.DiemGK,
+            this.DiemTH,
+            this.DiemCK,
+            this.DiemHP});
+			this.lv_Score.GridLines = true;
+			this.lv_Score.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.lv_Score.HideSelection = false;
+			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
+			this.lv_Score.Name = "lv_Score";
+			this.lv_Score.Size = new System.Drawing.Size(1171, 514);
+			this.lv_Score.TabIndex = 1;
+			this.lv_Score.UseCompatibleStateImageBehavior = false;
+			this.lv_Score.View = System.Windows.Forms.View.Details;
+			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
 			// 
-			// label28
+			// STT
 			// 
-			this.label28.BackColor = System.Drawing.Color.Gainsboro;
-			this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label28.Location = new System.Drawing.Point(783, -1);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(105, 42);
-			this.label28.TabIndex = 9;
-			this.label28.Text = "Điểm CK";
-			this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.STT.Text = "";
+			this.STT.Width = 30;
 			// 
-			// label27
+			// MaHP
 			// 
-			this.label27.BackColor = System.Drawing.Color.Gainsboro;
-			this.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label27.Location = new System.Drawing.Point(679, -1);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(105, 42);
-			this.label27.TabIndex = 8;
-			this.label27.Text = "Điểm TH";
-			this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.MaHP.Text = "Mã HP";
+			this.MaHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.MaHP.Width = 120;
 			// 
-			// label26
+			// TenHP
 			// 
-			this.label26.BackColor = System.Drawing.Color.Gainsboro;
-			this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label26.Location = new System.Drawing.Point(581, -1);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(99, 42);
-			this.label26.TabIndex = 7;
-			this.label26.Text = "Điểm GK";
-			this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.TenHP.Text = "Tên học phần";
+			this.TenHP.Width = 220;
 			// 
-			// label25
+			// TinChi
 			// 
-			this.label25.BackColor = System.Drawing.Color.Gainsboro;
-			this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label25.Location = new System.Drawing.Point(483, -1);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(99, 42);
-			this.label25.TabIndex = 6;
-			this.label25.Text = "Điểm QT";
-			this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.TinChi.Text = "Tín chỉ";
+			this.TinChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TinChi.Width = 65;
 			// 
-			// label24
+			// DiemQT
 			// 
-			this.label24.BackColor = System.Drawing.Color.Gainsboro;
-			this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label24.Location = new System.Drawing.Point(398, -1);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(86, 42);
-			this.label24.TabIndex = 5;
-			this.label24.Text = "Tín chỉ";
-			this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.DiemQT.Text = "Điểm QT";
+			this.DiemQT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemQT.Width = 90;
 			// 
-			// label23
+			// DiemGK
 			// 
-			this.label23.BackColor = System.Drawing.Color.Gainsboro;
-			this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label23.Location = new System.Drawing.Point(122, -1);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(277, 42);
-			this.label23.TabIndex = 4;
-			this.label23.Text = "Tên HP";
-			this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.DiemGK.Text = "Điểm GK";
+			this.DiemGK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemGK.Width = 90;
 			// 
-			// label22
+			// DiemTH
 			// 
-			this.label22.BackColor = System.Drawing.Color.Gainsboro;
-			this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label22.Location = new System.Drawing.Point(45, -1);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(78, 42);
-			this.label22.TabIndex = 3;
-			this.label22.Text = "Mã HP";
-			this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.DiemTH.Text = "Điểm TH";
+			this.DiemTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemTH.Width = 90;
 			// 
-			// label21
+			// DiemCK
 			// 
-			this.label21.BackColor = System.Drawing.Color.Gainsboro;
-			this.label21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label21.Location = new System.Drawing.Point(-1, -1);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(47, 42);
-			this.label21.TabIndex = 2;
+			this.DiemCK.Text = "Điểm CK";
+			this.DiemCK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemCK.Width = 90;
 			// 
-			// label20
+			// DiemHP
 			// 
-			this.label20.BackColor = System.Drawing.Color.Gainsboro;
-			this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label20.Location = new System.Drawing.Point(-1, -1);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(994, 42);
-			this.label20.TabIndex = 1;
+			this.DiemHP.Text = "Điểm HP";
+			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemHP.Width = 90;
 			// 
-			// label19
+			// TrangThai
 			// 
-			this.label19.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label19.Location = new System.Drawing.Point(-1, -1);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(994, 460);
-			this.label19.TabIndex = 0;
+			this.TrangThai.HeaderText = "";
+			this.TrangThai.MinimumWidth = 6;
+			this.TrangThai.Name = "TrangThai";
+			this.TrangThai.ReadOnly = true;
+			this.TrangThai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.TrangThai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.TrangThai.Width = 25;
+			// 
+			// TenMon
+			// 
+			this.TenMon.HeaderText = "Tên môn học";
+			this.TenMon.MinimumWidth = 6;
+			this.TenMon.Name = "TenMon";
+			this.TenMon.ReadOnly = true;
+			this.TenMon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.TenMon.Width = 130;
+			// 
+			// MaLop
+			// 
+			this.MaLop.HeaderText = "Mã lớp";
+			this.MaLop.MinimumWidth = 6;
+			this.MaLop.Name = "MaLop";
+			this.MaLop.ReadOnly = true;
+			this.MaLop.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.MaLop.Width = 105;
+			// 
+			// TenGV
+			// 
+			this.TenGV.HeaderText = "Tên giảng viên";
+			this.TenGV.MinimumWidth = 6;
+			this.TenGV.Name = "TenGV";
+			this.TenGV.ReadOnly = true;
+			this.TenGV.Width = 120;
+			// 
+			// SoTin
+			// 
+			this.SoTin.HeaderText = "Số tín";
+			this.SoTin.MinimumWidth = 6;
+			this.SoTin.Name = "SoTin";
+			this.SoTin.ReadOnly = true;
+			this.SoTin.Width = 50;
+			// 
+			// Thu
+			// 
+			this.Thu.HeaderText = "Thứ";
+			this.Thu.MinimumWidth = 6;
+			this.Thu.Name = "Thu";
+			this.Thu.ReadOnly = true;
+			this.Thu.Width = 50;
+			// 
+			// Tiet
+			// 
+			this.Tiet.HeaderText = "Tiết";
+			this.Tiet.MinimumWidth = 6;
+			this.Tiet.Name = "Tiet";
+			this.Tiet.ReadOnly = true;
+			this.Tiet.Width = 55;
+			// 
+			// Phong
+			// 
+			this.Phong.HeaderText = "Phòng";
+			this.Phong.MinimumWidth = 6;
+			this.Phong.Name = "Phong";
+			this.Phong.ReadOnly = true;
+			this.Phong.Width = 60;
+			// 
+			// HocKi
+			// 
+			this.HocKi.HeaderText = "Học kì";
+			this.HocKi.MinimumWidth = 6;
+			this.HocKi.Name = "HocKi";
+			this.HocKi.ReadOnly = true;
+			this.HocKi.Width = 60;
+			// 
+			// NamHoc
+			// 
+			this.NamHoc.HeaderText = "Năm học";
+			this.NamHoc.MinimumWidth = 6;
+			this.NamHoc.Name = "NamHoc";
+			this.NamHoc.ReadOnly = true;
+			this.NamHoc.Width = 60;
+			// 
+			// NgayBD
+			// 
+			this.NgayBD.HeaderText = "Ngày BĐ";
+			this.NgayBD.MinimumWidth = 6;
+			this.NgayBD.Name = "NgayBD";
+			this.NgayBD.ReadOnly = true;
+			this.NgayBD.Width = 80;
+			// 
+			// NgayKt
+			// 
+			this.NgayKt.HeaderText = "Ngày KT";
+			this.NgayKt.MinimumWidth = 6;
+			this.NgayKt.Name = "NgayKt";
+			this.NgayKt.ReadOnly = true;
+			this.NgayKt.Width = 80;
+			// 
+			// Category
+			// 
+			this.Category.HeaderText = "Thứ / Tiết";
+			this.Category.MinimumWidth = 6;
+			this.Category.Name = "Category";
+			this.Category.ReadOnly = true;
+			this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Category.Width = 137;
+			// 
+			// Monday
+			// 
+			this.Monday.HeaderText = "Thứ Hai";
+			this.Monday.MinimumWidth = 6;
+			this.Monday.Name = "Monday";
+			this.Monday.ReadOnly = true;
+			this.Monday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Monday.Width = 120;
+			// 
+			// Tuesday
+			// 
+			this.Tuesday.HeaderText = "Thứ Ba";
+			this.Tuesday.MinimumWidth = 6;
+			this.Tuesday.Name = "Tuesday";
+			this.Tuesday.ReadOnly = true;
+			this.Tuesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Tuesday.Width = 120;
+			// 
+			// Wednesday
+			// 
+			this.Wednesday.HeaderText = "Thứ Tư";
+			this.Wednesday.MinimumWidth = 6;
+			this.Wednesday.Name = "Wednesday";
+			this.Wednesday.ReadOnly = true;
+			this.Wednesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Wednesday.Width = 120;
+			// 
+			// Thursday
+			// 
+			this.Thursday.HeaderText = "Thứ Năm";
+			this.Thursday.MinimumWidth = 6;
+			this.Thursday.Name = "Thursday";
+			this.Thursday.ReadOnly = true;
+			this.Thursday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Thursday.Width = 120;
+			// 
+			// Friday
+			// 
+			this.Friday.HeaderText = "Thứ Sáu";
+			this.Friday.MinimumWidth = 6;
+			this.Friday.Name = "Friday";
+			this.Friday.ReadOnly = true;
+			this.Friday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Friday.Width = 120;
+			// 
+			// Saturday
+			// 
+			this.Saturday.HeaderText = "Thứ Bảy";
+			this.Saturday.MinimumWidth = 6;
+			this.Saturday.Name = "Saturday";
+			this.Saturday.ReadOnly = true;
+			this.Saturday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Saturday.Width = 120;
 			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1026, 524);
+			this.ClientSize = new System.Drawing.Size(1183, 553);
 			this.Controls.Add(this.tabCtr_Student);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "StudentForm";
@@ -568,6 +872,12 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.tab_Schedule.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.data_Schedule)).EndInit();
+			this.tab_CourseRegister.ResumeLayout(false);
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).EndInit();
 			this.tab_Score.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -607,16 +917,42 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label lb_Department;
-		private System.Windows.Forms.Label label22;
-		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.ListView lv_Score;
+		private System.Windows.Forms.ColumnHeader STT;
+		private System.Windows.Forms.ColumnHeader MaHP;
+		private System.Windows.Forms.ColumnHeader TenHP;
+		private System.Windows.Forms.ColumnHeader TinChi;
+		private System.Windows.Forms.ColumnHeader DiemQT;
+		private System.Windows.Forms.ColumnHeader DiemGK;
+		private System.Windows.Forms.ColumnHeader DiemTH;
+		private System.Windows.Forms.ColumnHeader DiemCK;
+		private System.Windows.Forms.ColumnHeader DiemHP;
+		private System.Windows.Forms.DataGridView data_Schedule;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Label label29;
-		private System.Windows.Forms.Label label28;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.Label label26;
-		private System.Windows.Forms.Label label25;
-		private System.Windows.Forms.Label label24;
-		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.DataGridView data_CourseRegistration;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.TextBox tb_Filter;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Button btn_Find;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn TrangThai;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TenMon;
+		private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TenGV;
+		private System.Windows.Forms.DataGridViewTextBoxColumn SoTin;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Thu;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Tiet;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Phong;
+		private System.Windows.Forms.DataGridViewTextBoxColumn HocKi;
+		private System.Windows.Forms.DataGridViewTextBoxColumn NamHoc;
+		private System.Windows.Forms.DataGridViewTextBoxColumn NgayBD;
+		private System.Windows.Forms.DataGridViewTextBoxColumn NgayKt;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Monday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Tuesday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Wednesday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Thursday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Friday;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Saturday;
 	}
 }

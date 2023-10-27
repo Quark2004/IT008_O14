@@ -30,8 +30,6 @@ namespace QLSV.DTO
 			this.Name = row["name"].ToString();
 			this.Birthday = (DateTime)row["birthday"];
 			this.Gender = row["gender"].ToString();
-			this.ClassId = row["class_id"].ToString();
-			this.Department = row["department"].ToString();
 		}
 
 		public StudentInfo(string id, string name, DateTime birthday, string gender, string classId, string department)

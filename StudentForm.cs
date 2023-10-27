@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLSV
 {
@@ -20,6 +21,13 @@ namespace QLSV
 			InitializeComponent();
 			ID = id;
 			LoadInfo();
+			data_Schedule.RowCount = 10;
+			string[] schedule = { "(7:30 - 8:15)", "(8:15 - 9:00)", "(9:00 - 9:45)", "(10:00 - 10:45)", "(10:45 - 11:30)", "(13:00 - 13:45)", "(13:45 - 14:30)", "(14:30 - 15:15)", "(15:30 - 16:15)", "(16:15 - 17:00)" };
+			for (int i = 1; i <= 10; i++)
+			{
+				DataGridViewRow row = data_Schedule.Rows[i - 1];
+				row.Cells[0].Value = "Tiết " + i + "\n" + schedule[i - 1];
+			}
 		}
 
 		public string ID { get; set; }
@@ -31,11 +39,14 @@ namespace QLSV
 			lb_ID.Text = info.Id;
 			lb_Name.Text = info.Name;
 			lb_Birthday.Text = info.Birthday.ToShortDateString();
-			lb_Class.Text = info.ClassId;
 			lb_Gender.Text = info.Gender;
-			lb_Department.Text = info.Department;
 		}
 		#endregion
 
+		private void lv_Score_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+		{
+			e.Cancel = true;
+			e.NewWidth = lv_Score.Columns[e.ColumnIndex].Width;
+		}
 	}
 }
