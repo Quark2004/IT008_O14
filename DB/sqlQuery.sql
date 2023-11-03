@@ -168,7 +168,9 @@ BEGIN
                 + Score.midtermScore * Score.ratioMidterm 
                 + Score.practiceScore * Score.ratioPractice
                 +  Score.finalScore * Score.ratioFinal
-            ), 2) as N'Điểm học phần'
+            ), 2) as N'Điểm học phần',
+        Course.semester as N'Học kì',
+        Course.schoolYear as N'Năm học'
     FROM Schedule, Course, Score
     WHERE Schedule.idCourse = Course.id
         and Schedule.idScore = Score.id
