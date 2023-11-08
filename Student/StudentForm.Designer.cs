@@ -67,23 +67,19 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
 			this.data_Schedule = new System.Windows.Forms.DataGridView();
+			this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.btn_Find = new System.Windows.Forms.Button();
 			this.tb_Filter = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
-			this.tab_Score = new System.Windows.Forms.TabPage();
-			this.lv_Score = new System.Windows.Forms.ListView();
-			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.MaHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.TenHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.TinChi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.DiemQT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.DiemGK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.DiemTH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.DiemCK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,13 +92,17 @@
 			this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NgayBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NgayKt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Monday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Tuesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Wednesday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Thursday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Friday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Saturday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tab_Score = new System.Windows.Forms.TabPage();
+			this.lv_Score = new System.Windows.Forms.ListView();
+			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.MaHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TenHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.TinChi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemQT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemGK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemTH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemCK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -508,6 +508,69 @@
 			this.data_Schedule.Size = new System.Drawing.Size(1171, 511);
 			this.data_Schedule.TabIndex = 0;
 			// 
+			// Category
+			// 
+			this.Category.HeaderText = "Thứ / Tiết";
+			this.Category.MinimumWidth = 6;
+			this.Category.Name = "Category";
+			this.Category.ReadOnly = true;
+			this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Category.Width = 137;
+			// 
+			// Monday
+			// 
+			this.Monday.HeaderText = "Thứ Hai";
+			this.Monday.MinimumWidth = 6;
+			this.Monday.Name = "Monday";
+			this.Monday.ReadOnly = true;
+			this.Monday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Monday.Width = 120;
+			// 
+			// Tuesday
+			// 
+			this.Tuesday.HeaderText = "Thứ Ba";
+			this.Tuesday.MinimumWidth = 6;
+			this.Tuesday.Name = "Tuesday";
+			this.Tuesday.ReadOnly = true;
+			this.Tuesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Tuesday.Width = 120;
+			// 
+			// Wednesday
+			// 
+			this.Wednesday.HeaderText = "Thứ Tư";
+			this.Wednesday.MinimumWidth = 6;
+			this.Wednesday.Name = "Wednesday";
+			this.Wednesday.ReadOnly = true;
+			this.Wednesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Wednesday.Width = 120;
+			// 
+			// Thursday
+			// 
+			this.Thursday.HeaderText = "Thứ Năm";
+			this.Thursday.MinimumWidth = 6;
+			this.Thursday.Name = "Thursday";
+			this.Thursday.ReadOnly = true;
+			this.Thursday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Thursday.Width = 120;
+			// 
+			// Friday
+			// 
+			this.Friday.HeaderText = "Thứ Sáu";
+			this.Friday.MinimumWidth = 6;
+			this.Friday.Name = "Friday";
+			this.Friday.ReadOnly = true;
+			this.Friday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Friday.Width = 120;
+			// 
+			// Saturday
+			// 
+			this.Saturday.HeaderText = "Thứ Bảy";
+			this.Saturday.MinimumWidth = 6;
+			this.Saturday.Name = "Saturday";
+			this.Saturday.ReadOnly = true;
+			this.Saturday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.Saturday.Width = 120;
+			// 
 			// tab_CourseRegister
 			// 
 			this.tab_CourseRegister.BackColor = System.Drawing.Color.Silver;
@@ -603,94 +666,6 @@
 			this.data_CourseRegistration.RowTemplate.Height = 24;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 446);
 			this.data_CourseRegistration.TabIndex = 1;
-			// 
-			// tab_Score
-			// 
-			this.tab_Score.BackColor = System.Drawing.Color.Silver;
-			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tab_Score.Controls.Add(this.lv_Score);
-			this.tab_Score.Location = new System.Drawing.Point(4, 36);
-			this.tab_Score.Name = "tab_Score";
-			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(1174, 514);
-			this.tab_Score.TabIndex = 3;
-			this.tab_Score.Text = "   Điểm";
-			// 
-			// lv_Score
-			// 
-			this.lv_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lv_Score.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.STT,
-            this.MaHP,
-            this.TenHP,
-            this.TinChi,
-            this.DiemQT,
-            this.DiemGK,
-            this.DiemTH,
-            this.DiemCK,
-            this.DiemHP});
-			this.lv_Score.GridLines = true;
-			this.lv_Score.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.lv_Score.HideSelection = false;
-			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
-			this.lv_Score.Name = "lv_Score";
-			this.lv_Score.Size = new System.Drawing.Size(1171, 514);
-			this.lv_Score.TabIndex = 1;
-			this.lv_Score.UseCompatibleStateImageBehavior = false;
-			this.lv_Score.View = System.Windows.Forms.View.Details;
-			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
-			// 
-			// STT
-			// 
-			this.STT.Text = "";
-			this.STT.Width = 30;
-			// 
-			// MaHP
-			// 
-			this.MaHP.Text = "Mã HP";
-			this.MaHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.MaHP.Width = 120;
-			// 
-			// TenHP
-			// 
-			this.TenHP.Text = "Tên học phần";
-			this.TenHP.Width = 220;
-			// 
-			// TinChi
-			// 
-			this.TinChi.Text = "Tín chỉ";
-			this.TinChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.TinChi.Width = 65;
-			// 
-			// DiemQT
-			// 
-			this.DiemQT.Text = "Điểm QT";
-			this.DiemQT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemQT.Width = 90;
-			// 
-			// DiemGK
-			// 
-			this.DiemGK.Text = "Điểm GK";
-			this.DiemGK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemGK.Width = 90;
-			// 
-			// DiemTH
-			// 
-			this.DiemTH.Text = "Điểm TH";
-			this.DiemTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemTH.Width = 90;
-			// 
-			// DiemCK
-			// 
-			this.DiemCK.Text = "Điểm CK";
-			this.DiemCK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemCK.Width = 90;
-			// 
-			// DiemHP
-			// 
-			this.DiemHP.Text = "Điểm HP";
-			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemHP.Width = 90;
 			// 
 			// TrangThai
 			// 
@@ -792,68 +767,93 @@
 			this.NgayKt.ReadOnly = true;
 			this.NgayKt.Width = 80;
 			// 
-			// Category
+			// tab_Score
 			// 
-			this.Category.HeaderText = "Thứ / Tiết";
-			this.Category.MinimumWidth = 6;
-			this.Category.Name = "Category";
-			this.Category.ReadOnly = true;
-			this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Category.Width = 137;
+			this.tab_Score.BackColor = System.Drawing.Color.Silver;
+			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Score.Controls.Add(this.lv_Score);
+			this.tab_Score.Location = new System.Drawing.Point(4, 36);
+			this.tab_Score.Name = "tab_Score";
+			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
+			this.tab_Score.Size = new System.Drawing.Size(1174, 514);
+			this.tab_Score.TabIndex = 3;
+			this.tab_Score.Text = "   Điểm";
 			// 
-			// Monday
+			// lv_Score
 			// 
-			this.Monday.HeaderText = "Thứ Hai";
-			this.Monday.MinimumWidth = 6;
-			this.Monday.Name = "Monday";
-			this.Monday.ReadOnly = true;
-			this.Monday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Monday.Width = 120;
+			this.lv_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lv_Score.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.STT,
+            this.MaHP,
+            this.TenHP,
+            this.TinChi,
+            this.DiemQT,
+            this.DiemGK,
+            this.DiemTH,
+            this.DiemCK,
+            this.DiemHP});
+			this.lv_Score.GridLines = true;
+			this.lv_Score.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.lv_Score.HideSelection = false;
+			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
+			this.lv_Score.Name = "lv_Score";
+			this.lv_Score.Size = new System.Drawing.Size(1171, 514);
+			this.lv_Score.TabIndex = 1;
+			this.lv_Score.UseCompatibleStateImageBehavior = false;
+			this.lv_Score.View = System.Windows.Forms.View.Details;
+			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
 			// 
-			// Tuesday
+			// STT
 			// 
-			this.Tuesday.HeaderText = "Thứ Ba";
-			this.Tuesday.MinimumWidth = 6;
-			this.Tuesday.Name = "Tuesday";
-			this.Tuesday.ReadOnly = true;
-			this.Tuesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Tuesday.Width = 120;
+			this.STT.Text = "";
+			this.STT.Width = 30;
 			// 
-			// Wednesday
+			// MaHP
 			// 
-			this.Wednesday.HeaderText = "Thứ Tư";
-			this.Wednesday.MinimumWidth = 6;
-			this.Wednesday.Name = "Wednesday";
-			this.Wednesday.ReadOnly = true;
-			this.Wednesday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Wednesday.Width = 120;
+			this.MaHP.Text = "Mã HP";
+			this.MaHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.MaHP.Width = 120;
 			// 
-			// Thursday
+			// TenHP
 			// 
-			this.Thursday.HeaderText = "Thứ Năm";
-			this.Thursday.MinimumWidth = 6;
-			this.Thursday.Name = "Thursday";
-			this.Thursday.ReadOnly = true;
-			this.Thursday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Thursday.Width = 120;
+			this.TenHP.Text = "Tên học phần";
+			this.TenHP.Width = 220;
 			// 
-			// Friday
+			// TinChi
 			// 
-			this.Friday.HeaderText = "Thứ Sáu";
-			this.Friday.MinimumWidth = 6;
-			this.Friday.Name = "Friday";
-			this.Friday.ReadOnly = true;
-			this.Friday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Friday.Width = 120;
+			this.TinChi.Text = "Tín chỉ";
+			this.TinChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TinChi.Width = 65;
 			// 
-			// Saturday
+			// DiemQT
 			// 
-			this.Saturday.HeaderText = "Thứ Bảy";
-			this.Saturday.MinimumWidth = 6;
-			this.Saturday.Name = "Saturday";
-			this.Saturday.ReadOnly = true;
-			this.Saturday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.Saturday.Width = 120;
+			this.DiemQT.Text = "Điểm QT";
+			this.DiemQT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemQT.Width = 90;
+			// 
+			// DiemGK
+			// 
+			this.DiemGK.Text = "Điểm GK";
+			this.DiemGK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemGK.Width = 90;
+			// 
+			// DiemTH
+			// 
+			this.DiemTH.Text = "Điểm TH";
+			this.DiemTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemTH.Width = 90;
+			// 
+			// DiemCK
+			// 
+			this.DiemCK.Text = "Điểm CK";
+			this.DiemCK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemCK.Width = 90;
+			// 
+			// DiemHP
+			// 
+			this.DiemHP.Text = "Điểm HP";
+			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemHP.Width = 90;
 			// 
 			// StudentForm
 			// 
