@@ -231,8 +231,8 @@ BEGIN
 END
 go
 
--- EXEC GetListClass @idCourse = N'IT003.1'
--- go
+EXEC GetListClass @idCourse = N'IT003.1'
+go
 
 
 -------------------------
@@ -278,6 +278,9 @@ BEGIN
     WHERE username = @username
 END
 GO
+
+
+-- EXEC UpdatePass @username = N'student0' , @password = N'654321'
 
 create PROC UpdateProfile 
     @id NVARCHAR(100),
