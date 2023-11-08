@@ -14,32 +14,34 @@ namespace QLSV.DTO
 		private string name;
 		private DateTime birthday;
 		private string gender;
-		private string classId;
-		private string department;
+		private string trainingSystem;
+		private string educationLevel;
 
 		public string Id { get => id; set => id = value; }
 		public string Name { get => name; set => name = value; }
 		public string Gender { get => gender; set => gender = value; }
-		public string ClassId { get => classId; set => classId = value; }
 		public DateTime Birthday { get => birthday; set => birthday = value; }
-		public string Department { get => department; set => department = value; }
+		public string TrainingSystem { get => trainingSystem; set => trainingSystem = value; }
+		public string EducationLevel { get => educationLevel; set => educationLevel = value; }
 
 		public StudentInfo(DataRow row)
 		{
-			this.Id = row["student_id"].ToString();
-			this.Name = row["name"].ToString();
-			this.Birthday = (DateTime)row["birthday"];
-			this.Gender = row["gender"].ToString();
+			this.Id = row["MSSV"].ToString();
+			this.Name = row["Tên"].ToString();
+			this.Birthday = (DateTime)row["Ngày sinh"];
+			this.Gender = row["Giới tính"].ToString();
+			this.educationLevel = row["Bậc đào tạo"].ToString();
+			this.trainingSystem = row["Hệ đào tạo"].ToString();
 		}
 
-		public StudentInfo(string id, string name, DateTime birthday, string gender, string classId, string department)
+		public StudentInfo(string id, string name, DateTime birthday, string gender, string educationLevel, string trainingSystem)
 		{
 			this.Id = id;
 			this.Name = name;
 			this.Birthday = birthday;
 			this.Gender = gender;
-			this.ClassId = classId;
-			this.Department = department;
+			this.EducationLevel = educationLevel;
+			this.TrainingSystem = trainingSystem;
 		}
 	}
 }

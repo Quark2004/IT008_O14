@@ -26,7 +26,7 @@ namespace QLSV.DAO
 
 		public DataTable GetAccount(string userName, string password)
 		{
-			string query = "SELECT * FROM Account_Login( :userName , :password )";
+			string query = "SELECT * FROM \"Login\"( :userName , :password )";
 
 			DataTable res = DataProvider.Instance.ExcuteQuery(query, new object[] { userName, password });
 
@@ -37,15 +37,28 @@ namespace QLSV.DAO
 		{
 			return GetAccount(userName, password).Rows.Count > 0;
 		}
-		public int GetRole(string userName, string password)
+		public string GetRole(string userName, string password)
 		{
-			int res = 0;
+			string res = "";
 
 			DataTable account = GetAccount(userName, password);
 
 			if (account.Rows.Count > 0)
 			{
-				res = int.Parse(account.Rows[0]["role"].ToString());
+				res = account.Rows[0]["role"].ToString();
+			}
+
+			return res;
+		}
+		public string GetId(string username, string password)
+		{
+			string res = "";
+
+			DataTable account = GetAccount(username, password);
+
+			if (account.Rows.Count > 0)
+			{
+				res = account.Rows[0]["id"].ToString();
 			}
 
 			return res;

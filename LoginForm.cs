@@ -49,43 +49,43 @@ namespace QLSV
 				return;
 			}
 
-			if (userName.All(Char.IsDigit))
+			if (Login(userName, password))
 			{
-				if (Login(userName, password))
+				this.Hide();
+				string id = GetId(userName, password);
+				switch (GetRole(userName, password))
 				{
-					this.Hide();
-					switch (GetRole(userName, password))
-					{
-						case 1:
-							StudentForm student = new StudentForm(userName);
-							student.ShowDialog();
-							break;
-						case 2:
-							LecturerForm lecturer = new LecturerForm(userName);
-							lecturer.ShowDialog();
-							break;
-						case 3:
-							ManagerForm manager = new ManagerForm(userName);
-							manager.ShowDialog();
-							break;
-					}
-					this.Show();
+					case "student":
+						StudentForm student = new StudentForm(id);
+						student.ShowDialog();
+						break;
+					case "teacher":
+						LecturerForm lecturer = new LecturerForm(id);
+						lecturer.ShowDialog();
+						break;
+					case "admin":
+						ManagerForm manager = new ManagerForm(id);
+						manager.ShowDialog();
+						break;
 				}
-				else
-				{
-					MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
-				}
+				this.Show();
 			}
 			else
 			{
-				MessageBox.Show("MSSV chỉ bao gồm các chữ số!");
+				MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
 			}
 		}
+
+		private string GetId(string username, string password)
+		{
+			return AccountDAO.Instance.GetId(username, password);
+		}
+
 		private bool Login(string userName, string password)
 		{
 			return AccountDAO.Instance.Login(userName, password);
 		}
-		private int GetRole(string userName, string password)
+		private string GetRole(string userName, string password)
 		{
 			return AccountDAO.Instance.GetRole(userName, password);
 		}

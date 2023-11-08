@@ -67,7 +67,7 @@ BEGIN
     FROM Account, Profile, UserAcc
     WHERE   Account.username = UserAcc.idAccount AND
             UserAcc.idProfile = Profile.id AND
-            username = _username and "password" = _password;
+            username = _username and password = _password;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -422,7 +422,6 @@ BEGIN
     END LOOP;
 END $$;
 
-
 -- Chèn dữ liệu vào bảng "UserAcc" cho giáo viên
 DO $$ 
 DECLARE 
@@ -542,11 +541,9 @@ UPDATE Schedule
 SET idCourse = 'IT001.3'
 WHERE idProfile = '21521609' OR idCourse = '21521604';
 
-
 select * from Account;
 select * from Profile;
 select * from UserAcc;
 select * from Course;
 select * from Score;
 select * from Schedule;
-

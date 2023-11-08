@@ -29,7 +29,7 @@ namespace QLSV.DAO
 
 		public StudentInfo LoadStudentInfo(string id)
 		{
-			string query = "SELECT * FROM Student_GetInfo( :id )";
+			string query = "SELECT * FROM LoadProfileById( :id )";
 			DataTable data = DataProvider.Instance.ExcuteQuery(query, new object[] { id });
 			StudentInfo info = new StudentInfo(data.Rows[0]);
 			
