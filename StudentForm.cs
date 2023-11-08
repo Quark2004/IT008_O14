@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,13 @@ namespace QLSV
 			lb_Name.Text = info.Name;
 			lb_Birthday.Text = info.Birthday.ToShortDateString();
 			lb_Gender.Text = info.Gender;
+			lb_educationLevel.Text = info.EducationLevel;
+			lb_TrainingSystem.Text = info.TrainingSystem;
+
+			byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
+			string avt = "avt.jpg";
+			File.WriteAllBytes(avt, avtBytes);
+			pictureBox1.ImageLocation = avt;
 		}
 		#endregion
 

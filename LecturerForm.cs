@@ -15,6 +15,9 @@ namespace QLSV
 		public LecturerForm(string id)
 		{
 			InitializeComponent();
+			ID = id;
 		}
+
+		public string ID { get; set; }
 	}
 }
