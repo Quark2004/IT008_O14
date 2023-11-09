@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace QLSV
 			InitializeComponent();
 			ID = id;
 			LoadInfo();
+			LoadSchedule();
 			data_Schedule.RowCount = 10;
 			string[] schedule = { "(7:30 - 8:15)", "(8:15 - 9:00)", "(9:00 - 9:45)", "(10:00 - 10:45)", "(10:45 - 11:30)", "(13:00 - 13:45)", "(13:45 - 14:30)", "(14:30 - 15:15)", "(15:30 - 16:15)", "(16:15 - 17:00)" };
 			for (int i = 1; i <= 10; i++)
@@ -49,12 +51,94 @@ namespace QLSV
 			File.WriteAllBytes(avt, avtBytes);
 			pictureBox1.ImageLocation = avt;
 		}
+
+		void LoadSchedule()
+		{
+			data_Schedule.RowCount = 10;
+			List<StudentSchedule> schedules = StudentScheduleDAO.Instance.LoadStudentSchedule(ID);
+
+			foreach (StudentSchedule schedule in schedules)
+			{
+				int day = int.Parse(schedule.Day);
+
+				List<string> result = new List<string>();
+				for (int i = 10; i >= 1; i--)
+				{
+					while (schedule.Period.Contains(i.ToString()))
+					{
+						result.Add(i.ToString());
+						schedule.Period = schedule.Period.Remove(schedule.Period.IndexOf(i.ToString()), i.ToString().Length);
+					}
+				}
+
+				List<int> periods = result.ConvertAll(int.Parse);
+
+				foreach (int period in periods)
+				{
+					DataGridViewRow row = data_Schedule.Rows[period - 1];
+					row.Cells[day - 1].Value = schedule.SubID + "\n" + schedule.SubName + "\n" + "P " + schedule.Room + "\n" + "BĐ: " + schedule.StartDate.ToShortDateString() + "\n" + "KT: " + schedule.EndDate.ToShortDateString() + "\n";
+				}
+			}
+		}
 		#endregion
+
+		bool IsTheSameCellValue(int column, int row)
+		{
+			DataGridViewCell cell1 = data_Schedule[column, row];
+			DataGridViewCell cell2 = data_Schedule[column, row - 1];
+			if (cell1.Value == null || cell2.Value == null)
+			{
+				return false;
+			}
+			return cell1.Value.ToString() == cell2.Value.ToString();
+		}
 
 		private void lv_Score_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
 		{
 			e.Cancel = true;
 			e.NewWidth = lv_Score.Columns[e.ColumnIndex].Width;
+		}
+
+		private void data_Schedule_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+		{
+			e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+			if (e.RowIndex < 1 || e.ColumnIndex < 0)
+				return;
+			if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+			{
+				e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+			}
+			else
+			{
+				e.AdvancedBorderStyle.Top = data_Schedule.AdvancedCellBorderStyle.Top;
+			}
+		}
+
+		private void data_Schedule_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			if (e.RowIndex == 0)
+				return;
+			if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+			{
+				e.Value = "";
+				e.FormattingApplied = true;
+			}
+
+			foreach(DataGridViewRow row in data_Schedule.Rows)
+			{
+				for (int i = 0; i <= 6; i++)
+				{
+					if (row.Cells[i].Value == null || i == 0)
+					{
+						row.Cells[i].Style.BackColor = Color.LightGray;
+					}
+				}
+			}
+		}
+
+		private void StudentForm_Load(object sender, EventArgs e)
+		{
+			data_Schedule.AutoGenerateColumns = false;
 		}
 	}
 }

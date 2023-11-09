@@ -256,7 +256,9 @@
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\StudentInfoDAO.cs" />
+    <Compile Include="DAO\StudentScheduleDAO.cs" />
     <Compile Include="DTO\StudentInfo.cs" />
+    <Compile Include="DTO\StudentSchedule.cs" />
     <Compile Include="LecturerForm.cs">
       <SubType>Form</SubType>
     </Compile>
