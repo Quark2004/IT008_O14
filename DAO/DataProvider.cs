@@ -1,136 +1,132 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLSV.DAO
 {
-	public class DataProvider
-	{
-		private static DataProvider instance;
+    public class DataProvider
+    {
+        private static DataProvider instance;
 
-		public static DataProvider Instance 
-		{ 
-			get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; } 
-			private set { DataProvider.instance = value; } 
-		}
+        public static DataProvider Instance
+        {
+            get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
+            private set { DataProvider.instance = value; }
+        }
 
-		private DataProvider() { }
+        private DataProvider() { }
 
-		private string connectionStr = "Server = localhost; Port = 5432; Database = StudentManagement; User Id = postgres; Password = quark1412;";
+        private string connectionStr = "Server = localhost; Port = 5432; Database = ManageStudents; User Id = postgres; Password = 123456;";
 
-		public DataTable ExcuteQuery(string query, object[] parameters = null)
-		{
-			DataTable dataTable = new DataTable();
+        public DataTable ExcuteQuery(string query, object[] parameters = null)
+        {
+            DataTable dataTable = new DataTable();
 
-			using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
-			{
-				connection.Open();
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
+            {
+                connection.Open();
 
-				NpgsqlCommand command = new NpgsqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
-				command.Connection = connection;
-				command.CommandType = CommandType.Text;
-				command.CommandText = query;
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = query;
 
-				if (parameters != null)
-				{
-					string[] listPara = query.Split(' ');
-					int i = 0;
-					foreach (string item in listPara)
-					{
-						if (item.Contains(':'))
-						{
-							command.Parameters.AddWithValue(item, parameters[i]);
-							i++;
-						}
-					}
-				}
+                if (parameters != null)
+                {
+                    string[] listPara = query.Split(' ');
+                    int i = 0;
+                    foreach (string item in listPara)
+                    {
+                        if (item.Contains(':'))
+                        {
+                            command.Parameters.AddWithValue(item, parameters[i]);
+                            i++;
+                        }
+                    }
+                }
 
-				NpgsqlDataReader dataReader = command.ExecuteReader();
+                NpgsqlDataReader dataReader = command.ExecuteReader();
 
-				dataTable.Load(dataReader);
+                dataTable.Load(dataReader);
 
-				connection.Close();
-			}
+                connection.Close();
+            }
 
-			return dataTable;
-		}
+            return dataTable;
+        }
 
-		public int ExcuteNonQuery(string query, object[] parameters = null)
-		{
-			int data = 0;
+        public int ExcuteNonQuery(string query, object[] parameters = null)
+        {
+            int data = 0;
 
-			using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
-			{
-				connection.Open();
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
+            {
+                connection.Open();
 
-				NpgsqlCommand command = new NpgsqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
-				command.Connection = connection;
-				command.CommandType = CommandType.Text;
-				command.CommandText = query;
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = query;
 
-				if (parameters != null)
-				{
-					string[] listPara = query.Split(' ');
-					int i = 0;
-					foreach (string item in listPara)
-					{
-						if (item.Contains(':'))
-						{
-							command.Parameters.AddWithValue(item, parameters[i]);
-							i++;
-						}
-					}
-				}
+                if (parameters != null)
+                {
+                    string[] listPara = query.Split(' ');
+                    int i = 0;
+                    foreach (string item in listPara)
+                    {
+                        if (item.Contains(':'))
+                        {
+                            command.Parameters.AddWithValue(item, parameters[i]);
+                            i++;
+                        }
+                    }
+                }
 
-				data = command.ExecuteNonQuery();
+                data = command.ExecuteNonQuery();
 
-				connection.Close();
-			}
+                connection.Close();
+            }
 
-			return data;
-		}
+            return data;
+        }
 
-		public object ExcuteScalar(string query, object[] parameters = null)
-		{
-			object data = 0;
+        public object ExcuteScalar(string query, object[] parameters = null)
+        {
+            object data = 0;
 
-			using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
-			{
-				connection.Open();
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionStr))
+            {
+                connection.Open();
 
-				NpgsqlCommand command = new NpgsqlCommand();
+                NpgsqlCommand command = new NpgsqlCommand();
 
-				command.Connection = connection;
-				command.CommandType = CommandType.Text;
-				command.CommandText = query;
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = query;
 
-				if (parameters != null)
-				{
-					string[] listPara = query.Split(' ');
-					int i = 0;
-					foreach (string item in listPara)
-					{
-						if (item.Contains(':'))
-						{
-							command.Parameters.AddWithValue(item, parameters[i]);
-							i++;
-						}
-					}
-				}
+                if (parameters != null)
+                {
+                    string[] listPara = query.Split(' ');
+                    int i = 0;
+                    foreach (string item in listPara)
+                    {
+                        if (item.Contains(':'))
+                        {
+                            command.Parameters.AddWithValue(item, parameters[i]);
+                            i++;
+                        }
+                    }
+                }
 
-				data = command.ExecuteScalar();
+                data = command.ExecuteScalar();
 
-				connection.Close();
-			}
+                connection.Close();
+            }
 
-			return data;
-		}
-	}
+            return data;
+        }
+    }
 }

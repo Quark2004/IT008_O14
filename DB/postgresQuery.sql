@@ -100,11 +100,13 @@ BEGIN
            Course.classroom as "Phòng học",
            Course.startDay as "Ngày bắt đầu",
            Course.endDay as "Ngày kết thúc",
-           Course.schoolDay as "Thứ",
+           Course.schoolDay as "Thứ",  
            Course.lesson as "Tiết"
-    FROM Schedule, Course
+    FROM Schedule
+    JOIN Course ON Schedule.idCourse = Course.id
     WHERE Schedule.idProfile = _id
-        AND Schedule.idCourse = Course.id;
+    ORDER BY Course.schoolDay ASC, 
+            Course.lesson ASC;    
 END;
 $$ LANGUAGE plpgsql;
 
