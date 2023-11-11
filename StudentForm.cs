@@ -41,11 +41,10 @@ namespace QLSV
 			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
 			lb_ID.Text = info.Id;
 			lb_Name.Text = info.Name;
-			lb_Birthday.Text = info.Birthday.ToShortDateString();
+			lb_Birthday.Text = info.Birthday != new DateTime() ? info.Birthday.ToShortDateString() : "";
 			lb_Gender.Text = info.Gender;
 			lb_educationLevel.Text = info.EducationLevel;
 			lb_TrainingSystem.Text = info.TrainingSystem;
-
 			byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
 			string avt = "avt.jpg";
 			File.WriteAllBytes(avt, avtBytes);

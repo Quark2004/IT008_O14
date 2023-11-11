@@ -34,6 +34,10 @@ namespace QLSV.DTO
 			{
 				this.Birthday = Convert.ToDateTime(row["Ngày sinh"]);
 			}
+			else
+			{
+				this.Birthday = new DateTime();
+			}
 			this.Gender = row["Giới tính"].ToString();
 			this.EducationLevel = row["Bậc đào tạo"].ToString();
 			this.TrainingSystem = row["Hệ đào tạo"].ToString();

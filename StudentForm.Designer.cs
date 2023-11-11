@@ -65,7 +65,6 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tab_Schedule = new System.Windows.Forms.TabPage();
 			this.data_Schedule = new System.Windows.Forms.DataGridView();
 			this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,17 +103,19 @@
 			this.DiemTH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.DiemCK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.btn_updateInfo = new System.Windows.Forms.Button();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tab_Schedule.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_Schedule)).BeginInit();
 			this.tab_CourseRegister.SuspendLayout();
 			this.panel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).BeginInit();
 			this.tab_Score.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
@@ -138,6 +139,7 @@
 			this.tab_Info.BackColor = System.Drawing.Color.Silver;
 			this.tab_Info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.tab_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Info.Controls.Add(this.btn_updateInfo);
 			this.tab_Info.Controls.Add(this.panel2);
 			this.tab_Info.Controls.Add(this.panel1);
 			this.tab_Info.Controls.Add(this.pictureBox1);
@@ -168,7 +170,7 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.label10);
-			this.panel2.Location = new System.Drawing.Point(191, 73);
+			this.panel2.Location = new System.Drawing.Point(205, 73);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(311, 307);
 			this.panel2.TabIndex = 6;
@@ -319,7 +321,7 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(58, 73);
+			this.panel1.Location = new System.Drawing.Point(72, 73);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(134, 307);
 			this.panel1.TabIndex = 5;
@@ -445,15 +447,6 @@
 			this.label3.Size = new System.Drawing.Size(134, 52);
 			this.label3.TabIndex = 2;
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(699, 113);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(272, 238);
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			// 
 			// tab_Schedule
 			// 
 			this.tab_Schedule.BackColor = System.Drawing.Color.Silver;
@@ -491,7 +484,7 @@
             this.Saturday});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -866,6 +859,29 @@
 			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.DiemHP.Width = 90;
 			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBox1.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
+			this.pictureBox1.InitialImage = null;
+			this.pictureBox1.Location = new System.Drawing.Point(700, 53);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(350, 350);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			// 
+			// btn_updateInfo
+			// 
+			this.btn_updateInfo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.btn_updateInfo.Location = new System.Drawing.Point(216, 425);
+			this.btn_updateInfo.Name = "btn_updateInfo";
+			this.btn_updateInfo.Size = new System.Drawing.Size(122, 58);
+			this.btn_updateInfo.TabIndex = 7;
+			this.btn_updateInfo.Text = "Cập nhật thông tin";
+			this.btn_updateInfo.UseVisualStyleBackColor = true;
+			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -883,7 +899,6 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.tab_Schedule.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.data_Schedule)).EndInit();
 			this.tab_CourseRegister.ResumeLayout(false);
@@ -891,6 +906,7 @@
 			this.panel3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).EndInit();
 			this.tab_Score.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -966,5 +982,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Thursday;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Friday;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Saturday;
+		private System.Windows.Forms.Button btn_updateInfo;
 	}
 }
