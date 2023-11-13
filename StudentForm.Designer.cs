@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.btn_updateInfo = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.btn_Find = new System.Windows.Forms.Button();
+			this.btn_Register = new System.Windows.Forms.Button();
 			this.tb_Filter = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
@@ -82,17 +82,6 @@
 			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.flpSchedule = new System.Windows.Forms.FlowLayoutPanel();
-			this.NgayKt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NgayBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.HocKi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Tiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SoTin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
@@ -474,7 +463,7 @@
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel3.Controls.Add(this.btn_Find);
+			this.panel3.Controls.Add(this.btn_Register);
 			this.panel3.Controls.Add(this.tb_Filter);
 			this.panel3.Controls.Add(this.label21);
 			this.panel3.Location = new System.Drawing.Point(0, -1);
@@ -482,14 +471,14 @@
 			this.panel3.Size = new System.Drawing.Size(1170, 67);
 			this.panel3.TabIndex = 2;
 			// 
-			// btn_Find
+			// btn_Register
 			// 
-			this.btn_Find.Location = new System.Drawing.Point(636, 12);
-			this.btn_Find.Name = "btn_Find";
-			this.btn_Find.Size = new System.Drawing.Size(136, 46);
-			this.btn_Find.TabIndex = 2;
-			this.btn_Find.Text = "Tìm kiếm";
-			this.btn_Find.UseVisualStyleBackColor = true;
+			this.btn_Register.Location = new System.Drawing.Point(636, 12);
+			this.btn_Register.Name = "btn_Register";
+			this.btn_Register.Size = new System.Drawing.Size(136, 46);
+			this.btn_Register.TabIndex = 2;
+			this.btn_Register.Text = "Đăng ký";
+			this.btn_Register.UseVisualStyleBackColor = true;
 			// 
 			// tb_Filter
 			// 
@@ -498,6 +487,7 @@
 			this.tb_Filter.Name = "tb_Filter";
 			this.tb_Filter.Size = new System.Drawing.Size(536, 34);
 			this.tb_Filter.TabIndex = 1;
+			this.tb_Filter.TextChanged += new System.EventHandler(this.tb_Filter_TextChanged);
 			// 
 			// label21
 			// 
@@ -512,43 +502,32 @@
 			// 
 			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.data_CourseRegistration.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_CourseRegistration.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TrangThai,
-            this.TenMon,
-            this.MaLop,
-            this.TenGV,
-            this.SoTin,
-            this.Thu,
-            this.Tiet,
-            this.Phong,
-            this.HocKi,
-            this.NamHoc,
-            this.NgayBD,
-            this.NgayKt});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle2;
+            this.TrangThai});
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle5;
 			this.data_CourseRegistration.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_CourseRegistration.Location = new System.Drawing.Point(0, 64);
 			this.data_CourseRegistration.Name = "data_CourseRegistration";
 			this.data_CourseRegistration.RowHeadersVisible = false;
 			this.data_CourseRegistration.RowHeadersWidth = 51;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.data_CourseRegistration.RowTemplate.Height = 24;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 564);
 			this.data_CourseRegistration.TabIndex = 1;
@@ -663,85 +642,6 @@
 			this.flpSchedule.Size = new System.Drawing.Size(1168, 626);
 			this.flpSchedule.TabIndex = 0;
 			// 
-			// NgayKt
-			// 
-			this.NgayKt.HeaderText = "Ngày KT";
-			this.NgayKt.MinimumWidth = 6;
-			this.NgayKt.Name = "NgayKt";
-			this.NgayKt.Width = 124;
-			// 
-			// NgayBD
-			// 
-			this.NgayBD.HeaderText = "Ngày BĐ";
-			this.NgayBD.MinimumWidth = 6;
-			this.NgayBD.Name = "NgayBD";
-			this.NgayBD.Width = 125;
-			// 
-			// NamHoc
-			// 
-			this.NamHoc.HeaderText = "Năm học";
-			this.NamHoc.MinimumWidth = 6;
-			this.NamHoc.Name = "NamHoc";
-			this.NamHoc.Width = 127;
-			// 
-			// HocKi
-			// 
-			this.HocKi.HeaderText = "Học kì";
-			this.HocKi.MinimumWidth = 6;
-			this.HocKi.Name = "HocKi";
-			this.HocKi.Width = 102;
-			// 
-			// Phong
-			// 
-			this.Phong.HeaderText = "Phòng";
-			this.Phong.MinimumWidth = 6;
-			this.Phong.Name = "Phong";
-			this.Phong.Width = 103;
-			// 
-			// Tiet
-			// 
-			this.Tiet.HeaderText = "Tiết";
-			this.Tiet.MinimumWidth = 6;
-			this.Tiet.Name = "Tiet";
-			this.Tiet.Width = 80;
-			// 
-			// Thu
-			// 
-			this.Thu.HeaderText = "Thứ";
-			this.Thu.MinimumWidth = 6;
-			this.Thu.Name = "Thu";
-			this.Thu.Width = 82;
-			// 
-			// SoTin
-			// 
-			this.SoTin.HeaderText = "Số tín";
-			this.SoTin.MinimumWidth = 6;
-			this.SoTin.Name = "SoTin";
-			this.SoTin.Width = 96;
-			// 
-			// TenGV
-			// 
-			this.TenGV.HeaderText = "Tên giảng viên";
-			this.TenGV.MinimumWidth = 6;
-			this.TenGV.Name = "TenGV";
-			this.TenGV.Width = 181;
-			// 
-			// MaLop
-			// 
-			this.MaLop.HeaderText = "Mã lớp";
-			this.MaLop.MinimumWidth = 6;
-			this.MaLop.Name = "MaLop";
-			this.MaLop.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.MaLop.Width = 109;
-			// 
-			// TenMon
-			// 
-			this.TenMon.HeaderText = "Tên môn học";
-			this.TenMon.MinimumWidth = 6;
-			this.TenMon.Name = "TenMon";
-			this.TenMon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.TenMon.Width = 166;
-			// 
 			// TrangThai
 			// 
 			this.TrangThai.HeaderText = "";
@@ -827,21 +727,10 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.TextBox tb_Filter;
 		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.Button btn_Find;
+		private System.Windows.Forms.Button btn_Register;
 		private System.Windows.Forms.Button btn_updateInfo;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.FlowLayoutPanel flpSchedule;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn TrangThai;
-		private System.Windows.Forms.DataGridViewTextBoxColumn TenMon;
-		private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
-		private System.Windows.Forms.DataGridViewTextBoxColumn TenGV;
-		private System.Windows.Forms.DataGridViewTextBoxColumn SoTin;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Thu;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Tiet;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Phong;
-		private System.Windows.Forms.DataGridViewTextBoxColumn HocKi;
-		private System.Windows.Forms.DataGridViewTextBoxColumn NamHoc;
-		private System.Windows.Forms.DataGridViewTextBoxColumn NgayBD;
-		private System.Windows.Forms.DataGridViewTextBoxColumn NgayKt;
 	}
 }

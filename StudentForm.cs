@@ -2,6 +2,7 @@
 using QLSV.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace QLSV
 {
     public partial class StudentForm : Form
     {
-
-        public StudentForm(string id)
+		DataTable dt = new DataTable();
+		public StudentForm(string id)
         {
             InitializeComponent();
             ID = id;
@@ -88,28 +89,21 @@ namespace QLSV
 		void LoadCourseRegistration()
 		{
 			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
+			int i = 0;
+			dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
+						new DataColumn("Mã môn học", typeof(string)),
+						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			foreach (StudentCourseRegistration course in courses)
+			{
+				dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate, course.EndDate);
+			}
+			this.data_CourseRegistration.DataSource = dt;
 			data_CourseRegistration.Columns[0].ReadOnly = false;
 			for (int k = 1; k < data_CourseRegistration.Columns.Count; k++)
 			{
-				data_CourseRegistration.Columns[k].ReadOnly = true; 
+				data_CourseRegistration.Columns[k].ReadOnly = true;
 			}
-			int i = 0;
-			data_CourseRegistration.RowCount = courses.Count;
-			foreach (StudentCourseRegistration course in courses)
-			{
-				DataGridViewRow row = data_CourseRegistration.Rows[i++];
-				row.Cells[1].Value = course.CourseName;
-				row.Cells[2].Value = course.CourseId;
-				row.Cells[3].Value = course.LecturerName;
-				row.Cells[4].Value = course.NumberOfCredits;
-				row.Cells[5].Value = course.Day;
-				row.Cells[6].Value = course.Period;
-				row.Cells[7].Value = course.ClassRoom;
-				row.Cells[8].Value = course.Semester;
-				row.Cells[9].Value = course.SchoolYear;
-				row.Cells[10].Value = course.StartDate.ToShortDateString();
-				row.Cells[11].Value = course.EndDate.ToShortDateString();
-			}
+			this.data_CourseRegistration.AllowUserToAddRows = false;
 		}
 
 		private void LoadTKB()
@@ -182,5 +176,10 @@ namespace QLSV
 			}
 		}
 		#endregion
+
+		private void tb_Filter_TextChanged(object sender, EventArgs e)
+		{
+			dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter.Text);
+		}
 	}
 }
