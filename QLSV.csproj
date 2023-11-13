@@ -70,9 +70,11 @@
   <ItemGroup>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\StudentCourseRegistrationDAO.cs" />
     <Compile Include="DAO\StudentInfoDAO.cs" />
     <Compile Include="DAO\StudentScheduleDAO.cs" />
     <Compile Include="DAO\StudentScoreDAO.cs" />
+    <Compile Include="DTO\StudentCourseRegistration.cs" />
     <Compile Include="DTO\StudentInfo.cs" />
     <Compile Include="DTO\StudentSchedule.cs" />
     <Compile Include="DTO\StudentScore.cs" />

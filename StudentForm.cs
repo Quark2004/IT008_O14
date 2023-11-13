@@ -20,6 +20,7 @@ namespace QLSV
             LoadInfo();
             LoadTKB();
 			LoadScore();
+			LoadCourseRegistration();
 			lv_Score.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -81,6 +82,33 @@ namespace QLSV
 					lv_Score.Items.Add(listItem);
 					i++;
 				}
+			}
+		}
+
+		void LoadCourseRegistration()
+		{
+			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
+			data_CourseRegistration.Columns[0].ReadOnly = false;
+			for (int k = 1; k < data_CourseRegistration.Columns.Count; k++)
+			{
+				data_CourseRegistration.Columns[k].ReadOnly = true; 
+			}
+			int i = 0;
+			data_CourseRegistration.RowCount = courses.Count;
+			foreach (StudentCourseRegistration course in courses)
+			{
+				DataGridViewRow row = data_CourseRegistration.Rows[i++];
+				row.Cells[1].Value = course.CourseName;
+				row.Cells[2].Value = course.CourseId;
+				row.Cells[3].Value = course.LecturerName;
+				row.Cells[4].Value = course.NumberOfCredits;
+				row.Cells[5].Value = course.Day;
+				row.Cells[6].Value = course.Period;
+				row.Cells[7].Value = course.ClassRoom;
+				row.Cells[8].Value = course.Semester;
+				row.Cells[9].Value = course.SchoolYear;
+				row.Cells[10].Value = course.StartDate.ToShortDateString();
+				row.Cells[11].Value = course.EndDate.ToShortDateString();
 			}
 		}
 

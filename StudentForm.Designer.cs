@@ -69,18 +69,6 @@
 			this.tb_Filter = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
-			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SoTin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Tiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.HocKi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NgayBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NgayKt = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tab_Score = new System.Windows.Forms.TabPage();
 			this.lv_Score = new System.Windows.Forms.ListView();
 			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -94,6 +82,18 @@
 			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.flpSchedule = new System.Windows.Forms.FlowLayoutPanel();
+			this.NgayKt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NgayBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.NamHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.HocKi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SoTin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -510,8 +510,7 @@
 			// 
 			// data_CourseRegistration
 			// 
-			this.data_CourseRegistration.AllowUserToResizeColumns = false;
-			this.data_CourseRegistration.AllowUserToResizeRows = false;
+			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -543,9 +542,9 @@
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
 			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
 			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle2;
+			this.data_CourseRegistration.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_CourseRegistration.Location = new System.Drawing.Point(0, 64);
 			this.data_CourseRegistration.Name = "data_CourseRegistration";
-			this.data_CourseRegistration.ReadOnly = true;
 			this.data_CourseRegistration.RowHeadersVisible = false;
 			this.data_CourseRegistration.RowHeadersWidth = 51;
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -553,106 +552,6 @@
 			this.data_CourseRegistration.RowTemplate.Height = 24;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 564);
 			this.data_CourseRegistration.TabIndex = 1;
-			// 
-			// TrangThai
-			// 
-			this.TrangThai.HeaderText = "";
-			this.TrangThai.MinimumWidth = 6;
-			this.TrangThai.Name = "TrangThai";
-			this.TrangThai.ReadOnly = true;
-			this.TrangThai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.TrangThai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.TrangThai.Width = 25;
-			// 
-			// TenMon
-			// 
-			this.TenMon.HeaderText = "Tên môn học";
-			this.TenMon.MinimumWidth = 6;
-			this.TenMon.Name = "TenMon";
-			this.TenMon.ReadOnly = true;
-			this.TenMon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.TenMon.Width = 130;
-			// 
-			// MaLop
-			// 
-			this.MaLop.HeaderText = "Mã lớp";
-			this.MaLop.MinimumWidth = 6;
-			this.MaLop.Name = "MaLop";
-			this.MaLop.ReadOnly = true;
-			this.MaLop.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.MaLop.Width = 105;
-			// 
-			// TenGV
-			// 
-			this.TenGV.HeaderText = "Tên giảng viên";
-			this.TenGV.MinimumWidth = 6;
-			this.TenGV.Name = "TenGV";
-			this.TenGV.ReadOnly = true;
-			this.TenGV.Width = 120;
-			// 
-			// SoTin
-			// 
-			this.SoTin.HeaderText = "Số tín";
-			this.SoTin.MinimumWidth = 6;
-			this.SoTin.Name = "SoTin";
-			this.SoTin.ReadOnly = true;
-			this.SoTin.Width = 50;
-			// 
-			// Thu
-			// 
-			this.Thu.HeaderText = "Thứ";
-			this.Thu.MinimumWidth = 6;
-			this.Thu.Name = "Thu";
-			this.Thu.ReadOnly = true;
-			this.Thu.Width = 50;
-			// 
-			// Tiet
-			// 
-			this.Tiet.HeaderText = "Tiết";
-			this.Tiet.MinimumWidth = 6;
-			this.Tiet.Name = "Tiet";
-			this.Tiet.ReadOnly = true;
-			this.Tiet.Width = 55;
-			// 
-			// Phong
-			// 
-			this.Phong.HeaderText = "Phòng";
-			this.Phong.MinimumWidth = 6;
-			this.Phong.Name = "Phong";
-			this.Phong.ReadOnly = true;
-			this.Phong.Width = 60;
-			// 
-			// HocKi
-			// 
-			this.HocKi.HeaderText = "Học kì";
-			this.HocKi.MinimumWidth = 6;
-			this.HocKi.Name = "HocKi";
-			this.HocKi.ReadOnly = true;
-			this.HocKi.Width = 60;
-			// 
-			// NamHoc
-			// 
-			this.NamHoc.HeaderText = "Năm học";
-			this.NamHoc.MinimumWidth = 6;
-			this.NamHoc.Name = "NamHoc";
-			this.NamHoc.ReadOnly = true;
-			this.NamHoc.Width = 60;
-			// 
-			// NgayBD
-			// 
-			this.NgayBD.HeaderText = "Ngày BĐ";
-			this.NgayBD.MinimumWidth = 6;
-			this.NgayBD.Name = "NgayBD";
-			this.NgayBD.ReadOnly = true;
-			this.NgayBD.Width = 80;
-			// 
-			// NgayKt
-			// 
-			this.NgayKt.HeaderText = "Ngày KT";
-			this.NgayKt.MinimumWidth = 6;
-			this.NgayKt.Name = "NgayKt";
-			this.NgayKt.ReadOnly = true;
-			this.NgayKt.Width = 80;
 			// 
 			// tab_Score
 			// 
@@ -764,6 +663,94 @@
 			this.flpSchedule.Size = new System.Drawing.Size(1168, 626);
 			this.flpSchedule.TabIndex = 0;
 			// 
+			// NgayKt
+			// 
+			this.NgayKt.HeaderText = "Ngày KT";
+			this.NgayKt.MinimumWidth = 6;
+			this.NgayKt.Name = "NgayKt";
+			this.NgayKt.Width = 124;
+			// 
+			// NgayBD
+			// 
+			this.NgayBD.HeaderText = "Ngày BĐ";
+			this.NgayBD.MinimumWidth = 6;
+			this.NgayBD.Name = "NgayBD";
+			this.NgayBD.Width = 125;
+			// 
+			// NamHoc
+			// 
+			this.NamHoc.HeaderText = "Năm học";
+			this.NamHoc.MinimumWidth = 6;
+			this.NamHoc.Name = "NamHoc";
+			this.NamHoc.Width = 127;
+			// 
+			// HocKi
+			// 
+			this.HocKi.HeaderText = "Học kì";
+			this.HocKi.MinimumWidth = 6;
+			this.HocKi.Name = "HocKi";
+			this.HocKi.Width = 102;
+			// 
+			// Phong
+			// 
+			this.Phong.HeaderText = "Phòng";
+			this.Phong.MinimumWidth = 6;
+			this.Phong.Name = "Phong";
+			this.Phong.Width = 103;
+			// 
+			// Tiet
+			// 
+			this.Tiet.HeaderText = "Tiết";
+			this.Tiet.MinimumWidth = 6;
+			this.Tiet.Name = "Tiet";
+			this.Tiet.Width = 80;
+			// 
+			// Thu
+			// 
+			this.Thu.HeaderText = "Thứ";
+			this.Thu.MinimumWidth = 6;
+			this.Thu.Name = "Thu";
+			this.Thu.Width = 82;
+			// 
+			// SoTin
+			// 
+			this.SoTin.HeaderText = "Số tín";
+			this.SoTin.MinimumWidth = 6;
+			this.SoTin.Name = "SoTin";
+			this.SoTin.Width = 96;
+			// 
+			// TenGV
+			// 
+			this.TenGV.HeaderText = "Tên giảng viên";
+			this.TenGV.MinimumWidth = 6;
+			this.TenGV.Name = "TenGV";
+			this.TenGV.Width = 181;
+			// 
+			// MaLop
+			// 
+			this.MaLop.HeaderText = "Mã lớp";
+			this.MaLop.MinimumWidth = 6;
+			this.MaLop.Name = "MaLop";
+			this.MaLop.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.MaLop.Width = 109;
+			// 
+			// TenMon
+			// 
+			this.TenMon.HeaderText = "Tên môn học";
+			this.TenMon.MinimumWidth = 6;
+			this.TenMon.Name = "TenMon";
+			this.TenMon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.TenMon.Width = 166;
+			// 
+			// TrangThai
+			// 
+			this.TrangThai.HeaderText = "";
+			this.TrangThai.MinimumWidth = 6;
+			this.TrangThai.Name = "TrangThai";
+			this.TrangThai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.TrangThai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.TrangThai.Width = 23;
+			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -841,6 +828,9 @@
 		private System.Windows.Forms.TextBox tb_Filter;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Button btn_Find;
+		private System.Windows.Forms.Button btn_updateInfo;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.FlowLayoutPanel flpSchedule;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn TrangThai;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TenMon;
 		private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
@@ -853,8 +843,5 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn NamHoc;
 		private System.Windows.Forms.DataGridViewTextBoxColumn NgayBD;
 		private System.Windows.Forms.DataGridViewTextBoxColumn NgayKt;
-		private System.Windows.Forms.Button btn_updateInfo;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.FlowLayoutPanel flpSchedule;
-    }
+	}
 }
