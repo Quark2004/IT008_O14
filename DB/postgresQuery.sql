@@ -104,7 +104,9 @@ BEGIN
            Course.lesson as "Tiết"
     FROM Schedule, Course
     WHERE Schedule.idProfile = _id
-        AND Schedule.idCourse = Course.id;
+        AND Schedule.idCourse = Course.id
+	ORDER BY Course.schoolDay ASC, 
+            Course.lesson ASC; 
 END;
 $$ LANGUAGE plpgsql;
 
