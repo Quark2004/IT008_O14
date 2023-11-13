@@ -177,11 +177,6 @@ namespace QLSV
                     else if (col == 1)
                     {
                         lb.Text = $"Tiết {row}\n({timeline[row - 1]})";
-
-                    }
-
-                    if (col == 1)
-                    {
                         lb.Width = 130;
                     }
 

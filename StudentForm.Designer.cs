@@ -152,7 +152,7 @@
             this.tab_Info.Location = new System.Drawing.Point(4, 36);
             this.tab_Info.Name = "tab_Info";
             this.tab_Info.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Info.Size = new System.Drawing.Size(1174, 514);
+            this.tab_Info.Size = new System.Drawing.Size(1174, 632);
             this.tab_Info.TabIndex = 0;
             this.tab_Info.Text = "Thông tin";
             // 
@@ -482,7 +482,7 @@
             this.tab_Schedule.Location = new System.Drawing.Point(4, 36);
             this.tab_Schedule.Name = "tab_Schedule";
             this.tab_Schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Schedule.Size = new System.Drawing.Size(1174, 514);
+            this.tab_Schedule.Size = new System.Drawing.Size(1174, 632);
             this.tab_Schedule.TabIndex = 1;
             this.tab_Schedule.Text = "Lịch học";
             // 
@@ -611,7 +611,7 @@
             this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
             this.tab_CourseRegister.Name = "tab_CourseRegister";
             this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 514);
+            this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 632);
             this.tab_CourseRegister.TabIndex = 2;
             this.tab_CourseRegister.Text = "Đăng ký học phần";
             // 
@@ -806,7 +806,7 @@
             this.tab_Score.Location = new System.Drawing.Point(4, 36);
             this.tab_Score.Name = "tab_Score";
             this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Score.Size = new System.Drawing.Size(1174, 514);
+            this.tab_Score.Size = new System.Drawing.Size(1174, 632);
             this.tab_Score.TabIndex = 3;
             this.tab_Score.Text = "   Điểm";
             // 
@@ -889,6 +889,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.flpSchedule);
+            this.tabPage1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 36);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
