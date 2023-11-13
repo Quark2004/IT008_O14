@@ -14,6 +14,7 @@ namespace QLSV
     public partial class StudentForm : Form
     {
 		DataTable dt = new DataTable();
+		DataTable dtInfo = new DataTable();
 		public StudentForm(string id)
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace QLSV
             LoadTKB();
 			LoadScore();
 			LoadCourseRegistration();
+			LoadCourseRegistrationInfo();
 			lv_Score.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -89,7 +91,6 @@ namespace QLSV
 		void LoadCourseRegistration()
 		{
 			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
-			int i = 0;
 			dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
 						new DataColumn("Mã môn học", typeof(string)),
 						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
@@ -104,6 +105,13 @@ namespace QLSV
 				data_CourseRegistration.Columns[k].ReadOnly = true;
 			}
 			this.data_CourseRegistration.AllowUserToAddRows = false;
+		}
+
+		void LoadCourseRegistrationInfo()
+		{
+			dtInfo.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
+						new DataColumn("Mã môn học", typeof(string)),
+						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
 		}
 
 		private void LoadTKB()
@@ -180,6 +188,32 @@ namespace QLSV
 		private void tb_Filter_TextChanged(object sender, EventArgs e)
 		{
 			dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter.Text);
+		}
+
+		private void btn_Register_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Đăng ký học phần thành công");
+			List<StudentCourseRegistration> coursesRegistration = new List<StudentCourseRegistration>();
+			foreach (DataGridViewRow row in data_CourseRegistration.Rows)
+			{
+				if (Convert.ToBoolean(row.Cells[0].Value))
+				{
+					dtInfo.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value, row.Cells[7].Value, row.Cells[8].Value, row.Cells[9].Value, row.Cells[10].Value, row.Cells[11].Value);
+					row.Cells[0].Value = null;
+				}
+			}
+			this.data_RegistrationInfo.DataSource = dtInfo;
+			data_RegistrationInfo.Columns[0].ReadOnly = false;
+			for (int k = 1; k < data_RegistrationInfo.Columns.Count; k++)
+			{
+				data_RegistrationInfo.Columns[k].ReadOnly = true;
+			}
+			this.data_RegistrationInfo.AllowUserToAddRows = false;
+		}
+
+		private void tb_Filter2_TextChanged(object sender, EventArgs e)
+		{
+			dtInfo.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter2.Text);
 		}
 	}
 }
