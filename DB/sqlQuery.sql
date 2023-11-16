@@ -67,7 +67,12 @@ CREATE TABLE Schedule (
 )
 GO
 
-
+Create TABLE RegisterCourse (
+    id int PRIMARY KEY IDENTITY,
+    idCourse NVARCHAR(100) REFERENCES Course(id),
+    idProfile NVARCHAR(100) REFERENCES Profile(id),
+)
+GO
 
 -- Store procedure 
 
@@ -103,7 +108,7 @@ go
 
 -- EXEC LoadProfileById @id = N'21521601'
 
-Create proc GetScheduleByID
+create proc GetScheduleByID
     @id nvarchar(100)
 AS
 BEGIN
@@ -117,15 +122,16 @@ BEGIN
     from Schedule, Course
     WHERE Schedule.idProfile = @id
         and Schedule.idCourse = Course.id
+    ORDER BY Course.schoolDay ASC, 
+            Course.lesson ASC
 END
 GO
 
--- EXEC GetScheduleByID @id = N'GV1'
+-- EXEC GetScheduleByID @id = N'21521601'
 
 create PROC GetListRegisterCourse
 AS
 BEGIN
-  
     select Course.name AS N'Tên môn học',
         Course.id AS N'Mã lớp',
         Profile.name AS N'Tên giảng viên',
@@ -145,7 +151,6 @@ BEGIN
         and UserAcc.idAccount = Account.username
         and Account.role = 'teacher'
     ORDER BY Course.name, Course.id
-
 END
 GO
 
@@ -231,8 +236,29 @@ BEGIN
 END
 go
 
-EXEC GetListClass @idCourse = N'IT003.1'
-go
+-- EXEC GetListClass @idCourse = N'IT003.1'
+-- go
+
+create proc GetListRegisteredByID
+    @id nvarchar(100)
+AS
+BEGIN
+    select Course.id as N'Mã môn học',
+    Course.name as N'Tên môn học',
+    Course.classroom as N'Phòng học',
+    Course.startDay as N'Ngày bắt đầu',
+    Course.endDay as N'Ngày kết thúc',
+    Course.schoolDay as N'Thứ',
+    Course.lesson as N'Tiết'
+    from RegisterCourse, Course
+    WHERE RegisterCourse.idProfile = @id
+        and RegisterCourse.idCourse = Course.id
+        ORDER BY Course.schoolDay ASC, 
+            Course.lesson ASC 
+END
+GO
+
+-- EXEC GetListRegisteredByID @id = N'21521601'
 
 
 -------------------------
@@ -243,29 +269,26 @@ create proc InsertAcc
     @id NVARCHAR(100)
 AS
 BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;
+    if ((SELECT COUNT(*) FROM Account
+            WHERE username = @username) > 0) RETURN
 
-        INSERT into Account(username, [password])
-        VALUES (@username, @password)
+    if ((SELECT COUNT(*) FROM Profile
+            WHERE id = @id) > 0) RETURN
 
-        Insert into Profile(id)
-        values (@id)
+    INSERT into Account(username, [password])
+    VALUES (@username, @password)
 
-        INSERT into UserAcc(idAccount, idProfile)
-        VALUES (@username, @id)
+    Insert into Profile(id)
+    values (@id)
 
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-    END CATCH;
+    INSERT into UserAcc(idAccount, idProfile)
+    VALUES (@username, @id)
 END
 GO
 
--- EXEC InsertAcc @username = N'student0', 
+-- EXEC InsertAcc @username = N'student11', 
 --                 @password = N'123456', 
---                 @id = N'21521600'
+--                 @id = N'21521611'
 -- GO
 
 CREATE proc UpdatePass
@@ -278,6 +301,10 @@ BEGIN
     WHERE username = @username
 END
 GO
+
+-- EXEC UpdatePass @username = N'student1' , @password = N'123456'
+-- go
+
 
 
 -- EXEC UpdatePass @username = N'student0' , @password = N'654321'
@@ -303,7 +330,17 @@ BEGIN
 end
 GO
 
-CREATE PROC UpdateScore
+-- EXEC UpdateProfile @id = N'21521601' ,
+--             @name = N'Student 101',
+--             @birthday = N'2000-01-01',
+--             @gender = N'Nam',
+--             @level = N'Đại học',
+--             @trainingSystem = N'Chính quy',
+--             @avatar = Null       
+-- go
+
+
+create PROC UpdateScore
     @idCourse NVARCHAR(100),
     @idProfile NVARCHAR(100),
     @processScore FLOAT,
@@ -312,6 +349,13 @@ CREATE PROC UpdateScore
     @practiceScore FLOAT
 AS
 BEGIN
+    if (
+        @processScore < 0 or @processScore > 10 or 
+        @midtermScore < 0 or @midtermScore > 10 or 
+        @finalScore < 0 or @processScore > 10 or 
+        @practiceScore < 0 or @processScore > 10
+    ) RETURN
+
     UPDATE Score
     SET processScore = @processScore,
         midtermScore = @midtermScore,
@@ -325,11 +369,12 @@ END
 GO
 
 -- EXEC UpdateScore @idCourse = N'IT003.1',
---                 @idProfile = N'21521600',
---                 @processScore = 8.3,
+--                 @idProfile = N'21521601',
+--                 @processScore = 7.3,
 --                 @midtermScore = 7.1,
 --                 @finalScore = 9.2,
 --                 @practiceScore = 10
+-- go
 
 create PROC UpdateRatioScore
     @idCourse NVARCHAR(100),
@@ -363,27 +408,43 @@ GO
 
 
 
-CREATE PROC JoinCourse 
+create PROC JoinCourse 
     @idProfile NVARCHAR(100),
     @idCourse NVARCHAR(100)
 AS
 BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở 
+    if ((SELECT COUNT(*) FROM Course
+            WHERE id = @idCourse)  = 0) RETURN
+
+    -- Không được đăng kí 1 môn nhiều lần
     IF (SELECT COUNT(*) FROM Schedule
         WHERE idProfile = @idProfile and
                 idCourse = @idCourse) > 0 RETURN
+
+    -- Các môn học không được trùng lịch học
+    if (select COUNT(*) FROM
+        (SELECT schoolDay, lesson FROM Course WHERE id = @idCourse) as infoCourse,
+        (SELECT schoolDay, lesson FROM Schedule, Course WHERE Schedule.idCourse = Course.id and Schedule.idProfile = @idProfile) as allInfoCourse
+            WHERE infoCourse.schoolDay = allInfoCourse.schoolDay AND 
+                    (infoCourse.lesson like '%' + allInfoCourse.lesson + '%' or
+                        allInfoCourse.lesson like '%' + infoCourse.lesson + '%')) > 0 RETURN
+
+    -- Khi sinh viên đã tham gia lớp học thì phải có bản điểm
+    INSERT into Score(processScore)
+    VALUES (NULL)
 
     DECLARE @idScore int
 
     SELECT @idScore = id FROM  Score 
     WHERE id = (SELECT MAX(id)  FROM Score)
 
-    INSERT into Score(processScore)
-    VALUES (NULL)
-
     INSERT Schedule (idCourse, idProfile, idScore)
-    VALUES (@idCourse, @idProfile, @idScore + 1)
+    VALUES (@idCourse, @idProfile, CAST(@idScore as nvarchar))
 END
 GO
+
+-- EXEC JoinCourse @idProfile = N'21521601' , @idCourse = N'IT001.1'
 
 create PROC LeaveCourse
     @idProfile NVARCHAR(100),
@@ -404,6 +465,56 @@ BEGIN
     WHERE id = @idScore
 END
 GO
+
+-- EXEC LeaveCourse @idProfile =  N'21521601' , @idCourse = N'IT001.2'
+
+create PROC JoinRegisterCourse (
+    @idProfile NVARCHAR(100),
+    @idCourse NVARCHAR(100)
+)
+AS
+BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở 
+    if ((SELECT COUNT(*) FROM Course
+            WHERE id = @idCourse)  = 0) RETURN
+
+    -- Không được đăng kí 1 môn nhiều lần
+    if ((SELECT COUNT(*) FROM RegisterCourse
+            WHERE idCourse = @idCourse and 
+                    idProfile = @idProfile) > 0) RETURN
+                
+    -- Các môn học không được trùng lịch học
+    
+    if ((SELECT COUNT(*) FROM
+            (SELECT Course.schoolDay, Course.lesson FROM Course WHERE id = @idCourse) AS infoCourse,
+            (SELECT Course.schoolDay, Course.lesson FROM RegisterCourse, Course WHERE RegisterCourse.idCourse = Course.id and RegisterCourse.idProfile = @idProfile) as allInfoCourse
+            WHERE allInfoCourse.schoolDay = infoCourse.schoolDay AND
+                    (allInfoCourse.lesson LIKE '%' + infoCourse.lesson + '%' or 
+                        infoCourse.lesson LIKE '%' + allInfoCourse.lesson + '%'
+                    )
+        ) > 0) RETURN
+
+    INSERT RegisterCourse(idCourse, idProfile)
+    VALUES(@idCourse, @idProfile)
+END
+GO
+
+-- EXEC JoinRegisterCourse @idProfile = N'21521601' , @idCourse = N'IT001.1'
+
+create PROC LeaveRegisterCourse (
+    @idProfile NVARCHAR(100),
+    @idCourse NVARCHAR(100)
+)
+AS
+BEGIN
+    DELETE RegisterCourse
+    WHERE idCourse = @idCourse AND
+            idProfile = @idProfile
+end
+go
+
+-- EXEC LeaveRegisterCourse @idProfile = N'21521601' , @idCourse = N'IT001.1'
+-- GO
 
 -----------------------------------------
 
@@ -517,6 +628,11 @@ VALUES (N'IT001.3', N'Nhập môn lập trình', '2023-09-11', '2023-12-30', 4, 
 INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
 VALUES (N'IT001.4', N'Nhập môn lập trình', '2023-09-11', '2023-12-30', 4, N'67890', N'B3.02', 4, N'HK1', N'2023-2024')
 
+-- IT002
+INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
+VALUES (N'IT002.1', N'Cấu trúc dữ liệu và giải thuật', '2023-09-11', '2023-12-30', 2, N'67890', N'B3.18', 4, N'HK1', N'2023-2024')
+
+
 -- IT003
 INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
 VALUES (N'IT003.1', N'Cấu trúc dữ liệu và giải thuật', '2023-09-11', '2023-12-30', 6, N'12345', N'B3.18', 4, N'HK1', N'2023-2024')
@@ -612,3 +728,4 @@ select * from UserAcc
 select * from Course
 select * from Score
 select * from Schedule
+go

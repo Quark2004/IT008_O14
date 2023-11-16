@@ -4,7 +4,6 @@ CREATE TABLE Account (
     role VARCHAR(100) DEFAULT 'student'
 );
 
--- Tạo bảng "Profile"
 CREATE TABLE Profile (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100),
@@ -12,17 +11,15 @@ CREATE TABLE Profile (
     gender VARCHAR(100),
     level VARCHAR(100) DEFAULT 'Đại học',
     trainingSystem VARCHAR(100) DEFAULT 'Chính quy',
-    avatar BYTEA  -- Sử dụng kiểu BYTEA cho dữ liệu hình ảnh
+    avatar BYTEA  
 );
 
--- Tạo bảng "UserAcc"
 CREATE TABLE UserAcc (
-    id SERIAL PRIMARY KEY,  -- Sử dụng SERIAL cho cột id để tự động tạo giá trị duy nhất
+    id SERIAL PRIMARY KEY, 
     idAccount VARCHAR(100) REFERENCES Account(username),
     idProfile VARCHAR(100) REFERENCES Profile(id)
 );
 
--- Tạo bảng "Course"
 CREATE TABLE Course (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -36,9 +33,8 @@ CREATE TABLE Course (
     endDay DATE NOT NULL
 );
 
--- Tạo bảng "Score"
 CREATE TABLE Score (
-    id SERIAL PRIMARY KEY,  -- Sử dụng SERIAL cho cột id để tự động tạo giá trị duy nhất
+    id SERIAL PRIMARY KEY, 
     processScore FLOAT,
     midtermScore FLOAT,
     finalScore FLOAT,
@@ -49,16 +45,23 @@ CREATE TABLE Score (
     ratioFinal FLOAT DEFAULT 0.4
 );
 
--- Tạo bảng "Schedule"
 CREATE TABLE Schedule (
-    id SERIAL PRIMARY KEY,  -- Sử dụng SERIAL cho cột id để tự động tạo giá trị duy nhất
+    id SERIAL PRIMARY KEY, 
     idProfile VARCHAR(100) NOT NULL REFERENCES Profile (id),
     idCourse VARCHAR(100) NOT NULL REFERENCES Course (id),
     idScore INT REFERENCES Score (id),
     note VARCHAR(1000)
 );
 
+CREATE TABLE RegisterCourse (
+    id SERIAL PRIMARY KEY,
+    idCourse VARCHAR(100) REFERENCES Course(id),
+    idProfile VARCHAR(100) REFERENCES Profile(id)
+);
+
+
 -- Store procedure 
+
 CREATE OR REPLACE FUNCTION "Login"(_username VARCHAR(100), _password VARCHAR(1000))
 RETURNS TABLE("id" VARCHAR(100), "role" VARCHAR(100)) AS $$
 BEGIN
@@ -214,32 +217,74 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT * FROM GetListClass('IT003.1');
 
-
--------------------------
------- CRUD -----------
-CREATE OR REPLACE FUNCTION InsertAcc(_username VARCHAR(100), _password VARCHAR(1000), _id VARCHAR(100))
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION GetListRegisteredByID(
+    IN v_id VARCHAR(100)
+)
+RETURNS TABLE (
+    "Mã môn học" VARCHAR(100),
+    "Tên môn học" VARCHAR(100),
+    "Phòng học" VARCHAR(100),
+    "Ngày bắt đầu" DATE,
+    "Ngày kết thúc" DATE,
+    "Thứ" VARCHAR(100),
+    "Tiết" VARCHAR(100)
+) AS $$
 BEGIN
-    BEGIN
-
-        INSERT INTO Account(username, password)
-        VALUES (_username, _password);
-
-        INSERT INTO Profile(id)
-        VALUES (_id);
-
-        INSERT INTO UserAcc(idAccount, idProfile)
-        VALUES (_username, _id);
-
-
-    EXCEPTION
-        WHEN OTHERS THEN
-            RAISE NOTICE 'An error occurred: %', SQLERRM;
-    END;
+    RETURN QUERY
+    SELECT
+        Course.id AS "Mã môn học",
+        Course.name AS "Tên môn học",
+        Course.classroom AS "Phòng học",
+        Course.startDay AS "Ngày bắt đầu",
+        Course.endDay AS "Ngày kết thúc",
+        Course.schoolDay AS "Thứ",
+        Course.lesson AS "Tiết"
+    FROM
+        RegisterCourse
+    INNER JOIN
+        Course ON RegisterCourse.idCourse = Course.id
+    WHERE
+        RegisterCourse.idProfile = v_id
+    ORDER BY
+        Course.schoolDay ASC,
+        Course.lesson ASC;
 END;
 $$ LANGUAGE plpgsql;
 
--- SELECT InsertAcc('student0', '123456', '21521600');
+-- SELECT * FROM GetListRegisteredByID('21521601');
+
+-------------------------
+------ CRUD -----------
+CREATE OR REPLACE FUNCTION InsertAcc(
+    IN v_username VARCHAR(100),
+    IN v_password VARCHAR(1000),
+    IN v_id VARCHAR(100)
+)
+RETURNS Bool AS $$
+BEGIN
+    IF (SELECT COUNT(*) FROM Account WHERE username = v_username) > 0 THEN
+        RETURN false;
+    END IF;
+
+    IF (SELECT COUNT(*) FROM Profile WHERE id = v_id) > 0 THEN
+        RETURN false;
+    END IF;
+
+    INSERT INTO Account(username, password)
+    VALUES (v_username, v_password);
+
+    INSERT INTO Profile(id)
+    VALUES (v_id);
+
+    INSERT INTO UserAcc(idAccount, idProfile)
+    VALUES (v_username, v_id);
+	
+    RETURN true;
+END;
+$$ LANGUAGE plpgsql;
+
+-- SELECT InsertAcc('student11', '123456', '21521611');
+
 
 CREATE OR REPLACE FUNCTION UpdatePass(_username VARCHAR(100), _password VARCHAR(1000))
 RETURNS VOID AS $$
@@ -268,18 +313,36 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT UpdateProfile('21521600', 'Học sinh 0', '2000-01-01', 'Nam', 'Đại học', 'Chính quy', NULL);
 
-CREATE OR REPLACE FUNCTION UpdateScore(_idCourse VARCHAR(100), _idProfile VARCHAR(100), _processScore FLOAT, _midtermScore FLOAT, _finalScore FLOAT, _practiceScore FLOAT)
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION UpdateScore(
+    IN v_idCourse VARCHAR(100),
+    IN v_idProfile VARCHAR(100),
+    IN v_processScore FLOAT,
+    IN v_midtermScore FLOAT,
+    IN v_finalScore FLOAT,
+    IN v_practiceScore FLOAT
+)
+RETURNS BOOLEAN AS $$
 BEGIN
-    UPDATE Score AS S
-    SET processScore = _processScore,
-        midtermScore = _midtermScore,
-        finalScore = _finalScore,
-        practiceScore = _practiceScore
-    FROM Schedule AS Sch
-    WHERE Sch.idScore = S.id
-        AND Sch.idProfile = _idProfile
-        AND Sch.idCourse = _idCourse;
+    IF (
+        v_processScore < 0 OR v_processScore > 10 OR
+        v_midtermScore < 0 OR v_midtermScore > 10 OR
+        v_finalScore < 0 OR v_finalScore > 10 OR
+        v_practiceScore < 0 OR v_practiceScore > 10
+    ) THEN
+        RETURN FALSE;
+    END IF;
+
+    UPDATE Score AS s
+    SET processScore = v_processScore,
+        midtermScore = v_midtermScore,
+        finalScore = v_finalScore,
+        practiceScore = v_practiceScore
+    FROM Schedule AS sc
+    WHERE sc.idProfile = v_idProfile
+        AND sc.idCourse = v_idCourse
+        AND sc.idScore = s.id;
+
+    RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -305,23 +368,42 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT UpdateRatioScore('IT003.1', 0.2, 0.3, 0.5, 0);
 
-CREATE OR REPLACE FUNCTION JoinCourse(_idProfile VARCHAR(100), _idCourse VARCHAR(100))
-RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION JoinCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS BOOL AS $$
 DECLARE
-    _idScore INT;
+    v_idScore INT;
 BEGIN
-    IF (SELECT COUNT(*) FROM Schedule
-        WHERE idProfile = _idProfile AND idCourse = _idCourse) > 0 THEN
-        RETURN;
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_idCourse) = 0 THEN
+        RETURN FALSE;
     END IF;
 
-    SELECT INTO _idScore id FROM Score
-    WHERE id = (SELECT MAX(id) FROM Score);
+    -- Không được đăng kí 1 môn nhiều lần
+    IF (SELECT COUNT(*) FROM Schedule WHERE idProfile = v_idProfile AND idCourse = v_idCourse) > 0 THEN
+        RETURN FALSE;
+    END IF;
 
-    INSERT INTO Score (processScore) VALUES (NULL);
+    -- Các môn học không được trùng lịch học
+    IF (SELECT COUNT(*) FROM
+        (SELECT schoolDay, lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
+        (SELECT schoolDay, lesson FROM Schedule, Course WHERE Schedule.idCourse = Course.id AND Schedule.idProfile = v_idProfile) AS allInfoCourse
+        WHERE infoCourse.schoolDay = allInfoCourse.schoolDay AND
+            (infoCourse.lesson LIKE '%' || allInfoCourse.lesson || '%' OR
+                allInfoCourse.lesson LIKE '%' || infoCourse.lesson || '%')) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Khi sinh viên đã tham gia lớp học thì phải có bản điểm
+    INSERT INTO Score(processScore)
+    VALUES (NULL)
+    RETURNING id INTO v_idScore;
 
     INSERT INTO Schedule (idCourse, idProfile, idScore)
-    VALUES (_idCourse, _idProfile, _idScore + 1);
+    VALUES (v_idCourse, v_idProfile, v_idScore);
+	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -346,6 +428,56 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- SELECT LeaveCourse('21521600', 'IT003.1');
+
+CREATE OR REPLACE FUNCTION JoinRegisterCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS BOOL AS $$
+BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_idCourse) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Không được đăng kí 1 môn nhiều lần
+    IF (SELECT COUNT(*) FROM RegisterCourse WHERE idCourse = v_idCourse AND idProfile = v_idProfile) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Các môn học không được trùng lịch học
+    IF (SELECT COUNT(*) FROM
+        (SELECT Course.schoolDay, Course.lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
+        (SELECT Course.schoolDay, Course.lesson FROM RegisterCourse, Course WHERE RegisterCourse.idCourse = Course.id AND RegisterCourse.idProfile = v_idProfile) AS allInfoCourse
+        WHERE allInfoCourse.schoolDay = infoCourse.schoolDay AND
+            (allInfoCourse.lesson LIKE '%' || infoCourse.lesson || '%' OR
+                infoCourse.lesson LIKE '%' || allInfoCourse.lesson || '%'
+            )
+        ) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    INSERT INTO RegisterCourse(idCourse, idProfile)
+    VALUES(v_idCourse, v_idProfile);
+	
+	RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- SELECT JoinRegisterCourse('21521601', 'IT001.1');
+
+CREATE OR REPLACE FUNCTION LeaveRegisterCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM RegisterCourse
+    WHERE idCourse = v_idCourse AND idProfile = v_idProfile;
+END;
+$$ LANGUAGE plpgsql;
+
+-- SELECT LeaveRegisterCourse('21521601', 'IT001.1');
 
 -- Insert data
 
@@ -549,3 +681,4 @@ select * from UserAcc;
 select * from Course;
 select * from Score;
 select * from Schedule;
+
