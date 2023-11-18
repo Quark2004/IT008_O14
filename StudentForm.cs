@@ -66,6 +66,8 @@ namespace QLSV
 
 			foreach (KeyValuePair<string, List<string>> item in scores)
 			{
+				int totalCredits = 0;
+				float totalScore = 0;
 				string[] key = item.Key.Split('|').ToArray();
 				ListViewItem header = new ListViewItem();
 				header.SubItems.Add(key[0]);
@@ -82,9 +84,21 @@ namespace QLSV
 					{
 						listItem.SubItems.Add(info[j]);
 					}
+					totalCredits += int.Parse(info[2]);
+					totalScore += float.Parse(info[info.Length - 1]) * int.Parse(info[2]);
 					lv_Score.Items.Add(listItem);
 					i++;
 				}
+				ListViewItem general = new ListViewItem();
+				general.SubItems.Add("");
+				general.SubItems.Add("Trung bình học kỳ");
+				general.SubItems.Add(totalCredits.ToString());
+				general.SubItems.Add("");
+				general.SubItems.Add("");
+				general.SubItems.Add("");
+				general.SubItems.Add("");
+				general.SubItems.Add((totalScore / totalCredits).ToString());
+				lv_Score.Items.Add(general);
 			}
 		}
 
@@ -194,12 +208,14 @@ namespace QLSV
 		{
 			MessageBox.Show("Đăng ký học phần thành công");
 			List<StudentCourseRegistration> coursesRegistration = new List<StudentCourseRegistration>();
-			foreach (DataGridViewRow row in data_CourseRegistration.Rows)
+			for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
 			{
+				DataGridViewRow row = data_CourseRegistration.Rows[i];
 				if (Convert.ToBoolean(row.Cells[0].Value))
 				{
 					dtInfo.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value, row.Cells[7].Value, row.Cells[8].Value, row.Cells[9].Value, row.Cells[10].Value, row.Cells[11].Value);
 					row.Cells[0].Value = null;
+					dt.Rows.RemoveAt(i);
 				}
 			}
 			this.data_RegistrationInfo.DataSource = dtInfo;
