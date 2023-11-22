@@ -7,7 +7,7 @@ CREATE TABLE Account (
 CREATE TABLE Profile (
     id VARCHAR(100) PRIMARY KEY,
     name VARCHAR(100),
-    birthday DATE,
+    birthday TIMESTAMP,
     gender VARCHAR(100),
     level VARCHAR(100) DEFAULT 'Đại học',
     trainingSystem VARCHAR(100) DEFAULT 'Chính quy',
@@ -77,7 +77,7 @@ $$ LANGUAGE plpgsql;
 -- SELECT * FROM "Login"('student1', '123456');
 
 CREATE OR REPLACE FUNCTION LoadProfileById(_id VARCHAR(100))
-RETURNS TABLE("MSSV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" DATE, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100), "Ảnh đại diện" BYTEA) AS $$
+RETURNS TABLE("MSSV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100), "Ảnh đại diện" BYTEA) AS $$
 BEGIN
     RETURN QUERY
     SELECT id as "MSSV",
@@ -297,7 +297,7 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT UpdatePass('student0', '654321');
 
-CREATE OR REPLACE FUNCTION UpdateProfile(_id VARCHAR(100), _name VARCHAR(100), _birthday DATE, _gender VARCHAR(100), _level VARCHAR(100), _trainingSystem VARCHAR(100), _avatar BYTEA)
+CREATE OR REPLACE FUNCTION UpdateProfile(_id VARCHAR(100), _name VARCHAR(100), _birthday TIMESTAMP, _gender VARCHAR(100), _level VARCHAR(100), _trainingSystem VARCHAR(100), _avatar BYTEA)
 RETURNS VOID AS $$
 BEGIN
     UPDATE Profile
