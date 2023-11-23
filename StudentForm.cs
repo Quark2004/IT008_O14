@@ -1,9 +1,12 @@
-﻿using QLSV.DAO;
+﻿using Npgsql;
+using QLSV.DAO;
 using QLSV.DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,10 +42,8 @@ namespace QLSV
             lb_Gender.Text = info.Gender;
             lb_educationLevel.Text = info.EducationLevel;
             lb_TrainingSystem.Text = info.TrainingSystem;
-            byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
-            string avt = "avt.jpg";
-            File.WriteAllBytes(avt, avtBytes);
-            pictureBox1.ImageLocation = avt;
+			Image avt = ConvertBytesToImage(info.Avatar);
+            pbx_avt.Image = avt;
         }
 
 		void LoadScore()
@@ -230,6 +231,36 @@ namespace QLSV
 		private void tb_Filter2_TextChanged(object sender, EventArgs e)
 		{
 			dtInfo.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter2.Text);
+		}
+
+		private void btn_changeAvatar_Click(object sender, EventArgs e)
+		{
+			openFileDialog1.ShowDialog();
+			pbx_avt.Image = Image.FromFile(openFileDialog1.FileName);
+			byte[] avt = ConvertImageToBytes(pbx_avt.Image);
+			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
+			string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :trainingSystem , :educationLevel , :avt );";
+			DataProvider.Instance.ExcuteNonQuery(query, new object[] { info.Id , info.Name, info.Birthday, info.Gender, info.TrainingSystem, info.EducationLevel, avt });
+			Refresh();
+		}
+
+		public byte[] ConvertImageToBytes(Image img)
+		{
+			if (img == null) { return null; }
+
+			using (MemoryStream ms = new MemoryStream())
+			{
+				img.Save(ms, ImageFormat.Png);
+				return ms.ToArray();
+			}
+		}
+
+		public Image ConvertBytesToImage(byte[] data)
+		{
+			using (MemoryStream ms = new MemoryStream(data))
+			{
+				return Image.FromStream(ms);
+			}
 		}
 	}
 }

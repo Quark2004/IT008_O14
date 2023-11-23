@@ -28,15 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
-			this.btn_updateInfo = new System.Windows.Forms.Button();
+			this.btn_changeAvatar = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.lb_educationLevel = new System.Windows.Forms.Label();
 			this.lb_TrainingSystem = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pbx_avt = new System.Windows.Forms.PictureBox();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.btn_Register = new System.Windows.Forms.Button();
@@ -93,11 +93,12 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.data_RegistrationInfo = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
 			this.tab_CourseRegister.SuspendLayout();
 			this.panel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).BeginInit();
@@ -130,10 +131,10 @@
 			this.tab_Info.BackColor = System.Drawing.Color.Silver;
 			this.tab_Info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.tab_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tab_Info.Controls.Add(this.btn_updateInfo);
+			this.tab_Info.Controls.Add(this.btn_changeAvatar);
 			this.tab_Info.Controls.Add(this.panel2);
 			this.tab_Info.Controls.Add(this.panel1);
-			this.tab_Info.Controls.Add(this.pictureBox1);
+			this.tab_Info.Controls.Add(this.pbx_avt);
 			this.tab_Info.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tab_Info.ForeColor = System.Drawing.SystemColors.Control;
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
@@ -143,15 +144,17 @@
 			this.tab_Info.TabIndex = 0;
 			this.tab_Info.Text = "Thông tin";
 			// 
-			// btn_updateInfo
+			// btn_changeAvatar
 			// 
-			this.btn_updateInfo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.btn_updateInfo.Location = new System.Drawing.Point(216, 425);
-			this.btn_updateInfo.Name = "btn_updateInfo";
-			this.btn_updateInfo.Size = new System.Drawing.Size(122, 58);
-			this.btn_updateInfo.TabIndex = 7;
-			this.btn_updateInfo.Text = "Cập nhật thông tin";
-			this.btn_updateInfo.UseVisualStyleBackColor = true;
+			this.btn_changeAvatar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_changeAvatar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.btn_changeAvatar.Location = new System.Drawing.Point(824, 521);
+			this.btn_changeAvatar.Name = "btn_changeAvatar";
+			this.btn_changeAvatar.Size = new System.Drawing.Size(154, 81);
+			this.btn_changeAvatar.TabIndex = 7;
+			this.btn_changeAvatar.Text = "Thay đổi ảnh đại diện";
+			this.btn_changeAvatar.UseVisualStyleBackColor = true;
+			this.btn_changeAvatar.Click += new System.EventHandler(this.btn_changeAvatar_Click);
 			// 
 			// panel2
 			// 
@@ -171,7 +174,7 @@
 			this.panel2.Controls.Add(this.label8);
 			this.panel2.Controls.Add(this.label9);
 			this.panel2.Controls.Add(this.label10);
-			this.panel2.Location = new System.Drawing.Point(205, 73);
+			this.panel2.Location = new System.Drawing.Point(210, 134);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(311, 307);
 			this.panel2.TabIndex = 6;
@@ -322,7 +325,7 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label4);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Location = new System.Drawing.Point(72, 73);
+			this.panel1.Location = new System.Drawing.Point(77, 134);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(134, 307);
 			this.panel1.TabIndex = 5;
@@ -448,18 +451,18 @@
 			this.label3.Size = new System.Drawing.Size(134, 52);
 			this.label3.TabIndex = 2;
 			// 
-			// pictureBox1
+			// pbx_avt
 			// 
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
-			this.pictureBox1.InitialImage = null;
-			this.pictureBox1.Location = new System.Drawing.Point(700, 53);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(350, 350);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
+			this.pbx_avt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pbx_avt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pbx_avt.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
+			this.pbx_avt.InitialImage = null;
+			this.pbx_avt.Location = new System.Drawing.Point(673, 86);
+			this.pbx_avt.Name = "pbx_avt";
+			this.pbx_avt.Size = new System.Drawing.Size(433, 401);
+			this.pbx_avt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pbx_avt.TabIndex = 0;
+			this.pbx_avt.TabStop = false;
 			// 
 			// tab_CourseRegister
 			// 
@@ -517,32 +520,32 @@
 			// 
 			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle13.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
 			this.data_CourseRegistration.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_CourseRegistration.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TrangThai});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle14.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle14;
 			this.data_CourseRegistration.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_CourseRegistration.Location = new System.Drawing.Point(0, 64);
 			this.data_CourseRegistration.Name = "data_CourseRegistration";
 			this.data_CourseRegistration.RowHeadersVisible = false;
 			this.data_CourseRegistration.RowHeadersWidth = 51;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle15;
 			this.data_CourseRegistration.RowTemplate.Height = 24;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 564);
 			this.data_CourseRegistration.TabIndex = 1;
@@ -720,32 +723,32 @@
 			// 
 			this.data_RegistrationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_RegistrationInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_RegistrationInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle16.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_RegistrationInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
 			this.data_RegistrationInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_RegistrationInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1});
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_RegistrationInfo.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle17.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_RegistrationInfo.DefaultCellStyle = dataGridViewCellStyle17;
 			this.data_RegistrationInfo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_RegistrationInfo.Location = new System.Drawing.Point(2, 66);
 			this.data_RegistrationInfo.Name = "data_RegistrationInfo";
 			this.data_RegistrationInfo.RowHeadersVisible = false;
 			this.data_RegistrationInfo.RowHeadersWidth = 51;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle18;
 			this.data_RegistrationInfo.RowTemplate.Height = 24;
 			this.data_RegistrationInfo.Size = new System.Drawing.Size(1170, 564);
 			this.data_RegistrationInfo.TabIndex = 2;
@@ -758,6 +761,10 @@
 			this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.dataGridViewCheckBoxColumn1.Width = 23;
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
 			// StudentForm
 			// 
@@ -775,7 +782,7 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).EndInit();
 			this.tab_CourseRegister.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
@@ -796,7 +803,7 @@
 		private System.Windows.Forms.TabPage tab_Info;
 		private System.Windows.Forms.TabPage tab_CourseRegister;
 		private System.Windows.Forms.TabPage tab_Score;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pbx_avt;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panel2;
@@ -840,7 +847,7 @@
 		private System.Windows.Forms.TextBox tb_Filter;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Button btn_Register;
-		private System.Windows.Forms.Button btn_updateInfo;
+		private System.Windows.Forms.Button btn_changeAvatar;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.FlowLayoutPanel flpSchedule;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn TrangThai;
@@ -851,5 +858,6 @@
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.DataGridView data_RegistrationInfo;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 	}
 }
