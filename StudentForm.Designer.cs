@@ -28,12 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.btn_changeAvatar = new System.Windows.Forms.Button();
@@ -68,6 +69,7 @@
 			this.pbx_avt = new System.Windows.Forms.PictureBox();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.label20 = new System.Windows.Forms.Label();
 			this.btn_Register = new System.Windows.Forms.Button();
 			this.tb_Filter = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
@@ -93,7 +95,6 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.data_RegistrationInfo = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -473,13 +474,14 @@
 			this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
 			this.tab_CourseRegister.Name = "tab_CourseRegister";
 			this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 632);
+			this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 572);
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
 			// 
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel3.Controls.Add(this.label20);
 			this.panel3.Controls.Add(this.btn_Register);
 			this.panel3.Controls.Add(this.tb_Filter);
 			this.panel3.Controls.Add(this.label21);
@@ -488,9 +490,18 @@
 			this.panel3.Size = new System.Drawing.Size(1170, 67);
 			this.panel3.TabIndex = 2;
 			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(620, 22);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(246, 27);
+			this.label20.TabIndex = 3;
+			this.label20.Text = "(mã môn hoặc tên môn)";
+			// 
 			// btn_Register
 			// 
-			this.btn_Register.Location = new System.Drawing.Point(636, 12);
+			this.btn_Register.Location = new System.Drawing.Point(903, 11);
 			this.btn_Register.Name = "btn_Register";
 			this.btn_Register.Size = new System.Drawing.Size(136, 46);
 			this.btn_Register.TabIndex = 2;
@@ -520,32 +531,32 @@
 			// 
 			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle13.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.data_CourseRegistration.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_CourseRegistration.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TrangThai});
-			dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle14.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle14;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_CourseRegistration.DefaultCellStyle = dataGridViewCellStyle2;
 			this.data_CourseRegistration.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_CourseRegistration.Location = new System.Drawing.Point(0, 64);
 			this.data_CourseRegistration.Name = "data_CourseRegistration";
 			this.data_CourseRegistration.RowHeadersVisible = false;
 			this.data_CourseRegistration.RowHeadersWidth = 51;
-			dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.data_CourseRegistration.RowTemplate.Height = 24;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 564);
 			this.data_CourseRegistration.TabIndex = 1;
@@ -567,7 +578,7 @@
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(1174, 632);
+			this.tab_Score.Size = new System.Drawing.Size(1174, 572);
 			this.tab_Score.TabIndex = 3;
 			this.tab_Score.Text = "   Điểm";
 			// 
@@ -593,6 +604,7 @@
 			this.lv_Score.TabIndex = 1;
 			this.lv_Score.UseCompatibleStateImageBehavior = false;
 			this.lv_Score.View = System.Windows.Forms.View.Details;
+			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
 			// 
 			// STT
 			// 
@@ -652,7 +664,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 36);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1174, 632);
+			this.tabPage1.Size = new System.Drawing.Size(1174, 572);
 			this.tabPage1.TabIndex = 4;
 			this.tabPage1.Text = "Thời khóa biểu";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -666,7 +678,7 @@
 			this.flpSchedule.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flpSchedule.Location = new System.Drawing.Point(3, 3);
 			this.flpSchedule.Name = "flpSchedule";
-			this.flpSchedule.Size = new System.Drawing.Size(1168, 626);
+			this.flpSchedule.Size = new System.Drawing.Size(1168, 566);
 			this.flpSchedule.TabIndex = 0;
 			// 
 			// tabPage2
@@ -676,7 +688,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 36);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1174, 632);
+			this.tabPage2.Size = new System.Drawing.Size(1174, 572);
 			this.tabPage2.TabIndex = 5;
 			this.tabPage2.Text = "Thông tin ĐKHP";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -723,32 +735,32 @@
 			// 
 			this.data_RegistrationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
 			this.data_RegistrationInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle16.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_RegistrationInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_RegistrationInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.data_RegistrationInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_RegistrationInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1});
-			dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle17.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.data_RegistrationInfo.DefaultCellStyle = dataGridViewCellStyle17;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.data_RegistrationInfo.DefaultCellStyle = dataGridViewCellStyle5;
 			this.data_RegistrationInfo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
 			this.data_RegistrationInfo.Location = new System.Drawing.Point(2, 66);
 			this.data_RegistrationInfo.Name = "data_RegistrationInfo";
 			this.data_RegistrationInfo.RowHeadersVisible = false;
 			this.data_RegistrationInfo.RowHeadersWidth = 51;
-			dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle18;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.data_RegistrationInfo.RowTemplate.Height = 24;
 			this.data_RegistrationInfo.Size = new System.Drawing.Size(1170, 564);
 			this.data_RegistrationInfo.TabIndex = 2;
@@ -762,10 +774,6 @@
 			this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.dataGridViewCheckBoxColumn1.Width = 23;
 			// 
-			// openFileDialog1
-			// 
-			this.openFileDialog1.FileName = "openFileDialog1";
-			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -773,9 +781,11 @@
 			this.ClientSize = new System.Drawing.Size(1183, 673);
 			this.Controls.Add(this.tabCtr_Student);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "StudentForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Sinh Viên";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentForm_FormClosing);
 			this.tabCtr_Student.ResumeLayout(false);
 			this.tab_Info.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
@@ -858,6 +868,6 @@
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.DataGridView data_RegistrationInfo;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.Label label20;
 	}
 }

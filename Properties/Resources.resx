@@ -121,16 +121,22 @@
   <data name="login_bg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="login_bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="login_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="282158686-d524241b-14e1-4f6a-a1e2-9ec0396e1ff7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\282158686-d524241b-14e1-4f6a-a1e2-9ec0396e1ff7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="uit_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uit_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="282158686-d524241b-14e1-4f6a-a1e2-9ec0396e1ff7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\282158686-d524241b-14e1-4f6a-a1e2-9ec0396e1ff7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="login_bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="warning1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

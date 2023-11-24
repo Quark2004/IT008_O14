@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLSV
 {
@@ -49,57 +50,67 @@ namespace QLSV
 		void LoadScore()
 		{
 			List<StudentScore> data = StudentScoreDAO.Instance.LoadStudentScore(ID);
-			Dictionary<string, List<string>> scores = new Dictionary<string, List<string>>();
-
-			foreach (StudentScore item in data)
+			if (data.Count != 0)
 			{
-				string key = item.Semester + "|" + item.SchoolYear;
-				string scoreInfo = $"{item.CourseId}|{item.CourseName}|{item.NumberOfCredits}|{item.ProcessScore}|{item.MidtermScore}|{item.PracticeScore}|{item.FinalScore}|{item.CourseScore}";
-				if (scores.ContainsKey(key))
+				Dictionary<string, List<string>> scores = new Dictionary<string, List<string>>();
+
+				foreach (StudentScore item in data)
 				{
-					scores[key].Add(scoreInfo);
+					string key = item.Semester + "|" + item.SchoolYear;
+					string scoreInfo = $"{item.CourseId}|{item.CourseName}|{item.NumberOfCredits}|{item.ProcessScore}|{item.MidtermScore}|{item.PracticeScore}|{item.FinalScore}|{item.CourseScore}";
+					if (scores.ContainsKey(key))
+					{
+						scores[key].Add(scoreInfo);
+					}
+					else
+					{
+						scores[key] = new List<string> { scoreInfo };
+					}
 				}
-				else
+
+				foreach (KeyValuePair<string, List<string>> item in scores)
 				{
-					scores[key] = new List<string> { scoreInfo };
+					int totalCredits = 0;
+					float totalScore = 0;
+					string[] key = item.Key.Split('|').ToArray();
+					ListViewItem header = new ListViewItem();
+					header.SubItems.Add(key[0]);
+					header.SubItems.Add(key[1]);
+					lv_Score.Items.Add(header);
+					List<string> values = item.Value;
+					int i = 1;
+					foreach (string str in values)
+					{
+						string[] info = str.Split('|').ToArray();
+						ListViewItem listItem = new ListViewItem(i.ToString());
+
+						for (int j = 0; j < info.Length; j++)
+						{
+							listItem.SubItems.Add(info[j]);
+						}
+						totalCredits += int.Parse(info[2]);
+						totalScore += float.Parse(info[info.Length - 1]) * int.Parse(info[2]);
+						lv_Score.Items.Add(listItem);
+						i++;
+					}
+					ListViewItem general = new ListViewItem();
+					general.SubItems.Add("");
+					general.SubItems.Add("Trung bình học kỳ");
+					general.SubItems.Add(totalCredits.ToString());
+					general.SubItems.Add("");
+					general.SubItems.Add("");
+					general.SubItems.Add("");
+					general.SubItems.Add("");
+					general.SubItems.Add((totalScore / totalCredits).ToString());
+					lv_Score.Items.Add(general);
 				}
 			}
-
-			foreach (KeyValuePair<string, List<string>> item in scores)
+			else
 			{
-				int totalCredits = 0;
-				float totalScore = 0;
-				string[] key = item.Key.Split('|').ToArray();
 				ListViewItem header = new ListViewItem();
-				header.SubItems.Add(key[0]);
-				header.SubItems.Add(key[1]);
+				header.SubItems.Add("");
+				header.SubItems.Add("Chưa có thông tin điểm");
 				lv_Score.Items.Add(header);
-				List<string> values = item.Value;
-				int i = 1;
-				foreach (string str in values)
-				{
-					string[] info = str.Split('|').ToArray();
-					ListViewItem listItem = new ListViewItem(i.ToString());
-
-					for (int j = 0; j < info.Length; j++)
-					{
-						listItem.SubItems.Add(info[j]);
-					}
-					totalCredits += int.Parse(info[2]);
-					totalScore += float.Parse(info[info.Length - 1]) * int.Parse(info[2]);
-					lv_Score.Items.Add(listItem);
-					i++;
-				}
-				ListViewItem general = new ListViewItem();
-				general.SubItems.Add("");
-				general.SubItems.Add("Trung bình học kỳ");
-				general.SubItems.Add(totalCredits.ToString());
-				general.SubItems.Add("");
-				general.SubItems.Add("");
-				general.SubItems.Add("");
-				general.SubItems.Add("");
-				general.SubItems.Add((totalScore / totalCredits).ToString());
-				lv_Score.Items.Add(general);
 			}
 		}
 
@@ -207,25 +218,41 @@ namespace QLSV
 
 		private void btn_Register_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Đăng ký học phần thành công");
-			List<StudentCourseRegistration> coursesRegistration = new List<StudentCourseRegistration>();
-			for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
+			bool isAnyChecked = false;
+			foreach (DataGridViewRow row in data_CourseRegistration.Rows)
 			{
-				DataGridViewRow row = data_CourseRegistration.Rows[i];
 				if (Convert.ToBoolean(row.Cells[0].Value))
 				{
-					dtInfo.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value, row.Cells[7].Value, row.Cells[8].Value, row.Cells[9].Value, row.Cells[10].Value, row.Cells[11].Value);
-					row.Cells[0].Value = null;
-					dt.Rows.RemoveAt(i);
+					isAnyChecked = true;
+					break;
 				}
 			}
-			this.data_RegistrationInfo.DataSource = dtInfo;
-			data_RegistrationInfo.Columns[0].ReadOnly = false;
-			for (int k = 1; k < data_RegistrationInfo.Columns.Count; k++)
+			if (isAnyChecked)
 			{
-				data_RegistrationInfo.Columns[k].ReadOnly = true;
+				MessageBox.Show("Đăng ký học phần thành công");
+				List<StudentCourseRegistration> coursesRegistration = new List<StudentCourseRegistration>();
+				for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
+				{
+					DataGridViewRow row = data_CourseRegistration.Rows[i];
+					if (Convert.ToBoolean(row.Cells[0].Value))
+					{
+						dtInfo.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value, row.Cells[7].Value, row.Cells[8].Value, row.Cells[9].Value, row.Cells[10].Value, row.Cells[11].Value);
+						row.Cells[0].Value = null;
+						dt.Rows.RemoveAt(i);
+					}
+				}
+				this.data_RegistrationInfo.DataSource = dtInfo;
+				data_RegistrationInfo.Columns[0].ReadOnly = false;
+				for (int k = 1; k < data_RegistrationInfo.Columns.Count; k++)
+				{
+					data_RegistrationInfo.Columns[k].ReadOnly = true;
+				}
+				this.data_RegistrationInfo.AllowUserToAddRows = false;
 			}
-			this.data_RegistrationInfo.AllowUserToAddRows = false;
+			else
+			{
+				MessageBox.Show("Đăng ký không thành công!");
+			}
 		}
 
 		private void tb_Filter2_TextChanged(object sender, EventArgs e)
@@ -235,13 +262,18 @@ namespace QLSV
 
 		private void btn_changeAvatar_Click(object sender, EventArgs e)
 		{
-			openFileDialog1.ShowDialog();
-			pbx_avt.Image = Image.FromFile(openFileDialog1.FileName);
-			byte[] avt = ConvertImageToBytes(pbx_avt.Image);
-			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
-			string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :trainingSystem , :educationLevel , :avt );";
-			DataProvider.Instance.ExcuteNonQuery(query, new object[] { info.Id , info.Name, info.Birthday, info.Gender, info.TrainingSystem, info.EducationLevel, avt });
-			Refresh();
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				MessageBox.Show("Cập nhật ảnh thành công!", "Cập nhật ảnh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				pbx_avt.Image = Image.FromFile(openFileDialog.FileName);
+				byte[] avt = ConvertImageToBytes(pbx_avt.Image);
+				StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
+				string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :trainingSystem , :educationLevel , :avt );";
+				DataProvider.Instance.ExcuteNonQuery(query, new object[] { info.Id, info.Name, info.Birthday, info.Gender, info.TrainingSystem, info.EducationLevel, avt });
+				Refresh();
+			}
 		}
 
 		public byte[] ConvertImageToBytes(Image img)
@@ -261,6 +293,19 @@ namespace QLSV
 			{
 				return Image.FromStream(ms);
 			}
+		}
+
+		private void lv_Score_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+		{
+			e.Cancel = true;
+			e.NewWidth = lv_Score.Columns[e.ColumnIndex].Width;
+		}
+
+		private void StudentForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseWindow logOut = new CloseWindow();
+			logOut.ShowDialog();
+			e.Cancel = logOut.IsNotClosed;
 		}
 	}
 }
