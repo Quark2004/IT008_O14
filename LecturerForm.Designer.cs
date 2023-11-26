@@ -28,96 +28,82 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.flptkb = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lb_educationLevel = new System.Windows.Forms.Label();
-            this.lb_TrainingSystem = new System.Windows.Forms.Label();
-            this.lb_Department = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lb_Class = new System.Windows.Forms.Label();
-            this.lb_Gender = new System.Windows.Forms.Label();
-            this.lb_Birthday = new System.Windows.Forms.Label();
-            this.lb_ID = new System.Windows.Forms.Label();
-            this.lb_Name = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.cbogender = new System.Windows.Forms.ComboBox();
+            this.txtkhoa = new System.Windows.Forms.TextBox();
+            this.txtmakhoa = new System.Windows.Forms.TextBox();
+            this.txtbirth = new System.Windows.Forms.TextBox();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.txtname = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnupdate = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvcourse = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colmamh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coltenmh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboloccourse = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lvscoreGV = new System.Windows.Forms.ListView();
+            this.MSSV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Tên = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.QT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.GK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TH = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnok = new System.Windows.Forms.Button();
+            this.btnnhap = new System.Windows.Forms.Button();
+            this.txtmssv = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtCK = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtTH = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtGK = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtQT = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbodiem = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.flptkb = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvcourse)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -128,13 +114,12 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 6);
+            this.tabControl1.Location = new System.Drawing.Point(0, 10);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1164, 619);
+            this.tabControl1.Size = new System.Drawing.Size(1233, 619);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -142,239 +127,92 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.cbogender);
+            this.tabPage1.Controls.Add(this.txtkhoa);
+            this.tabPage1.Controls.Add(this.txtmakhoa);
+            this.tabPage1.Controls.Add(this.txtbirth);
+            this.tabPage1.Controls.Add(this.txtid);
+            this.tabPage1.Controls.Add(this.txtname);
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.btnupdate);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1156, 575);
+            this.tabPage1.Size = new System.Drawing.Size(1225, 575);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông Tin";
             // 
-            // tabPage2
+            // cbogender
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Silver;
-            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1156, 575);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Lịch Dạy";
+            this.cbogender.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbogender.FormattingEnabled = true;
+            this.cbogender.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ",
+            "Khác"});
+            this.cbogender.Location = new System.Drawing.Point(266, 216);
+            this.cbogender.Name = "cbogender";
+            this.cbogender.Size = new System.Drawing.Size(323, 41);
+            this.cbogender.TabIndex = 16;
             // 
-            // tabPage3
+            // txtkhoa
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Silver;
-            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage3.Controls.Add(this.dataGridView2);
-            this.tabPage3.Controls.Add(this.panel4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 40);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1156, 575);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Điểm";
+            this.txtkhoa.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtkhoa.Location = new System.Drawing.Point(266, 269);
+            this.txtkhoa.Name = "txtkhoa";
+            this.txtkhoa.Size = new System.Drawing.Size(323, 40);
+            this.txtkhoa.TabIndex = 15;
             // 
-            // tabPage4
+            // txtmakhoa
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Silver;
-            this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage4.Controls.Add(this.cartesianChart1);
-            this.tabPage4.Controls.Add(this.panel5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 40);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1156, 575);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Thống Kê";
+            this.txtmakhoa.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmakhoa.Location = new System.Drawing.Point(266, 318);
+            this.txtmakhoa.Name = "txtmakhoa";
+            this.txtmakhoa.Size = new System.Drawing.Size(323, 40);
+            this.txtmakhoa.TabIndex = 14;
             // 
-            // tabPage5
+            // txtbirth
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.Silver;
-            this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage5.Controls.Add(this.comboBox5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 40);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1156, 575);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Cài Đặt";
+            this.txtbirth.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbirth.Location = new System.Drawing.Point(266, 166);
+            this.txtbirth.Name = "txtbirth";
+            this.txtbirth.Size = new System.Drawing.Size(323, 40);
+            this.txtbirth.TabIndex = 13;
             // 
-            // tabPage6
+            // txtid
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.Silver;
-            this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage6.Controls.Add(this.flptkb);
-            this.tabPage6.Location = new System.Drawing.Point(4, 40);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1156, 575);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "TKB";
+            this.txtid.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtid.Location = new System.Drawing.Point(266, 115);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(323, 40);
+            this.txtid.TabIndex = 12;
             // 
-            // flptkb
+            // txtname
             // 
-            this.flptkb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flptkb.Location = new System.Drawing.Point(0, 0);
-            this.flptkb.Name = "flptkb";
-            this.flptkb.Size = new System.Drawing.Size(1154, 573);
-            this.flptkb.TabIndex = 0;
+            this.txtname.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtname.Location = new System.Drawing.Point(266, 62);
+            this.txtname.Name = "txtname";
+            this.txtname.Size = new System.Drawing.Size(320, 40);
+            this.txtname.TabIndex = 11;
             // 
-            // panel2
+            // pictureBox1
             // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.lb_educationLevel);
-            this.panel2.Controls.Add(this.lb_TrainingSystem);
-            this.panel2.Controls.Add(this.lb_Department);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.lb_Class);
-            this.panel2.Controls.Add(this.lb_Gender);
-            this.panel2.Controls.Add(this.lb_Birthday);
-            this.panel2.Controls.Add(this.lb_ID);
-            this.panel2.Controls.Add(this.lb_Name);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Location = new System.Drawing.Point(214, 59);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(311, 307);
-            this.panel2.TabIndex = 8;
+            this.pictureBox1.Image = global::QLSV.Properties.Resources.user;
+            this.pictureBox1.Location = new System.Drawing.Point(846, 99);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(225, 229);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
-            // lb_educationLevel
+            // btnupdate
             // 
-            this.lb_educationLevel.AutoSize = true;
-            this.lb_educationLevel.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_educationLevel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_educationLevel.Location = new System.Drawing.Point(6, 219);
-            this.lb_educationLevel.Name = "lb_educationLevel";
-            this.lb_educationLevel.Size = new System.Drawing.Size(0, 23);
-            this.lb_educationLevel.TabIndex = 12;
-            this.lb_educationLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_TrainingSystem
-            // 
-            this.lb_TrainingSystem.AutoSize = true;
-            this.lb_TrainingSystem.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_TrainingSystem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_TrainingSystem.Location = new System.Drawing.Point(6, 268);
-            this.lb_TrainingSystem.Name = "lb_TrainingSystem";
-            this.lb_TrainingSystem.Size = new System.Drawing.Size(0, 23);
-            this.lb_TrainingSystem.TabIndex = 12;
-            this.lb_TrainingSystem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_Department
-            // 
-            this.lb_Department.AutoSize = true;
-            this.lb_Department.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Department.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_Department.Location = new System.Drawing.Point(6, 268);
-            this.lb_Department.Name = "lb_Department";
-            this.lb_Department.Size = new System.Drawing.Size(0, 23);
-            this.lb_Department.TabIndex = 11;
-            // 
-            // label17
-            // 
-            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label17.Location = new System.Drawing.Point(-1, 254);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(311, 52);
-            this.label17.TabIndex = 10;
-            // 
-            // lb_Class
-            // 
-            this.lb_Class.AutoSize = true;
-            this.lb_Class.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Class.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_Class.Location = new System.Drawing.Point(6, 219);
-            this.lb_Class.Name = "lb_Class";
-            this.lb_Class.Size = new System.Drawing.Size(0, 23);
-            this.lb_Class.TabIndex = 9;
-            // 
-            // lb_Gender
-            // 
-            this.lb_Gender.AutoSize = true;
-            this.lb_Gender.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Gender.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_Gender.Location = new System.Drawing.Point(6, 166);
-            this.lb_Gender.Name = "lb_Gender";
-            this.lb_Gender.Size = new System.Drawing.Size(0, 23);
-            this.lb_Gender.TabIndex = 8;
-            // 
-            // lb_Birthday
-            // 
-            this.lb_Birthday.AutoSize = true;
-            this.lb_Birthday.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Birthday.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_Birthday.Location = new System.Drawing.Point(6, 116);
-            this.lb_Birthday.Name = "lb_Birthday";
-            this.lb_Birthday.Size = new System.Drawing.Size(0, 23);
-            this.lb_Birthday.TabIndex = 7;
-            // 
-            // lb_ID
-            // 
-            this.lb_ID.AutoSize = true;
-            this.lb_ID.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_ID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_ID.Location = new System.Drawing.Point(6, 66);
-            this.lb_ID.Name = "lb_ID";
-            this.lb_ID.Size = new System.Drawing.Size(0, 23);
-            this.lb_ID.TabIndex = 6;
-            // 
-            // lb_Name
-            // 
-            this.lb_Name.AutoSize = true;
-            this.lb_Name.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lb_Name.Location = new System.Drawing.Point(6, 15);
-            this.lb_Name.Name = "lb_Name";
-            this.lb_Name.Size = new System.Drawing.Size(0, 23);
-            this.lb_Name.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Location = new System.Drawing.Point(-1, 203);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(311, 52);
-            this.label6.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Location = new System.Drawing.Point(-1, -1);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(311, 52);
-            this.label7.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Location = new System.Drawing.Point(-1, 50);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(311, 52);
-            this.label8.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Location = new System.Drawing.Point(-1, 152);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(311, 52);
-            this.label9.TabIndex = 3;
-            // 
-            // label10
-            // 
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Location = new System.Drawing.Point(-1, 101);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(311, 52);
-            this.label10.TabIndex = 2;
+            this.btnupdate.Location = new System.Drawing.Point(225, 411);
+            this.btnupdate.Name = "btnupdate";
+            this.btnupdate.Size = new System.Drawing.Size(141, 60);
+            this.btnupdate.TabIndex = 9;
+            this.btnupdate.Text = "Cập nhật";
+            this.btnupdate.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -383,9 +221,9 @@
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label1);
@@ -429,6 +267,18 @@
             this.label15.Text = "Khoa:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label12.Location = new System.Drawing.Point(3, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 23);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Mã GV:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -452,18 +302,6 @@
             this.label13.TabIndex = 7;
             this.label13.Text = "Ngày sinh:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(3, 66);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 23);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Mã GV:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -518,35 +356,68 @@
             this.label3.Size = new System.Drawing.Size(134, 52);
             this.label3.TabIndex = 2;
             // 
-            // button1
+            // tabPage2
             // 
-            this.button1.Location = new System.Drawing.Point(225, 411);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 60);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Cập nhật";
-            this.button1.UseVisualStyleBackColor = true;
+            this.tabPage2.BackColor = System.Drawing.Color.Silver;
+            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage2.Controls.Add(this.dgvcourse);
+            this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1225, 575);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Lịch Dạy";
             // 
-            // pictureBox1
+            // dgvcourse
             // 
-            this.pictureBox1.Image = global::QLSV.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(846, 99);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(225, 229);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.dgvcourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvcourse.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvcourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvcourse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvcourse.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dgvcourse.Location = new System.Drawing.Point(3, 58);
+            this.dgvcourse.Name = "dgvcourse";
+            this.dgvcourse.RowHeadersVisible = false;
+            this.dgvcourse.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvcourse.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvcourse.RowTemplate.Height = 24;
+            this.dgvcourse.Size = new System.Drawing.Size(1217, 512);
+            this.dgvcourse.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cboloccourse);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1148, 55);
+            this.panel3.Size = new System.Drawing.Size(1217, 55);
             this.panel3.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(666, 10);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 42);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Tìm";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // cboloccourse
+            // 
+            this.cboloccourse.FormattingEnabled = true;
+            this.cboloccourse.Items.AddRange(new object[] {
+            "Tất cả"});
+            this.cboloccourse.Location = new System.Drawing.Point(82, 10);
+            this.cboloccourse.Name = "cboloccourse";
+            this.cboloccourse.Size = new System.Drawing.Size(486, 36);
+            this.cboloccourse.TabIndex = 1;
+            this.cboloccourse.Text = "Mã / Tên lớp";
+            this.cboloccourse.SelectedIndexChanged += new System.EventHandler(this.cboloccourse_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -559,244 +430,249 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Lọc:";
             // 
-            // comboBox1
+            // tabPage3
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(82, 10);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(486, 36);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "Mã / Tên lớp";
+            this.tabPage3.BackColor = System.Drawing.Color.Silver;
+            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage3.Controls.Add(this.lvscoreGV);
+            this.tabPage3.Controls.Add(this.btnok);
+            this.tabPage3.Controls.Add(this.btnnhap);
+            this.tabPage3.Controls.Add(this.txtmssv);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.txtCK);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.txtTH);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.txtGK);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.txtQT);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.panel4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1225, 575);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Điểm";
             // 
-            // button2
+            // lvscoreGV
             // 
-            this.button2.Location = new System.Drawing.Point(666, 10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 42);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Tìm";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lvscoreGV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.MSSV,
+            this.Tên,
+            this.QT,
+            this.GK,
+            this.TH,
+            this.CK,
+            this.HP});
+            this.lvscoreGV.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lvscoreGV.FullRowSelect = true;
+            this.lvscoreGV.GridLines = true;
+            this.lvscoreGV.HideSelection = false;
+            this.lvscoreGV.Location = new System.Drawing.Point(3, 59);
+            this.lvscoreGV.Name = "lvscoreGV";
+            this.lvscoreGV.Size = new System.Drawing.Size(1217, 379);
+            this.lvscoreGV.TabIndex = 14;
+            this.lvscoreGV.UseCompatibleStateImageBehavior = false;
+            this.lvscoreGV.View = System.Windows.Forms.View.Details;
+            this.lvscoreGV.SelectedIndexChanged += new System.EventHandler(this.lvscoreGV_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // MSSV
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colmamh,
-            this.coltenmh,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column9,
-            this.Column7,
-            this.Column8});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 58);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1148, 512);
-            this.dataGridView1.TabIndex = 1;
+            this.MSSV.Text = "MSSV";
+            this.MSSV.Width = 114;
             // 
-            // colmamh
+            // Tên
             // 
-            this.colmamh.HeaderText = "Mã môn học";
-            this.colmamh.MinimumWidth = 6;
-            this.colmamh.Name = "colmamh";
-            this.colmamh.Width = 145;
+            this.Tên.Text = "Họ và Tên";
+            this.Tên.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Tên.Width = 236;
             // 
-            // coltenmh
+            // QT
             // 
-            this.coltenmh.HeaderText = "Tên môn học";
-            this.coltenmh.MinimumWidth = 6;
-            this.coltenmh.Name = "coltenmh";
-            this.coltenmh.Width = 146;
+            this.QT.Text = "Điểm QT";
+            this.QT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.QT.Width = 128;
             // 
-            // Column1
+            // GK
             // 
-            this.Column1.HeaderText = "Số tín";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 87;
+            this.GK.Text = "Điểm GK";
+            this.GK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.GK.Width = 114;
             // 
-            // Column2
+            // TH
             // 
-            this.Column2.HeaderText = "Thứ";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 78;
+            this.TH.Text = "Điểm TH";
+            this.TH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TH.Width = 114;
             // 
-            // Column3
+            // CK
             // 
-            this.Column3.HeaderText = "Tiết";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 76;
+            this.CK.Text = "Điểm CK";
+            this.CK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CK.Width = 126;
             // 
-            // Column4
+            // HP
             // 
-            this.Column4.HeaderText = "Phòng";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
+            this.HP.Text = "Điểm HP";
+            this.HP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.HP.Width = 125;
             // 
-            // Column5
+            // btnok
             // 
-            this.Column5.HeaderText = "SLSV";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 86;
+            this.btnok.Location = new System.Drawing.Point(662, 518);
+            this.btnok.Name = "btnok";
+            this.btnok.Size = new System.Drawing.Size(156, 48);
+            this.btnok.TabIndex = 13;
+            this.btnok.Text = "Xác nhận";
+            this.btnok.UseVisualStyleBackColor = true;
+            this.btnok.Click += new System.EventHandler(this.btnok_Click);
             // 
-            // Column6
+            // btnnhap
             // 
-            this.Column6.HeaderText = "Học kỳ";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 94;
+            this.btnnhap.Location = new System.Drawing.Point(318, 518);
+            this.btnnhap.Name = "btnnhap";
+            this.btnnhap.Size = new System.Drawing.Size(155, 48);
+            this.btnnhap.TabIndex = 12;
+            this.btnnhap.Text = "Nhập điểm";
+            this.btnnhap.UseVisualStyleBackColor = true;
+            this.btnnhap.Click += new System.EventHandler(this.btnnhap_Click);
             // 
-            // Column9
+            // txtmssv
             // 
-            this.Column9.HeaderText = "Năm học";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 114;
+            this.txtmssv.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmssv.Location = new System.Drawing.Point(142, 444);
+            this.txtmssv.Name = "txtmssv";
+            this.txtmssv.Size = new System.Drawing.Size(100, 32);
+            this.txtmssv.TabIndex = 11;
             // 
-            // Column7
+            // label10
             // 
-            this.Column7.HeaderText = "Ngày BĐ";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 110;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(52, 448);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 28);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "MSSV:";
             // 
-            // Column8
+            // txtCK
             // 
-            this.Column8.HeaderText = "Ngày KT";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 107;
+            this.txtCK.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCK.Location = new System.Drawing.Point(1090, 444);
+            this.txtCK.Name = "txtCK";
+            this.txtCK.Size = new System.Drawing.Size(100, 32);
+            this.txtCK.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(978, 448);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(95, 28);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Điểm CK:";
+            // 
+            // txtTH
+            // 
+            this.txtTH.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTH.Location = new System.Drawing.Point(852, 444);
+            this.txtTH.Name = "txtTH";
+            this.txtTH.Size = new System.Drawing.Size(100, 32);
+            this.txtTH.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(736, 448);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 28);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Điểm TH:";
+            // 
+            // txtGK
+            // 
+            this.txtGK.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGK.Location = new System.Drawing.Point(617, 444);
+            this.txtGK.Name = "txtGK";
+            this.txtGK.Size = new System.Drawing.Size(100, 32);
+            this.txtGK.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(504, 448);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 28);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Điểm GK:";
+            // 
+            // txtQT
+            // 
+            this.txtQT.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQT.Location = new System.Drawing.Point(383, 444);
+            this.txtQT.Name = "txtQT";
+            this.txtQT.Size = new System.Drawing.Size(100, 32);
+            this.txtQT.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(271, 448);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 28);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Điểm QT:";
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Controls.Add(this.comboBox2);
+            this.panel4.Controls.Add(this.cbodiem);
             this.panel4.Controls.Add(this.label20);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1148, 56);
+            this.panel4.Size = new System.Drawing.Size(1217, 56);
             this.panel4.TabIndex = 0;
+            // 
+            // cbodiem
+            // 
+            this.cbodiem.FormattingEnabled = true;
+            this.cbodiem.Location = new System.Drawing.Point(390, 8);
+            this.cbodiem.Name = "cbodiem";
+            this.cbodiem.Size = new System.Drawing.Size(439, 36);
+            this.cbodiem.TabIndex = 1;
+            this.cbodiem.SelectedIndexChanged += new System.EventHandler(this.cbodiem_SelectedIndexChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(4, 9);
+            this.label20.Location = new System.Drawing.Point(191, 9);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(132, 35);
             this.label20.TabIndex = 0;
             this.label20.Text = "Chọn Lớp:";
             // 
-            // comboBox2
+            // tabPage4
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(142, 9);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(378, 36);
-            this.comboBox2.TabIndex = 1;
+            this.tabPage4.BackColor = System.Drawing.Color.Silver;
+            this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage4.Controls.Add(this.cartesianChart1);
+            this.tabPage4.Controls.Add(this.panel5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 40);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1225, 575);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Thống Kê";
             // 
-            // button3
+            // cartesianChart1
             // 
-            this.button3.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(614, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(180, 45);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Chọn";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 59);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1148, 511);
-            this.dataGridView2.TabIndex = 1;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "MSSV";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 96;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Họ và Tên";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 119;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Số tín";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.Width = 87;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Điểm QT";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            this.Column13.Width = 110;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "Điểm GK";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Width = 111;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "Điểm TH";
-            this.Column15.MinimumWidth = 6;
-            this.Column15.Name = "Column15";
-            this.Column15.Width = 110;
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "Điểm CK";
-            this.Column16.MinimumWidth = 6;
-            this.Column16.Name = "Column16";
-            this.Column16.Width = 109;
-            // 
-            // Column17
-            // 
-            this.Column17.HeaderText = "Điểm HP";
-            this.Column17.MinimumWidth = 6;
-            this.Column17.Name = "Column17";
-            this.Column17.Width = 110;
+            this.cartesianChart1.Location = new System.Drawing.Point(105, 109);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(984, 378);
+            this.cartesianChart1.TabIndex = 1;
+            this.cartesianChart1.Text = "cartesianChart1";
             // 
             // panel5
             // 
@@ -808,26 +684,25 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1148, 69);
+            this.panel5.Size = new System.Drawing.Size(1217, 69);
             this.panel5.TabIndex = 0;
             // 
-            // label21
+            // button4
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(21, 15);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(66, 35);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Lớp:";
+            this.button4.Location = new System.Drawing.Point(986, 15);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(140, 37);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Thống Kê";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // comboBox4
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(102, 16);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(320, 36);
-            this.comboBox3.TabIndex = 1;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(632, 15);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(311, 36);
+            this.comboBox4.TabIndex = 3;
             // 
             // label22
             // 
@@ -839,70 +714,71 @@
             this.label22.TabIndex = 2;
             this.label22.Text = "Loại điểm:";
             // 
-            // comboBox4
+            // comboBox3
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(632, 15);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(311, 36);
-            this.comboBox4.TabIndex = 3;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(102, 16);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(320, 36);
+            this.comboBox3.TabIndex = 1;
             // 
-            // button4
+            // label21
             // 
-            this.button4.Location = new System.Drawing.Point(986, 15);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(140, 37);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Thống Kê";
-            this.button4.UseVisualStyleBackColor = true;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(21, 15);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(66, 35);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Lớp:";
             // 
-            // cartesianChart1
+            // tabPage6
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(105, 89);
-            this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(916, 290);
-            this.cartesianChart1.TabIndex = 1;
-            this.cartesianChart1.Text = "cartesianChart1";
+            this.tabPage6.BackColor = System.Drawing.Color.Silver;
+            this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage6.Controls.Add(this.flptkb);
+            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1225, 575);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "TKB";
             // 
-            // comboBox5
+            // flptkb
             // 
-            this.comboBox5.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(76, 36);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(374, 41);
-            this.comboBox5.TabIndex = 0;
-            this.comboBox5.Text = "Thêm thông tin";
+            this.flptkb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flptkb.Location = new System.Drawing.Point(0, 0);
+            this.flptkb.Name = "flptkb";
+            this.flptkb.Size = new System.Drawing.Size(1223, 573);
+            this.flptkb.TabIndex = 0;
             // 
             // LecturerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 625);
+            this.ClientSize = new System.Drawing.Size(1233, 629);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LecturerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Giảng Viên";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvcourse)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -915,23 +791,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.FlowLayoutPanel flptkb;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lb_educationLevel;
-        private System.Windows.Forms.Label lb_TrainingSystem;
-        private System.Windows.Forms.Label lb_Department;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label lb_Class;
-        private System.Windows.Forms.Label lb_Gender;
-        private System.Windows.Forms.Label lb_Birthday;
-        private System.Windows.Forms.Label lb_ID;
-        private System.Windows.Forms.Label lb_Name;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
@@ -946,35 +806,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnupdate;
+        private System.Windows.Forms.DataGridView dgvcourse;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboloccourse;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colmamh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn coltenmh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbodiem;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button4;
@@ -983,6 +822,31 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label21;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox cbogender;
+        private System.Windows.Forms.TextBox txtkhoa;
+        private System.Windows.Forms.TextBox txtmakhoa;
+        private System.Windows.Forms.TextBox txtbirth;
+        private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.TextBox txtname;
+        private System.Windows.Forms.TextBox txtQT;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtCK;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtTH;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtGK;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnok;
+        private System.Windows.Forms.Button btnnhap;
+        private System.Windows.Forms.TextBox txtmssv;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ListView lvscoreGV;
+        private System.Windows.Forms.ColumnHeader MSSV;
+        private System.Windows.Forms.ColumnHeader Tên;
+        private System.Windows.Forms.ColumnHeader QT;
+        private System.Windows.Forms.ColumnHeader GK;
+        private System.Windows.Forms.ColumnHeader TH;
+        private System.Windows.Forms.ColumnHeader CK;
+        private System.Windows.Forms.ColumnHeader HP;
     }
 }
