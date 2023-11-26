@@ -2,142 +2,184 @@
 using QLSV.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLSV
 {
-	public partial class StudentForm : Form
-	{
-
+    public partial class StudentForm : Form
+    {
+		DataTable dt = new DataTable();
 		public StudentForm(string id)
+        {
+            InitializeComponent();
+            ID = id;
+            LoadInfo();
+            LoadTKB();
+			LoadScore();
+			LoadCourseRegistration();
+			lv_Score.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+
+        public string ID { get; set; }
+
+        #region Method
+        void LoadInfo()
+        {
+            StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
+            lb_ID.Text = info.Id;
+            lb_Name.Text = info.Name;
+            lb_Birthday.Text = info.Birthday != new DateTime() ? info.Birthday.ToShortDateString() : "";
+            lb_Gender.Text = info.Gender;
+            lb_educationLevel.Text = info.EducationLevel;
+            lb_TrainingSystem.Text = info.TrainingSystem;
+            byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
+            string avt = "avt.jpg";
+            File.WriteAllBytes(avt, avtBytes);
+            pictureBox1.ImageLocation = avt;
+        }
+
+		void LoadScore()
 		{
-			InitializeComponent();
-			ID = id;
-			LoadInfo();
-			LoadSchedule();
-			data_Schedule.RowCount = 10;
-			string[] schedule = { "(7:30 - 8:15)", "(8:15 - 9:00)", "(9:00 - 9:45)", "(10:00 - 10:45)", "(10:45 - 11:30)", "(13:00 - 13:45)", "(13:45 - 14:30)", "(14:30 - 15:15)", "(15:30 - 16:15)", "(16:15 - 17:00)" };
-			for (int i = 1; i <= 10; i++)
+			List<StudentScore> data = StudentScoreDAO.Instance.LoadStudentScore(ID);
+			Dictionary<string, List<string>> scores = new Dictionary<string, List<string>>();
+
+			foreach (StudentScore item in data)
 			{
-				DataGridViewRow row = data_Schedule.Rows[i - 1];
-				row.Cells[0].Value = "Tiết " + i + "\n" + schedule[i - 1];
+				string key = item.Semester + "|" + item.SchoolYear;
+				string scoreInfo = $"{item.CourseId}|{item.CourseName}|{item.NumberOfCredits}|{item.ProcessScore}|{item.MidtermScore}|{item.PracticeScore}|{item.FinalScore}|{item.CourseScore}";
+				if (scores.ContainsKey(key))
+				{
+					scores[key].Add(scoreInfo);
+				}
+				else
+				{
+					scores[key] = new List<string> { scoreInfo };
+				}
+			}
+
+			foreach (KeyValuePair<string, List<string>> item in scores)
+			{
+				string[] key = item.Key.Split('|').ToArray();
+				ListViewItem header = new ListViewItem();
+				header.SubItems.Add(key[0]);
+				header.SubItems.Add(key[1]);
+				lv_Score.Items.Add(header);
+				List<string> values = item.Value;
+				int i = 1;
+				foreach (string str in values)
+				{
+					string[] info = str.Split('|').ToArray();
+					ListViewItem listItem = new ListViewItem(i.ToString());
+
+					for (int j = 0; j < info.Length; j++)
+					{
+						listItem.SubItems.Add(info[j]);
+					}
+					lv_Score.Items.Add(listItem);
+					i++;
+				}
 			}
 		}
 
-		public string ID { get; set; }
-
-		#region Method
-		void LoadInfo()
+		void LoadCourseRegistration()
 		{
-			StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
-			lb_ID.Text = info.Id;
-			lb_Name.Text = info.Name;
-			lb_Birthday.Text = info.Birthday != new DateTime() ? info.Birthday.ToShortDateString() : "";
-			lb_Gender.Text = info.Gender;
-			lb_educationLevel.Text = info.EducationLevel;
-			lb_TrainingSystem.Text = info.TrainingSystem;
-			byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
-			string avt = "avt.jpg";
-			File.WriteAllBytes(avt, avtBytes);
-			pictureBox1.ImageLocation = avt;
+			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
+			int i = 0;
+			dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
+						new DataColumn("Mã môn học", typeof(string)),
+						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			foreach (StudentCourseRegistration course in courses)
+			{
+				dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate, course.EndDate);
+			}
+			this.data_CourseRegistration.DataSource = dt;
+			data_CourseRegistration.Columns[0].ReadOnly = false;
+			for (int k = 1; k < data_CourseRegistration.Columns.Count; k++)
+			{
+				data_CourseRegistration.Columns[k].ReadOnly = true;
+			}
+			this.data_CourseRegistration.AllowUserToAddRows = false;
 		}
 
-		void LoadSchedule()
+		private void LoadTKB()
 		{
-			data_Schedule.RowCount = 10;
 			List<StudentSchedule> schedules = StudentScheduleDAO.Instance.LoadStudentSchedule(ID);
 
-			foreach (StudentSchedule schedule in schedules)
+			int cellWidth = 125;
+			int cellHeight = 45;
+
+			string[] timeline = { "7:30 - 8:15", "8:15 - 9:00", "9:00 - 9:45", "10:00 - 10:45", "10:45 - 11:30", "13:00 - 13:45", "13:45 - 14:30", "14:30 - 15:15", "15:30 - 16:15", "16:15 - 17:00" };
+
+			int courseIndex = 0;
+
+			for (int col = 1; col <= 7; col++)
 			{
-				int day = int.Parse(schedule.Day);
-
-				List<string> result = new List<string>();
-				for (int i = 10; i >= 1; i--)
+				for (int row = 0; row <= 10; row++)
 				{
-					while (schedule.Period.Contains(i.ToString()))
+					Label lb = new Label
 					{
-						result.Add(i.ToString());
-						schedule.Period = schedule.Period.Remove(schedule.Period.IndexOf(i.ToString()), i.ToString().Length);
+						Width = cellWidth,
+						Height = cellHeight,
+
+						BorderStyle = BorderStyle.FixedSingle,
+
+						Margin = new Padding(0),
+						TextAlign = ContentAlignment.MiddleCenter,
+
+					};
+
+					flpSchedule.Controls.Add(lb);
+
+
+					if (row == 0 && col == 1)
+					{
+						lb.Text = "Thứ/Tiết";
 					}
-				}
+					else if (row == 0)
+					{
+						lb.Text = $"Thứ {col}";
+					}
+					else if (col == 1)
+					{
+						lb.Text = $"Tiết {row}\n({timeline[row - 1]})";
 
-				List<int> periods = result.ConvertAll(int.Parse);
+					}
 
-				foreach (int period in periods)
-				{
-					DataGridViewRow row = data_Schedule.Rows[period - 1];
-					row.Cells[day - 1].Value = schedule.SubID + "\n" + schedule.SubName + "\n" + "P " + schedule.Room + "\n" + "BĐ: " + schedule.StartDate.ToShortDateString() + "\n" + "KT: " + schedule.EndDate.ToShortDateString() + "\n";
+					if (col == 1)
+					{
+						lb.Width = 130;
+					}
+
+
+					if (courseIndex < schedules.Count)
+					{
+						StudentSchedule schedule = schedules[courseIndex];
+						int day = Convert.ToInt32(schedule.Day);
+						int startPeriod = schedule.Period[0] - '0';
+
+						if (day == col && startPeriod == row)
+						{
+							lb.Text = schedule.ToString();
+							lb.BackColor = Color.White;
+
+							lb.Height = cellHeight * schedule.Period.Length;
+							row = startPeriod + schedule.Period.Length - 1;
+							courseIndex++;
+						}
+					}
 				}
 			}
 		}
 		#endregion
 
-		bool IsTheSameCellValue(int column, int row)
+		private void tb_Filter_TextChanged(object sender, EventArgs e)
 		{
-			DataGridViewCell cell1 = data_Schedule[column, row];
-			DataGridViewCell cell2 = data_Schedule[column, row - 1];
-			if (cell1.Value == null || cell2.Value == null)
-			{
-				return false;
-			}
-			return cell1.Value.ToString() == cell2.Value.ToString();
-		}
-
-		private void lv_Score_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
-		{
-			e.Cancel = true;
-			e.NewWidth = lv_Score.Columns[e.ColumnIndex].Width;
-		}
-
-		private void data_Schedule_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-		{
-			e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
-			if (e.RowIndex < 1 || e.ColumnIndex < 0)
-				return;
-			if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
-			{
-				e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
-			}
-			else
-			{
-				e.AdvancedBorderStyle.Top = data_Schedule.AdvancedCellBorderStyle.Top;
-			}
-		}
-
-		private void data_Schedule_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-		{
-			if (e.RowIndex == 0)
-				return;
-			if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
-			{
-				e.Value = "";
-				e.FormattingApplied = true;
-			}
-
-			foreach(DataGridViewRow row in data_Schedule.Rows)
-			{
-				for (int i = 0; i <= 6; i++)
-				{
-					if (row.Cells[i].Value == null || i == 0)
-					{
-						row.Cells[i].Style.BackColor = Color.LightGray;
-					}
-				}
-			}
-		}
-
-		private void StudentForm_Load(object sender, EventArgs e)
-		{
-			data_Schedule.AutoGenerateColumns = false;
+			dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter.Text);
 		}
 	}
 }
