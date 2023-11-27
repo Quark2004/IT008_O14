@@ -76,10 +76,16 @@
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\lecturecourseDAO.cs" />
+    <Compile Include="DAO\lectureinfoDAO.cs" />
+    <Compile Include="DAO\lecturescoreDAO.cs" />
     <Compile Include="DAO\StudentCourseRegistrationDAO.cs" />
     <Compile Include="DAO\StudentInfoDAO.cs" />
     <Compile Include="DAO\StudentScheduleDAO.cs" />
     <Compile Include="DAO\StudentScoreDAO.cs" />
+    <Compile Include="DTO\lecturecourse.cs" />
+    <Compile Include="DTO\lectureinfo.cs" />
+    <Compile Include="DTO\lecturescore.cs" />
     <Compile Include="DTO\StudentCourseRegistration.cs" />
     <Compile Include="DTO\StudentInfo.cs" />
     <Compile Include="DTO\StudentSchedule.cs" />
