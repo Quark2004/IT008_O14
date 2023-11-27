@@ -17,19 +17,22 @@ namespace QLSV
 {
     public partial class StudentForm : Form
     {
-		DataTable dt = new DataTable();
-		DataTable dtInfo = new DataTable();
+		DataTable dt;
+		DataTable dtInfo;
 		public StudentForm(string id)
         {
             InitializeComponent();
-            ID = id;
+			dt = new DataTable();
+			dtInfo = new DataTable();
+			ID = id;
             LoadInfo();
             LoadTKB();
 			LoadScore();
 			LoadCourseRegistration();
 			LoadCourseRegistrationInfo();
 			lv_Score.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
+			
+		}
 
         public string ID { get; set; }
 
@@ -79,6 +82,7 @@ namespace QLSV
 					lv_Score.Items.Add(header);
 					List<string> values = item.Value;
 					int i = 1;
+					bool hasNull = false;
 					foreach (string str in values)
 					{
 						string[] info = str.Split('|').ToArray();
@@ -86,22 +90,30 @@ namespace QLSV
 
 						for (int j = 0; j < info.Length; j++)
 						{
-							listItem.SubItems.Add(info[j]);
+							if (info[j] == "-1")
+							{
+								hasNull = true;
+								listItem.SubItems.Add("");
+							}
+							else listItem.SubItems.Add(info[j]);
 						}
 						totalCredits += int.Parse(info[2]);
-						totalScore += float.Parse(info[info.Length - 1]) * int.Parse(info[2]);
+						if (!hasNull)
+						{
+							totalScore += float.Parse(info[info.Length - 1]) * int.Parse(info[2]);
+						}
 						lv_Score.Items.Add(listItem);
 						i++;
 					}
 					ListViewItem general = new ListViewItem();
 					general.SubItems.Add("");
 					general.SubItems.Add("Trung bình học kỳ");
-					general.SubItems.Add(totalCredits.ToString());
+					general.SubItems.Add(!hasNull ? totalCredits.ToString() : "0");
 					general.SubItems.Add("");
 					general.SubItems.Add("");
 					general.SubItems.Add("");
 					general.SubItems.Add("");
-					general.SubItems.Add((totalScore / totalCredits).ToString());
+					general.SubItems.Add(!hasNull ? (totalScore / totalCredits).ToString() : "0");
 					lv_Score.Items.Add(general);
 				}
 			}
@@ -135,9 +147,20 @@ namespace QLSV
 
 		void LoadCourseRegistrationInfo()
 		{
-			dtInfo.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
-						new DataColumn("Mã môn học", typeof(string)),
-						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			dtInfo.Columns.AddRange(new DataColumn[7] { new DataColumn("Tên môn học", typeof(string)),
+						new DataColumn("Mã môn học", typeof(string)), /*new DataColumn("Số tín",typeof(int)),*/new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),/*new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),*/new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
+			foreach (var course in registeredCourseLists)
+			{
+				dtInfo.Rows.Add(course.CourseName, course.CourseId/*, course.NumberOfCredits, */, course.Day, course.Period, course.ClassRoom,/* course.Semester, course.SchoolYear,*/ course.StartDate, course.EndDate);
+			}
+			this.data_RegistrationInfo.DataSource = dtInfo;
+			data_RegistrationInfo.Columns[0].ReadOnly = false;
+			for (int k = 1; k < data_RegistrationInfo.Columns.Count; k++)
+			{
+				data_RegistrationInfo.Columns[k].ReadOnly = true;
+			}
+			this.data_RegistrationInfo.AllowUserToAddRows = false;
 		}
 
 		private void LoadTKB()
@@ -230,24 +253,17 @@ namespace QLSV
 			if (isAnyChecked)
 			{
 				MessageBox.Show("Đăng ký học phần thành công");
-				List<StudentCourseRegistration> coursesRegistration = new List<StudentCourseRegistration>();
 				for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
 				{
 					DataGridViewRow row = data_CourseRegistration.Rows[i];
 					if (Convert.ToBoolean(row.Cells[0].Value))
 					{
-						dtInfo.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value, row.Cells[7].Value, row.Cells[8].Value, row.Cells[9].Value, row.Cells[10].Value, row.Cells[11].Value);
+						string query = "SELECT JoinRegisterCourse( :id , :courseId );";
+						DataProvider.Instance.ExcuteNonQuery(query, new object[] { ID, row.Cells[2].Value });
 						row.Cells[0].Value = null;
 						dt.Rows.RemoveAt(i);
 					}
 				}
-				this.data_RegistrationInfo.DataSource = dtInfo;
-				data_RegistrationInfo.Columns[0].ReadOnly = false;
-				for (int k = 1; k < data_RegistrationInfo.Columns.Count; k++)
-				{
-					data_RegistrationInfo.Columns[k].ReadOnly = true;
-				}
-				this.data_RegistrationInfo.AllowUserToAddRows = false;
 			}
 			else
 			{

@@ -588,6 +588,10 @@ VALUES (N'IT001.3', N'Nhập môn lập trình', '2023-09-11', '2023-12-30', 4, 
 INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
 VALUES (N'IT001.4', N'Nhập môn lập trình', '2023-09-11', '2023-12-30', 4, N'67890', N'B3.02', 4, N'HK1', N'2023-2024');
 
+-- IT002
+INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
+VALUES ('IT002.1', 'Cấu trúc dữ liệu và giải thuật', '2023-09-11', '2023-12-30', 2, '67890', 'B3.18', 4, 'HK1', '2023-2024')
+
 -- IT003
 INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
 VALUES (N'IT003.1', N'Cấu trúc dữ liệu và giải thuật', '2023-09-11', '2023-12-30', 6, N'12345', N'B3.18', 4, N'HK1', N'2023-2024');

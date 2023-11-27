@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLSV.DTO
 {
@@ -33,16 +34,16 @@ namespace QLSV.DTO
 
 		public StudentScore(DataRow row)
 		{
-			this.CourseId = row["Mã học phần"].ToString();
-			this.CourseName = row["Tên học phần"].ToString();
-			this.NumberOfCredits = int.Parse(row["Tín chỉ"].ToString());
-			this.ProcessScore = double.Parse(row["Điểm quá trình"].ToString());
-			this.MidtermScore = double.Parse(row["Điểm giữa kì"].ToString());
-			this.PracticeScore = double.Parse(row["Điểm thực hành"].ToString());
-			this.FinalScore = double.Parse(row["Điểm cuối kì"].ToString());
-			this.CourseScore = double.Parse(row["Điểm học phần"].ToString());
-			this.Semester = row["Học kì"].ToString();
-			this.SchoolYear = row["Năm học"].ToString();
+			this.CourseId = !DBNull.Value.Equals(row["Mã học phần"]) ? row["Mã học phần"].ToString() : "";
+			this.CourseName = !DBNull.Value.Equals(row["Tên học phần"]) ? row["Tên học phần"].ToString() : "";
+			this.NumberOfCredits = !DBNull.Value.Equals(row["Tín chỉ"]) ? int.Parse(row["Tín chỉ"].ToString()) : -1;
+			this.ProcessScore = !DBNull.Value.Equals(row["Điểm quá trình"]) ? double.Parse(row["Điểm quá trình"].ToString()) : -1;
+			this.MidtermScore = !DBNull.Value.Equals(row["Điểm giữa kì"]) ? double.Parse(row["Điểm giữa kì"].ToString()) : -1;
+			this.PracticeScore = !DBNull.Value.Equals(row["Điểm thực hành"]) ? double.Parse(row["Điểm thực hành"].ToString()) : -1;
+			this.FinalScore = !DBNull.Value.Equals(row["Điểm cuối kì"]) ? double.Parse(row["Điểm cuối kì"].ToString()) : -1;
+			this.CourseScore = !DBNull.Value.Equals(row["Điểm học phần"]) ? double.Parse(row["Điểm học phần"].ToString()) : -1;
+			this.Semester = !DBNull.Value.Equals(row["Học kì"]) ? row["Học kì"].ToString() : "";
+			this.SchoolYear = !DBNull.Value.Equals(row["Năm học"]) ? row["Năm học"].ToString() : "";
 		}
 	}
 }

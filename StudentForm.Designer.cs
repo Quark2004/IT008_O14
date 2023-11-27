@@ -124,7 +124,7 @@
 			this.tabCtr_Student.Name = "tabCtr_Student";
 			this.tabCtr_Student.SelectedIndex = 0;
 			this.tabCtr_Student.ShowToolTips = true;
-			this.tabCtr_Student.Size = new System.Drawing.Size(1182, 672);
+			this.tabCtr_Student.Size = new System.Drawing.Size(1190, 687);
 			this.tabCtr_Student.TabIndex = 0;
 			// 
 			// tab_Info
@@ -141,7 +141,7 @@
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
 			this.tab_Info.Name = "tab_Info";
 			this.tab_Info.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Info.Size = new System.Drawing.Size(1174, 632);
+			this.tab_Info.Size = new System.Drawing.Size(1182, 650);
 			this.tab_Info.TabIndex = 0;
 			this.tab_Info.Text = "Thông tin";
 			// 
@@ -474,7 +474,7 @@
 			this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
 			this.tab_CourseRegister.Name = "tab_CourseRegister";
 			this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CourseRegister.Size = new System.Drawing.Size(1174, 572);
+			this.tab_CourseRegister.Size = new System.Drawing.Size(1182, 650);
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
 			// 
@@ -487,7 +487,7 @@
 			this.panel3.Controls.Add(this.label21);
 			this.panel3.Location = new System.Drawing.Point(0, -1);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(1170, 67);
+			this.panel3.Size = new System.Drawing.Size(1181, 67);
 			this.panel3.TabIndex = 2;
 			// 
 			// label20
@@ -558,7 +558,7 @@
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.data_CourseRegistration.RowTemplate.Height = 24;
-			this.data_CourseRegistration.Size = new System.Drawing.Size(1170, 564);
+			this.data_CourseRegistration.Size = new System.Drawing.Size(1181, 582);
 			this.data_CourseRegistration.TabIndex = 1;
 			// 
 			// TrangThai
@@ -578,7 +578,7 @@
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(1174, 572);
+			this.tab_Score.Size = new System.Drawing.Size(1182, 650);
 			this.tab_Score.TabIndex = 3;
 			this.tab_Score.Text = "   Điểm";
 			// 
@@ -664,7 +664,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 36);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1174, 572);
+			this.tabPage1.Size = new System.Drawing.Size(1182, 650);
 			this.tabPage1.TabIndex = 4;
 			this.tabPage1.Text = "Thời khóa biểu";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -678,7 +678,7 @@
 			this.flpSchedule.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flpSchedule.Location = new System.Drawing.Point(3, 3);
 			this.flpSchedule.Name = "flpSchedule";
-			this.flpSchedule.Size = new System.Drawing.Size(1168, 566);
+			this.flpSchedule.Size = new System.Drawing.Size(1176, 644);
 			this.flpSchedule.TabIndex = 0;
 			// 
 			// tabPage2
@@ -688,7 +688,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 36);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1174, 572);
+			this.tabPage2.Size = new System.Drawing.Size(1182, 647);
 			this.tabPage2.TabIndex = 5;
 			this.tabPage2.Text = "Thông tin ĐKHP";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -699,9 +699,9 @@
 			this.panel4.Controls.Add(this.btn_CancelRegister);
 			this.panel4.Controls.Add(this.tb_Filter2);
 			this.panel4.Controls.Add(this.label19);
-			this.panel4.Location = new System.Drawing.Point(1, 0);
+			this.panel4.Location = new System.Drawing.Point(0, 0);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(1170, 67);
+			this.panel4.Size = new System.Drawing.Size(1182, 67);
 			this.panel4.TabIndex = 3;
 			// 
 			// btn_CancelRegister
@@ -755,14 +755,14 @@
 			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
 			this.data_RegistrationInfo.DefaultCellStyle = dataGridViewCellStyle5;
 			this.data_RegistrationInfo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-			this.data_RegistrationInfo.Location = new System.Drawing.Point(2, 66);
+			this.data_RegistrationInfo.Location = new System.Drawing.Point(0, 66);
 			this.data_RegistrationInfo.Name = "data_RegistrationInfo";
 			this.data_RegistrationInfo.RowHeadersVisible = false;
 			this.data_RegistrationInfo.RowHeadersWidth = 51;
 			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.data_RegistrationInfo.RowTemplate.Height = 24;
-			this.data_RegistrationInfo.Size = new System.Drawing.Size(1170, 564);
+			this.data_RegistrationInfo.Size = new System.Drawing.Size(1182, 581);
 			this.data_RegistrationInfo.TabIndex = 2;
 			// 
 			// dataGridViewCheckBoxColumn1
@@ -778,7 +778,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1183, 673);
+			this.ClientSize = new System.Drawing.Size(1187, 686);
 			this.Controls.Add(this.tabCtr_Student);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

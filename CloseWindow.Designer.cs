@@ -40,7 +40,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(120, 49);
+			this.label2.Location = new System.Drawing.Point(120, 50);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(306, 33);
 			this.label2.TabIndex = 1;
@@ -60,7 +60,7 @@
 			// btn_No
 			// 
 			this.btn_No.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_No.Location = new System.Drawing.Point(232, 136);
+			this.btn_No.Location = new System.Drawing.Point(241, 136);
 			this.btn_No.Name = "btn_No";
 			this.btn_No.Size = new System.Drawing.Size(163, 57);
 			this.btn_No.TabIndex = 3;
@@ -70,9 +70,11 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Location = new System.Drawing.Point(14, 49);
+			this.pictureBox1.Image = global::QLSV.Properties.Resources.warning2;
+			this.pictureBox1.Location = new System.Drawing.Point(28, 35);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.pictureBox1.TabIndex = 4;
 			this.pictureBox1.TabStop = false;
 			// 
