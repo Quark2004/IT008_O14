@@ -169,11 +169,14 @@ $$ LANGUAGE plpgsql;
 -- SELECT * FROM GetLearningOutcomes('21521601');
 
 CREATE OR REPLACE FUNCTION GetClassInCharge(_id VARCHAR(100))
-RETURNS TABLE("Mã lớp" VARCHAR(100), "Tên môn học" VARCHAR(100), "Thứ" VARCHAR(100), "Tiết" VARCHAR(100), "SLSV" BIGINT, "Ghi chú" VARCHAR(100)) AS $$
+RETURNS TABLE("Mã môn học" VARCHAR(100), "Tên môn học" VARCHAR(100), "Phòng học" VARCHAR(100), "Ngày bắt đầu" DATE, "Ngày kết thúc" DATE, "Thứ" VARCHAR(100), "Tiết" VARCHAR(100), "SLSV" BIGINT, "Ghi chú" VARCHAR(100)) AS $$
 BEGIN
     RETURN QUERY
-    SELECT Course.id as "Mã lớp",
+    SELECT Course.id as "Mã môn học",
            Course.name as "Tên môn học",
+		   Course.classroom as "Phòng học",
+           Course.startDay as "Ngày bắt đầu",
+           Course.endDay as "Ngày kết thúc",
            Course.schoolDay as "Thứ",
            Course.lesson as "Tiết",
            COUNT(*) as "SLSV",
@@ -187,7 +190,7 @@ BEGIN
         JOIN Course ON Schedule.idCourse = Course.id
         WHERE Schedule.idProfile = _id
       )
-    GROUP BY Course.id, Course.name, Course.schoolDay, Course.lesson, Schedule.note;
+    GROUP BY Course.id, Course.name, Course.schoolDay, Course.lesson, Schedule.note, Course.classroom, Course.startDay, Course.endDay;
 END;
 $$ LANGUAGE plpgsql;
 
