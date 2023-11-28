@@ -147,6 +147,7 @@ namespace QLSV
 
 		void LoadCourseRegistrationInfo()
 		{
+			dtInfo = new DataTable();
 			dtInfo.Columns.AddRange(new DataColumn[7] { new DataColumn("Tên môn học", typeof(string)),
 						new DataColumn("Mã môn học", typeof(string)), /*new DataColumn("Số tín",typeof(int)),*/new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),/*new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),*/new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
 			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
@@ -252,22 +253,56 @@ namespace QLSV
 			}
 			if (isAnyChecked)
 			{
-				MessageBox.Show("Đăng ký học phần thành công");
+				string noti = "";
 				for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
 				{
 					DataGridViewRow row = data_CourseRegistration.Rows[i];
 					if (Convert.ToBoolean(row.Cells[0].Value))
 					{
 						string query = "SELECT JoinRegisterCourse( :id , :courseId );";
+						noti += row.Cells[2].Value.ToString() + "\n";
 						DataProvider.Instance.ExcuteNonQuery(query, new object[] { ID, row.Cells[2].Value });
 						row.Cells[0].Value = null;
 						dt.Rows.RemoveAt(i);
 					}
 				}
+				MessageBox.Show("Đăng kí thành công:\n" + noti);
+				data_RegistrationInfo.Refresh();
+				LoadCourseRegistrationInfo();
 			}
 			else
 			{
 				MessageBox.Show("Đăng ký không thành công!");
+			}
+		}
+
+		private void btn_CancelRegister_Click(object sender, EventArgs e)
+		{
+			bool isAnyChecked = false;
+			foreach (DataGridViewRow row in data_RegistrationInfo.Rows)
+			{
+				if (Convert.ToBoolean(row.Cells[0].Value))
+				{
+					isAnyChecked = true;
+					break;
+				}
+			}
+			if (isAnyChecked)
+			{
+				string noti = "";
+				for (int i = data_RegistrationInfo.Rows.Count - 1; i >= 0; i--)
+				{
+					DataGridViewRow row = data_RegistrationInfo.Rows[i];
+					if (Convert.ToBoolean(row.Cells[0].Value))
+					{
+						string query = "SELECT LeaveRegisterCourse( :id , :courseId );";
+						DataProvider.Instance.ExcuteNonQuery(query, new object[] { ID, row.Cells[2].Value });
+						noti += row.Cells[2].Value.ToString() + "\n";
+						row.Cells[0].Value = null;
+						dtInfo.Rows.RemoveAt(i);
+					}
+				}
+				MessageBox.Show("Hủy học phần thành công:\n" + noti);
 			}
 		}
 

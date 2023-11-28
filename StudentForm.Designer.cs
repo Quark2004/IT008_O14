@@ -141,7 +141,7 @@
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
 			this.tab_Info.Name = "tab_Info";
 			this.tab_Info.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Info.Size = new System.Drawing.Size(1182, 650);
+			this.tab_Info.Size = new System.Drawing.Size(1182, 647);
 			this.tab_Info.TabIndex = 0;
 			this.tab_Info.Text = "Thông tin";
 			// 
@@ -474,7 +474,7 @@
 			this.tab_CourseRegister.Location = new System.Drawing.Point(4, 36);
 			this.tab_CourseRegister.Name = "tab_CourseRegister";
 			this.tab_CourseRegister.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CourseRegister.Size = new System.Drawing.Size(1182, 650);
+			this.tab_CourseRegister.Size = new System.Drawing.Size(1182, 647);
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
 			// 
@@ -578,7 +578,7 @@
 			this.tab_Score.Location = new System.Drawing.Point(4, 36);
 			this.tab_Score.Name = "tab_Score";
 			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(1182, 650);
+			this.tab_Score.Size = new System.Drawing.Size(1182, 647);
 			this.tab_Score.TabIndex = 3;
 			this.tab_Score.Text = "   Điểm";
 			// 
@@ -664,7 +664,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 36);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1182, 650);
+			this.tabPage1.Size = new System.Drawing.Size(1182, 647);
 			this.tabPage1.TabIndex = 4;
 			this.tabPage1.Text = "Thời khóa biểu";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -678,7 +678,7 @@
 			this.flpSchedule.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flpSchedule.Location = new System.Drawing.Point(3, 3);
 			this.flpSchedule.Name = "flpSchedule";
-			this.flpSchedule.Size = new System.Drawing.Size(1176, 644);
+			this.flpSchedule.Size = new System.Drawing.Size(1176, 641);
 			this.flpSchedule.TabIndex = 0;
 			// 
 			// tabPage2
@@ -712,6 +712,7 @@
 			this.btn_CancelRegister.TabIndex = 2;
 			this.btn_CancelRegister.Text = "Hủy đăng ký";
 			this.btn_CancelRegister.UseVisualStyleBackColor = true;
+			this.btn_CancelRegister.Click += new System.EventHandler(this.btn_CancelRegister_Click);
 			// 
 			// tb_Filter2
 			// 

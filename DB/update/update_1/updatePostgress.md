@@ -2,7 +2,7 @@
 
 ### Update data
 
--   Thêm môn `IT002.1` để check đăng kí trùng lịch
+- Thêm môn `IT002.1` để check đăng kí trùng lịch
 
 ```SQL
 INSERT into Course(id, name, startDay, endDay, schoolDay, lesson ,classroom, numberOfCredits, semester, schoolYear)
@@ -11,7 +11,7 @@ VALUES ('IT002.1', 'Cấu trúc dữ liệu và giải thuật', '2023-09-11', '
 
 ```
 
--   Điểm môn học chưa được thêm đầy đủ
+- Điểm môn học chưa được thêm đầy đủ
 
 ```SQL
 SELECT UpdateScore('IT003.1','21521601',NULL,7.1,9.2,NULL);
@@ -20,7 +20,7 @@ SELECT UpdateScore('IT003.1','21521601',NULL,7.1,9.2,NULL);
 
 ### InsertAcc Proc
 
--   Thêm verify username và idProfile là duy nhất
+- Thêm verify username và idProfile là duy nhất
 
 ```SQL
 CREATE OR REPLACE FUNCTION InsertAcc(
@@ -74,7 +74,7 @@ SELECT InsertAcc('student11', '123456', '21521611');
 
 ### UpdateScore Proc
 
--   Thêm verify điểm số nhập vào phải từ 0 đến 10
+- Thêm verify điểm số nhập vào phải từ 0 đến 10
 
 ```SQL
 CREATE OR REPLACE FUNCTION UpdateScore(
@@ -128,7 +128,7 @@ Ta thấy điểm không được cập nhật vào DB
 
 ### JoinCourse
 
--   Admin thêm sinh viên vào lớp trực tiếp (môn được thêm có thể không cần đăng kí trước đó) => thời khóa biểu của sv sẽ có môn học đó ngay
+- Admin thêm sinh viên vào lớp trực tiếp (môn được thêm có thể không cần đăng kí trước đó) => thời khóa biểu của sv sẽ có môn học đó ngay
 
 ```SQL
 CREATE OR REPLACE FUNCTION JoinCourse(
@@ -193,8 +193,8 @@ Chỉ đăng kí được mỗi môn `IT002.1`
 
 ### GetListRegisteredByID Proc
 
--   Get danh sách các môn đã đăng kí học phần
--   _Note_: khác với `GetScheduleByID` get danh sách các môn trong tkb
+- Get danh sách các môn đã đăng kí học phần
+- _Note_: khác với `GetScheduleByID` get danh sách các môn trong tkb
 
 ```SQL
 CREATE OR REPLACE FUNCTION GetListRegisteredByID(
@@ -242,7 +242,7 @@ khác với các môn trong thời khóa biểu
 
 ### JoinRegisterCourse Proc
 
--   Sinh viên đăng kí các môn học trong đăng kí học phần, các môn đã đăng kí nếu chưa được admin chấp nhận thì sẽ không được thêm vào tkb của sv đó
+- Sinh viên đăng kí các môn học trong đăng kí học phần, các môn đã đăng kí nếu chưa được admin chấp nhận thì sẽ không được thêm vào tkb của sv đó
 
 ```SQL
 CREATE OR REPLACE FUNCTION JoinRegisterCourse(
@@ -301,7 +301,7 @@ Danh sách các môn đã đăng kí
 
 ### LeaveRegisterCourse Proc
 
--   Sinh viên thực hiện hủy đăng kí học phần môn học đã đăng kí trước đó
+- Sinh viên thực hiện hủy đăng kí học phần môn học đã đăng kí trước đó
 
 ```SQL
 CREATE OR REPLACE FUNCTION LeaveRegisterCourse(
