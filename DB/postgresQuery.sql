@@ -223,34 +223,29 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION GetListRegisteredByID(
     IN v_id VARCHAR(100)
 )
-RETURNS TABLE (
-    "Mã môn học" VARCHAR(100),
-    "Tên môn học" VARCHAR(100),
-    "Phòng học" VARCHAR(100),
-    "Ngày bắt đầu" DATE,
-    "Ngày kết thúc" DATE,
-    "Thứ" VARCHAR(100),
-    "Tiết" VARCHAR(100)
-) AS $$
+RETURNS TABLE("Tên môn học" VARCHAR(100), "Mã lớp" VARCHAR(100), "Tên giảng viên" VARCHAR(100), "Số tín chỉ" INT, "Thứ" VARCHAR(100), "Tiết" VARCHAR(100), "Phòng" VARCHAR(100), "Học kì" VARCHAR(100), "Năm học" VARCHAR(100), "Ngày bắt đầu" DATE, "Ngày kết thúc" DATE) AS $$
 BEGIN
     RETURN QUERY
-    SELECT
-        Course.id AS "Mã môn học",
-        Course.name AS "Tên môn học",
-        Course.classroom AS "Phòng học",
-        Course.startDay AS "Ngày bắt đầu",
-        Course.endDay AS "Ngày kết thúc",
-        Course.schoolDay AS "Thứ",
-        Course.lesson AS "Tiết"
-    FROM
-        RegisterCourse
-    INNER JOIN
-        Course ON RegisterCourse.idCourse = Course.id
-    WHERE
+    SELECT 
+		"GLRC"."Tên môn học",
+		"GLRC"."Mã lớp",
+		"GLRC"."Tên giảng viên",
+		"GLRC"."Số tín chỉ",
+		"GLRC"."Thứ",
+		"GLRC"."Tiết",
+		"GLRC"."Phòng",
+		"GLRC"."Học kì",
+		"GLRC"."Năm học",
+		"GLRC"."Ngày bắt đầu",
+		"GLRC"."Ngày kết thúc"
+	FROM GetListRegisterCourse() AS "GLRC"
+	JOIN RegisterCourse ON RegisterCourse.idCourse = "GLRC"."Mã lớp"
+	WHERE
         RegisterCourse.idProfile = v_id
     ORDER BY
-        Course.schoolDay ASC,
-        Course.lesson ASC;
+        "GLRC"."Thứ" ASC,
+		"GLRC"."Tiết" ASC; 
+
 END;
 $$ LANGUAGE plpgsql;
 
