@@ -600,7 +600,7 @@
 			this.lv_Score.HideSelection = false;
 			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
 			this.lv_Score.Name = "lv_Score";
-			this.lv_Score.Size = new System.Drawing.Size(1171, 632);
+			this.lv_Score.Size = new System.Drawing.Size(1179, 632);
 			this.lv_Score.TabIndex = 1;
 			this.lv_Score.UseCompatibleStateImageBehavior = false;
 			this.lv_Score.View = System.Windows.Forms.View.Details;

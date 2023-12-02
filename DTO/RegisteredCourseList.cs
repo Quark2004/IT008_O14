@@ -11,6 +11,7 @@ namespace QLSV.DTO
 	{
 		private string courseName;
 		private string courseId;
+		private string lecturerName;
 		private int numberOfCredits;
 		private string day;
 		private string period;
@@ -22,25 +23,27 @@ namespace QLSV.DTO
 
 		public string CourseName { get => courseName; set => courseName = value; }
 		public string CourseId { get => courseId; set => courseId = value; }
-		//public int NumberOfCredits { get => numberOfCredits; set => numberOfCredits = value; }
+		public int NumberOfCredits { get => numberOfCredits; set => numberOfCredits = value; }
 		public string Day { get => day; set => day = value; }
 		public string Period { get => period; set => period = value; }
 		public string ClassRoom { get => classRoom; set => classRoom = value; }
-		//public string Semester { get => semester; set => semester = value; }
-		//public string SchoolYear { get => schoolYear; set => schoolYear = value; }
+		public string Semester { get => semester; set => semester = value; }
+		public string SchoolYear { get => schoolYear; set => schoolYear = value; }
 		public DateTime StartDate { get => startDate; set => startDate = value; }
 		public DateTime EndDate { get => endDate; set => endDate = value; }
+		public string LecturerName { get => lecturerName; set => lecturerName = value; }
 
 		public RegisteredCourseList(DataRow row)
 		{
 			this.CourseName = row["Tên môn học"].ToString();
-			this.CourseId = row["Mã môn học"].ToString();
-			//this.NumberOfCredits = int.Parse(row["Số tín chỉ"].ToString());
+			this.CourseId = row["Mã lớp"].ToString();
+			this.LecturerName = row["Tên giảng viên"].ToString();
+			this.NumberOfCredits = int.Parse(row["Số tín chỉ"].ToString());
 			this.Day = row["Thứ"].ToString();
 			this.Period = row["Tiết"].ToString();
-			this.ClassRoom = row["Phòng học"].ToString();
-			//this.Semester = row["Học kì"].ToString();
-			//this.SchoolYear = row["Năm học"].ToString();
+			this.ClassRoom = row["Phòng"].ToString();
+			this.Semester = row["Học kì"].ToString();
+			this.SchoolYear = row["Năm học"].ToString();
 			if (!Convert.IsDBNull(row["Ngày bắt đầu"]))
 			{
 				this.StartDate = Convert.ToDateTime(row["Ngày bắt đầu"]);

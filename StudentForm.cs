@@ -42,7 +42,7 @@ namespace QLSV
             StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
             lb_ID.Text = info.Id;
             lb_Name.Text = info.Name;
-            lb_Birthday.Text = info.Birthday != new DateTime() ? info.Birthday.ToShortDateString() : "";
+            lb_Birthday.Text = info.Birthday != new DateTime() ? info.Birthday.ToString("MM/dd/yyyy") : "";
             lb_Gender.Text = info.Gender;
             lb_educationLevel.Text = info.EducationLevel;
             lb_TrainingSystem.Text = info.TrainingSystem;
@@ -128,13 +128,27 @@ namespace QLSV
 
 		void LoadCourseRegistration()
 		{
+			dt = new DataTable();
 			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
 			dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
 						new DataColumn("Mã môn học", typeof(string)),
 						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
+
+			for (int i = courses.Count - 1; i >= 0; i--)
+			{
+				foreach(var course in registeredCourseLists)
+				{
+					if (courses[i].CourseId == course.CourseId)
+					{
+						courses.Remove(courses[i]);
+					}
+				}
+			}
+
 			foreach (StudentCourseRegistration course in courses)
 			{
-				dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate, course.EndDate);
+				dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate.ToString("MM/dd/yyyy"), course.EndDate.ToString("MM/dd/yyyy"));
 			}
 			this.data_CourseRegistration.DataSource = dt;
 			data_CourseRegistration.Columns[0].ReadOnly = false;
@@ -148,12 +162,12 @@ namespace QLSV
 		void LoadCourseRegistrationInfo()
 		{
 			dtInfo = new DataTable();
-			dtInfo.Columns.AddRange(new DataColumn[7] { new DataColumn("Tên môn học", typeof(string)),
-						new DataColumn("Mã môn học", typeof(string)), /*new DataColumn("Số tín",typeof(int)),*/new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),/*new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),*/new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+			dtInfo.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
+						new DataColumn("Mã lớp", typeof(string)), new DataColumn("Tên giảng viên", typeof(string)), new DataColumn("Số tín chỉ", typeof(int)), new DataColumn("Thứ", typeof(string)), new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) }) ;
 			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
 			foreach (var course in registeredCourseLists)
 			{
-				dtInfo.Rows.Add(course.CourseName, course.CourseId/*, course.NumberOfCredits, */, course.Day, course.Period, course.ClassRoom,/* course.Semester, course.SchoolYear,*/ course.StartDate, course.EndDate);
+				dtInfo.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate, course.EndDate);
 			}
 			this.data_RegistrationInfo.DataSource = dtInfo;
 			data_RegistrationInfo.Columns[0].ReadOnly = false;
@@ -303,6 +317,7 @@ namespace QLSV
 					}
 				}
 				MessageBox.Show("Hủy học phần thành công:\n" + noti);
+				LoadCourseRegistration();
 			}
 		}
 

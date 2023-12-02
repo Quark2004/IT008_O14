@@ -41,7 +41,7 @@ namespace QLSV.DTO
 			this.Gender = row["Giới tính"].ToString();
 			this.EducationLevel = row["Bậc đào tạo"].ToString();
 			this.TrainingSystem = row["Hệ đào tạo"].ToString();
-			this.Avatar = (byte[])row["Ảnh đại diện"];
+			this.Avatar = !DBNull.Value.Equals(row["Ảnh đại diện"]) ? (byte[])row["Ảnh đại diện"] : new byte[] {};
 		}
 
 		public StudentInfo(string id, string name, DateTime birthday, string gender, string educationLevel, string trainingSystem, byte[] avatar)
