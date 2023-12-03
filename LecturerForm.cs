@@ -27,6 +27,7 @@ namespace QLSV
             LoadDSLop();
             Loadinfo();
             Loadthongke();
+            
             btnok.Enabled = false;
             btnnhap.Enabled = false;
             //LoadTKB();
@@ -220,52 +221,75 @@ namespace QLSV
             cboloaidiem.Items.Add("Điểm HP");
 
         }
+
+        private int check (float t)
+        {
+            if (t < 5.0)
+                return 0;
+            if (t>=5.0 && t <=6.4)
+                return 1;
+            if (t>=6.5&& t<=7.9)
+                return 2;
+            if (t>=8.0)
+                return 3;
+            return 4;
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[2] { new DataColumn("MSSV", typeof(string)), new DataColumn("Điểm", typeof(string)) });
+            dt.Columns.AddRange(new DataColumn[2] { new DataColumn("Thang điểm", typeof(string)), new DataColumn("SL", typeof(int)) });
             if (cbothongke.Items.Count == 0) return;
             if (cboloaidiem.Items.Count == 0) return;
             string[] mon = cbothongke.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
             string diem = cboloaidiem.SelectedItem.ToString();
+            dt.Rows.Add("0 - 4.9", 0);
+            dt.Rows.Add("5.0 - 6.4", 0);
+            dt.Rows.Add("6.5 - 7.9", 0);
+            dt.Rows.Add("8.0 - 10", 0);
             chartthongke.Series["Điểm"].Points.Clear();
+            float temp;
             List<lecturescore> thongke = lecturescoreDAO.Instance.LoadLectureScore(mamon);
             foreach (lecturescore t in thongke)
             {
                 switch (diem)
                 {
                     case "Điểm QT":
-                        dt.Rows.Add(t.StudentId, t.ProcessScore);
+                        temp = float.Parse(t.ProcessScore.ToString());
+                        
+                        dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
                         break;
                     case "Điểm TH":
-                        dt.Rows.Add(t.StudentId, t.PracticeScore); break;
+                         temp = float.Parse(t.PracticeScore.ToString());
+                        dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
+                        break;
                     case "Điểm GK":
-                        dt.Rows.Add(t.StudentId, t.MidtermScore); break;
+                        temp = float.Parse(t.MidtermScore.ToString());
+                        dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
+                        break;
                     case "Điểm CK":
-                        dt.Rows.Add(t.StudentId, t.FinalScore); break;
+                        temp = float.Parse(t.FinalScore.ToString());
+                        dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
+                        break;
                     case "Điểm HP":
-                        dt.Rows.Add(t.StudentId, t.CourseScore); break;
+                        temp = float.Parse(t.CourseScore.ToString());
+                        dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
+                        break;
                     default:
                         break;
                 }
             }
-            chartthongke.ChartAreas["ChartArea1"].AxisY.Maximum = 10;
-            chartthongke.ChartAreas["ChartArea1"].AxisY.Title = diem;
-            chartthongke.ChartAreas["ChartArea1"].AxisX.Title = "Bảng thống kê " + diem + " của lớp " + mamon;
-            chartthongke.ChartAreas["ChartArea1"].AxisY.Interval = 1;
+            chartthongke.ChartAreas["ChartArea1"].AxisX.Title = "Thống kê thang điểm lớp "+mamon;
+            chartthongke.ChartAreas["ChartArea1"].AxisY.Title = "Số lượng";
+            chartthongke.ChartAreas["ChartArea1"].AxisX.Interval = 1;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                chartthongke.Series["Điểm"].Points.AddXY(dt.Rows[i]["MSSV"], dt.Rows[i]["Điểm"]);
+                chartthongke.Series["Điểm"].Points.AddXY(dt.Rows[i]["Thang điểm"], dt.Rows[i]["SL"]);
             }
         }
         #endregion
 
-
-        //private void tb_Filter_TextChanged(object sender, EventArgs e)
-        //{
-        //    dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter.Text);
-        //}
 
         private void LecturerForm_FormClosing(object sender, FormClosingEventArgs e)
         {

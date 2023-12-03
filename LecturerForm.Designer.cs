@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -66,6 +66,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvcourse = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboloccourse = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -93,6 +94,7 @@
             this.cbodiem = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.chartthongke = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.cboloaidiem = new System.Windows.Forms.ComboBox();
@@ -101,8 +103,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.flptkb = new System.Windows.Forms.FlowLayoutPanel();
-            this.chartthongke = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -114,9 +114,9 @@
             this.tabPage3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartthongke)).BeginInit();
             this.panel5.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartthongke)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -477,8 +477,8 @@
             this.dgvcourse.Name = "dgvcourse";
             this.dgvcourse.RowHeadersVisible = false;
             this.dgvcourse.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvcourse.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvcourse.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvcourse.RowTemplate.Height = 24;
             this.dgvcourse.Size = new System.Drawing.Size(1167, 567);
             this.dgvcourse.TabIndex = 1;
@@ -494,6 +494,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1167, 52);
             this.panel3.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(646, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(196, 36);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "( Mã/Tên lớp)";
             // 
             // cboloccourse
             // 
@@ -724,6 +734,7 @@
             // 
             // cbodiem
             // 
+            this.cbodiem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbodiem.FormattingEnabled = true;
             this.cbodiem.Location = new System.Drawing.Point(341, 8);
             this.cbodiem.Name = "cbodiem";
@@ -754,6 +765,25 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thống Kê";
             // 
+            // chartthongke
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartthongke.ChartAreas.Add(chartArea1);
+            this.chartthongke.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chartthongke.Legends.Add(legend1);
+            this.chartthongke.Location = new System.Drawing.Point(3, 68);
+            this.chartthongke.Name = "chartthongke";
+            series1.ChartArea = "ChartArea1";
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Điểm";
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.chartthongke.Series.Add(series1);
+            this.chartthongke.Size = new System.Drawing.Size(1167, 554);
+            this.chartthongke.TabIndex = 1;
+            this.chartthongke.Text = "chart1";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.button4);
@@ -779,6 +809,7 @@
             // 
             // cboloaidiem
             // 
+            this.cboloaidiem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboloaidiem.FormattingEnabled = true;
             this.cboloaidiem.Items.AddRange(new object[] {
             "Điểm QT",
@@ -803,6 +834,7 @@
             // 
             // cbothongke
             // 
+            this.cbothongke.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbothongke.FormattingEnabled = true;
             this.cbothongke.Location = new System.Drawing.Point(106, 15);
             this.cbothongke.Name = "cbothongke";
@@ -838,35 +870,6 @@
             this.flptkb.Size = new System.Drawing.Size(1173, 625);
             this.flptkb.TabIndex = 0;
             // 
-            // chartthongke
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.chartthongke.ChartAreas.Add(chartArea3);
-            this.chartthongke.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chartthongke.Legends.Add(legend3);
-            this.chartthongke.Location = new System.Drawing.Point(3, 68);
-            this.chartthongke.Name = "chartthongke";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.IsValueShownAsLabel = true;
-            series3.Legend = "Legend1";
-            series3.Name = "Điểm";
-            this.chartthongke.Series.Add(series3);
-            this.chartthongke.Size = new System.Drawing.Size(1167, 554);
-            this.chartthongke.TabIndex = 1;
-            this.chartthongke.Text = "chart1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(646, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 36);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "( Mã/Tên lớp)";
-            // 
             // LecturerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -893,10 +896,10 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartthongke)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartthongke)).EndInit();
             this.ResumeLayout(false);
 
 		}
