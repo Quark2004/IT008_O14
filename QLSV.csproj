@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>QLSV</RootNamespace>
     <AssemblyName>QLSV</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,6 +76,8 @@
       <DependentUpon>CloseWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
+    <Compile Include="DAO\AccountManagementDAO.cs" />
+    <Compile Include="DAO\AdminCourseDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\lecturecourseDAO.cs" />
     <Compile Include="DAO\lectureinfoDAO.cs" />
@@ -84,6 +87,8 @@
     <Compile Include="DAO\StudentInfoDAO.cs" />
     <Compile Include="DAO\StudentScheduleDAO.cs" />
     <Compile Include="DAO\StudentScoreDAO.cs" />
+    <Compile Include="DTO\AccountManagementDTO.cs" />
+    <Compile Include="DTO\CourseDTO.cs" />
     <Compile Include="DTO\lecturecourse.cs" />
     <Compile Include="DTO\lectureinfo.cs" />
     <Compile Include="DTO\lecturescore.cs" />
@@ -180,6 +185,12 @@
     </PackageReference>
     <PackageReference Include="Costura.Fody">
       <Version>3.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="itext7">
+      <Version>8.0.2</Version>
     </PackageReference>
     <PackageReference Include="Npgsql">
       <Version>7.0.6</Version>
