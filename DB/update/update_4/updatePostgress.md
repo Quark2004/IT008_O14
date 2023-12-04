@@ -107,21 +107,6 @@ BEGIN
     RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
-
--- select updateRegistrationPeriod('2023-12-12', '2023-12-20')
-
-CREATE OR REPLACE FUNCTION GetListRegistrationPeriod()
-RETURNS TABLE("Bắt đầu đăng kí học phần" TIMESTAMP, "Kết thúc đăng kí học phần" TIMESTAMP) AS $$
-BEGIN
-    RETURN QUERY
-    SELECT startTime AS "Bắt đầu đăng kí học phần", endTime AS "Kết thúc đăng kí học phần"
-	FROM RegistrationPeriod
-    ORDER BY endTime DESC;
-
-END;
-$$ LANGUAGE plpgsql;
-
-
 ```
 
 _Example_
