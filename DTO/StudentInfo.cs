@@ -28,20 +28,27 @@ namespace QLSV.DTO
 
 		public StudentInfo(DataRow row)
 		{
-			this.Id = row["MSSV"].ToString();
-			this.Name = row["Tên"].ToString();
-			if (!Convert.IsDBNull(row["Ngày sinh"]))
+			try
 			{
-				this.Birthday = Convert.ToDateTime(row["Ngày sinh"]);
+				this.Id = row["MSSV"].ToString();
+				this.Name = row["Tên"].ToString();
+				if (!Convert.IsDBNull(row["Ngày sinh"]))
+				{
+					this.Birthday = Convert.ToDateTime(row["Ngày sinh"]);
+				}
+				else
+				{
+					this.Birthday = new DateTime();
+				}
+				this.Gender = row["Giới tính"].ToString();
+				this.EducationLevel = row["Bậc đào tạo"].ToString();
+				this.TrainingSystem = row["Hệ đào tạo"].ToString();
+				this.Avatar = (byte[])row["Ảnh đại diện"];
 			}
-			else
+			catch
 			{
-				this.Birthday = new DateTime();
+
 			}
-			this.Gender = row["Giới tính"].ToString();
-			this.EducationLevel = row["Bậc đào tạo"].ToString();
-			this.TrainingSystem = row["Hệ đào tạo"].ToString();
-			this.Avatar = !DBNull.Value.Equals(row["Ảnh đại diện"]) ? (byte[])row["Ảnh đại diện"] : new byte[] {};
 		}
 
 		public StudentInfo(string id, string name, DateTime birthday, string gender, string educationLevel, string trainingSystem, byte[] avatar)

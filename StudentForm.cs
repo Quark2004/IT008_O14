@@ -355,10 +355,15 @@ namespace QLSV
 
 		public Image ConvertBytesToImage(byte[] data)
 		{
-			using (MemoryStream ms = new MemoryStream(data))
+			if (data != null)
 			{
-				return Image.FromStream(ms);
+				using (MemoryStream ms = new MemoryStream(data))
+				{
+					return Image.FromStream(ms);
+				}
 			}
+			Image img = Image.FromFile(@"C:\Users\ASUS\Desktop\Visual Programming\Project\IT008_O14\Resources\null_avt.png");
+			return img;
 		}
 
 		private void lv_Score_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
