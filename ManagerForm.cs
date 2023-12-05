@@ -628,5 +628,29 @@ namespace QLSV
             // Hiển thị DataTable kết quả lên DataGridView4
             dataGridView4.DataSource = statisticsTable;
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void SetColumnHeaders()
+        {
+            dataGridView2.Columns["id"].HeaderText = "Mã môn học";
+            dataGridView2.Columns["name"].HeaderText = "Tên môn học";
+            dataGridView2.Columns["numberofcredits"].HeaderText = "Số tín chỉ";
+            dataGridView2.Columns["schoolday"].HeaderText = "Ngày học";
+            dataGridView2.Columns["lesson"].HeaderText = "Tiết học";
+            dataGridView2.Columns["classroom"].HeaderText = "Phòng học";
+            dataGridView2.Columns["semester"].HeaderText = "Học kỳ";
+            dataGridView2.Columns["schoolyear"].HeaderText = "Năm học";
+            dataGridView2.Columns["startday"].HeaderText = "Ngày bắt đầu";
+            dataGridView2.Columns["endday"].HeaderText = "Ngày kết thúc";
+        }
+
+        private void dataGridView2_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            SetColumnHeaders();
+        }
+
     }
 }
