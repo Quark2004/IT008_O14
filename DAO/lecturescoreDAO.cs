@@ -41,11 +41,11 @@ namespace QLSV.DAO
 
             return scores;
         }
-        public int UpdateScore(string s1, string s2, float s3, float s4, float s5, float s6)
+        public string UpdateScore(string s1, string s2, float s3, float s4, float s5, float s6)
         {
             string query = "SELECT UpdateScore( :mammon , :mssv , :diemQT , :diemGK , :diemTH , :diemCK )";
-            int data = DataProvider.Instance.ExcuteNonQuery(query, new object[] { s1, s2, s3, s4, s5, s6 });
-            return data;
+            var data = DataProvider.Instance.ExcuteQuery(query, new object[] { s1, s2, s3, s4, s5, s6 });
+            return data.Rows[0][0].ToString();
         }
     }
 }

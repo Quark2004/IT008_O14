@@ -169,9 +169,11 @@ namespace QLSV
             txtGK.Text = lvi.SubItems[3].Text;
             txtTH.Text = lvi.SubItems[4].Text;
             txtCK.Text = lvi.SubItems[5].Text;
+            temp = lvi;
         }
+        ListViewItem temp;
 
-        private void btnnhap_Click(object sender, EventArgs e)
+		private void btnnhap_Click(object sender, EventArgs e)
         {
             btnok.Enabled = true;
             if (txtQT.Text != null || txtGK.Text != null || txtTH.Text != null || txtCK.Text != null)
@@ -195,15 +197,27 @@ namespace QLSV
 
         private void btnok_Click(object sender, EventArgs e)
         {
+            btnnhap.Enabled = false;
             txtQT.Enabled = false;
             txtGK.Enabled = false;
             txtTH.Enabled = false;
             txtCK.Enabled = false;
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
-            int kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
+            string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
                 float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
+            if (kq == "True")
+            {
 
+            }
+            else if (kq == "False")
+            {
+				txtmssv.Text = temp.SubItems[0].Text;
+				txtQT.Text = temp.SubItems[2].Text;
+				txtGK.Text = temp.SubItems[3].Text;
+				txtTH.Text = temp.SubItems[4].Text;
+				txtCK.Text = temp.SubItems[5].Text;
+			}
             HienThiThongTinDiem(mamon);
             btnok.Enabled = false;
         }
