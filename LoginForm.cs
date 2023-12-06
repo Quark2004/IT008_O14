@@ -39,7 +39,7 @@ namespace QLSV
 
 			if (userName == "")
 			{
-				MessageBox.Show("Yêu cầu nhập MSSV!");
+				MessageBox.Show("Yêu cầu nhập tên đăng nhập!");
 				return;
 			}
 

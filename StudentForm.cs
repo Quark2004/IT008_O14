@@ -362,7 +362,7 @@ namespace QLSV
 					return Image.FromStream(ms);
 				}
 			}
-			Image img = Image.FromFile(@"C:\Users\ASUS\Desktop\Visual Programming\Project\IT008_O14\Resources\null_avt.png");
+			Image img = Image.FromFile(@"../../Resources/null_avt.png");
 			return img;
 		}
 

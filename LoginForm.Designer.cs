@@ -41,6 +41,8 @@
 			this.pn_login = new System.Windows.Forms.Panel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pic_login = new System.Windows.Forms.PictureBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.pn_login.SuspendLayout();
@@ -62,6 +64,7 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.label1);
 			this.panel2.Controls.Add(this.tb_userName);
 			this.panel2.Controls.Add(this.lb_userName);
 			this.panel2.Location = new System.Drawing.Point(27, 164);
@@ -97,6 +100,7 @@
 			// 
 			// panel3
 			// 
+			this.panel3.Controls.Add(this.label2);
 			this.panel3.Controls.Add(this.tb_password);
 			this.panel3.Controls.Add(this.lb_password);
 			this.panel3.Location = new System.Drawing.Point(27, 266);
@@ -191,6 +195,28 @@
 			this.pic_login.TabIndex = 0;
 			this.pic_login.TabStop = false;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.Red;
+			this.label1.Location = new System.Drawing.Point(156, 3);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(22, 27);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "*";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.ForeColor = System.Drawing.Color.Red;
+			this.label2.Location = new System.Drawing.Point(105, 3);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(22, 27);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "*";
+			// 
 			// LoginForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -231,6 +257,8 @@
 		private System.Windows.Forms.Button btn_exit;
 		private System.Windows.Forms.Panel pn_login;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 	}
 }
 
