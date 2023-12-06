@@ -323,7 +323,7 @@ namespace QLSV
 
 		private void tb_Filter2_TextChanged(object sender, EventArgs e)
 		{
-			dtInfo.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", tb_Filter2.Text);
+			dtInfo.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã lớp] like '%{0}%'", tb_Filter2.Text);
 		}
 
 		private void btn_changeAvatar_Click(object sender, EventArgs e)

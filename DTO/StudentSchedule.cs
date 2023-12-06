@@ -23,19 +23,26 @@ namespace QLSV.DTO
 
         public StudentSchedule(DataRow row)
         {
-            this.SubID = row["Mã môn học"].ToString();
-            this.SubName = row["Tên môn học"].ToString();
-            this.Room = row["Phòng học"].ToString();
-            if (!Convert.IsDBNull(row["Ngày bắt đầu"]))
+            try
             {
-                this.StartDate = Convert.ToDateTime(row["Ngày bắt đầu"]);
-            }
-            if (!Convert.IsDBNull(row["Ngày kết thúc"]))
+				this.SubID = row["Mã môn học"].ToString();
+				this.SubName = row["Tên môn học"].ToString();
+				this.Room = row["Phòng học"].ToString();
+				if (!Convert.IsDBNull(row["Ngày bắt đầu"]))
+				{
+					this.StartDate = Convert.ToDateTime(row["Ngày bắt đầu"]);
+				}
+				if (!Convert.IsDBNull(row["Ngày kết thúc"]))
+				{
+					this.EndDate = Convert.ToDateTime(row["Ngày kết thúc"]);
+				}
+				this.Period = row["Tiết"].ToString();
+				this.Day = row["Thứ"].ToString();
+			}
+            catch
             {
-                this.EndDate = Convert.ToDateTime(row["Ngày kết thúc"]);
+
             }
-            this.Period = row["Tiết"].ToString();
-            this.Day = row["Thứ"].ToString();
         }
 
         public override string ToString()

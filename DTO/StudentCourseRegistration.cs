@@ -35,22 +35,29 @@ namespace QLSV.DTO
 
 		public StudentCourseRegistration(DataRow row)
 		{
-			this.CourseName = row["Tên môn học"].ToString();
-			this.CourseId = row["Mã lớp"].ToString();
-			this.LecturerName = row["Tên giảng viên"].ToString();
-			this.NumberOfCredits = int.Parse(row["Số tín chỉ"].ToString());
-			this.Day = row["Thứ"].ToString();
-			this.Period = row["Tiết"].ToString();
-			this.ClassRoom = row["Phòng"].ToString();
-			this.Semester = row["Học kì"].ToString();
-			this.SchoolYear = row["Năm học"].ToString();
-			if (!Convert.IsDBNull(row["Ngày bắt đầu"]))
+			try
 			{
-				this.StartDate = Convert.ToDateTime(row["Ngày bắt đầu"]);
+				this.CourseName = row["Tên môn học"].ToString();
+				this.CourseId = row["Mã lớp"].ToString();
+				this.LecturerName = row["Tên giảng viên"].ToString();
+				this.NumberOfCredits = int.Parse(row["Số tín chỉ"].ToString());
+				this.Day = row["Thứ"].ToString();
+				this.Period = row["Tiết"].ToString();
+				this.ClassRoom = row["Phòng"].ToString();
+				this.Semester = row["Học kì"].ToString();
+				this.SchoolYear = row["Năm học"].ToString();
+				if (!Convert.IsDBNull(row["Ngày bắt đầu"]))
+				{
+					this.StartDate = Convert.ToDateTime(row["Ngày bắt đầu"]);
+				}
+				if (!Convert.IsDBNull(row["Ngày kết thúc"]))
+				{
+					this.EndDate = Convert.ToDateTime(row["Ngày kết thúc"]);
+				}
 			}
-			if (!Convert.IsDBNull(row["Ngày kết thúc"]))
+			catch
 			{
-				this.EndDate = Convert.ToDateTime(row["Ngày kết thúc"]);
+
 			}
 		}
 	}
