@@ -17,7 +17,7 @@ namespace QLSV.DAO
 
         private DataProvider() { }
 
-        private string connectionStr = "Server = localhost; Port = 5432; Database = StudentManagement; User Id = postgres; Password = quark1412;";
+        public string connectionStr = "Server = localhost; Port = 5433; Database = StudentManagement; User Id = postgres; Password = 1111;";
 
         public DataTable ExcuteQuery(string query, object[] parameters = null)
         {
