@@ -28,6 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Exit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -82,10 +85,8 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btn_Import = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -99,15 +100,13 @@
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 89);
+            this.label2.Location = new System.Drawing.Point(73, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 27);
             this.label2.TabIndex = 1;
@@ -369,7 +368,7 @@
             // 
             // txb_password
             // 
-            this.txb_password.Location = new System.Drawing.Point(224, 86);
+            this.txb_password.Location = new System.Drawing.Point(224, 88);
             this.txb_password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txb_password.Name = "txb_password";
             this.txb_password.Size = new System.Drawing.Size(263, 34);
@@ -453,6 +452,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btn_Import);
             this.groupBox6.Controls.Add(this.button1);
             this.groupBox6.Controls.Add(this.txb_find);
             this.groupBox6.Controls.Add(this.btn_Find);
@@ -469,7 +469,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(268, 33);
+            this.button1.Location = new System.Drawing.Point(295, 33);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 43);
@@ -500,7 +500,7 @@
             // 
             // btn_Exitt
             // 
-            this.btn_Exitt.Location = new System.Drawing.Point(531, 33);
+            this.btn_Exitt.Location = new System.Drawing.Point(658, 33);
             this.btn_Exitt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Exitt.Name = "btn_Exitt";
             this.btn_Exitt.Size = new System.Drawing.Size(107, 43);
@@ -658,8 +658,6 @@
             // 
             this.tabPage4.Controls.Add(this.button3);
             this.tabPage4.Controls.Add(this.groupBox8);
-            this.tabPage4.Controls.Add(this.button2);
-            this.tabPage4.Controls.Add(this.groupBox7);
             this.tabPage4.Location = new System.Drawing.Point(4, 36);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
@@ -682,61 +680,41 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.dataGridView4);
-            this.groupBox8.Location = new System.Drawing.Point(0, 313);
+            this.groupBox8.Controls.Add(this.chart1);
+            this.groupBox8.Location = new System.Drawing.Point(0, 4);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox8.Size = new System.Drawing.Size(1235, 225);
+            this.groupBox8.Size = new System.Drawing.Size(1235, 534);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Thống kê tài khoản";
             // 
-            // dataGridView4
+            // chart1
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(5, 32);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(351, 189);
-            this.dataGridView4.TabIndex = 0;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(6, 32);
+            this.chart1.Name = "chart1";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(1229, 502);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
             // 
-            // button2
+            // btn_Import
             // 
-            this.button2.Location = new System.Drawing.Point(5, 252);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(231, 43);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Xem thống kê";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.dataGridView3);
-            this.groupBox7.Location = new System.Drawing.Point(5, 22);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox7.Size = new System.Drawing.Size(1235, 225);
-            this.groupBox7.TabIndex = 2;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Thống kê học phần";
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(5, 32);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(346, 189);
-            this.dataGridView3.TabIndex = 0;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            this.btn_Import.Location = new System.Drawing.Point(478, 32);
+            this.btn_Import.Name = "btn_Import";
+            this.btn_Import.Size = new System.Drawing.Size(110, 44);
+            this.btn_Import.TabIndex = 5;
+            this.btn_Import.Text = "Import";
+            this.btn_Import.UseVisualStyleBackColor = true;
+            this.btn_Import.Click += new System.EventHandler(this.btn_Import_Click);
             // 
             // ManagerForm
             // 
@@ -748,6 +726,7 @@
             this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lí";
+            this.Load += new System.EventHandler(this.ManagerForm_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -765,9 +744,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -824,13 +801,11 @@
         private System.Windows.Forms.Button btn_editt;
         private System.Windows.Forms.Button btn_addd;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button btn_Import;
     }
 }

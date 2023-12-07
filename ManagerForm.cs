@@ -18,6 +18,7 @@ using OfficeOpenXml;
 using System.IO;
 using OfficeOpenXml.Style;
 using LicenseContext = OfficeOpenXml.LicenseContext;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QLSV
 {
@@ -47,41 +48,41 @@ namespace QLSV
             }
         }
 
-        private void UpdateStatistics()
-        {
-            try
-            {
-                DataTable data = AdminCourseDAO.Instance.GetCourseData();
+        //private void UpdateStatistics()
+        //{
+        //    try
+        //    {
+        //        DataTable data = AdminCourseDAO.Instance.GetCourseData();
 
-                // Thực hiện thống kê dựa trên dữ liệu khóa học
-                int totalCourses = data.Rows.Count;
+        //        // Thực hiện thống kê dựa trên dữ liệu khóa học
+        //        int totalCourses = data.Rows.Count;
 
-                double averageCredits = 0;
-                if (totalCourses > 0)
-                {
-                    double totalCredits = data.AsEnumerable().Sum(row => row.Field<int>("numberofcredits"));
-                    averageCredits = totalCredits / totalCourses;
-                }
+        //        double averageCredits = 0;
+        //        if (totalCourses > 0)
+        //        {
+        //            double totalCredits = data.AsEnumerable().Sum(row => row.Field<int>("numberofcredits"));
+        //            averageCredits = totalCredits / totalCourses;
+        //        }
 
-                // Tạo DataTable mới để lưu trữ thống kê
-                DataTable statisticsTable = new DataTable();
-                statisticsTable.Columns.Add("Statistic", typeof(string));
-                statisticsTable.Columns.Add("Value", typeof(string));
+        //        // Tạo DataTable mới để lưu trữ thống kê
+        //        DataTable statisticsTable = new DataTable();
+        //        statisticsTable.Columns.Add("Statistic", typeof(string));
+        //        statisticsTable.Columns.Add("Value", typeof(string));
 
-                // Thêm các dòng cho từng thống kê
-                statisticsTable.Rows.Add("Total Courses", totalCourses.ToString());
-                statisticsTable.Rows.Add("Average Credits", averageCredits.ToString("F2"));
+        //        // Thêm các dòng cho từng thống kê
+        //        statisticsTable.Rows.Add("Total Courses", totalCourses.ToString());
+        //        statisticsTable.Rows.Add("Average Credits", averageCredits.ToString("F2"));
 
-                // Bạn có thể thêm các dòng khác cho thống kê bổ sung
+        //        // Bạn có thể thêm các dòng khác cho thống kê bổ sung
 
-                // Gán DataTable cho dataGridView3
-                dataGridView3.DataSource = statisticsTable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi cập nhật thống kê: " + ex.Message);
-            }
-        }
+        //        // Gán DataTable cho dataGridView3
+        //        dataGridView3.DataSource = statisticsTable;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Lỗi khi cập nhật thống kê: " + ex.Message);
+        //    }
+        //}
 
         public string ID { get; set; }
 
@@ -426,8 +427,17 @@ namespace QLSV
                 txb_classroom.Text = classroom;
                 txb_semester.Text = semester;
                 txb_syear.Text = schoolYear;
-                dtpstartday.Text = startDay;
-                dtpendday.Text = endDay;
+                if (DateTime.TryParse(startDay, out DateTime parsedStartDay))
+                {
+                    dtpstartday.Value = parsedStartDay;
+                }
+               
+
+                if (DateTime.TryParse(endDay, out DateTime parsedEndDay))
+                {
+                    dtpendday.Value = parsedEndDay;
+                }
+               
             }
         }
 
@@ -470,7 +480,13 @@ namespace QLSV
                 return;
             }
 
-            CourseDTO foundCourse = AdminCourseDAO.Instance.SearchCourse(courseId, courseName);
+            
+            CourseDTO foundCourseInDatabase = AdminCourseDAO.Instance.SearchCourse(courseId, courseName);
+            string filePath = "C:\\Users\\YA DAT\\Documents";
+
+            CourseDTO foundCourseInExcel = AdminCourseDAO.Instance.SearchCourseInExcel(filePath, courseId, courseName);
+
+            CourseDTO foundCourse = foundCourseInDatabase ?? foundCourseInExcel;
 
             if (foundCourse != null)
             {
@@ -495,7 +511,7 @@ namespace QLSV
         {
             try
             {
-                string filterText = txb_find.Text.Trim();
+               string filterText = txb_find.Text.Trim();
 
                 DataView dv = new DataView(AdminCourseDAO.Instance.GetCourseData());
 
@@ -508,6 +524,25 @@ namespace QLSV
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+            //try
+            //{
+            //    string filterText = txb_find.Text.Trim();
+
+            //    DataView dvDatabase = new DataView(AdminCourseDAO.Instance.GetCourseData());
+            //    DataView dvExcel = new DataView(AdminCourseDAO.Instance.GetDataFromExcel("C:\\Users\\YA DAT\\Documents"));
+
+            //    dvDatabase.RowFilter = string.Format("Id LIKE '%{0}%' OR Name LIKE '%{0}%'", filterText);
+            //    dvExcel.RowFilter = string.Format("Id LIKE '%{0}%' OR Name LIKE '%{0}%'", filterText);
+
+            //    DataTable combinedDataTable = dvDatabase.ToTable().Copy();
+            //    combinedDataTable.Merge(dvExcel.ToTable());
+
+            //    dataGridView2.DataSource = combinedDataTable;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error: " + ex.Message);
+            //}
         }
 
         private void btn_ExportToPdf_Click(object sender, EventArgs e)
@@ -576,81 +611,138 @@ namespace QLSV
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            UpdateStatistics();
-        }
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    UpdateStatistics();
+        //}
 
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem DataGridView có dữ liệu không
-            if (dataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có dữ liệu để thống kê.");
-                return;
-            }
+            ChartArea chartArea = chart1.ChartAreas[0];
+            Series series = chart1.Series[0];
 
-            // Khởi tạo DataTable mới để lưu thông tin thống kê
-            DataTable statisticsTable = new DataTable();
+            // Khai báo và khởi tạo số lượng tài khoản cho từng loại
+            int studentCount = 0;
+            int teacherCount = 0;
 
-            // Thêm cột "Role" và "Số Lượng" vào DataTable
-            statisticsTable.Columns.Add("Role", typeof(string));
-            statisticsTable.Columns.Add("Số Lượng", typeof(int));
-
-            // Duyệt qua từng dòng trong DataGridView
+            series.Name = "Số lượng";
+            // Lặp qua từng hàng trong DataGridView
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                // Kiểm tra xem ô "role" có giá trị không
-                if (row.Cells["role"].Value != null)
+                if (row.DataBoundItem != null)
                 {
                     // Lấy giá trị từ cột "Role"
-                    string role = row.Cells["role"].Value.ToString();
+                    string role = row.Cells["role"].Value?.ToString();
 
-                    // Tìm xem "Role" đã có trong DataTable chưa
-                    DataRow existingRow = statisticsTable.AsEnumerable()
-                        .FirstOrDefault(r => r.Field<string>("Role") == role);
-
-                    // Nếu đã có, tăng giá trị "Số Lượng" lên 1
-                    if (existingRow != null)
+                    // Kiểm tra xem role có chứa student hoặc teacher không
+                    if (role.Contains("student"))
                     {
-                        existingRow.SetField("Số Lượng", existingRow.Field<int>("Số Lượng") + 1);
+                        studentCount++;
                     }
-                    // Nếu chưa có, thêm một dòng mới với "Role" và "Số Lượng" là 1
-                    else
+                    else if (role.Contains("teacher"))
                     {
-                        statisticsTable.Rows.Add(role, 1);
+                        teacherCount++;
                     }
                 }
             }
 
+            // Xóa dữ liệu cũ trước khi thêm dữ liệu mới
+            series.Points.Clear();
 
-            // Hiển thị DataTable kết quả lên DataGridView4
-            dataGridView4.DataSource = statisticsTable;
+            // Thêm dữ liệu vào biểu đồ
+            series.Points.AddXY("student", studentCount);
+            series.Points.AddXY("teacher", teacherCount);
+
+
+
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-        private void SetColumnHeaders()
+        private void SetColumnHeaders(string columnName, string headerText)
         {
-            dataGridView2.Columns["id"].HeaderText = "Mã môn học";
-            dataGridView2.Columns["name"].HeaderText = "Tên môn học";
-            dataGridView2.Columns["numberofcredits"].HeaderText = "Số tín chỉ";
-            dataGridView2.Columns["schoolday"].HeaderText = "Ngày học";
-            dataGridView2.Columns["lesson"].HeaderText = "Tiết học";
-            dataGridView2.Columns["classroom"].HeaderText = "Phòng học";
-            dataGridView2.Columns["semester"].HeaderText = "Học kỳ";
-            dataGridView2.Columns["schoolyear"].HeaderText = "Năm học";
-            dataGridView2.Columns["startday"].HeaderText = "Ngày bắt đầu";
-            dataGridView2.Columns["endday"].HeaderText = "Ngày kết thúc";
+            if (dataGridView2.Columns.Contains(columnName))
+            {
+                dataGridView2.Columns[columnName].HeaderText = headerText;
+            }
         }
 
         private void dataGridView2_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            SetColumnHeaders();
+            SetColumnHeaders("id", "Mã môn học");
+            SetColumnHeaders("name", "Tên môn học");
+            SetColumnHeaders("numberofcredits", "Số tín chỉ");
+            SetColumnHeaders("schoolday", "Ngày học");
+            SetColumnHeaders("lesson", "Tiết học");
+            SetColumnHeaders("classroom", "Phòng học");
+            SetColumnHeaders("semester", "Học kỳ");
+            SetColumnHeaders("schoolyear", "Năm học");
+            SetColumnHeaders("startday", "Ngày bắt đầu");
+            SetColumnHeaders("endday", "Ngày kết thúc");
         }
 
+        private void ManagerForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Import_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Hoặc LicenseContext.Commercial nếu bạn đang sử dụng phiên bản thương mại
+
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+                openFileDialog.Title = "Import Excel File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    FileInfo file = new FileInfo(filePath);
+
+                    using (ExcelPackage package = new ExcelPackage(file))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Lấy worksheet đầu tiên, có thể thay đổi nếu cần
+
+                        int rowCount = worksheet.Dimension.Rows;
+                        int colCount = worksheet.Dimension.Columns;
+
+                        DataTable dt = new DataTable();
+
+                        // Đọc dữ liệu từ Excel vào DataTable
+                        for (int col = 1; col <= colCount; col++)
+                        {
+                            dt.Columns.Add(worksheet.Cells[1, col].Value.ToString());
+                        }
+
+                        for (int row = 2; row <= rowCount; row++)
+                        {
+                            DataRow excelRow = dt.NewRow();
+                            for (int col = 1; col <= colCount; col++)
+                            {
+                                excelRow[col - 1] = worksheet.Cells[row, col].Value;
+                            }
+                            dt.Rows.Add(excelRow);
+                        }
+
+                        // Hiển thị dữ liệu trong DataGridView
+                        dataGridView2.DataSource = dt;
+                    }
+
+                    MessageBox.Show("Import thành công!");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ
+                MessageBox.Show("Đã xảy ra lỗi khi nhập từ Excel: " + ex.Message);
+            }
+
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using QLSV.DTO;
 using System.Windows.Input;
+using OfficeOpenXml;
+using System.IO;
 
 namespace QLSV.DAO
 {
@@ -154,17 +156,84 @@ namespace QLSV.DAO
                                 startday = Convert.ToDateTime(reader["startday"]),
                                 endday = Convert.ToDateTime(reader["endday"])
                             };
-                            return course; // Trả về đối tượng duy nhất tìm thấy
+                            return course; 
                         }
                     }
                 }
             }
 
-            return null; // Trả về null nếu không tìm thấy
+            return null; 
+        }
+        public CourseDTO SearchCourseInExcel(string filePath, string courseId, string courseName)
+        {
+            DataTable dataFromExcel = GetDataFromExcel(filePath); 
+
+            DataRow[] foundRows = dataFromExcel.Select($"id = '{courseId}' AND name = '{courseName}'");
+
+            if (foundRows.Length > 0)
+            {
+                DataRow row = foundRows[0];
+                CourseDTO course = new CourseDTO
+                {
+                    id = row["id"].ToString(),
+                    name = row["Name"].ToString(),
+                    numberofcredits = Convert.ToInt32(row["numberofcredits"]),
+                    schoolday = row["schoolday"].ToString(),
+                    lesson = row["lesson"].ToString(),
+                    classroom = row["classroom"].ToString(),
+                    semester = row["semester"].ToString(),
+                    schoolyear = row["schoolyear"].ToString(),
+                    startday = Convert.ToDateTime(row["startday"]),
+                    endday = Convert.ToDateTime(row["endday"]),
+                };
+                return course;
+            }
+
+            return null;
         }
 
+        public DataTable GetDataFromExcel(string filePath)
+        {
+            DataTable dt = new DataTable();
 
+            try
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
 
+                FileInfo file = new FileInfo(filePath);
+
+                using (ExcelPackage package = new ExcelPackage(file))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; 
+
+                    int rowCount = worksheet.Dimension.Rows;
+                    int colCount = worksheet.Dimension.Columns;
+
+                    // Đọc dữ liệu từ Excel vào DataTable
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        dt.Columns.Add(worksheet.Cells[1, col].Value.ToString());
+                    }
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        DataRow excelRow = dt.NewRow();
+                        for (int col = 1; col <= colCount; col++)
+                        {
+                            excelRow[col - 1] = worksheet.Cells[row, col].Value;
+                        }
+                        dt.Rows.Add(excelRow);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine("Đã xảy ra lỗi khi đọc từ Excel: " + ex.Message);
+            }
+
+            return dt;
+        }
 
         public DataTable GetCourseData()
         {

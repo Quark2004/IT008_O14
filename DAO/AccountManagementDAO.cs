@@ -49,7 +49,7 @@ namespace QLSV.DAO
                             string hashedPassword = HashPassword(account.Password);
 
                             command.Parameters.AddWithValue("@username", account.Username);
-                            command.Parameters.AddWithValue("@password", account.Password);
+                            command.Parameters.AddWithValue("@password", hashedPassword);
 
                             int rowsAffected = command.ExecuteNonQuery();
 
@@ -75,7 +75,7 @@ namespace QLSV.DAO
                         {
                             string hashedPassword = HashPassword(account.Password);
 
-                            command.Parameters.AddWithValue("@password", account.Password);
+                            command.Parameters.AddWithValue("@password", hashedPassword);
                             command.Parameters.AddWithValue("@username", account.Username);
 
                             int rowsAffected = command.ExecuteNonQuery();
