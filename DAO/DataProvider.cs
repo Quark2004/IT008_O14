@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-using System;
 using System.Data;
 using System.Linq;
 
@@ -17,7 +16,7 @@ namespace QLSV.DAO
 
         private DataProvider() { }
 
-        public string connectionStr = "Server = localhost; Port = 5433; Database = StudentManagement; User Id = postgres; Password = 1111;";
+        public string connectionStr = "Server = localhost; Port = 5432; Database = StudentManagement; User Id = postgres; Password = 123456;";
 
         public DataTable ExcuteQuery(string query, object[] parameters = null)
         {
