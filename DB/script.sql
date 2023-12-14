@@ -663,23 +663,23 @@ INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, a
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('QL', 'Phạm Hồng Oanh', '1976-12-03 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
 
 
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student1', '21521601');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student2', '21521602');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student3', '21521603');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student4', '21521604');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student5', '21521605');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student6', '21521606');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student7', '21521607');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student8', '21521608');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student9', '21521609');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('student10', '21521610');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher1', 'GV1');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher2', 'GV2');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher3', 'GV3');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521601', '21521601');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521602', '21521602');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521603', '21521603');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521604', '21521604');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521605', '21521605');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521606', '21521606');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521607', '21521607');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521608', '21521608');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521609', '21521609');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521610', '21521610');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv1', 'GV1');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv2', 'GV2');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv3', 'GV3');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv4', 'GV4');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv5', 'GV5');
+INSERT INTO public.useracc (idaccount, idprofile) VALUES ('gv6', 'GV6');
 INSERT INTO public.useracc (idaccount, idprofile) VALUES ('admin', 'QL');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher4', 'GV4');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher5', 'GV5');
-INSERT INTO public.useracc (idaccount, idprofile) VALUES ('teacher6', 'GV6');
 
 
 INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O17', 'Cơ sở dữ liệu', 3, '3', '1234', 'B3.12', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
