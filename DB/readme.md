@@ -1,12 +1,12 @@
-# Database with SQL server
+# Database
 
-## Cách dùng
+## Static data
 
-B1. Ctrl + A
+-   Các data từ dòng 1 -> 723 là data có sẵn trong hệ thống nên cần được chèn vào
 
-B2. F5 (Execute query)
+![Alt text](./image/staticData.png)
 
-=> Để nạp database vào DB, sau này sẽ nạp bằng giao diện hoặc import từ file
+-   Các data sau dòng 729 là các data được thêm vào khi người dùng tương tác với hệ thống
 
 ## Diagram
 
@@ -16,17 +16,32 @@ B2. F5 (Execute query)
 
 ### Login Proc
 
-```
-Login (username, password)
-    if (success)
-        return MSSV
+-   Input: username
+
+-   Output: id, password, role
+
+_Note: password trả về đã được **mã hóa** với Bcrypt_
+
+```SQL
+CREATE OR REPLACE FUNCTION "Login"(_username VARCHAR(100))
+RETURNS TABLE("id" VARCHAR(100), "password" VARCHAR(1000), "role" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT Profile.id as "MSSV" ,  Account.password as "Password", Account.role as "Role"
+    FROM Account, Profile, UserAcc
+    WHERE   Account.username = UserAcc.idAccount AND
+            UserAcc.idProfile = Profile.id AND
+            username = _username;
+END;
+$$ LANGUAGE plpgsql;
+
 
 ```
 
 _Example:_
 
 ```SQL
-EXEC Login @username = N'student1' , @password = N'123456'
+SELECT * FROM "Login"('student1');
 ```
 
 ![Demo login](./image/loginProc.png)
@@ -36,17 +51,60 @@ EXEC Login @username = N'student1' , @password = N'123456'
 Load thông tin của user
 
 ```SQL
-EXEC LoadProfileById @id = N'21521601'
+CREATE OR REPLACE FUNCTION LoadProfileById(_id VARCHAR(100))
+RETURNS TABLE("MSSV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100), "Ảnh đại diện" BYTEA) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id as "MSSV",
+           name as "Tên",
+           birthday as "Ngày sinh",
+           gender as "Giới tính",
+           level as "Bậc đào tạo",
+           trainingSystem as "Hệ đào tạo",
+           avatar as "Ảnh đại diện"
+    FROM Profile
+    WHERE id = _id;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM LoadProfileById('21521601');
 ```
 
 ![LoadProfileById demo](./image/LoadProfileByIdProc.png)
 
 ### GetScheduleByID
 
-Get thời khóa biểu của user
+Lấy thời khóa biểu của user
 
--   Gồm sinh viên or giảng viên
--   Gồm các môn đã đăng kí học (được phân công giảng dạy)
+```SQL
+CREATE OR REPLACE FUNCTION GetScheduleByID(_id VARCHAR(100))
+RETURNS TABLE("Mã môn học" VARCHAR(100), "Tên môn học" VARCHAR(100), "Phòng học" VARCHAR(100), "Ngày bắt đầu" DATE, "Ngày kết thúc" DATE, "Thứ" VARCHAR(100), "Tiết" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT Course.id as "Mã môn học",
+           Course.name as "Tên môn học",
+           Course.classroom as "Phòng học",
+           Course.startDay as "Ngày bắt đầu",
+           Course.endDay as "Ngày kết thúc",
+           Course.schoolDay as "Thứ",
+           Course.lesson as "Tiết"
+    FROM Schedule, Course
+    WHERE Schedule.idProfile = _id
+        AND Schedule.idCourse = Course.id
+
+    -- Sắp xếp tăng dần để vẽ thời khóa biểu
+
+	ORDER BY Course.schoolDay ASC,
+            Course.lesson ASC;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
 
 ```SQL
 EXEC GetScheduleByID @id = N'21521601'
@@ -56,20 +114,99 @@ EXEC GetScheduleByID @id = N'21521601'
 
 ### GetListRegisterCourse
 
-Get danh sách tất cả môn học để đăng kí học phần
+Lấy danh sách tất cả môn học để đăng kí học phần
+
+_Note: Nếu quá hạn đăng kí, sẽ không load được danh sách_
 
 ```SQL
-EXEC GetListRegisterCourse
+CREATE OR REPLACE FUNCTION GetListRegisterCourse()
+RETURNS TABLE(
+    "Tên môn học" VARCHAR(100),
+    "Mã lớp" VARCHAR(100),
+    "Tên giảng viên" VARCHAR(100),
+    "Số tín chỉ" INT,
+    "Thứ" VARCHAR(100),
+    "Tiết" VARCHAR(100),
+    "Phòng" VARCHAR(100),
+    "Học kì" VARCHAR(100),
+    "Năm học" VARCHAR(100),
+    "Ngày bắt đầu" DATE,
+    "Ngày kết thúc" DATE
+) AS $$
+BEGIN
+
+    -- Nếu quá thời hạn đăng kí học phần sẽ không load được kết quả
+    IF CURRENT_TIMESTAMP > (SELECT endTime FROM RegistrationPeriod ORDER BY id DESC LIMIT 1) THEN
+        RETURN;
+    ELSE
+        RETURN QUERY
+        SELECT Course.name as "Tên môn học",
+               Course.id as "Mã lớp",
+               Profile.name as "Tên giảng viên",
+               Course.numberOfCredits as "Số tín chỉ",
+               Course.schoolDay as "Thứ",
+               Course.lesson as "Tiết",
+               Course.classroom as "Phòng",
+               Course.semester as "Học kì",
+               Course.schoolYear as "Năm học",
+               Course.startDay as "Ngày bắt đầu",
+               Course.endDay as "Ngày kết thúc"
+        FROM Schedule
+        JOIN Course ON Schedule.idCourse = Course.id
+        JOIN Profile ON Schedule.idProfile = Profile.id
+        JOIN UserAcc ON Profile.id = UserAcc.idProfile
+        JOIN Account ON UserAcc.idAccount = Account.username
+        WHERE Account.role = 'teacher'
+        ORDER BY Course.name, Course.id;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetListRegisterCourse();
 ```
 
 ![GetListRegisterCourse demo](./image/GetListRegisterCourseProc.png)
 
 ### GetLearningOutcomes
 
-Get kết quả học tập của sinh viên
+Load kết quả học tập của sinh viên
 
 ```SQL
-EXEC GetLearningOutcomes @id = N'21521601'
+CREATE OR REPLACE FUNCTION GetLearningOutcomes(_id VARCHAR(100))
+RETURNS TABLE("Mã học phần" VARCHAR(100), "Tên học phần" VARCHAR(100), "Tín chỉ" INT, "Điểm quá trình" FLOAT, "Điểm giữa kì" FLOAT, "Điểm thực hành" FLOAT, "Điểm cuối kì" FLOAT, "Điểm học phần" FLOAT, "Học kì" VARCHAR(100), "Năm học" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT Course.id as "Mã học phần",
+           Course.name as "Tên học phần",
+           Course.numberOfCredits as "Tín chỉ",
+           Score.processScore as "Điểm quá trình",
+           Score.midtermScore as "Điểm giữa kì",
+           Score.practiceScore as "Điểm thực hành",
+           Score.finalScore as "Điểm cuối kì",
+		   cast((Score.processScore * Score.ratioProcess
+               + Score.midtermScore * Score.ratioMidterm
+               + Score.practiceScore * Score.ratioPractice
+               + Score.finalScore * Score.ratioFinal) as numeric(10, 2))::float as "Điểm học phần",
+           Course.semester as "Học kì",
+           Course.schoolYear as "Năm học"
+    FROM Schedule
+    JOIN Course ON Schedule.idCourse = Course.id
+    JOIN Score ON Schedule.idScore = Score.id
+    WHERE Schedule.idProfile = _id;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetLearningOutcomes('21521601');
 ```
 
 ![GetLearningOutcomes demo](./image/GetLearningOutcomes.png)
@@ -79,7 +216,38 @@ EXEC GetLearningOutcomes @id = N'21521601'
 Get danh sách lớp đang giảng dạy của giáo viên
 
 ```SQL
-EXEC GetClassInCharge @id = N'GV2'
+CREATE OR REPLACE FUNCTION GetClassInCharge(_id VARCHAR(100))
+RETURNS TABLE("Mã môn học" VARCHAR(100), "Tên môn học" VARCHAR(100), "Phòng học" VARCHAR(100), "Ngày bắt đầu" DATE, "Ngày kết thúc" DATE, "Thứ" VARCHAR(100), "Tiết" VARCHAR(100), "SLSV" BIGINT, "Ghi chú" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT Course.id as "Mã môn học",
+           Course.name as "Tên môn học",
+		   Course.classroom as "Phòng học",
+           Course.startDay as "Ngày bắt đầu",
+           Course.endDay as "Ngày kết thúc",
+           Course.schoolDay as "Thứ",
+           Course.lesson as "Tiết",
+           COUNT(*) as "SLSV",
+           Schedule.note as "Ghi chú"
+    FROM Schedule
+    JOIN Course ON Schedule.idCourse = Course.id
+    WHERE NOT Schedule.idProfile = _id
+      AND Schedule.idCourse IN (
+        SELECT Course.id
+        FROM Schedule
+        JOIN Course ON Schedule.idCourse = Course.id
+        WHERE Schedule.idProfile = _id
+      )
+    GROUP BY Course.id, Course.name, Course.schoolDay, Course.lesson, Schedule.note, Course.classroom, Course.startDay, Course.endDay;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetClassInCharge('GV1');
 ```
 
 ![GetClassInCharge demo](./image/GetClassInCharge.png)
@@ -89,133 +257,534 @@ EXEC GetClassInCharge @id = N'GV2'
 Get danh sách sinh viên của một lớp
 
 ```SQL
-EXEC GetListClass @idCourse = N'IT003.1'
+CREATE OR REPLACE FUNCTION GetListClass(_idCourse VARCHAR(100))
+RETURNS TABLE("MSSV" VARCHAR(100), "Tên sinh viên" VARCHAR(100), "Điểm quá trình" FLOAT, "Điểm giữa kì" FLOAT, "Điểm thực hành" FLOAT, "Điểm cuối kì" FLOAT, "Điểm học phần" FLOAT) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT Profile.id as "MSSV",
+           Profile.name as "Tên sinh viên",
+           Score.processScore as "Điểm quá trình",
+           Score.midtermScore as "Điểm giữa kì",
+           Score.practiceScore as "Điểm thực hành",
+           Score.finalScore as "Điểm cuối kì",
+           cast((Score.processScore * Score.ratioProcess
+               + Score.midtermScore * Score.ratioMidterm
+               + Score.practiceScore * Score.ratioPractice
+               + Score.finalScore * Score.ratioFinal) as numeric(10, 2))::float as "Điểm học phần"
+    FROM Schedule
+    JOIN Profile ON Schedule.idProfile = Profile.id
+    JOIN Score ON Schedule.idScore = Score.id
+    WHERE Schedule.idCourse = _idCourse
+    ORDER BY Profile.id;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetListClass('IT004.O14');
 ```
 
 ![GetListClass demo](./image/GetListClass.png)
 
+### GetListRegisteredByID
+
+Get danh sách các môn đã đăng kí học phần
+
+```SQL
+CREATE OR REPLACE FUNCTION GetListRegisteredByID(
+    IN v_id VARCHAR(100)
+)
+RETURNS TABLE("Tên môn học" VARCHAR(100), "Mã lớp" VARCHAR(100), "Tên giảng viên" VARCHAR(100), "Số tín chỉ" INT, "Thứ" VARCHAR(100), "Tiết" VARCHAR(100), "Phòng" VARCHAR(100), "Học kì" VARCHAR(100), "Năm học" VARCHAR(100), "Ngày bắt đầu" DATE, "Ngày kết thúc" DATE) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+		"GLRC"."Tên môn học",
+		"GLRC"."Mã lớp",
+		"GLRC"."Tên giảng viên",
+		"GLRC"."Số tín chỉ",
+		"GLRC"."Thứ",
+		"GLRC"."Tiết",
+		"GLRC"."Phòng",
+		"GLRC"."Học kì",
+		"GLRC"."Năm học",
+		"GLRC"."Ngày bắt đầu",
+		"GLRC"."Ngày kết thúc"
+	FROM GetListRegisterCourse() AS "GLRC"
+	JOIN RegisterCourse ON RegisterCourse.idCourse = "GLRC"."Mã lớp"
+	WHERE
+        RegisterCourse.idProfile = v_id
+    ORDER BY
+        "GLRC"."Thứ" ASC,
+		"GLRC"."Tiết" ASC;
+
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetListRegisteredByID('21521601');
+```
+
+![GetListRegisteredByID demo](./image/GetListRegisteredByID.png)
+
+### GetListRegistrationPeriod
+
+Get danh sách thời gian đăng kí học phần
+
+```SQL
+CREATE OR REPLACE FUNCTION GetListRegistrationPeriod()
+RETURNS TABLE("Bắt đầu đăng kí học phần" TIMESTAMP, "Kết thúc đăng kí học phần" TIMESTAMP) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT startTime AS "Bắt đầu đăng kí học phần", endTime AS "Kết thúc đăng kí học phần"
+	FROM RegistrationPeriod
+    ORDER BY endTime DESC;
+
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT * FROM GetListRegistrationPeriod();
+```
+
+![GetListRegistrationPeriod demo](./image/GetListRegistrationPeriod.png)
+
 ## CRUD
+
+-   Vì `ExcuteNonQuery` của `Npgsql C#` luôn return `-1` nếu **_success_** ngược lại sẽ `throw error`
+
+-   Để tránh lỗi chương trình do quên dùng `try catch` nên sử dụng `ExcuteScalar` là một phương pháp thay thể
+
+-   `Func` sẽ trả về **1 ô duy nhất**
+    -   nếu **_success_** trả về `true`
+    -   ngược lại sẽ trả về `false`
+
+_Example_
+
+![Crud success](./image/crudSuccess.png)
+![Crud fail](./image/crudFail.png)
 
 ### InsertAcc
 
 Tạo account cho sinh viên có [MSSV]
 
-```
-InsertAcc(username, password, id)
-    if exist (username or id) return
+-   Input: username, password, id
+-   Output: username or id exist => true, else false
 
-    insert [username, password] to Account
-    insert [id] to Profile
-    insert [username, id] to UserAcc
-
-```
+**Khi đăng kí account, cần phải hash password**
 
 ```SQL
-EXEC InsertAcc  @username = N'student0',
-                @password = N'123456',
-                @id = N'21521600'
+CREATE OR REPLACE FUNCTION InsertAcc(
+    IN v_username VARCHAR(100),
+    IN v_password VARCHAR(1000),
+    IN v_id VARCHAR(100)
+)
+RETURNS Bool AS $$
+BEGIN
+    -- Check username exist
+
+    IF (SELECT COUNT(*) FROM Account WHERE username = v_username) > 0 THEN
+        RETURN false;
+    END IF;
+
+    -- Check id exist
+
+    IF (SELECT COUNT(*) FROM Profile WHERE id = v_id) > 0 THEN
+        RETURN false;
+    END IF;
+
+    INSERT INTO Account(username, password)
+    VALUES (v_username, v_password);
+
+    INSERT INTO Profile(id)
+    VALUES (v_id);
+
+    INSERT INTO UserAcc(idAccount, idProfile)
+    VALUES (v_username, v_id);
+
+    RETURN true;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-![InsertAcc demo](./image/InsertAcc.png)
+_Example:_
+
+```SQL
+SELECT InsertAcc('student11', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', '21521611');
+```
+
+![InsertAcc success](./image/crudSuccess.png)
+
+**username or id exist**
+
+```SQL
+SELECT InsertAcc('student01', '123456', '21521601');
+```
+
+![Crud fail](./image/crudFail.png)
+
+### InsertRegistrationPeriod
+
+Set thời gian đăng kí học phần
+
+```SQL
+CREATE OR REPLACE FUNCTION InsertRegistrationPeriod(
+    IN _startTime TIMESTAMP,
+    IN _endTime TIMESTAMP
+)
+RETURNS Bool AS $$
+DECLARE
+    lastEndTime TIMESTAMP;
+BEGIN
+    -- Lấy thời gian đăng kí học phần gần nhất
+
+    SELECT endTime INTO lastEndTime FROM RegistrationPeriod ORDER BY id DESC LIMIT 1;
+
+    -- Thời gian bắt đầu đkhp của lần tiếp theo phải nhỏ hơn thời gian kết thúc của lần dkhp trước đó
+
+    IF _startTime < lastEndTime THEN
+        RETURN false;
+    END IF;
+
+    IF _endTime <= _startTime THEN
+        RETURN false;
+    END IF;
+
+    -- Thời gian kết thúc dkhp phải lớn hơn thời gian hiện tại
+
+    IF _endTime < CURRENT_TIMESTAMP THEN
+        RETURN false;
+    END IF;
+
+    INSERT INTO RegistrationPeriod(startTime, endTime)
+    VALUES (_startTime, _endTime);
+
+    RETURN true;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+select InsertRegistrationPeriod('2023-12-10', '2023-12-20')
+```
 
 ### UpdatePass
 
+**Khi update password cần phải hash password**
+
 ```SQL
-EXEC UpdatePass @username = N'student0',
-                @password = N'0'
+CREATE OR REPLACE FUNCTION UpdatePass(_username VARCHAR(100), _password VARCHAR(1000))
+RETURNS bool AS $$
+BEGIN
+    UPDATE Account
+    SET password = _password
+    WHERE username = _username;
+	return true;
+END;
+$$ LANGUAGE plpgsql;
+
+
 ```
 
-![UpdatePass demo](./image/UpdatePass.png)
+_Example:_
+
+```SQL
+SELECT UpdatePass('student1', '$2a$12$dHT/7Q//H1zIiy6NlOtWu.pNw8IvxoWfx6qERkLH1YyKNZ81YMyve');
+```
 
 ### UpdateProfile
 
-_UI_
-
-![UpdateProfile demo](./image/UpdateProfileGUI.png)
-
-_Database_
-
-![UpdateProfile demo](./image/UpdateProfile.png)
-
-### JoinCourse
-
 ```SQL
-EXEC JoinCourse @idProfile = N'21521600',
-                @idCourse = N'IT003.1'
+CREATE OR REPLACE FUNCTION UpdateProfile(_id VARCHAR(100), _name VARCHAR(100), _birthday TIMESTAMP, _gender VARCHAR(100), _level VARCHAR(100), _trainingSystem VARCHAR(100), _avatar BYTEA)
+RETURNS bool AS $$
+BEGIN
+ 	IF _birthday >= NOW() THEN
+        RETURN false;
+    END IF;
+
+    UPDATE Profile
+    SET name = _name,
+        birthday = _birthday,
+        gender = _gender,
+        level = _level,
+        trainingsystem = _trainingSystem,
+        avatar = _avatar
+    WHERE id = _id;
+	return true;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-![JoinCourse demo](./image/JoinCourse.png)
-
-### LeaveCourse
-
-Hủy môn học đã đăng kí
+_Example:_
 
 ```SQL
-EXEC LeaveCourse    @idProfile = N'21521600',
-                    @idCourse = N'IT003.1'
+SELECT UpdateProfile('21521601', 'Học sinh 1', '2000-01-01', 'Nam', 'Đại học', 'Chính quy', NULL);
 ```
-
-![LeaveCourse demo](./image/LeaveCourse.png)
 
 ### UpdateScore
 
 ```SQL
-EXEC UpdateScore    @idCourse = N'IT003.1',
-                    @idProfile = N'21521600',
-                    @processScore = 8.3,
-                    @midtermScore = 7.1,
-                    @finalScore = 9.2,
-                    @practiceScore = 10
+CREATE OR REPLACE FUNCTION UpdateScore(
+    IN v_idCourse VARCHAR(100),
+    IN v_idProfile VARCHAR(100),
+    IN v_processScore FLOAT,
+    IN v_midtermScore FLOAT,
+    IN v_finalScore FLOAT,
+    IN v_practiceScore FLOAT
+)
+RETURNS BOOLEAN AS $$
+BEGIN
+    IF (
+        v_processScore < 0 OR
+        v_midtermScore < 0 OR
+        v_finalScore < 0 OR
+        v_practiceScore < 0
+    ) THEN
+        RETURN FALSE;
+    END IF;
+
+    UPDATE Score AS s
+    SET processScore = v_processScore,
+        midtermScore = v_midtermScore,
+        finalScore = v_finalScore,
+        practiceScore = v_practiceScore
+    FROM Schedule AS sc
+    WHERE sc.idProfile = v_idProfile
+        AND sc.idCourse = v_idCourse
+        AND sc.idScore = s.id;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-![UpdateScore demo](./image/UpdateScore.png)
+_Example:_
+
+```SQL
+SELECT UpdateScore('IT006.O14', '21521601', 8.3, null, 9.2, null);
+```
 
 ### UpdateRatioScore
 
-Cập nhật tỉ lệ điểm các phần (_điểm quá trình **0.2**, điểm giữa kì **0.3**,..._)
+Cập nhật tỉ lệ các cột điểm
 
 ```SQL
-EXEC UpdateRatioScore @idCourse = N'IT003.1',
-                @ratioProcess = 0.2,
-                @ratioMidterm = 0.3,
-                @ratioFinal = 0.5,
-                @ratioPractice = 0
+CREATE OR REPLACE FUNCTION UpdateRatioScore(_idCourse VARCHAR(100), _ratioProcess FLOAT, _ratioMidterm FLOAT, _ratioFinal FLOAT, _ratioPractice FLOAT)
+RETURNS bool AS $$
+BEGIN
+    IF _ratioProcess > 1 OR _ratioMidterm > 1 OR _ratioFinal > 1 OR _ratioPractice > 1 THEN
+        RETURN false;
+    END IF;
+
+    UPDATE Score AS S
+    SET ratioProcess = _ratioProcess,
+        ratioMidterm = _ratioMidterm,
+        ratioFinal = _ratioFinal,
+        ratioPractice = _ratioPractice
+    FROM Schedule AS Sch
+    WHERE Sch.idCourse = _idCourse
+        AND Sch.idScore = S.id;
+	return true;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-![UpdateRatioScore demo](./image/UpdateRatioScore.png)
+_Example:_
+
+```SQL
+SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
+```
+
+### AcceptCourse
+
+Admin sẽ dựa vào điều kiện các môn học trước (các môn học bắt buộc) để chấp nhận (từ chối) môn học đã đăng kí của sinh viên
+
+_Note: Tính năng môn học trước và môn học bắt buộc sẽ được phát triển trong tương lai, hiện tại admin sẽ accept tất cả các môn đã đk tự động hoặc thủ công mà không có điều kiện ràng buộc_
+
+```SQL
+CREATE OR REPLACE FUNCTION AcceptCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS BOOL AS $$
+DECLARE
+    v_idScore INT;
+BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_idCourse) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Không được đăng kí 1 môn nhiều lần
+    IF (SELECT COUNT(*) FROM Schedule WHERE idProfile = v_idProfile AND idCourse = v_idCourse) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Các môn học không được trùng lịch học
+    IF (SELECT COUNT(*) FROM
+        (SELECT schoolDay, lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
+        (SELECT schoolDay, lesson FROM Schedule, Course WHERE Schedule.idCourse = Course.id AND Schedule.idProfile = v_idProfile) AS allInfoCourse
+        WHERE infoCourse.schoolDay = allInfoCourse.schoolDay AND
+            (infoCourse.lesson LIKE '%' || allInfoCourse.lesson || '%' OR
+                allInfoCourse.lesson LIKE '%' || infoCourse.lesson || '%')) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Khi sinh viên đã tham gia lớp học thì phải có bản điểm
+    INSERT INTO Score(processScore)
+    VALUES (NULL)
+    RETURNING id INTO v_idScore;
+
+    INSERT INTO Schedule (idCourse, idProfile, idScore)
+    VALUES (v_idCourse, v_idProfile, v_idScore);
+	RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT AcceptCourse('21521601', 'IT006.O14');
+```
+
+### RejectCourse
+
+Admin sẽ dựa vào điều kiện các môn học trước (các môn học bắt buộc) để chấp nhận (từ chối) môn học đã đăng kí của sinh viên
+
+_Note: Tính năng môn học trước và môn học bắt buộc sẽ được phát triển trong tương lai, hiện tại admin sẽ reject thủ công mà không có điều kiện ràng buộc_
+
+```SQL
+CREATE OR REPLACE FUNCTION RejectCourse(_idProfile VARCHAR(100), _idCourse VARCHAR(100))
+RETURNS bool AS $$
+DECLARE
+    _idScore INT;
+BEGIN
+    SELECT INTO _idScore Score.id FROM Score, Schedule
+    WHERE Schedule.idScore = Score.id
+        AND Schedule.idProfile = _idProfile
+        AND Schedule.idCourse = _idCourse;
+
+	IF _idScore IS NULL THEN
+        RETURN false;
+    END IF;
+
+    -- Check if any scores are not null
+    IF EXISTS (
+        SELECT 1
+        FROM Score
+        WHERE id = _idScore
+            AND (processScore IS NOT NULL OR midtermScore IS NOT NULL OR finalScore IS NOT NULL OR practiceScore IS NOT NULL)
+    ) THEN
+        RETURN false;
+    END IF;
+
+    -- Delete from Schedule and Score tables
+    DELETE FROM Schedule
+    WHERE Schedule.idScore = _idScore;
+
+    DELETE FROM Score
+    WHERE id = _idScore;
+
+    RETURN true;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT RejectCourse('21521601', 'IT006.O14');
+```
+
+### JoinRegisterCourse
+
+Đăng kí môn học theo danh sách các môn dkhp
+
+```SQL
+CREATE OR REPLACE FUNCTION JoinRegisterCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS BOOL AS $$
+BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_idCourse) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Không được đăng kí 1 môn nhiều lần
+    IF (SELECT COUNT(*) FROM RegisterCourse WHERE idCourse = v_idCourse AND idProfile = v_idProfile) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Các môn học không được trùng lịch học
+    IF (SELECT COUNT(*) FROM
+        (SELECT Course.schoolDay, Course.lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
+        (SELECT Course.schoolDay, Course.lesson FROM RegisterCourse, Course WHERE RegisterCourse.idCourse = Course.id AND RegisterCourse.idProfile = v_idProfile) AS allInfoCourse
+        WHERE allInfoCourse.schoolDay = infoCourse.schoolDay AND
+            (allInfoCourse.lesson LIKE '%' || infoCourse.lesson || '%' OR
+                infoCourse.lesson LIKE '%' || allInfoCourse.lesson || '%'
+            )
+        ) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    INSERT INTO RegisterCourse(idCourse, idProfile)
+    VALUES(v_idCourse, v_idProfile);
+
+	RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
+_Example:_
+
+```SQL
+SELECT JoinRegisterCourse('21521601', 'IT006.O14');
+```
+
+### LeaveRegisterCourse
+
+Hủy môn học đã đăng kí học phần
+
+```SQL
+CREATE OR REPLACE FUNCTION LeaveRegisterCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS bool AS $$
+BEGIN
+    DELETE FROM RegisterCourse
+    WHERE idCourse = v_idCourse AND idProfile = v_idProfile;
+	return true;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+SELECT LeaveRegisterCourse('21521601', 'IT006.O14');
+```
 
 ## Note
-
-### Save image to DB
-
-Để lưu hình ảnh vào Database ta cần convert `image` to `byte[]`
-
-```cs
-public byte[] ConvertImageToBytes(Image img)
-{
-    if (img == null) { return null; }
-
-    using (MemoryStream ms = new MemoryStream())
-    {
-        img.Save(ms, ImageFormat.Png);
-        return ms.ToArray();
-    }
-}
-```
-
-### Load image from DB
-
-Để load ảnh từ Database để hiển thị ta làm ngược lại
-
-```cs
-    public Image ConvertBytesToImage(byte[] data)
-    {
-        using (MemoryStream ms = new MemoryStream(data))
-        {
-            return Image.FromStream(ms);
-        }
-    }
-```
 
 ### Hash password
 
