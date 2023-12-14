@@ -626,22 +626,22 @@ $$ LANGUAGE plpgsql;
 
 
 INSERT INTO public.account (username, password, role) VALUES ('admin', '$2a$12$dHT/7Q//H1zIiy6NlOtWu.pNw8IvxoWfx6qERkLH1YyKNZ81YMyve', 'admin');
-INSERT INTO public.account (username, password, role) VALUES ('teacher1', '$2a$12$NqGrVo//fTzgGnZGmWM2B.62eLDiuni56FSCb14l1XvlXEIo5KyMG', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('teacher2', '$2a$12$IigUmWdfupuWId/QdAZV3.bNzDY6FEPDrBRXpvvKoq26.C.bWUYJS', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('teacher3', '$2a$12$2T47o0UFqks4MzhYTYzuHObfOIidbLdPU9.61KYBOYbFmvoZss7v2', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('teacher4', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('teacher5', '$2a$12$y2TmA2I9sEg7zXVbXTBraOeU7huBjfIQssQJCS1lLS0RtERrYtQR.', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('teacher6', '$2a$12$3eqQzimIRQ.BKg8Leg5.QOxLnbrm5/0T6NzkbTvWPPdghb.Iwpln2', 'teacher');
-INSERT INTO public.account (username, password, role) VALUES ('student1', '$2a$12$gXoeN8at8VUNkKR4//xDPO3W0R7RY9VoHqaXXQSw7IYuVY.wfxxbG', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student2', '$2a$12$tREEkrFfYhiaiN9GAo12m.FJaaVlN5cUMj9pyDiCxiomOgV/rrtRO', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student3', '$2a$12$4nmNygxQqQNCpbQ0.fjBceCOtIfyQbqgrnhJXJdPOB447Gwimq9NW', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student4', '$2a$12$XONx1lY8JOhp321UN3cY0.2.Fb.CpSw0vGhsSU666cegfN5kmRNzy', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student5', '$2a$12$67lhqVpONj1GtAAPkDdIJO7vvjQxuNcn8BKwjkXY4UuEhhD.ODM/u', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student6', '$2a$12$xWMnTX8CwxJk2E/Tzy7REOxbv1NK9slM9.CBcPJaQ34OypmOD2gkq', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student7', '$2a$12$gGM7zXBVU4lBn27ZPX3DBOcVunloc0Zv2q4eShBquRIQB84lOKyii', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student8', '$2a$12$RgxStxKyvDUvpES1HItL9uofbGRV3N2OYnJf2RCXzqMrJCy5oPrWC', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student9', '$2a$12$a3MCYyoeFkzgeP3nkViq9OD9xa4ekLowUa5.gxjjv1LUAhrTqBywu', 'student');
-INSERT INTO public.account (username, password, role) VALUES ('student10', '$2a$12$M7GwCFvJzTrm8mBUK.bDUeiAFI6uOLKRjJXnrV/dGFgLqqNX1OdIq', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('gv1', '$2a$12$NqGrVo//fTzgGnZGmWM2B.62eLDiuni56FSCb14l1XvlXEIo5KyMG', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('gv2', '$2a$12$IigUmWdfupuWId/QdAZV3.bNzDY6FEPDrBRXpvvKoq26.C.bWUYJS', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('gv3', '$2a$12$2T47o0UFqks4MzhYTYzuHObfOIidbLdPU9.61KYBOYbFmvoZss7v2', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('gv4', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('gv5', '$2a$12$y2TmA2I9sEg7zXVbXTBraOeU7huBjfIQssQJCS1lLS0RtERrYtQR.', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('gv6', '$2a$12$3eqQzimIRQ.BKg8Leg5.QOxLnbrm5/0T6NzkbTvWPPdghb.Iwpln2', 'teacher');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521601', '$2a$12$gXoeN8at8VUNkKR4//xDPO3W0R7RY9VoHqaXXQSw7IYuVY.wfxxbG', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521602', '$2a$12$tREEkrFfYhiaiN9GAo12m.FJaaVlN5cUMj9pyDiCxiomOgV/rrtRO', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521603', '$2a$12$4nmNygxQqQNCpbQ0.fjBceCOtIfyQbqgrnhJXJdPOB447Gwimq9NW', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521604', '$2a$12$XONx1lY8JOhp321UN3cY0.2.Fb.CpSw0vGhsSU666cegfN5kmRNzy', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521605', '$2a$12$67lhqVpONj1GtAAPkDdIJO7vvjQxuNcn8BKwjkXY4UuEhhD.ODM/u', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521606', '$2a$12$xWMnTX8CwxJk2E/Tzy7REOxbv1NK9slM9.CBcPJaQ34OypmOD2gkq', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521607', '$2a$12$gGM7zXBVU4lBn27ZPX3DBOcVunloc0Zv2q4eShBquRIQB84lOKyii', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521608', '$2a$12$RgxStxKyvDUvpES1HItL9uofbGRV3N2OYnJf2RCXzqMrJCy5oPrWC', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521609', '$2a$12$a3MCYyoeFkzgeP3nkViq9OD9xa4ekLowUa5.gxjjv1LUAhrTqBywu', 'student');
+INSERT INTO public.account (username, password, role) VALUES ('sv21521610', '$2a$12$M7GwCFvJzTrm8mBUK.bDUeiAFI6uOLKRjJXnrV/dGFgLqqNX1OdIq', 'student');
 
 
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521601', 'Trần Thế Sơn', '2004-05-07 00:00:00', 'Nam', 'Đại học', 'Chính quy', NULL);
