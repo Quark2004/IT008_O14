@@ -31,9 +31,11 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
 			this.lb_login = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.tb_userName = new System.Windows.Forms.TextBox();
 			this.lb_userName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
 			this.tb_password = new System.Windows.Forms.TextBox();
 			this.lb_password = new System.Windows.Forms.Label();
 			this.btn_login = new System.Windows.Forms.Button();
@@ -41,8 +43,6 @@
 			this.pn_login = new System.Windows.Forms.Panel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pic_login = new System.Windows.Forms.PictureBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.pn_login.SuspendLayout();
@@ -71,6 +71,17 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(417, 96);
 			this.panel2.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.Red;
+			this.label1.Location = new System.Drawing.Point(156, 3);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(22, 27);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "*";
 			// 
 			// tb_userName
 			// 
@@ -107,6 +118,17 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(417, 96);
 			this.panel3.TabIndex = 2;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.ForeColor = System.Drawing.Color.Red;
+			this.label2.Location = new System.Drawing.Point(105, 3);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(22, 27);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "*";
 			// 
 			// tb_password
 			// 
@@ -195,28 +217,6 @@
 			this.pic_login.TabIndex = 0;
 			this.pic_login.TabStop = false;
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.Red;
-			this.label1.Location = new System.Drawing.Point(156, 3);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(22, 27);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "*";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(105, 3);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(22, 27);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "*";
-			// 
 			// LoginForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -227,6 +227,7 @@
 			this.Controls.Add(this.pic_login);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MaximizeBox = false;
 			this.Name = "LoginForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Đăng Nhập";
