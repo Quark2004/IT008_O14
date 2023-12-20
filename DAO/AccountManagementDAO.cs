@@ -40,7 +40,7 @@ namespace QLSV.DAO
             {
                 try
                 {
-                    string query = "INSERT INTO Account (Username, Password) VALUES (@username, @password)";
+                    string query = "SELECT CreateAccount(@username, @password, @role)";
                     using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                     {
                         connection.Open();
@@ -50,10 +50,11 @@ namespace QLSV.DAO
 
                             command.Parameters.AddWithValue("@username", account.Username);
                             command.Parameters.AddWithValue("@password", hashedPassword);
+                            command.Parameters.AddWithValue("@role", account.Role);
 
-                            int rowsAffected = command.ExecuteNonQuery();
+                            bool res = (bool)command.ExecuteScalar();
 
-                            return rowsAffected > 0;
+                            return res;
                         }
                     }
                 }
@@ -67,20 +68,19 @@ namespace QLSV.DAO
             {
                 try
                 {
-                    string query = "UPDATE Account SET Password = @password WHERE Username = @username";
+                    string query = "SELECT UpdateAccount(@username, @password, @role)";
                     using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                     {
                         connection.Open();
                         using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
                         {
                             string hashedPassword = HashPassword(account.Password);
-
-                            command.Parameters.AddWithValue("@password", hashedPassword);
                             command.Parameters.AddWithValue("@username", account.Username);
+                            command.Parameters.AddWithValue("@password", hashedPassword);
+                            command.Parameters.AddWithValue("@role", account.Role);
+                            bool res = (bool)command.ExecuteScalar();
 
-                            int rowsAffected = command.ExecuteNonQuery();
-
-                            return rowsAffected > 0;
+                            return res;
                         }
                     }
                 }
@@ -96,7 +96,7 @@ namespace QLSV.DAO
             {
                 try
                 {
-                    string query = "DELETE FROM Account WHERE Username = @username";
+                    string query = "SELECT DeleteAccount(@username)";
                     using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                     {
                         connection.Open();
@@ -104,9 +104,9 @@ namespace QLSV.DAO
                         {
                             command.Parameters.AddWithValue("@username", username);
 
-                            int rowsAffected = command.ExecuteNonQuery();
+                            bool res = (bool)command.ExecuteScalar();
 
-                            return rowsAffected > 0;
+                            return res;
                         }
                     }
                 }
@@ -120,19 +120,69 @@ namespace QLSV.DAO
             {
                 try
                 {
-                    string query = "SELECT * FROM Account WHERE Username = @username";
-                    DataTable data = DataProvider.Instance.ExcuteQuery(query, new object[] { username });
-
-                    if (data.Rows.Count > 0)
+                    string query = "SELECT * FROM ReadAccount(@username)";
+                    using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                     {
-                        DataRow row = data.Rows[0];
-                        AccountManagementDTO account = new AccountManagementDTO
+                        connection.Open();
+                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
                         {
-                            Username = row["username"].ToString(),
-                            Password = row["password"].ToString()
-                            // Cập nhật các thông tin khác nếu có
-                        };
-                        return account;
+                            command.Parameters.AddWithValue("@username", username);
+
+                            using (NpgsqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    AccountManagementDTO account = new AccountManagementDTO
+                                    {
+                                        Username = reader["username"].ToString(),
+                                        Password = reader["password"].ToString(),
+                                        Role = reader["role"].ToString()
+                                    };
+                                    return account;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+
+                return null;
+            }
+
+            public AccountManagementDTO SearchAccountExceptAdmin(string username)
+            {
+                try
+                {
+                    string query = "SELECT * FROM ReadAccount(@username)";
+                    using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
+                    {
+                        connection.Open();
+                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@username", username);
+
+                            using (NpgsqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string role = reader["role"].ToString();
+                                    if(role == "admin")
+                                    {
+                                        return null;
+                                    }
+                                    AccountManagementDTO account = new AccountManagementDTO
+                                    {
+                                        Username = reader["username"].ToString(),
+                                        Password = reader["password"].ToString(),
+                                        Role = reader["role"].ToString()
+                                    };
+                                    return account;
+                                }
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -146,12 +196,48 @@ namespace QLSV.DAO
             {
                 try
                 {
-                    string query = "SELECT * FROM Account "; // Thay doi query tuy theo cau truc cua bang Account
+                    string query = "SELECT * FROM ReadAllAccounts()"; // Thay doi query tuy theo cau truc cua bang Account
 
-                    // Su dung DataProvider de thuc hien truy van va lay du lieu
-                    DataTable data = DataProvider.Instance.ExcuteQuery(query);
+                    using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
+                    {
+                        connection.Open();
+                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                        {
+                            using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command))
+                            {
+                                DataTable data = new DataTable();
+                                adapter.Fill(data);
+                                return data;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+            }
 
-                    return data;
+            public DataTable GetAccountsExceptAdmin()
+            {
+                try
+                {
+                    string query = "SELECT * FROM ReadAllAccountsExceptAdmin()"; // Thay doi query tuy theo cau truc cua bang Account
+
+                    using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
+                    {
+                        connection.Open();
+                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                        {
+                            using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command))
+                            {
+                                DataTable data = new DataTable();
+                                adapter.Fill(data);
+                                return data;
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

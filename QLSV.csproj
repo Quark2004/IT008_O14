@@ -194,7 +194,7 @@
       <Version>8.0.2</Version>
     </PackageReference>
     <PackageReference Include="Npgsql">
-      <Version>7.0.6</Version>
+      <Version>8.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

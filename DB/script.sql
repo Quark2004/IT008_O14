@@ -918,3 +918,341 @@ INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ('GV6', 
 -- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ('21521610', 'MA006.O14', 56, NULL);
 -- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ('21521610', 'IT002.O12', 57, NULL);
 -- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ('21521610', 'IT003.O13', 58, NULL);
+
+CREATE OR REPLACE FUNCTION InsertCourse(
+    IN v_id VARCHAR(100),
+    IN v_name VARCHAR(100),
+    IN v_numberOfCredits INT,
+    IN v_schoolDay VARCHAR(100),
+    IN v_lesson VARCHAR(100),
+    IN v_classroom VARCHAR(100),
+    IN v_semester VARCHAR(100),
+    IN v_schoolYear VARCHAR(100),
+    IN v_startDay DATE,
+    IN v_endDay DATE
+)
+RETURNS BOOL AS $$
+BEGIN
+    -- Check if the course with the given ID already exists
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_id) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    INSERT INTO Course(id, name, numberOfCredits, schoolDay, lesson, classroom, semester, schoolYear, startDay, endDay)
+    VALUES (v_id, v_name, v_numberOfCredits, v_schoolDay, v_lesson, v_classroom, v_semester, v_schoolYear, v_startDay, v_endDay);
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION UpdateCourse(
+    IN v_id VARCHAR(100),
+    IN v_name VARCHAR(100),
+    IN v_numberOfCredits INT,
+    IN v_schoolDay VARCHAR(100),
+    IN v_lesson VARCHAR(100),
+    IN v_classroom VARCHAR(100),
+    IN v_semester VARCHAR(100),
+    IN v_schoolYear VARCHAR(100),
+    IN v_startDay DATE,
+    IN v_endDay DATE
+)
+RETURNS BOOL AS $$
+BEGIN
+    -- Check if the course with the given ID exists
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_id) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    UPDATE Course
+    SET name = v_name,
+        numberOfCredits = v_numberOfCredits,
+        schoolDay = v_schoolDay,
+        lesson = v_lesson,
+        classroom = v_classroom,
+        semester = v_semester,
+        schoolYear = v_schoolYear,
+        startDay = v_startDay,
+        endDay = v_endDay
+    WHERE id = v_id;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION DeleteCourse(_id VARCHAR(100))
+RETURNS BOOL AS $$
+BEGIN
+    -- Check if the course with the given ID exists
+    IF (SELECT COUNT(*) FROM Course WHERE id = _id) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    DELETE FROM Course
+    WHERE id = _id;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GetCourseByIDAndName(_id VARCHAR(100), _name VARCHAR(100))
+RETURNS TABLE(
+    "ID" VARCHAR(100),
+    "Name" VARCHAR(100),
+    "NumberOfCredits" INT,
+    "SchoolDay" VARCHAR(100),
+    "Lesson" VARCHAR(100),
+    "Classroom" VARCHAR(100),
+    "Semester" VARCHAR(100),
+    "SchoolYear" VARCHAR(100),
+    "StartDay" DATE,
+    "EndDay" DATE
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, name, numberOfCredits, schoolDay, lesson, classroom, semester, schoolYear, startDay, endDay
+    FROM Course
+    WHERE id = _id AND name = _name;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GetCourses(_id VARCHAR(100) DEFAULT NULL)
+RETURNS TABLE(
+    "ID" VARCHAR(100),
+    "Name" VARCHAR(100),
+    "NumberOfCredits" INT,
+    "SchoolDay" VARCHAR(100),
+    "Lesson" VARCHAR(100),
+    "Classroom" VARCHAR(100),
+    "Semester" VARCHAR(100),
+    "SchoolYear" VARCHAR(100),
+    "StartDay" DATE,
+    "EndDay" DATE
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, name, numberOfCredits, schoolDay, lesson, classroom, semester, schoolYear, startDay, endDay
+    FROM Course
+    WHERE _id IS NULL OR id = _id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION CreateAccount(_username VARCHAR(100), _password VARCHAR(1000), _role VARCHAR(100) DEFAULT 'student')
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the username already exists
+    IF EXISTS (SELECT 1 FROM Account WHERE username = _username) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Insert new account
+    INSERT INTO Account(username, password, role)
+    VALUES (_username, _password, _role);
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Read Account
+CREATE OR REPLACE FUNCTION ReadAccount(_username VARCHAR(100))
+RETURNS TABLE("Username" VARCHAR(100), "Password" VARCHAR(1000), "Role" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT username, password, role
+    FROM Account
+    WHERE username = _username;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Update Account
+CREATE OR REPLACE FUNCTION UpdateAccount(_username VARCHAR(100), _password VARCHAR(1000), _role VARCHAR(100))
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the username exists
+    IF NOT EXISTS (SELECT 1 FROM Account WHERE username = _username) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Update account
+    UPDATE Account
+    SET password = _password, role = _role
+    WHERE username = _username;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Delete Account
+CREATE OR REPLACE FUNCTION DeleteAccount(_username VARCHAR(100))
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the username exists
+    IF NOT EXISTS (SELECT 1 FROM Account WHERE username = _username) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Delete account
+    DELETE FROM Account WHERE username = _username;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION ReadAllAccounts()
+RETURNS TABLE("Username" VARCHAR(100), "Password" VARCHAR(1000), "Role" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT username, password, role
+    FROM Account;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Read Accounts by Role (excluding 'admin')
+CREATE OR REPLACE FUNCTION ReadAccountsByRoleExcludingAdmin()
+RETURNS TABLE("Username" VARCHAR(100), "Password" VARCHAR(1000), "Role" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT username, password, role
+    FROM Account
+    WHERE role IN ('teacher', 'student'); -- Add more roles as needed, excluding 'admin'
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION ReadAllAccountsExceptAdmin()
+RETURNS TABLE("Username" VARCHAR(100), "Password" VARCHAR(1000), "Role" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT username, password, role
+    FROM Account
+    WHERE role <> 'admin';
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION CreateProfile(
+    _id VARCHAR(100),
+    _name VARCHAR(100),
+    _birthday TIMESTAMP,
+    _gender VARCHAR(100),
+    _level VARCHAR(100) DEFAULT 'Đại học',
+    _trainingSystem VARCHAR(100) DEFAULT 'Chính quy',
+    _avatar BYTEA DEFAULT NULL
+)
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the profile with the given ID already exists
+    IF EXISTS (SELECT 1 FROM Profile WHERE id = _id) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Insert new profile
+    INSERT INTO Profile(id, name, birthday, gender, level, trainingSystem, avatar)
+    VALUES (_id, _name, _birthday, _gender, _level, _trainingSystem, _avatar);
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Update Profile
+CREATE OR REPLACE FUNCTION UpdateProfile(
+    _id VARCHAR(100),
+    _name VARCHAR(100),
+    _birthday TIMESTAMP,
+    _gender VARCHAR(100),
+    _level VARCHAR(100),
+    _trainingSystem VARCHAR(100),
+    _avatar BYTEA
+)
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the profile with the given ID exists
+    IF NOT EXISTS (SELECT 1 FROM Profile WHERE id = _id) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Update profile
+    UPDATE Profile
+    SET name = _name,
+        birthday = _birthday,
+        gender = _gender,
+        level = _level,
+        trainingSystem = _trainingSystem,
+        avatar = _avatar
+    WHERE id = _id;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Delete Profile
+CREATE OR REPLACE FUNCTION DeleteProfileById(_id VARCHAR(100))
+RETURNS BOOLEAN AS $$
+BEGIN
+    -- Check if the profile with the given ID exists
+    IF NOT EXISTS (SELECT 1 FROM Profile WHERE id = _id) THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Delete profile
+    DELETE FROM Profile WHERE id = _id;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Read Profile by Name
+CREATE OR REPLACE FUNCTION ReadProfileByName(_name VARCHAR(100))
+RETURNS TABLE(
+    "ID" VARCHAR(100),
+    "Name" VARCHAR(100),
+    "Birthday" TIMESTAMP,
+    "Gender" VARCHAR(100),
+    "Level" VARCHAR(100),
+    "TrainingSystem" VARCHAR(100),
+    "Avatar" BYTEA
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, name, birthday, gender, level, trainingSystem, avatar
+    FROM Profile
+    WHERE name = _name;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Read All Profiles
+CREATE OR REPLACE FUNCTION ReadAllProfiles()
+RETURNS TABLE(
+    "ID" VARCHAR(100),
+    "Name" VARCHAR(100),
+    "Birthday" TIMESTAMP,
+    "Gender" VARCHAR(100),
+    "Level" VARCHAR(100),
+    "TrainingSystem" VARCHAR(100),
+    "Avatar" BYTEA
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, name, birthday, gender, level, trainingSystem, avatar
+    FROM Profile;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Read Profile
+CREATE OR REPLACE FUNCTION ReadProfileById(_id VARCHAR(100))
+RETURNS TABLE(
+    "ID" VARCHAR(100),
+    "Name" VARCHAR(100),
+    "Birthday" TIMESTAMP,
+    "Gender" VARCHAR(100),
+    "Level" VARCHAR(100),
+    "TrainingSystem" VARCHAR(100),
+    "Avatar" BYTEA
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, name, birthday, gender, level, trainingSystem, avatar
+    FROM Profile
+    WHERE id = _id;
+END;
+$$ LANGUAGE plpgsql;
+
+

@@ -19,6 +19,10 @@ using System.IO;
 using OfficeOpenXml.Style;
 using LicenseContext = OfficeOpenXml.LicenseContext;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Diagnostics;
+using static iText.Signatures.LtvVerification;
 
 namespace QLSV
 {
@@ -30,6 +34,23 @@ namespace QLSV
             InitializeComponent();
             ID = id;
             accountDAO = new AccountManagementDAO();
+            cbRole.Items.Add("teacher");
+            cbRole.Items.Add("student");
+            cbGender.Items.Add("Nam");
+            cbGender.Items.Add("Nữ");
+            cbGender.Items.Add("Khác");
+            cbLevel.Items.Add("Sơ cấp I");
+            cbLevel.Items.Add("Sơ cấp II");
+            cbLevel.Items.Add("Sơ cấp II");
+            cbLevel.Items.Add("Sơ cấp III");
+            cbLevel.Items.Add("Trung cấp");
+            cbLevel.Items.Add("Cao đẳng");
+            cbLevel.Items.Add("Đại học");
+            cbLevel.Items.Add("Thạc sĩ");
+            cbLevel.Items.Add("Tiến sĩ");
+            cbTrainingSystem.Items.Add("Chính quy");
+            cbTrainingSystem.Items.Add("Không chính quy");
+            
         }
         private void LoadData()
         {
@@ -93,8 +114,14 @@ namespace QLSV
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
+            if (cbRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn vai trò!");
+                return;
+            }
             string username = txb_username.Text;
             string password = txb_password.Text;
+            string role = cbRole.SelectedItem.ToString();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -105,7 +132,8 @@ namespace QLSV
             AccountManagementDTO newAccount = new AccountManagementDTO
             {
                 Username = username,
-                Password = password
+                Password = password,
+                Role = role
             };
 
             bool result = AccountManagementDAO.Instance.AddAccount(newAccount);
@@ -122,8 +150,14 @@ namespace QLSV
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
+            if (cbRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn vai trò!");
+                return;
+            }
             string username = txb_username.Text;
             string newPassword = txb_password.Text; // mat khau moi
+            string role = cbRole.SelectedItem.ToString();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(newPassword))
             {
@@ -135,7 +169,8 @@ namespace QLSV
             AccountManagementDTO account = new AccountManagementDTO
             {
                 Username = username,
-                Password = newPassword
+                Password = newPassword,
+                Role = role
             };
 
             // goi phuong thuc UpdateAccount trong DAO
@@ -182,11 +217,7 @@ namespace QLSV
         {
             try
             {
-                DataProvider.Instance.connectionStr = "Server=localhost;Port=5433;User Id=postgres;Password=1111;Database=StudentManagement;";
-
-                string query = "SELECT * FROM Account where role='student' or role ='teacher'";
-
-                var dataTable = DataProvider.Instance.ExcuteQuery(query);
+                var dataTable = AccountManagementDAO.Instance.GetAccountsExceptAdmin();
 
                 // Hiển thị dữ liệu lên DataGridView
                 if (dataTable != null)
@@ -211,13 +242,14 @@ namespace QLSV
                 return;
             }
 
-            AccountManagementDTO account = AccountManagementDAO.Instance.SearchAccount(username);
+            AccountManagementDTO account = AccountManagementDAO.Instance.SearchAccountExceptAdmin(username);
 
             if (account != null)
             {
                 // Hien thi thong tin tai khoan
                 txb_username.Text = account.Username;
                 txb_password.Text = account.Password;
+                cbRole.SelectedItem = account.Role;
                 // Hien thi cac thong tin khac neu can
             }
             else
@@ -240,10 +272,11 @@ namespace QLSV
                 // lay gia tri tu cac cot cua dong da chon
                 string username = row.Cells["username"].Value.ToString();
                 string password = row.Cells["password"].Value.ToString();
-
+                string role = row.Cells["role"].Value.ToString();
                 // Gan gia tri vao cac Textbox 
                 txb_username.Text = username;
                 txb_password.Text = password;
+                cbRole.SelectedItem = role;
             }
         }
 
@@ -251,7 +284,7 @@ namespace QLSV
         {
             string username = txb_search.Text.Trim();
 
-            DataView dv = new DataView(AccountManagementDAO.Instance.GetAccountData());
+            DataView dv = new DataView(AccountManagementDAO.Instance.GetAccountsExceptAdmin());
             dv.RowFilter = string.Format("Username LIKE '%{0}%'", username);
 
             dataGridView1.DataSource = dv;
@@ -403,20 +436,24 @@ namespace QLSV
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(dataGridView2.SelectedRows.Count == 0)
+            {
+                return;
+            }
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
 
-                string courseId = row.Cells["id"].Value.ToString();
-                string courseName = row.Cells["name"].Value.ToString();
-                string numberOfCredits = row.Cells["numberofcredits"].Value.ToString();
-                string schoolDay = row.Cells["schoolday"].Value.ToString();
-                string lesson = row.Cells["lesson"].Value.ToString();
-                string classroom = row.Cells["classroom"].Value.ToString();
-                string semester = row.Cells["semester"].Value.ToString();
-                string schoolYear = row.Cells["schoolyear"].Value.ToString();
-                string startDay = row.Cells["startday"].Value.ToString();
-                string endDay = row.Cells["endday"].Value.ToString();
+                string courseId = row.Cells[0].Value.ToString();
+                string courseName = row.Cells[1].Value.ToString();
+                string numberOfCredits = row.Cells[2].Value.ToString();
+                string schoolDay = row.Cells[3].Value.ToString();
+                string lesson = row.Cells[4].Value.ToString();
+                string classroom = row.Cells[5].Value.ToString();
+                string semester = row.Cells[6].Value.ToString();
+                string schoolYear = row.Cells[7].Value.ToString();
+                string startDay = row.Cells[8].Value.ToString();
+                string endDay = row.Cells[9].Value.ToString();
 
 
                 txb_id.Text = courseId;
@@ -445,11 +482,8 @@ namespace QLSV
         {
             try
             {
-                DataProvider.Instance.connectionStr = "Server=localhost;Port=5433;User Id=postgres;Password=1111;Database=StudentManagement;";
-
-                string query = "SELECT * FROM Course ";
-
-                var dataTable = DataProvider.Instance.ExcuteQuery(query);
+                
+                var dataTable = AdminCourseDAO.Instance.GetCourseData();
 
                 // Hiển thị dữ liệu lên DataGridView
                 if (dataTable != null)
@@ -619,41 +653,6 @@ namespace QLSV
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ChartArea chartArea = chart1.ChartAreas[0];
-            Series series = chart1.Series[0];
-
-            // Khai báo và khởi tạo số lượng tài khoản cho từng loại
-            int studentCount = 0;
-            int teacherCount = 0;
-
-            series.Name = "Số lượng";
-            // Lặp qua từng hàng trong DataGridView
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.DataBoundItem != null)
-                {
-                    // Lấy giá trị từ cột "Role"
-                    string role = row.Cells["role"].Value?.ToString();
-
-                    // Kiểm tra xem role có chứa student hoặc teacher không
-                    if (role.Contains("student"))
-                    {
-                        studentCount++;
-                    }
-                    else if (role.Contains("teacher"))
-                    {
-                        teacherCount++;
-                    }
-                }
-            }
-
-            // Xóa dữ liệu cũ trước khi thêm dữ liệu mới
-            series.Points.Clear();
-
-            // Thêm dữ liệu vào biểu đồ
-            series.Points.AddXY("student", studentCount);
-            series.Points.AddXY("teacher", teacherCount);
-
 
 
         }
@@ -729,7 +728,7 @@ namespace QLSV
                             }
                             dt.Rows.Add(excelRow);
                         }
-
+                        dataGridView2.DataSource = null;
                         // Hiển thị dữ liệu trong DataGridView
                         dataGridView2.DataSource = dt;
                     }
@@ -743,6 +742,306 @@ namespace QLSV
                 MessageBox.Show("Đã xảy ra lỗi khi nhập từ Excel: " + ex.Message);
             }
 
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchStudent_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string filterText = txtSearchStudent.Text.Trim();
+
+                DataView dv = new DataView(StudentInfoDAO.Instance.GetStudents());
+
+                // Use OR condition to filter based on both ID and Name
+                dv.RowFilter = string.Format("name LIKE '%{0}%'", filterText);
+
+                gridViewStudent.DataSource = dv;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void btnCloseStudent_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnSearchStudent_Click(object sender, EventArgs e)
+        {
+            string studentName = txtStudentName.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(studentName))
+            {
+                MessageBox.Show("Vui lòng nhập tên sinh viên cần tìm!");
+                return;
+            }
+
+
+            StudentInfo student = StudentInfoDAO.Instance.SearchStudent(studentName);
+
+            if (student != null)
+            {
+                txtStudentId.Text = student.Id;
+                txtStudentName.Text = student.Name;
+                birthdayDatePicker.Value = student.Birthday;
+                cbGender.SelectedItem = student.Gender;
+                cbLevel.SelectedItem = student.EducationLevel;
+                cbTrainingSystem.SelectedItem = student.TrainingSystem;
+                
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên!");
+            }
+        }
+
+        private void gridViewStudent_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                txtAvatarLocation.Text = "";
+                DataGridViewRow row = gridViewStudent.Rows[e.RowIndex];
+
+                string studentId = row.Cells["id"].Value.ToString();
+                var student = StudentInfoDAO.Instance.GetStudentById(studentId);
+                if(student != null)
+                {
+                    txtStudentId.Text = studentId;
+                    txtStudentName.Text = student.Name;
+                    cbLevel.SelectedItem = student.EducationLevel;
+                    cbTrainingSystem.SelectedItem = student.TrainingSystem;
+                    cbGender.SelectedItem = student.Gender;
+                    birthdayDatePicker.Value = student.Birthday;
+                    avatarPictureBox.Image = ConvertBytesToBitmap(student.Avatar);
+                }
+            }
+        }
+
+        public Bitmap ConvertBytesToBitmap(byte[] bytes)
+        {
+            try
+            {
+                if (bytes == null || bytes.Length == 0)
+                {
+                    // Handle invalid or empty byte array
+                    return null;
+                }
+
+                using (MemoryStream stream = new MemoryStream(bytes))
+                {
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+
+                    // Convert Image to Bitmap (if needed)
+                    return new Bitmap(image);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or display details about the exception
+                Trace.WriteLine("Error creating Bitmap: " + ex.Message);
+                return null;
+            }
+        }
+
+        private void btnAddStudent_Click(object sender, EventArgs e)
+        {
+            string studentId = txtStudentId.Text.Trim();
+            string name = txtStudentName.Text.Trim();
+            if(string.IsNullOrEmpty(studentId))
+            {
+                MessageBox.Show("Chưa nhập mã sinh viên!");
+                return;
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Chưa nhập tên sinh viên!");
+                return;
+            }
+            if (cbGender.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn giới tính!");
+                return;
+            }
+            if (cbTrainingSystem.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn hệ đào tạo!");
+                return;
+            }
+            if (cbLevel.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn bậc đào tạo!");
+                return;
+            }
+            string gender = cbGender.SelectedItem.ToString();
+            string trainingSystem = cbTrainingSystem.SelectedItem.ToString();
+            string level = cbLevel.SelectedItem.ToString();
+            DateTime birthDay = birthdayDatePicker.Value;
+            string avatarLocation = txtAvatarLocation.Text;
+            byte[] avatar;
+            if(!string.IsNullOrEmpty(avatarLocation))
+            {
+                var originalImage = new Bitmap(avatarLocation);
+                avatar = ConvertBitmapToBytes(originalImage);
+            } else
+            {
+                avatar = new byte[10];
+            }
+            bool res = StudentInfoDAO.Instance.AddStudent(new StudentInfo()
+            {
+                Id = studentId,
+                Name = name,
+                EducationLevel = level,
+                TrainingSystem = trainingSystem,
+                Gender = gender,
+                Birthday = birthDay.Date,
+                Avatar = avatar
+            });
+
+            if(!res)
+            {
+                MessageBox.Show("Thêm sinh viên thất bại!");
+                return;
+            }
+            MessageBox.Show("Thêm sinh viên thành công!");
+            btnStudentList_Click(null, null);
+        }
+
+        public byte[] ConvertBitmapToBytes(Bitmap bitmap)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                // Save the bitmap to the stream in a specific format (e.g., PNG)
+                bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+
+                // Get the byte array from the stream
+                return stream.ToArray();
+            }
+        }
+
+        private void btnUpdateStudent_Click(object sender, EventArgs e)
+        {
+            string studentId = txtStudentId.Text.Trim();
+            string name = txtStudentName.Text.Trim();
+            if (string.IsNullOrEmpty(studentId))
+            {
+                MessageBox.Show("Chưa nhập mã sinh viên!");
+                return;
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Chưa nhập tên sinh viên!");
+                return;
+            }
+            if (cbGender.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn giới tính!");
+                return;
+            }
+            if (cbTrainingSystem.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn hệ đào tạo!");
+                return;
+            }
+            if (cbLevel.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chưa chọn bậc đào tạo!");
+                return;
+            }
+            string gender = cbGender.SelectedItem.ToString();
+            string trainingSystem = cbTrainingSystem.SelectedItem.ToString();
+            string level = cbLevel.SelectedItem.ToString();
+            DateTime birthDay = birthdayDatePicker.Value;
+            string avatarLocation = txtAvatarLocation.Text;
+            var existStudent = StudentInfoDAO.Instance.GetStudentById(studentId);
+            if(existStudent == null) {
+                MessageBox.Show("Không tìm thấy sinh viên!");
+                return;
+            }
+            byte[] avatar;
+            if (!string.IsNullOrEmpty(avatarLocation))
+            {
+                var originalImage = new Bitmap(avatarLocation);
+                avatar = ConvertBitmapToBytes(originalImage);
+                existStudent.Avatar = avatar;
+            }
+            existStudent.Name = name;
+            existStudent.Birthday = birthDay.Date;
+            existStudent.Gender = gender;
+            existStudent.EducationLevel = level;
+            existStudent.TrainingSystem = trainingSystem;
+            bool res = StudentInfoDAO.Instance.UpdateStudent(existStudent);
+
+            if (!res)
+            {
+                MessageBox.Show("Sửa sinh viên thất bại!");
+                return;
+            }
+            MessageBox.Show("Sửa sinh viên thành công!");
+            btnStudentList_Click(null, null);
+        }
+
+        private void btnDeleteStudent_Click(object sender, EventArgs e)
+        {
+            string id = txtStudentId.Text.Trim();
+            if(string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("Chưa chọn sinh viên!");
+                return;
+            }
+            bool res = StudentInfoDAO.Instance.DeleteStudent(id);
+
+            if (!res)
+            {
+                MessageBox.Show("Xoá sinh viên thất bại!");
+                return;
+            }
+            MessageBox.Show("Xoá sinh viên thành công!");
+            btnStudentList_Click(null, null);
+        }
+
+        private void btnStudentList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var dataTable = StudentInfoDAO.Instance.GetStudents();
+
+                // Hiển thị dữ liệu lên DataGridView
+                if (dataTable != null)
+                {
+                    // Gán dữ liệu từ DataTable vào DataGridView
+                    gridViewStudent.DataSource = dataTable;
+                    gridViewStudent.Columns[gridViewStudent.ColumnCount - 1].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void gridViewStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void openBtn_Click(object sender, EventArgs e)
+        {
+            studentAvatarOpenFile.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif|All Files|*.*";
+
+            if (studentAvatarOpenFile.ShowDialog() == DialogResult.OK)
+            {
+                var originalImage = new Bitmap(studentAvatarOpenFile.FileName);
+                avatarPictureBox.Image = originalImage;
+                txtAvatarLocation.Text = studentAvatarOpenFile.FileName;
+            }
         }
     }
 }

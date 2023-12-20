@@ -6,6 +6,7 @@ using QLSV.DTO;
 using System.Windows.Input;
 using OfficeOpenXml;
 using System.IO;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace QLSV.DAO
 {
@@ -33,8 +34,7 @@ namespace QLSV.DAO
         {
             try
             {
-                string query = "INSERT INTO Course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) " +
-                               "VALUES (@id, @name, @numberofcredits, @schoolday, @lesson, @classroom, @semester, @schoolyear, @startday, @endday)";
+                string query = "SELECT InsertCourse(@id, @name, @numberofcredits, @schoolday, @lesson, @classroom, @semester, @schoolyear, @startday, @endday)";
                 using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                 {
                     connection.Open();
@@ -48,12 +48,12 @@ namespace QLSV.DAO
                         command.Parameters.AddWithValue("@classroom", course.classroom);
                         command.Parameters.AddWithValue("@semester", course.semester);
                         command.Parameters.AddWithValue("@schoolyear", course.schoolyear);
-                        command.Parameters.AddWithValue("@startday", course.startday);
-                        command.Parameters.AddWithValue("@endday", course.endday);
+                        command.Parameters.AddWithValue("@startday", NpgsqlTypes.NpgsqlDbType.Date, course.startday);
+                        command.Parameters.AddWithValue("@endday", NpgsqlTypes.NpgsqlDbType.Date, course.endday);
 
-                        int rowsAffected = command.ExecuteNonQuery();
+                        bool res = (bool)command.ExecuteScalar();
 
-                        return rowsAffected > 0;
+                        return res;
                     }
                 }
             }
@@ -68,9 +68,7 @@ namespace QLSV.DAO
         {
             try
             {
-                string query = "UPDATE Course SET name = @name, numberofcredits = @numberofcredits, schoolday = @schoolday, " +
-                               "lesson = @lesson, classroom = @classroom, semester = @semester, schoolyear = @schoolyear, " +
-                               "startday = @startday, endday = @endday WHERE id = @id";
+                string query = "SELECT UpdateCourse(@id, @name, @numberofcredits, @schoolday, @lesson, @classroom, @semester, @schoolyear, @startday, @endday)";
                 using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                 {
                     connection.Open();
@@ -84,12 +82,12 @@ namespace QLSV.DAO
                         command.Parameters.AddWithValue("@classroom", course.classroom);
                         command.Parameters.AddWithValue("@semester", course.semester);
                         command.Parameters.AddWithValue("@schoolyear", course.schoolyear);
-                        command.Parameters.AddWithValue("@startday", course.startday);
-                        command.Parameters.AddWithValue("@endday", course.endday);
+                        command.Parameters.AddWithValue("@startday", NpgsqlTypes.NpgsqlDbType.Date, course.startday);
+                        command.Parameters.AddWithValue("@endday", NpgsqlTypes.NpgsqlDbType.Date, course.endday);
 
-                        int rowsAffected = command.ExecuteNonQuery();
+                        bool res = (bool)command.ExecuteScalar();
 
-                        return rowsAffected > 0;
+                        return res;
                     }
                 }
             }
@@ -104,7 +102,7 @@ namespace QLSV.DAO
         {
             try
             {
-                string query = "DELETE FROM Course WHERE id = @id";
+                string query = "SELECT DeleteCourse(@id)";
                 using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                 {
                     connection.Open();
@@ -112,9 +110,9 @@ namespace QLSV.DAO
                     {
                         command.Parameters.AddWithValue("@id", courseId);
 
-                        int rowsAffected = command.ExecuteNonQuery();
+                        bool res = (bool)command.ExecuteScalar();
 
-                        return rowsAffected > 0;
+                        return res;
                     }
                 }
             }
@@ -127,7 +125,7 @@ namespace QLSV.DAO
 
         public CourseDTO SearchCourse(string courseId, string courseName)
         {
-            string query = "SELECT * FROM Course WHERE Id = @id And  Name = @name LIMIT 1";
+            string query = "SELECT * FROM GetCourseByIDAndName(@id, @name)";
 
             using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
             {
@@ -239,7 +237,7 @@ namespace QLSV.DAO
         {
             try
             {
-                string query = "SELECT * FROM Course";
+                string query = "SELECT * FROM GetCourses()";
                 using (NpgsqlConnection connection = new NpgsqlConnection(DataProvider.Instance.connectionStr))
                 {
                     connection.Open();

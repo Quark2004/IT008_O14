@@ -26,6 +26,8 @@ namespace QLSV.DTO
 		public string EducationLevel { get => educationLevel; set => educationLevel = value; }
 		public byte[] Avatar { get => avatar; set => avatar = value; }
 
+
+
 		public StudentInfo(DataRow row)
 		{
 			try
@@ -61,5 +63,9 @@ namespace QLSV.DTO
 			this.TrainingSystem = trainingSystem;
 			this.Avatar = avatar;
 		}
-	}
+
+        public StudentInfo()
+        {
+        }
+    }
 }
