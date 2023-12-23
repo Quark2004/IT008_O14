@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using System.Xml.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing.Imaging;
 
 namespace QLSV
 {
@@ -27,34 +28,28 @@ namespace QLSV
             LoadDSLop();
             Loadinfo();
             Loadthongke();
-            
+            Loaddiem();
             btnok.Enabled = false;
             btnnhap.Enabled = false;
-            //LoadTKB();
-        }
+            btn_huy.Enabled = false;
 
+        }
 
         public string ID { get; set; }
 
         void Loadinfo()
         {
-            lectureinfo info = lectureinfoDAO.Instance.LoadStudentInfo(ID);
+            lectureinfo info = lectureinfoDAO.Instance.LoadLectureInfo(ID);
             lbid.Text = info.Id;
             lbname.Text = info.Name;
-            DateTime temp = info.Birthday;
-            lbbirth.Text = info.Birthday.ToString();
+            lbbirth.Text = info.Birthday != new DateTime() ? info.Birthday.ToString("MM/dd/yyyy") : "";
             lbgender.Text = info.Gender;
             lbkhoa.Text = info.EducationLevel;
             lbmakhoa.Text = info.TrainingSystem;
-            byte[] avtBytes = Encoding.ASCII.GetBytes(info.Avatar);
-            string avt = "avt.jpg";
-            File.WriteAllBytes(avt, avtBytes);
-            pictureBox1.ImageLocation = avt;
+            Image avt = ConvertBytesToImage(info.Avatar);
+            pb_avt.Image = avt;
         }
-        private void btnupdate_Click(object sender, EventArgs e)
-        {
-            //enable();
-        }
+
 
         #region load_tab_lichday
         void Loadlichday()
@@ -93,24 +88,12 @@ namespace QLSV
             //this.dgvcourse.AllowUserToAddRows = false;
 
         }
-        private void cboloccourse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dt.Rows.Clear();
-            if (cboloccourse.SelectedIndex == -1) return;
-            if (cboloccourse.SelectedItem.ToString() == "Tất cả") HienThiThongTinMon(ID, "");
-            string line = cboloccourse.SelectedItem.ToString();
-            string[] item = line.Split('/');
-            string mamon = item[0];
-            HienThiThongTinMon(ID, mamon);
-        }
 
         #endregion
         void LoadDSLop()
         {
             cbodiem.Items.Clear();
-            cboloccourse.Items.Clear();
             cbothongke.Items.Clear();
-            cboloccourse.Items.Add("Tất cả");
             txtmssv.Enabled = false;
             txtQT.Enabled = false;
             txtGK.Enabled = false;
@@ -121,12 +104,44 @@ namespace QLSV
             {
                 string line = course.CourseId.ToString() + "/" + course.CourseName.ToString();
                 cbodiem.Items.Add(line);
-                cboloccourse.Items.Add(line);
                 cbothongke.Items.Add(line);
             }
         }
 
         #region load_tab_diem
+        private bool check(string s)
+        {
+            if (float.TryParse(s, out float diem))
+            {
+                if (diem >= 0 && diem <= 10)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //private void xoadiem()
+        //{
+        //    temp = lvscoreGV.SelectedItems[0];
+        //    if (txtQT.Text == "")
+        //        temp.SubItems[2].Text = "";
+        //    if (txtGK.Text == "")
+        //        temp.SubItems[3].Text = "";
+        //    if (txtTH.Text == "")
+        //        temp.SubItems[4].Text = "";
+        //    if (txtCK.Text == "")
+        //        temp.SubItems[5].Text = "";
+        //    lvscoreGV.Items.Add(temp);
+        //    lvscoreGV.Items.Remove(lvscoreGV.SelectedItems[0]);
+        //}
+        void Loaddiem()
+        {
+            cbodiem.Text = cbodiem.Items[0].ToString();
+            string[] mon = cbodiem.Items[0].ToString().Split('/');
+            string mamon = mon[0];
+            HienThiThongTinDiem(mamon);
+        }
         private void cbodiem_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -145,16 +160,35 @@ namespace QLSV
         void HienThiThongTinDiem(string mamon)
         {
             lvscoreGV.Items.Clear();
+
             List<lecturescore> scores = lecturescoreDAO.Instance.LoadLectureScore(mamon);
             foreach (lecturescore score in scores)
             {
                 ListViewItem lvi = new ListViewItem(score.StudentId);
+                //MessageBox.Show(score.ProcessScore.ToString());
                 lvi.SubItems.Add(score.StudentName);
-                lvi.SubItems.Add(score.ProcessScore.ToString());
-                lvi.SubItems.Add(score.MidtermScore.ToString());
-                lvi.SubItems.Add(score.PracticeScore.ToString());
-                lvi.SubItems.Add(score.FinalScore.ToString());
-                lvi.SubItems.Add(score.CourseScore.ToString());
+
+
+                if (score.ProcessScore == -1)
+                    lvi.SubItems.Add("");
+                else
+                    lvi.SubItems.Add(score.ProcessScore.ToString());
+                if (score.MidtermScore == -1)
+                    lvi.SubItems.Add("");
+                else
+                    lvi.SubItems.Add(score.MidtermScore.ToString());
+                if (score.PracticeScore == -1)
+                    lvi.SubItems.Add("");
+                else
+                    lvi.SubItems.Add(score.PracticeScore.ToString());
+                if (score.FinalScore == -1)
+                    lvi.SubItems.Add("");
+                else
+                    lvi.SubItems.Add(score.FinalScore.ToString());
+                if (score.CourseScore == -1)
+                    lvi.SubItems.Add("");
+                else
+                    lvi.SubItems.Add(score.CourseScore.ToString());
                 lvscoreGV.Items.Add(lvi);
 
             }
@@ -171,11 +205,14 @@ namespace QLSV
             txtCK.Text = lvi.SubItems[5].Text;
             temp = lvi;
         }
+
         ListViewItem temp;
 
-		private void btnnhap_Click(object sender, EventArgs e)
+        private void btnnhap_Click(object sender, EventArgs e)
         {
             btnok.Enabled = true;
+            btn_huy.Enabled = true;
+            btnnhap.Enabled = false;
             if (txtQT.Text != null || txtGK.Text != null || txtTH.Text != null || txtCK.Text != null)
             {
                 txtQT.Enabled = true;
@@ -198,30 +235,54 @@ namespace QLSV
         private void btnok_Click(object sender, EventArgs e)
         {
             btnnhap.Enabled = false;
+            btn_huy.Enabled = false;
             txtQT.Enabled = false;
             txtGK.Enabled = false;
             txtTH.Enabled = false;
             txtCK.Enabled = false;
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
-            string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
-                float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
-            if (kq == "True")
+            if (check(txtQT.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
+            else
+            if (check(txtGK.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
+            else
+            if (check(txtCK.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
+            else
+            if (check(txtTH.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
+            else
             {
-
+                //xoadiem();
+                string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
+                    float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
+                HienThiThongTinDiem(mamon);
+                btnok.Enabled = false;
             }
-            else if (kq == "False")
-            {
-				txtmssv.Text = temp.SubItems[0].Text;
-				txtQT.Text = temp.SubItems[2].Text;
-				txtGK.Text = temp.SubItems[3].Text;
-				txtTH.Text = temp.SubItems[4].Text;
-				txtCK.Text = temp.SubItems[5].Text;
-			}
-            HienThiThongTinDiem(mamon);
-            btnok.Enabled = false;
         }
 
+        private void diemhople(ListViewItem item)
+        {
+            txtQT.Text = item.SubItems[2].Text;
+            txtGK.Text = item.SubItems[3].Text;
+            txtTH.Text = item.SubItems[4].Text;
+            txtCK.Text = item.SubItems[5].Text;
+            MessageBox.Show("Điểm nhập vào không hợp lệ!", "Cập nhật điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnok.Enabled = false;
+        }
+        private void btn_huy_Click(object sender, EventArgs e)
+        {
+            btn_huy.Enabled = false;
+            btnnhap.Enabled = false;
+            btnok.Enabled = false;
+            txtQT.Enabled = false;
+            txtGK.Enabled = false;
+            txtTH.Enabled = false;
+            txtCK.Enabled = false;
+            temp = lvscoreGV.SelectedItems[0];
+            txtQT.Text = temp.SubItems[2].Text;
+            txtGK.Text = temp.SubItems[3].Text;
+            txtTH.Text = temp.SubItems[4].Text;
+            txtCK.Text = temp.SubItems[5].Text;
+        }
         #endregion
 
         #region load tab thong ke
@@ -236,15 +297,15 @@ namespace QLSV
 
         }
 
-        private int check (float t)
+        private int check(float t)
         {
             if (t < 5.0)
                 return 0;
-            if (t>=5.0 && t <=6.4)
+            if (t >= 5.0 && t <= 6.4)
                 return 1;
-            if (t>=6.5&& t<=7.9)
+            if (t >= 6.5 && t <= 7.9)
                 return 2;
-            if (t>=8.0)
+            if (t >= 8.0)
                 return 3;
             return 4;
         }
@@ -271,11 +332,11 @@ namespace QLSV
                 {
                     case "Điểm QT":
                         temp = float.Parse(t.ProcessScore.ToString());
-                        
+
                         dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
                         break;
                     case "Điểm TH":
-                         temp = float.Parse(t.PracticeScore.ToString());
+                        temp = float.Parse(t.PracticeScore.ToString());
                         dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
                         break;
                     case "Điểm GK":
@@ -294,7 +355,7 @@ namespace QLSV
                         break;
                 }
             }
-            chartthongke.ChartAreas["ChartArea1"].AxisX.Title = "Thống kê thang điểm lớp "+mamon;
+            chartthongke.ChartAreas["ChartArea1"].AxisX.Title = "Thống kê thang điểm lớp " + mamon;
             chartthongke.ChartAreas["ChartArea1"].AxisY.Title = "Số lượng";
             chartthongke.ChartAreas["ChartArea1"].AxisX.Interval = 1;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -304,12 +365,59 @@ namespace QLSV
         }
         #endregion
 
+        #region doi avt
+        public byte[] ConvertImageToBytes(Image img)
+        {
+            if (img == null) { return null; }
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public Image ConvertBytesToImage(byte[] data)
+        {
+            if (data != null)
+            {
+                using (MemoryStream ms = new MemoryStream(data))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+            Image img = Image.FromFile(@"../../Resources/null_avt.png");
+            return img;
+        }
+
+        private void btn_avt_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Cập nhật ảnh thành công!", "Cập nhật ảnh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pb_avt.Image = Image.FromFile(openFileDialog.FileName);
+                byte[] avt = ConvertImageToBytes(pb_avt.Image);
+                lectureinfo info = lectureinfoDAO.Instance.LoadLectureInfo(ID);
+                string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :trainingSystem , :educationLevel , :avt );";
+                DataProvider.Instance.ExcuteNonQuery(query, new object[] { info.Id, info.Name, info.Birthday, info.Gender, info.TrainingSystem, info.EducationLevel, avt });
+                Refresh();
+            }
+        }
+        #endregion
 
         private void LecturerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseWindow logOut = new CloseWindow();
             logOut.ShowDialog();
             e.Cancel = logOut.IsNotClosed;
+        }
+
+
+        private void txt_loc_TextChanged(object sender, EventArgs e)
+        {
+            dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", txt_loc.Text);
         }
 
 
