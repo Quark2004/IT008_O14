@@ -1,0 +1,496 @@
+[33mcommit 7c945feab3b1cbec1b4e7f4d1777fd1aaefed11b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Dec 18 22:56:09 2023 +0700
+
+    disable resize and maximize form
+
+[33mcommit a11dff0a74e04551479ec37bc9c4b89a55023250[m
+Merge: 6c3386c 477638f
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Dec 14 23:51:49 2023 +0700
+
+    Merge pull request #27 from quark1412/feature/hashPassword
+    
+    update data useracc
+
+[33mcommit 477638f98fbb2fe726015cb4867c4983bdcd6569[m[33m ([m[1;31morigin/feature/hashPassword[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Dec 14 17:44:00 2023 +0700
+
+    update data useracc
+
+[33mcommit 6c3386c05eca5cf5858a924ec2150e49c3608304[m
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Dec 14 15:31:21 2023 +0700
+
+    Update README.md
+
+[33mcommit d5d7b6c313ca5e843177cb485a8936ff39015750[m
+Merge: e3f7624 44bd9bc
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Dec 14 15:27:01 2023 +0700
+
+    Merge pull request #26 from quark1412/feature/hashPassword
+    
+    Feature/hash password
+
+[33mcommit 44bd9bcc3c690ba37b3b5fbe8f4e2a2c52cfbd62[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Dec 14 15:21:29 2023 +0700
+
+    update username of student account
+
+[33mcommit 73a4262fcdc45b130e581f76ca485d9d0749c759[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Dec 14 14:20:37 2023 +0700
+
+    verify password
+
+[33mcommit 4abe9b9496150cbddda9aa25b97789112d4566e9[m[33m ([m[1;31morigin/db/update-real-data[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Dec 14 13:10:34 2023 +0700
+
+    update real data
+
+[33mcommit e3f7624b2f64d9723e612f1ae3da34122437eddb[m
+Merge: 377c878 f70b9bd
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Dec 7 20:54:20 2023 +0700
+
+    Merge pull request #24 from quark1412/feature/thongkenew
+    
+    Feature/thongkenew
+
+[33mcommit f70b9bde91ad17ded69623f9467b6b790e71c66e[m[33m ([m[1;31morigin/feature/thongkenew[m[33m)[m
+Author: YaDat354 <22520243@gm.uit.edu.vn>
+Date:   Thu Dec 7 20:12:48 2023 +0700
+
+    co them pham import voi sua lai thong ke
+
+[33mcommit 377c8780f18f319c5cdd0a8482a3acdbc2037b8e[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Dec 6 16:05:26 2023 +0700
+
+    Sửa lỗi verify khi nhập điểm (gv)
+
+[33mcommit b7c315f1f4b7186e6cb6f1d83d749516786fd0d6[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Dec 6 15:18:26 2023 +0700
+
+    Chỉnh sửa giao diện login
+
+[33mcommit 66802cbf2a1904d1ccd103e5590e2df63bd71118[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Dec 6 14:39:37 2023 +0700
+
+    Thay đổi đường dẫn ảnh để sửa lỗi avt null
+
+[33mcommit 9adc3aee19d274a315dd9ccffcee11028a71e42f[m
+Author: YaDat354 <22520243@gm.uit.edu.vn>
+Date:   Tue Dec 5 18:16:50 2023 +0700
+
+    co sua lai bang datagridiew
+
+[33mcommit 86690386789ccdaf5d40a8b060576361318ab98d[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Tue Dec 5 16:46:40 2023 +0700
+
+    Sửa lỗi avt null
+
+[33mcommit 7e66a4bd5d158d5769926fc71e041517e4aeb17e[m
+Merge: 3049f8f f75bbd3
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Mon Dec 4 20:49:11 2023 +0700
+
+    Merge pull request #22 from quark1412/db/create-table-RegistrationPeriod
+    
+    Db/create table registration period
+
+[33mcommit f75bbd355be849c7abc27eae633af2db452fdd5a[m[33m ([m[1;31morigin/db/create-table-RegistrationPeriod[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Mon Dec 4 13:03:46 2023 +0700
+
+    Update readme4.md
+
+[33mcommit 1230db5703bbb8de0c7b9d4cfd6db4a1232bd05c[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Mon Dec 4 13:01:47 2023 +0700
+
+    Tạo bảng RegistrationPeriod
+
+[33mcommit 3049f8fb52210fff74ad384da7ffb7aaf51838df[m
+Merge: 17b2abd 4a0b1f3
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Mon Dec 4 07:48:11 2023 +0700
+
+    Merge pull request #20 from quark1412/teacher2
+    
+    update tab lịch dạy và thống kê
+
+[33mcommit 5312b38f0fbafbc701d93b24ceadf721c653e002[m
+Author: YaDat354 <22520243@gm.uit.edu.vn>
+Date:   Mon Dec 4 00:07:41 2023 +0700
+
+    co sua lai phan tim kiem o dkhp them export,them tinh nang thong ke
+
+[33mcommit 4a0b1f3ff25a060fa1d5f8c3ab37688df3f25d14[m[33m ([m[1;31morigin/teacher2[m[33m)[m
+Author: irisus1 <22520210@gm.uit.edu.vn>
+Date:   Sun Dec 3 23:08:49 2023 +0700
+
+    update tab lịch dạy và thống kê
+
+[33mcommit 7d2833d364af1e733d05e574be6c72301cabeca4[m
+Author: irisus1 <22520210@gm.uit.edu.vn>
+Date:   Sun Dec 3 21:30:26 2023 +0700
+
+    update tab thống kê và lịch dạy
+
+[33mcommit 17b2abd1ab015e9a7bcc125bd9509247f93a2b79[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Dec 2 21:46:01 2023 +0700
+
+    Fix lỗi không load lại danh sách đkhp sau khi hủy học phần đã đăng ký
+
+[33mcommit 38ae10d3586f97867f4709c05055af8a5dce0b21[m
+Merge: dcdcd81 5a88676
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Nov 30 12:02:19 2023 +0700
+
+    Merge pull request #15 from quark1412/db/update-GetListRegisteredByID
+    
+    Update các trường giống với GetListRegisterCourse()
+
+[33mcommit 5a88676d4fd10ac620852120fc0c6a7104de96e4[m[33m ([m[1;31morigin/db/update-GetListRegisteredByID[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Nov 30 10:31:08 2023 +0700
+
+    Update các trường giống với GetListRegisterCourse()
+
+[33mcommit dcdcd81566fd0ad68fab4adc44d484a051e065a0[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Tue Nov 28 11:31:11 2023 +0700
+
+    Thêm chức năng hủy học phần
+
+[33mcommit c56bb4ecca798a2c78b0cdc8513162c64c4b61d7[m
+Merge: aa55cc3 5254aa8
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 27 21:53:22 2023 +0700
+
+    Merge branch 'master' of https://github.com/quark1412/IT008_O14
+
+[33mcommit aa55cc31943c538b49fc7a422891eccc68dfde63[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 27 21:51:34 2023 +0700
+
+    Thêm đkhp và hiển thị ds đã đăng kí
+
+[33mcommit 5254aa8b286d43fa8cbfc5fe1d4087ec82fddedb[m
+Merge: 80bd53b d0d02be
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Mon Nov 27 11:53:32 2023 +0700
+
+    Merge pull request #14 from quark1412/db/update-func-GetClassInCharge
+    
+    update function GetClassInCharge
+
+[33mcommit d0d02beb68d1aa1b1e3f5db6056ee2b5733d1095[m[33m ([m[1;31morigin/db/update-func-GetClassInCharge[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Mon Nov 27 11:22:59 2023 +0700
+
+    update function GetClassInCharge
+
+[33mcommit 80bd53beee17f23791fa94d5d115b7e1ba92ee28[m
+Merge: feae776 23e0990
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Mon Nov 27 09:37:51 2023 +0700
+
+    Merge pull request #13 from quark1412/teacher2
+    
+    update info, lich day, diem
+
+[33mcommit 23e09906027bb21a98b28d11773649d53e9fedae[m
+Author: irisus1 <22520210@gm.uit.edu.vn>
+Date:   Mon Nov 27 09:36:21 2023 +0700
+
+    update info, lich day, diem
+
+[33mcommit feae776967575e0e38be3f9de73ef2b7bc10c0a2[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Fri Nov 24 23:24:12 2023 +0700
+
+    Thêm thông báo đăng xuất
+
+[33mcommit ac650bc2f7b44af1921e7c09de7cf18bc64715bb[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Nov 23 13:14:41 2023 +0700
+
+    Cập nhật chức năng thay đổi ảnh đại diện (student)
+
+[33mcommit beb9a32cfa72f1cd53e19b9b5003969ea2779194[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Nov 23 01:15:30 2023 +0700
+
+    change birthday of Profile from Date -> TimeStamp
+
+[33mcommit b750a4787d162712e58aa937efff98ba4609e759[m
+Merge: ea2cf72 6aa5752
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Wed Nov 22 20:21:44 2023 +0700
+
+    Merge pull request #11 from quark1412/revert-10-feature/quanlitaikhoan
+    
+    Revert "Feature/quanlitaikhoan"
+
+[33mcommit 6aa5752eda2b276368f6101a79709c0da1e124fc[m[33m ([m[1;31morigin/revert-10-feature/quanlitaikhoan[m[33m)[m
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Wed Nov 22 20:19:29 2023 +0700
+
+    Revert "Feature/quanlitaikhoan"
+
+[33mcommit ea2cf72cac758f4a27755262bb48426599812c04[m
+Merge: 3bc34a0 9d5197c
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Wed Nov 22 20:12:38 2023 +0700
+
+    Merge pull request #10 from quark1412/feature/quanlitaikhoan
+    
+    Feature/quanlitaikhoan
+
+[33mcommit 9d5197c86c2e93351c117b6e1176dc67dddb028d[m[33m ([m[1;31morigin/feature/quanlitaikhoan[m[33m)[m
+Author: YaDat354 <22520243@gm.uit.edu.vn>
+Date:   Sun Nov 19 13:01:41 2023 +0700
+
+    quan li tai khoan cua sinh vien va giao vien,co the them,sua,xoa cac tai khoan da ket noi du lieu
+
+[33mcommit 3bc34a03abc9db886c774c40bc180b54bf42933f[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Nov 18 14:33:36 2023 +0700
+
+    Thêm phần tổng hợp thông tin học phần và điểm cho từng kì (student)
+
+[33mcommit bfb14a768682c3230d4a75575230dc126c31f338[m
+Merge: 860afbd d7fe415
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Sat Nov 18 12:46:19 2023 +0700
+
+    Merge pull request #9 from quark1412/db/add-register-record
+    
+    Thêm các điều kiện khi CRUD và bảng Register
+
+[33mcommit d7fe4153a40aa45a41bc4263dc1c05508e77aa59[m[33m ([m[1;31morigin/db/add-register-record[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Thu Nov 16 15:04:20 2023 +0700
+
+    Thêm các điều kiện khi CRUD và bảng Register chứa danh sách các lớp đã đăng kí
+
+[33mcommit 860afbdcb3f9fec0babac53fbf15637b418e09d7[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 13 23:15:59 2023 +0700
+
+    Tạo chức năng đăng ký và UI hủy đăng ký (chưa cập nhật dữ liệu đăng kí xuống db + chưa tạo hủy đăng ký) (student)
+
+[33mcommit ea24bec0faba9145da2cc2b21e01b3caae6a63dd[m[33m ([m[1;31morigin/feature/dangnhap[m[33m)[m
+Author: YaDat354 <22520243@gm.uit.edu.vn>
+Date:   Mon Nov 13 22:45:52 2023 +0700
+
+    chua biet cach de ket noi voi postgreSQL nen chua hoan thien duoc
+
+[33mcommit f75419e06389b2c6d35e5d800dc6d869fde1e108[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 13 21:56:41 2023 +0700
+
+    Add filter function for course registration (student)
+
+[33mcommit 5ea377a692d371688f6aed1b4e0e0f13ac35a24c[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 13 18:56:29 2023 +0700
+
+    Course registration function (student)
+
+[33mcommit 087eddd44b66ce66b78b286c8c9ce07c65146301[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Mon Nov 13 14:20:44 2023 +0700
+
+    Add load score function (student)
+
+[33mcommit 10a088f60a0747b53870352086e2fa93b825bf38[m
+Merge: e490a9b e7a46ff
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Mon Nov 13 12:19:35 2023 +0700
+
+    Merge pull request #5 from quark1412/feature/load-schedule
+    
+    Fix load schedule
+
+[33mcommit e7a46ff1b471591fe40d9901d1676aa68ea48400[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Mon Nov 13 12:01:32 2023 +0700
+
+    load schedule
+
+[33mcommit e490a9babe46d5d5c11a5b23d819a40b3174279d[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Nov 11 14:55:16 2023 +0700
+
+    Fix load info issues
+
+[33mcommit c3b3d54e246b28fa81acf765991dc2c4a7d9c579[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Nov 9 16:57:29 2023 +0700
+
+    Complete load schedule function (student)
+
+[33mcommit 04ae7686e8c3977557906a0999a809529b69c5d7[m
+Merge: aba38ed 2bd2359
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Nov 9 02:10:57 2023 +0700
+
+    Merge branch 'master' of https://github.com/quark1412/IT008_O14
+
+[33mcommit aba38ed409df281442f4df3300083e1a16412e9c[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Nov 9 02:10:34 2023 +0700
+
+    Complete load info function (student form)
+
+[33mcommit 2bd2359421fa0329de2195faf481b460dbf2fe7c[m
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Nov 9 01:09:17 2023 +0700
+
+    Update README.md
+
+[33mcommit 858da6e4bebd70e97619e29baa95c95f9ae6a5c2[m
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Nov 9 01:08:35 2023 +0700
+
+    Update README.md
+
+[33mcommit 2f689c12db688d67fbbb7d43a46c43dcad3efc16[m
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Thu Nov 9 01:06:59 2023 +0700
+
+    Create README.md
+
+[33mcommit 88a5e082aa36433f850d3e7f014c2e3b305b3c9e[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Nov 9 00:43:43 2023 +0700
+
+    Update login function, delete old query, update load info function, remove username validation
+
+[33mcommit 094611c51ee4ffdb8b437bd5dee31a395543c332[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Nov 8 23:30:17 2023 +0700
+
+    Reorder file/folder
+
+[33mcommit b4e6acf71fda6dceee0738846f49cd6f4adfca3d[m
+Merge: 47d7787 fff4935
+Author: quark1412 <40156711+quark1412@users.noreply.github.com>
+Date:   Wed Nov 8 19:52:23 2023 +0700
+
+    Merge pull request #2 from quark1412/db/postgres
+    
+    Db/postgres
+
+[33mcommit fff4935819202fd387a515dd4207f5668398fb6c[m[33m ([m[1;31morigin/db/postgres[m[33m)[m
+Author: Le Qui Tu <21521609@gm.uit.edu.vn>
+Date:   Wed Nov 8 17:42:07 2023 +0700
+
+    update postgres Server
+
+[33mcommit 47d7787472a5b479263cb9989fb114200eb46a54[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Nov 8 16:14:08 2023 +0700
+
+    Manage file/folder
+
+[33mcommit 7bfa9c3d64177ba64d02c93f8ba9cb0799a7e82e[m[33m ([m[1;31morigin/db/sqlsever[m[33m)[m
+Author: unknown <lqtu12369@gmail.com>
+Date:   Fri Nov 3 09:04:48 2023 +0700
+
+    fix proc GetLearningOutComes  lấy thêm học kì và năm học
+
+[33mcommit 29dd082f93f5e5e6877609fddb9984dc2efd54e4[m
+Author: unknown <lqtu12369@gmail.com>
+Date:   Tue Oct 31 15:57:34 2023 +0700
+
+    create base table, store proc
+
+[33mcommit 3b40fd0797ed872c2806f4ca7c2febd00df4551c[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Fri Oct 27 21:55:46 2023 +0700
+
+    Create UI for info, schedule, course registration and score (student form)
+
+[33mcommit 60b96db8a2aff857adc53b335cbd267caf3a0d08[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Oct 21 20:21:41 2023 +0700
+
+    Delete ScoreDAO and ScoreDTO
+
+[33mcommit e200d86b43ad62c3fc421cb4cdae6053540d2e78[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Fri Oct 20 15:29:06 2023 +0700
+
+    Add Student ID regex validation
+
+[33mcommit d459976ecaf2032af785c58fb5f80125e400dde6[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Oct 14 20:47:16 2023 +0700
+
+    Add logo to login form, change date format
+
+[33mcommit 67690e38ae13ca3f39014370ed9401774a34fcd6[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Sat Oct 14 16:40:36 2023 +0700
+
+    Update SQL query and add StudentInfo tab
+
+[33mcommit df124e5872061c45a21f2e2505f58d474cb36c74[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Fri Oct 13 22:50:30 2023 +0700
+
+    Change sth and add SQL query
+
+[33mcommit 4eead5b9c8d57dd4a930167c386f09f058fb773a[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Thu Oct 5 14:22:31 2023 +0700
+
+    Create StudentForm UI
+
+[33mcommit 3bd13ece8a3011be00f7eb51391e8cf9af0d5cf6[m
+Author: quark1412 <hvphuongdts@gmail.com>
+Date:   Wed Oct 4 08:22:56 2023 +0700
+
+    Add .gitattributes and .gitignore
+
+[33mcommit 61aa8ab578efbc8cc2030713bd57154cff744141[m
+Author: quark <hvphuongdts@gmail.com>
+Date:   Tue Oct 3 00:38:46 2023 +0700
+
+    Add student, lecturer and manager form
+
+[33mcommit 5afdc5dca6bac39dfc2831ede31a926e2d4051ab[m
+Author: quark <hvphuongdts@gmail.com>
+Date:   Mon Oct 2 22:06:17 2023 +0700
+
+    Rename form, create login function
+
+[33mcommit 155f5816a774dbed550ef7b4be6ec5bea01f0e17[m
+Author: quark <hvphuongdts@gmail.com>
+Date:   Mon Oct 2 00:52:58 2023 +0700
+
+    Create connection to database
+
+[33mcommit 62699d30dcff575dba06d668dc29cba485d718aa[m
+Author: quark <hvphuongdts@gmail.com>
+Date:   Sun Oct 1 15:25:17 2023 +0700
+
+    Create Login Form
+
+[33mcommit 48796eaf58eca669db1be0982d0669952c6b9fa9[m
+Author: quark <hvphuongdts@gmail.com>
+Date:   Sat Sep 30 17:23:20 2023 +0700
+
+    Create project

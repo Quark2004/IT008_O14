@@ -77,8 +77,6 @@
       <DependentUpon>CloseWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
-    <Compile Include="DAO\AccountManagementDAO.cs" />
-    <Compile Include="DAO\AdminCourseDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\lecturecourseDAO.cs" />
     <Compile Include="DAO\lectureinfoDAO.cs" />
@@ -88,8 +86,6 @@
     <Compile Include="DAO\StudentInfoDAO.cs" />
     <Compile Include="DAO\StudentScheduleDAO.cs" />
     <Compile Include="DAO\StudentScoreDAO.cs" />
-    <Compile Include="DTO\AccountManagementDTO.cs" />
-    <Compile Include="DTO\CourseDTO.cs" />
     <Compile Include="DTO\lecturecourse.cs" />
     <Compile Include="DTO\lectureinfo.cs" />
     <Compile Include="DTO\lecturescore.cs" />
