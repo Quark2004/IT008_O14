@@ -125,17 +125,24 @@ namespace QLSV {
 		}
 
 		private void btn_accept_Click(object sender, EventArgs e) {
+			List<string> success = new List<string>();
+			List<string> error = new List<string>();
 			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
 				if (Convert.ToBoolean(row.Cells[0].Value)) {
 					string query = "SELECT AcceptCourse( :studentId , :courseId )";
 					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[1].Value });
-					MessageBox.Show(result.ToString());
+					if (result) {
+						success.Add(row.Cells[2].Value.ToString());
+					} else {
+						error.Add(row.Cells[2].Value.ToString());
+					}
 				} else {
 					string query = "SELECT RejectCourse( :studentId , :courseId )";
 					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[1].Value });
-					MessageBox.Show(result.ToString());
 				}
 			}
+			RegistrationResult resultWindow = new RegistrationResult(success, error);
+			resultWindow.ShowDialog();
 		}
 
 		private void tb_findStudent_TextChanged(object sender, EventArgs e) {
