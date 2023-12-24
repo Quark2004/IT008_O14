@@ -47,13 +47,15 @@
 			this.dtp_startDate = new System.Windows.Forms.DateTimePicker();
 			this.dtp_endDate = new System.Windows.Forms.DateTimePicker();
 			this.btn_update = new System.Windows.Forms.Button();
+			this.tb_lecturerId = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(26, 38);
+			this.label1.Location = new System.Drawing.Point(26, 110);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(143, 27);
 			this.label1.TabIndex = 0;
@@ -62,9 +64,8 @@
 			// tb_courseName
 			// 
 			this.tb_courseName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tb_courseName.Enabled = false;
 			this.tb_courseName.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_courseName.Location = new System.Drawing.Point(201, 36);
+			this.tb_courseName.Location = new System.Drawing.Point(201, 108);
 			this.tb_courseName.Name = "tb_courseName";
 			this.tb_courseName.Size = new System.Drawing.Size(244, 34);
 			this.tb_courseName.TabIndex = 1;
@@ -74,7 +75,7 @@
 			this.tb_courseId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_courseId.Enabled = false;
 			this.tb_courseId.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_courseId.Location = new System.Drawing.Point(201, 108);
+			this.tb_courseId.Location = new System.Drawing.Point(201, 36);
 			this.tb_courseId.Name = "tb_courseId";
 			this.tb_courseId.Size = new System.Drawing.Size(244, 34);
 			this.tb_courseId.TabIndex = 3;
@@ -83,7 +84,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(26, 110);
+			this.label2.Location = new System.Drawing.Point(26, 38);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(86, 27);
 			this.label2.TabIndex = 2;
@@ -93,7 +94,7 @@
 			// 
 			this.tb_lecturerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_lecturerName.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_lecturerName.Location = new System.Drawing.Point(201, 181);
+			this.tb_lecturerName.Location = new System.Drawing.Point(201, 253);
 			this.tb_lecturerName.Name = "tb_lecturerName";
 			this.tb_lecturerName.Size = new System.Drawing.Size(244, 34);
 			this.tb_lecturerName.TabIndex = 5;
@@ -102,7 +103,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(26, 183);
+			this.label3.Location = new System.Drawing.Point(26, 255);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(158, 27);
 			this.label3.TabIndex = 4;
@@ -112,7 +113,7 @@
 			// 
 			this.tb_numberOfCredits.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_numberOfCredits.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_numberOfCredits.Location = new System.Drawing.Point(201, 258);
+			this.tb_numberOfCredits.Location = new System.Drawing.Point(201, 330);
 			this.tb_numberOfCredits.Name = "tb_numberOfCredits";
 			this.tb_numberOfCredits.Size = new System.Drawing.Size(244, 34);
 			this.tb_numberOfCredits.TabIndex = 7;
@@ -121,7 +122,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(26, 260);
+			this.label4.Location = new System.Drawing.Point(26, 332);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(107, 27);
 			this.label4.TabIndex = 6;
@@ -131,7 +132,7 @@
 			// 
 			this.tb_day.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_day.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_day.Location = new System.Drawing.Point(201, 328);
+			this.tb_day.Location = new System.Drawing.Point(201, 400);
 			this.tb_day.Name = "tb_day";
 			this.tb_day.Size = new System.Drawing.Size(244, 34);
 			this.tb_day.TabIndex = 9;
@@ -140,7 +141,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(26, 330);
+			this.label5.Location = new System.Drawing.Point(26, 402);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(59, 27);
 			this.label5.TabIndex = 8;
@@ -150,7 +151,7 @@
 			// 
 			this.tb_period.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_period.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_period.Location = new System.Drawing.Point(201, 403);
+			this.tb_period.Location = new System.Drawing.Point(807, 36);
 			this.tb_period.Name = "tb_period";
 			this.tb_period.Size = new System.Drawing.Size(244, 34);
 			this.tb_period.TabIndex = 11;
@@ -159,7 +160,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(26, 405);
+			this.label6.Location = new System.Drawing.Point(632, 38);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(51, 27);
 			this.label6.TabIndex = 10;
@@ -169,7 +170,7 @@
 			// 
 			this.tb_room.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_room.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_room.Location = new System.Drawing.Point(796, 36);
+			this.tb_room.Location = new System.Drawing.Point(807, 108);
 			this.tb_room.Name = "tb_room";
 			this.tb_room.Size = new System.Drawing.Size(244, 34);
 			this.tb_room.TabIndex = 13;
@@ -178,7 +179,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(621, 38);
+			this.label7.Location = new System.Drawing.Point(632, 110);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(80, 27);
 			this.label7.TabIndex = 12;
@@ -188,7 +189,7 @@
 			// 
 			this.tb_semester.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_semester.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_semester.Location = new System.Drawing.Point(796, 109);
+			this.tb_semester.Location = new System.Drawing.Point(807, 181);
 			this.tb_semester.Name = "tb_semester";
 			this.tb_semester.Size = new System.Drawing.Size(244, 34);
 			this.tb_semester.TabIndex = 15;
@@ -197,7 +198,7 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(621, 111);
+			this.label8.Location = new System.Drawing.Point(632, 183);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(79, 27);
 			this.label8.TabIndex = 14;
@@ -207,7 +208,7 @@
 			// 
 			this.tb_schoolYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tb_schoolYear.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_schoolYear.Location = new System.Drawing.Point(796, 181);
+			this.tb_schoolYear.Location = new System.Drawing.Point(807, 253);
 			this.tb_schoolYear.Name = "tb_schoolYear";
 			this.tb_schoolYear.Size = new System.Drawing.Size(244, 34);
 			this.tb_schoolYear.TabIndex = 17;
@@ -216,7 +217,7 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(621, 183);
+			this.label9.Location = new System.Drawing.Point(632, 255);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(104, 27);
 			this.label9.TabIndex = 16;
@@ -226,7 +227,7 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(621, 258);
+			this.label10.Location = new System.Drawing.Point(632, 330);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(147, 27);
 			this.label10.TabIndex = 18;
@@ -236,7 +237,7 @@
 			// 
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(621, 330);
+			this.label11.Location = new System.Drawing.Point(632, 402);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(153, 27);
 			this.label11.TabIndex = 20;
@@ -244,20 +245,20 @@
 			// 
 			// dtp_startDate
 			// 
-			this.dtp_startDate.CustomFormat = "dd/MM/yyyy";
+			this.dtp_startDate.CustomFormat = "yyyy-MM-dd";
 			this.dtp_startDate.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dtp_startDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_startDate.Location = new System.Drawing.Point(796, 258);
+			this.dtp_startDate.Location = new System.Drawing.Point(807, 330);
 			this.dtp_startDate.Name = "dtp_startDate";
 			this.dtp_startDate.Size = new System.Drawing.Size(244, 34);
 			this.dtp_startDate.TabIndex = 21;
 			// 
 			// dtp_endDate
 			// 
-			this.dtp_endDate.CustomFormat = "dd/MM/yyyy";
+			this.dtp_endDate.CustomFormat = "yyyy-MM-dd";
 			this.dtp_endDate.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dtp_endDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtp_endDate.Location = new System.Drawing.Point(796, 330);
+			this.dtp_endDate.Location = new System.Drawing.Point(807, 402);
 			this.dtp_endDate.Name = "dtp_endDate";
 			this.dtp_endDate.Size = new System.Drawing.Size(244, 34);
 			this.dtp_endDate.TabIndex = 22;
@@ -265,18 +266,41 @@
 			// btn_update
 			// 
 			this.btn_update.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_update.Location = new System.Drawing.Point(822, 474);
+			this.btn_update.Location = new System.Drawing.Point(471, 481);
 			this.btn_update.Name = "btn_update";
 			this.btn_update.Size = new System.Drawing.Size(167, 52);
 			this.btn_update.TabIndex = 23;
 			this.btn_update.Text = "Cập nhật";
 			this.btn_update.UseVisualStyleBackColor = true;
+			this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+			// 
+			// tb_lecturerId
+			// 
+			this.tb_lecturerId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tb_lecturerId.Enabled = false;
+			this.tb_lecturerId.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tb_lecturerId.Location = new System.Drawing.Point(201, 183);
+			this.tb_lecturerId.Name = "tb_lecturerId";
+			this.tb_lecturerId.Size = new System.Drawing.Size(244, 34);
+			this.tb_lecturerId.TabIndex = 25;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label12.Location = new System.Drawing.Point(26, 185);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(80, 27);
+			this.label12.TabIndex = 24;
+			this.label12.Text = "Mã GV:";
 			// 
 			// ModifyCourse
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1169, 557);
+			this.Controls.Add(this.tb_lecturerId);
+			this.Controls.Add(this.label12);
 			this.Controls.Add(this.btn_update);
 			this.Controls.Add(this.dtp_endDate);
 			this.Controls.Add(this.dtp_startDate);
@@ -336,5 +360,7 @@
 		private System.Windows.Forms.DateTimePicker dtp_startDate;
 		private System.Windows.Forms.DateTimePicker dtp_endDate;
 		private System.Windows.Forms.Button btn_update;
+		private System.Windows.Forms.TextBox tb_lecturerId;
+		private System.Windows.Forms.Label label12;
 	}
 }

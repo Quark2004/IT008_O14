@@ -529,7 +529,11 @@
 			// 
 			// data_CourseRegistration
 			// 
-			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.data_CourseRegistration.AllowUserToAddRows = false;
+			this.data_CourseRegistration.AllowUserToDeleteRows = false;
+			this.data_CourseRegistration.AllowUserToResizeColumns = false;
+			this.data_CourseRegistration.AllowUserToResizeRows = false;
+			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -558,6 +562,7 @@
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			this.data_CourseRegistration.RowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.data_CourseRegistration.RowTemplate.Height = 24;
+			this.data_CourseRegistration.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.data_CourseRegistration.Size = new System.Drawing.Size(1181, 582);
 			this.data_CourseRegistration.TabIndex = 1;
 			// 
@@ -734,7 +739,11 @@
 			// 
 			// data_RegistrationInfo
 			// 
-			this.data_RegistrationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.data_RegistrationInfo.AllowUserToAddRows = false;
+			this.data_RegistrationInfo.AllowUserToDeleteRows = false;
+			this.data_RegistrationInfo.AllowUserToResizeColumns = false;
+			this.data_RegistrationInfo.AllowUserToResizeRows = false;
+			this.data_RegistrationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.data_RegistrationInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -763,6 +772,7 @@
 			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			this.data_RegistrationInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.data_RegistrationInfo.RowTemplate.Height = 24;
+			this.data_RegistrationInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.data_RegistrationInfo.Size = new System.Drawing.Size(1182, 581);
 			this.data_RegistrationInfo.TabIndex = 2;
 			// 

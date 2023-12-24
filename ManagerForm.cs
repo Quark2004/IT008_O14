@@ -22,7 +22,8 @@ namespace QLSV {
 		public ManagerForm(string id) {
 			InitializeComponent();
 			LoadAllCourse();
-			LoadStudentRegistrationList("21521601");
+			LoadStudentList();
+			LoadStudentRegistrationList(data_studentList.Rows[0].Cells[0].Value.ToString());
 			ID = id;
 		}
 		public string ID { get; set; }
@@ -32,6 +33,12 @@ namespace QLSV {
 			string query = "SELECT * FROM GetListRegisterCourse()";
 			DataTable courses = DataProvider.Instance.ExcuteQuery(query);
 			data_allCourse.DataSource = courses;
+		}
+
+		void LoadStudentList() {
+			string query = "SELECT * FROM getListStudents()";
+			DataTable studentList = DataProvider.Instance.ExcuteQuery(query);
+			data_studentList.DataSource = studentList;
 		}
 
 		private void btn_import_Click(object sender, EventArgs e) {
@@ -81,8 +88,6 @@ namespace QLSV {
 			foreach (var course in registeredCourseLists) {
 				dtCourseOfStudent.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate, course.EndDate);
 			}
-			tb_studentName.Text = "Trần Thế Sơn";
-			tb_studentId.Text = "21521601";
 			data_courseListOfStudent.DataSource = dtCourseOfStudent;
 			data_courseListOfStudent.Columns[0].ReadOnly = false;
 			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
@@ -95,8 +100,8 @@ namespace QLSV {
 		}
 
 		private void btn_modify_Click(object sender, EventArgs e) {
-			string courseID = data_allCourse.SelectedRows[0].Cells[1].Value.ToString();
-			ModifyCourse modifyCourse = new ModifyCourse(courseID);
+			DataGridViewRow modifyRow = data_allCourse.CurrentRow;
+			ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
 			modifyCourse.ShowDialog();
 		}
 
@@ -104,6 +109,28 @@ namespace QLSV {
 			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
 				DataGridViewCheckBoxCell checkBox = (DataGridViewCheckBoxCell)row.Cells[0];
 				checkBox.Value = true;
+			}
+		}
+
+		private void data_studentList_SelectionChanged(object sender, EventArgs e) {
+			DataGridViewRow curRow = data_studentList.CurrentRow;
+			string studentId = curRow.Cells[0].Value.ToString();
+			tb_studentId.Text = curRow.Cells[0].Value.ToString();
+			tb_studentName.Text = curRow.Cells[1].Value.ToString();
+			LoadStudentRegistrationList(studentId);
+		}
+
+		private void btn_accept_Click(object sender, EventArgs e) {
+			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
+				if (Convert.ToBoolean(row.Cells[0].Value)) {
+					string query = "SELECT AcceptCourse( :studentId , :courseId )";
+					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[1].Value });
+					MessageBox.Show(result.ToString());
+				} else {
+					string query = "SELECT RejectCourse( :studentId , :courseId )";
+					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[1].Value });
+					MessageBox.Show(result.ToString());
+				}
 			}
 		}
 

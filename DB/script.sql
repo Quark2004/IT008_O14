@@ -507,7 +507,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- select updateRegistrationPeriod('2023-12-24', '2023-12-25')
+-- select updateRegistrationPeriod('2023-12-25', '2023-12-26')
 
 CREATE OR REPLACE FUNCTION updateRegisterCourse(
     IN courseId VARCHAR(100),
