@@ -28,6 +28,7 @@
 			this.tab_account = new System.Windows.Forms.TabPage();
 			this.tab_course = new System.Windows.Forms.TabPage();
 			this.tab_registration = new System.Windows.Forms.TabPage();
+			this.btn_openRegistration = new System.Windows.Forms.Button();
 			this.btn_modify = new System.Windows.Forms.Button();
 			this.btn_export = new System.Windows.Forms.Button();
 			this.btn_import = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panel_studentList = new System.Windows.Forms.Panel();
 			this.data_studentList = new System.Windows.Forms.DataGridView();
-			this.btn_openRegistration = new System.Windows.Forms.Button();
 			this.tabCtrl_main.SuspendLayout();
 			this.tab_registration.SuspendLayout();
 			this.panel_.SuspendLayout();
@@ -111,6 +111,16 @@
 			this.tab_registration.TabIndex = 2;
 			this.tab_registration.Text = "   ĐKHP";
 			this.tab_registration.UseVisualStyleBackColor = true;
+			// 
+			// btn_openRegistration
+			// 
+			this.btn_openRegistration.Location = new System.Drawing.Point(797, 534);
+			this.btn_openRegistration.Name = "btn_openRegistration";
+			this.btn_openRegistration.Size = new System.Drawing.Size(113, 67);
+			this.btn_openRegistration.TabIndex = 3;
+			this.btn_openRegistration.Text = "Mở ĐKHP";
+			this.btn_openRegistration.UseVisualStyleBackColor = true;
+			this.btn_openRegistration.Click += new System.EventHandler(this.btn_openRegistration_Click);
 			// 
 			// btn_modify
 			// 
@@ -211,6 +221,7 @@
 			this.tb_findStudent.Name = "tb_findStudent";
 			this.tb_findStudent.Size = new System.Drawing.Size(326, 33);
 			this.tb_findStudent.TabIndex = 3;
+			this.tb_findStudent.TextChanged += new System.EventHandler(this.tb_findStudent_TextChanged);
 			// 
 			// btn_accept
 			// 
@@ -336,15 +347,6 @@
 			this.data_studentList.Size = new System.Drawing.Size(351, 604);
 			this.data_studentList.TabIndex = 0;
 			this.data_studentList.SelectionChanged += new System.EventHandler(this.data_studentList_SelectionChanged);
-			// 
-			// btn_openRegistration
-			// 
-			this.btn_openRegistration.Location = new System.Drawing.Point(797, 534);
-			this.btn_openRegistration.Name = "btn_openRegistration";
-			this.btn_openRegistration.Size = new System.Drawing.Size(113, 67);
-			this.btn_openRegistration.TabIndex = 3;
-			this.btn_openRegistration.Text = "Mở ĐKHP";
-			this.btn_openRegistration.UseVisualStyleBackColor = true;
 			// 
 			// ManagerForm
 			// 

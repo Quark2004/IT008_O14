@@ -18,6 +18,8 @@ using QLSV.DTO;
 namespace QLSV {
 	public partial class ManagerForm : Form {
 		DataTable dtCourseOfStudent;
+		DataTable courses;
+		DataTable studentList;
 
 		public ManagerForm(string id) {
 			InitializeComponent();
@@ -31,13 +33,13 @@ namespace QLSV {
 		#region ĐKHP
 		void LoadAllCourse() {
 			string query = "SELECT * FROM GetListRegisterCourse()";
-			DataTable courses = DataProvider.Instance.ExcuteQuery(query);
+			courses = DataProvider.Instance.ExcuteQuery(query);
 			data_allCourse.DataSource = courses;
 		}
 
 		void LoadStudentList() {
 			string query = "SELECT * FROM getListStudents()";
-			DataTable studentList = DataProvider.Instance.ExcuteQuery(query);
+			studentList = DataProvider.Instance.ExcuteQuery(query);
 			data_studentList.DataSource = studentList;
 		}
 
@@ -114,10 +116,12 @@ namespace QLSV {
 
 		private void data_studentList_SelectionChanged(object sender, EventArgs e) {
 			DataGridViewRow curRow = data_studentList.CurrentRow;
-			string studentId = curRow.Cells[0].Value.ToString();
-			tb_studentId.Text = curRow.Cells[0].Value.ToString();
-			tb_studentName.Text = curRow.Cells[1].Value.ToString();
-			LoadStudentRegistrationList(studentId);
+			if (curRow != null) {
+				string studentId = curRow.Cells[0].Value.ToString();
+				tb_studentId.Text = curRow.Cells[0].Value.ToString();
+				tb_studentName.Text = curRow.Cells[1].Value.ToString();
+				LoadStudentRegistrationList(studentId);
+			}
 		}
 
 		private void btn_accept_Click(object sender, EventArgs e) {
@@ -132,6 +136,15 @@ namespace QLSV {
 					MessageBox.Show(result.ToString());
 				}
 			}
+		}
+
+		private void tb_findStudent_TextChanged(object sender, EventArgs e) {
+			studentList.DefaultView.RowFilter = string.Format("[MSSV] like '%{0}%' or [Họ tên] like '%{0}%'", tb_findStudent.Text);
+		}
+
+		private void btn_openRegistration_Click(object sender, EventArgs e) {
+			SetCourseRegistrationPeriod setPeriodWindow = new SetCourseRegistrationPeriod();
+			setPeriodWindow.ShowDialog();
 		}
 
 		#endregion
