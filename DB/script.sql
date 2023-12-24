@@ -129,8 +129,9 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION GetListRegisterCourse()
 RETURNS TABLE(
+	"Mã lớp" VARCHAR(100),
     "Tên môn học" VARCHAR(100),
-    "Mã lớp" VARCHAR(100),
+    "Mã giảng viên" VARCHAR(100),
     "Tên giảng viên" VARCHAR(100),
     "Số tín chỉ" INT,
     "Thứ" VARCHAR(100),
@@ -142,14 +143,15 @@ RETURNS TABLE(
     "Ngày kết thúc" DATE
 ) AS $$
 BEGIN
-	
+
     -- Nếu quá thời hạn đăng kí học phần sẽ không load được kết quả
     IF CURRENT_TIMESTAMP > (SELECT endTime FROM RegistrationPeriod ORDER BY id DESC LIMIT 1) THEN
         RETURN;
     ELSE
         RETURN QUERY
-        SELECT Course.name as "Tên môn học",
-               Course.id as "Mã lớp",
+        SELECT Course.id as "Mã lớp",
+			   Course.name as "Tên môn học",
+               Profile.id as "Mã giảng viên",
                Profile.name as "Tên giảng viên",
                Course.numberOfCredits as "Số tín chỉ",
                Course.schoolDay as "Thứ",
@@ -294,6 +296,25 @@ $$ LANGUAGE plpgsql;
 
 -- select * from GetListRegistrationPeriod();
 
+create or replace function getListStudents()
+returns table (
+	"MSSV" varchar(100),
+	"Họ tên" varchar(100)
+) as $$
+BEGIN 
+	return query 
+	select 
+		profile.id as "MSSV", 
+		profile.name as "Họ tên" 
+	from profile, useracc, account
+	where useracc.idprofile = profile.id
+		and useracc.idaccount = account.username
+		and account."role" = 'student';
+end;
+$$ language plpgsql;
+
+-- select * from getListStudents()
+
 -------------------------
 ------ CRUD -----------
 CREATE OR REPLACE FUNCTION InsertAcc(
@@ -330,42 +351,49 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT InsertAcc('student11', '123456', '21521611');
 
-CREATE OR REPLACE FUNCTION InsertRegistrationPeriod(
-    IN _startTime TIMESTAMP,
-    IN _endTime TIMESTAMP
+CREATE OR REPLACE FUNCTION insertRegisterCourse(
+    IN courseId VARCHAR(100),
+    IN courseName VARCHAR(100),
+    IN profileId VARCHAR(100),
+    IN profileName VARCHAR(100),
+    IN courseNumberOfCredits INT,
+    IN courseSchoolDay VARCHAR(100),
+    IN courseLesson VARCHAR(100),
+    IN courseClassroom VARCHAR(100),
+    IN courseSemester VARCHAR(100),
+    IN courseSchoolYear VARCHAR(100),
+    IN courseStartDay DATE,
+    IN courseEndDay DATE
 )
-RETURNS Bool AS $$
+RETURNS BOOLEAN AS $$
 DECLARE
     lastEndTime TIMESTAMP;
+    lastStartTime TIMESTAMP;
 BEGIN
-    -- Lấy thời gian đăng kí học phần gần nhất
+    -- Không được sửa danh sách dkhp khi đăng mở đăng kí 
+    SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
 
-    SELECT endTime INTO lastEndTime FROM RegistrationPeriod ORDER BY id DESC LIMIT 1;
-
-    -- Thời gian bắt đầu đkhp của lần tiếp theo phải nhỏ hơn thời gian kết thúc của lần dkhp trước đó
-    
-    IF _startTime < lastEndTime THEN
-        RETURN false;
+    IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN 
+        RETURN FALSE;
     END IF;
+	
+	
+	INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) 
+	VALUES (courseId, courseName, courseNumberOfCredits, courseSchoolDay, courseLesson, courseClassroom, courseSemester, courseSchoolYear, courseStartDay, courseEndDay);
 
-    IF _endTime <= _startTime THEN
-        RETURN false;
-    END IF;
+	INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES (profileId, courseId, NULL, NULL);
 
-    -- Thời gian kết thúc dkhp phải lớn hơn thời gian hiện tại 
+    UPDATE Profile
+    SET
+        name = profileName
+    WHERE
+        id = profileId;
 
-    IF _endTime < CURRENT_TIMESTAMP THEN
-        RETURN false;
-    END IF;
-
-    INSERT INTO RegistrationPeriod(startTime, endTime)
-    VALUES (_startTime, _endTime);
-
-    RETURN true;
+    RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
 
--- select InsertRegistrationPeriod('2023-12-10', '2023-12-20')
+-- SELECT insertRegisterCourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật', 'GV2', 'Trần Khắc Việt', 3, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
 
 
 CREATE OR REPLACE FUNCTION UpdatePass(_username VARCHAR(100), _password VARCHAR(1000))
@@ -412,10 +440,10 @@ CREATE OR REPLACE FUNCTION UpdateScore(
 RETURNS BOOLEAN AS $$
 BEGIN
     IF (
-        v_processScore < 0 OR
-        v_midtermScore < 0 OR
-        v_finalScore < 0 OR
-        v_practiceScore < 0
+        v_processScore < 0 OR v_processScore > 10 or
+        v_midtermScore < 0 OR v_midtermScore > 10 or
+        v_finalScore < 0 OR v_finalScore > 10 or
+        v_practiceScore < 0 or v_practiceScore > 10
     ) THEN
         RETURN FALSE;
     END IF;
@@ -456,6 +484,85 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION updateRegistrationPeriod(p_startTime TIMESTAMP, p_endTime TIMESTAMP)
+RETURNS BOOL AS $$
+DECLARE
+    lastEndTime TIMESTAMP;
+    lastStartTime TIMESTAMP;
+BEGIN
+
+	IF p_endTime <= p_startTime THEN
+        RETURN FALSE;
+    END IF;
+
+    IF p_endTime < CURRENT_TIMESTAMP THEN
+        RETURN FALSE;
+    END IF;
+
+    UPDATE RegistrationPeriod
+    SET startTime = p_startTime, endTime = p_endTime
+    WHERE id = (SELECT id FROM RegistrationPeriod ORDER BY endtime DESC LIMIT 1);
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- select updateRegistrationPeriod('2023-12-24', '2023-12-25')
+
+CREATE OR REPLACE FUNCTION updateRegisterCourse(
+    IN courseId VARCHAR(100),
+    IN courseName VARCHAR(100),
+    IN profileId VARCHAR(100),
+    IN profileName VARCHAR(100),
+    IN courseNumberOfCredits INT,
+    IN courseSchoolDay VARCHAR(100),
+    IN courseLesson VARCHAR(100),
+    IN courseClassroom VARCHAR(100),
+    IN courseSemester VARCHAR(100),
+    IN courseSchoolYear VARCHAR(100),
+    IN courseStartDay DATE,
+    IN courseEndDay DATE
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+    lastEndTime TIMESTAMP;
+    lastStartTime TIMESTAMP;
+BEGIN
+    SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
+
+    -- Không được sửa danh sách dkhp khi đăng mở đăng kí 
+
+    IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN 
+        RETURN FALSE;
+    END IF;
+
+    UPDATE Course
+    SET
+        name = courseName,
+        numberOfCredits = courseNumberOfCredits,
+        schoolDay = courseSchoolDay,
+        lesson = courseLesson,
+        classroom = courseClassroom,
+        semester = courseSemester,
+        schoolYear = courseSchoolYear,
+        startDay = courseStartDay,
+        endDay = courseEndDay
+    WHERE
+        id = courseId;
+
+    UPDATE Profile
+    SET
+        name = profileName
+    WHERE
+        id = profileId;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- SELECT updateregistercourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật 2', 'GV2', 'Trần Khắc Việt 2', 4, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
+
+
 -- SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
 
 CREATE OR REPLACE FUNCTION AcceptCourse(
@@ -473,6 +580,15 @@ BEGIN
 
     -- Không được đăng kí 1 môn nhiều lần
     IF (SELECT COUNT(*) FROM Schedule WHERE idProfile = v_idProfile AND idCourse = v_idCourse) > 0 THEN
+        RETURN FALSE;
+    END IF;
+	
+	-- Không được đăng kí trùng môn khác ngày học ví dụ IT003.O11 và IT003.O12
+	IF (SELECT COUNT(*) 
+		FROM Schedule 
+		WHERE idProfile = v_idProfile 
+		AND substring(idCourse from 1 for position('.' in idCourse)-1) = substring(v_idCourse from 1 for position('.' in v_idCourse)-1)
+	) > 0 THEN
         RETURN FALSE;
     END IF;
 
@@ -551,7 +667,16 @@ BEGIN
     IF (SELECT COUNT(*) FROM RegisterCourse WHERE idCourse = v_idCourse AND idProfile = v_idProfile) > 0 THEN
         RETURN FALSE;
     END IF;
-
+	
+	-- Không được đăng kí trùng môn khác ngày học ví dụ IT003.O11 và IT003.O12
+	IF (SELECT COUNT(*) 
+		FROM RegisterCourse 
+		WHERE idProfile = v_idProfile 
+		AND substring(idCourse from 1 for position('.' in idCourse)-1) = substring(v_idCourse from 1 for position('.' in v_idCourse)-1)
+	) > 0 THEN
+        RETURN FALSE;
+    END IF;
+	
     -- Các môn học không được trùng lịch học
     IF (SELECT COUNT(*) FROM
         (SELECT Course.schoolDay, Course.lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
@@ -566,7 +691,7 @@ BEGIN
 
     INSERT INTO RegisterCourse(idCourse, idProfile)
     VALUES(v_idCourse, v_idProfile);
-	
+
 	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
@@ -587,36 +712,19 @@ $$ LANGUAGE plpgsql;
 
 -- SELECT LeaveRegisterCourse('21521601', 'IT006.O14');
 
-CREATE OR REPLACE FUNCTION updateRegistrationPeriod(p_startTime TIMESTAMP, p_endTime TIMESTAMP)
-RETURNS BOOL AS $$
-DECLARE
-    prevEndTime TIMESTAMP;
+CREATE OR REPLACE FUNCTION clearRegisterCourse()
+RETURNS VOID 
+AS $$
 BEGIN
-    SELECT endTime INTO prevEndTime
-    FROM RegistrationPeriod
-    WHERE id = (SELECT MAX(id) FROM RegistrationPeriod) - 1;
-
-    IF p_startTime <= prevEndTime THEN
-        RETURN FALSE;
-    END IF;
-	
-	IF p_endTime <= p_startTime THEN
-        RETURN FALSE;
-    END IF;
-
-    IF p_endTime < CURRENT_TIMESTAMP THEN
-        RETURN FALSE;
-    END IF;
-
-    UPDATE RegistrationPeriod
-    SET startTime = p_startTime, endTime = p_endTime
-    WHERE id = (SELECT MAX(id) FROM RegistrationPeriod);
-
-    RETURN TRUE;
+	delete from Schedule;
+	delete from RegisterCourse;
+	delete from Score;
+	delete from Course;
 END;
 $$ LANGUAGE plpgsql;
 
--- select updateRegistrationPeriod('2023-12-12', '2023-12-20')
+-- SELECT FROM clearRegisterCourse()
+
 
 
 -- ===============================================================
