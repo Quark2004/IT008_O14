@@ -360,6 +360,7 @@
 			this.Name = "ManagerForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Quản lý";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManagerForm_FormClosing);
 			this.tabCtrl_main.ResumeLayout(false);
 			this.tab_registration.ResumeLayout(false);
 			this.panel_.ResumeLayout(false);

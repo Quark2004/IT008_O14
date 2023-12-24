@@ -104,7 +104,20 @@ namespace QLSV {
 		private void btn_modify_Click(object sender, EventArgs e) {
 			DataGridViewRow modifyRow = data_allCourse.CurrentRow;
 			ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
-			modifyCourse.ShowDialog();
+			Form bg = new Form();
+			using (modifyCourse) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				modifyCourse.Owner = bg;
+				modifyCourse.ShowDialog(bg);
+				bg.Dispose();
+			}
 		}
 
 		private void data_courseListOfStudent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) {
@@ -141,8 +154,21 @@ namespace QLSV {
 					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[1].Value });
 				}
 			}
+			Form bg = new Form();
 			RegistrationResult resultWindow = new RegistrationResult(success, error);
-			resultWindow.ShowDialog();
+			using (resultWindow) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				resultWindow.Owner = bg;
+				resultWindow.ShowDialog(bg);
+				bg.Dispose();
+			}
 		}
 
 		private void tb_findStudent_TextChanged(object sender, EventArgs e) {
@@ -151,9 +177,41 @@ namespace QLSV {
 
 		private void btn_openRegistration_Click(object sender, EventArgs e) {
 			SetCourseRegistrationPeriod setPeriodWindow = new SetCourseRegistrationPeriod();
-			setPeriodWindow.ShowDialog();
+			Form bg = new Form();
+			using (setPeriodWindow) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				setPeriodWindow.Owner = bg;
+				setPeriodWindow.ShowDialog(bg);
+				bg.Dispose();
+			}
 		}
 
 		#endregion
+
+		private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e) {
+			Form bg = new Form();
+			CloseWindow logOut = new CloseWindow();
+			using (logOut) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				logOut.Owner = bg;
+				logOut.ShowDialog(bg);
+				bg.Dispose();
+			}
+			e.Cancel = logOut.IsNotClosed;
+		}
 	}
 }

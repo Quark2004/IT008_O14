@@ -409,10 +409,23 @@ namespace QLSV
 
         private void LecturerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CloseWindow logOut = new CloseWindow();
-            logOut.ShowDialog();
-            e.Cancel = logOut.IsNotClosed;
-        }
+			Form bg = new Form();
+			CloseWindow logOut = new CloseWindow();
+			using (logOut) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				logOut.Owner = bg;
+				logOut.ShowDialog(bg);
+				bg.Dispose();
+			}
+			e.Cancel = logOut.IsNotClosed;
+		}
 
 
         private void txt_loc_TextChanged(object sender, EventArgs e)
