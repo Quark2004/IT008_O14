@@ -223,6 +223,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(966, 501);
+			this.ControlBox = false;
 			this.Controls.Add(this.pn_login);
 			this.Controls.Add(this.pic_login);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -230,7 +231,6 @@
 			this.MaximizeBox = false;
 			this.Name = "LoginForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Đăng Nhập";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();

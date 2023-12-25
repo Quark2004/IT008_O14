@@ -90,14 +90,19 @@ namespace QLSV
 
 						for (int j = 0; j < info.Length; j++)
 						{
-							if ((info[j] == "-1") && (j == info.Length - 1))
-							{
+							if ((info[j] == "-1") && (j == info.Length - 1)) {
 								hasNull = true;
 								listItem.SubItems.Add("");
 							} else if (info[j] == "-1") {
 								listItem.SubItems.Add("");
+							} else {
+								float isScore;
+								if (float.TryParse(info[j], out isScore)) {
+									listItem.SubItems.Add(isScore.ToString("0.##"));
+								} else {
+									listItem.SubItems.Add(info[j]);
+								}
 							}
-							else listItem.SubItems.Add(info[j]);
 						}
 						totalCredits += int.Parse(info[2]);
 						if (!hasNull)
@@ -115,7 +120,7 @@ namespace QLSV
 					general.SubItems.Add("");
 					general.SubItems.Add("");
 					general.SubItems.Add("");
-					general.SubItems.Add(!hasNull ? (totalScore / totalCredits).ToString() : "0");
+					general.SubItems.Add(!hasNull ? (totalScore / totalCredits).ToString("0.##") : "0");
 					lv_Score.Items.Add(general);
 				}
 			}

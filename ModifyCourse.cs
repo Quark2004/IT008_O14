@@ -37,7 +37,8 @@ namespace QLSV {
 		#region Lỗi
 		private void btn_update_Click(object sender, EventArgs e) {
 			string query = "SELECT updateRegisterCourse( :courseId , :courseName , :lecturerId , :lecturerName , :numberOfCredits , :day , :period , :room , :semester , :schoolYear , :startDate , :endDate )";
-			DataProvider.Instance.ExcuteNonQuery(query, new object[] { tb_courseId.Text, tb_courseName.Text, tb_lecturerId.Text, tb_lecturerName.Text, int.Parse(tb_numberOfCredits.Text), tb_day.Text, tb_period.Text, tb_room.Text, tb_semester.Text, tb_schoolYear.Text, dtp_startDate.Value.Date, dtp_endDate.Value.Date });
+			bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_courseId.Text, tb_courseName.Text, tb_lecturerId.Text, tb_lecturerName.Text, int.Parse(tb_numberOfCredits.Text), tb_day.Text, tb_period.Text, tb_room.Text, tb_semester.Text, tb_schoolYear.Text, dtp_startDate.Value.Date, dtp_endDate.Value.Date });
+			MessageBox.Show(res.ToString());
 		}
 		#endregion
 	}
