@@ -315,6 +315,40 @@ $$ language plpgsql;
 
 -- select * from getListStudents()
 
+create or replace function getListCourse() 
+returns table (
+	"Mã lớp" varchar(100),
+	"Tên môn học" varchar(100)
+) as $$
+begin
+	return query
+	select 
+		course.id as "Mã lớp", 
+		course.name as "Tên môn học"
+	from course
+	order by course.id;
+end;
+$$ LANGUAGE plpgsql;
+
+-- select * from getListCourse(); 
+
+
+CREATE OR REPLACE FUNCTION getListProfilesByCourseId(_idCourse VARCHAR(100))
+RETURNS TABLE (
+    "MSSV/MGV" VARCHAR(100),
+    "Họ tên" VARCHAR(100)
+) AS $$
+BEGIN 
+    RETURN QUERY 
+    SELECT profile.id AS "MSSV/MGV", profile.name AS "Họ tên"
+    FROM profile, schedule
+    WHERE schedule.idcourse = _idCourse
+    AND schedule.idProfile = profile.id
+    ORDER BY profile.id;
+END;
+$$ LANGUAGE plpgsql;
+
+-- select * from getListProfilesByCourseId('IT002.O11');
 -------------------------
 ------ CRUD -----------
 CREATE OR REPLACE FUNCTION InsertAcc(
