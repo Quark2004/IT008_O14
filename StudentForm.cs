@@ -90,9 +90,11 @@ namespace QLSV
 
 						for (int j = 0; j < info.Length; j++)
 						{
-							if (info[j] == "-1")
+							if ((info[j] == "-1") && (j == info.Length - 1))
 							{
 								hasNull = true;
+								listItem.SubItems.Add("");
+							} else if (info[j] == "-1") {
 								listItem.SubItems.Add("");
 							}
 							else listItem.SubItems.Add(info[j]);
@@ -390,6 +392,26 @@ namespace QLSV
 				bg.Dispose();
 			}
 			e.Cancel = logOut.IsNotClosed;
+		}
+
+		private void label5_Click(object sender, EventArgs e) {
+
+		}
+
+		private void label3_Click(object sender, EventArgs e) {
+
+		}
+
+		private void label4_Click(object sender, EventArgs e) {
+
+		}
+
+		private void label2_Click(object sender, EventArgs e) {
+
+		}
+
+		private void label16_Click(object sender, EventArgs e) {
+
 		}
 	}
 }
