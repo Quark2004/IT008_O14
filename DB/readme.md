@@ -748,8 +748,8 @@ CREATE OR REPLACE FUNCTION updateRegisterCourse(
     IN courseClassroom VARCHAR(100),
     IN courseSemester VARCHAR(100),
     IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay DATE,
-    IN courseEndDay DATE
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
 )
 RETURNS BOOLEAN AS $$
 DECLARE

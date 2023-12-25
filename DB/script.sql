@@ -518,6 +518,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
+
+
 CREATE OR REPLACE FUNCTION updateRegistrationPeriod(p_startTime TIMESTAMP, p_endTime TIMESTAMP)
 RETURNS BOOL AS $$
 DECLARE
@@ -554,8 +557,8 @@ CREATE OR REPLACE FUNCTION updateRegisterCourse(
     IN courseClassroom VARCHAR(100),
     IN courseSemester VARCHAR(100),
     IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay DATE,
-    IN courseEndDay DATE
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
 )
 RETURNS BOOLEAN AS $$
 DECLARE
@@ -595,9 +598,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- SELECT updateregistercourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật 2', 'GV2', 'Trần Khắc Việt 2', 4, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
-
-
--- SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
 
 CREATE OR REPLACE FUNCTION AcceptCourse(
     IN v_idProfile VARCHAR(100),

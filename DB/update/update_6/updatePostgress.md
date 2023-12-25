@@ -1,5 +1,68 @@
 # Update
 
+### updateRegisterCourse
+
+Đổi kiểu dữ liệu `courseStartDay`, `courseEndDay` thành `TIMESTAMP`
+
+```SQL
+CREATE OR REPLACE FUNCTION updateRegisterCourse(
+    IN courseId VARCHAR(100),
+    IN courseName VARCHAR(100),
+    IN profileId VARCHAR(100),
+    IN profileName VARCHAR(100),
+    IN courseNumberOfCredits INT,
+    IN courseSchoolDay VARCHAR(100),
+    IN courseLesson VARCHAR(100),
+    IN courseClassroom VARCHAR(100),
+    IN courseSemester VARCHAR(100),
+    IN courseSchoolYear VARCHAR(100),
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+    lastEndTime TIMESTAMP;
+    lastStartTime TIMESTAMP;
+BEGIN
+    SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
+
+    -- Không được sửa danh sách dkhp khi đăng mở đăng kí
+
+    IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN
+        RETURN FALSE;
+    END IF;
+
+    UPDATE Course
+    SET
+        name = courseName,
+        numberOfCredits = courseNumberOfCredits,
+        schoolDay = courseSchoolDay,
+        lesson = courseLesson,
+        classroom = courseClassroom,
+        semester = courseSemester,
+        schoolYear = courseSchoolYear,
+        startDay = courseStartDay,
+        endDay = courseEndDay
+    WHERE
+        id = courseId;
+
+    UPDATE Profile
+    SET
+        name = profileName
+    WHERE
+        id = profileId;
+
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+SELECT updateregistercourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật 2', 'GV2', 'Trần Khắc Việt 2', 4, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
+```
+
 ## AcceptCourse
 
 Thêm acction xóa môn đã được accept khỏi danh sách dkhp
