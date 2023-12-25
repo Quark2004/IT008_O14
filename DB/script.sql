@@ -643,6 +643,12 @@ BEGIN
 
     INSERT INTO Schedule (idCourse, idProfile, idScore)
     VALUES (v_idCourse, v_idProfile, v_idScore);
+	
+	-- 	Xoá môn đã được accept khỏi danh sách dkhp 
+	delete from RegisterCourse
+	where idProfile = v_idProfile
+		and idCourse = v_idCourse;
+	
 	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;

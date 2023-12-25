@@ -1,5 +1,93 @@
 # Update
 
+## AcceptCourse
+
+Thêm acction xóa môn đã được accept khỏi danh sách dkhp
+
+```SQL
+CREATE OR REPLACE FUNCTION AcceptCourse(
+    IN v_idProfile VARCHAR(100),
+    IN v_idCourse VARCHAR(100)
+)
+RETURNS BOOL AS $$
+DECLARE
+    v_idScore INT;
+BEGIN
+    -- Không được đăng ký môn ko có trong danh sách các môn được mở
+    IF (SELECT COUNT(*) FROM Course WHERE id = v_idCourse) = 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Không được đăng kí 1 môn nhiều lần
+    IF (SELECT COUNT(*) FROM Schedule WHERE idProfile = v_idProfile AND idCourse = v_idCourse) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+	-- Không được đăng kí trùng môn khác ngày học ví dụ IT003.O11 và IT003.O12
+	IF (SELECT COUNT(*)
+		FROM Schedule
+		WHERE idProfile = v_idProfile
+		AND substring(idCourse from 1 for position('.' in idCourse)-1) = substring(v_idCourse from 1 for position('.' in v_idCourse)-1)
+	) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Các môn học không được trùng lịch học
+    IF (SELECT COUNT(*) FROM
+        (SELECT schoolDay, lesson FROM Course WHERE id = v_idCourse) AS infoCourse,
+        (SELECT schoolDay, lesson FROM Schedule, Course WHERE Schedule.idCourse = Course.id AND Schedule.idProfile = v_idProfile) AS allInfoCourse
+        WHERE infoCourse.schoolDay = allInfoCourse.schoolDay AND
+            (infoCourse.lesson LIKE '%' || allInfoCourse.lesson || '%' OR
+                allInfoCourse.lesson LIKE '%' || infoCourse.lesson || '%')) > 0 THEN
+        RETURN FALSE;
+    END IF;
+
+    -- Khi sinh viên đã tham gia lớp học thì phải có bản điểm
+    INSERT INTO Score(processScore)
+    VALUES (NULL)
+    RETURNING id INTO v_idScore;
+
+    INSERT INTO Schedule (idCourse, idProfile, idScore)
+    VALUES (v_idCourse, v_idProfile, v_idScore);
+
+	-- 	Xoá môn đã được accept khỏi danh sách dkhp
+	delete from RegisterCourse
+	where idProfile = v_idProfile
+		and idCourse = v_idCourse;
+
+	RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+SELECT AcceptCourse('21521601', 'IT006.O14');
+```
+
+Ban đầu tkb và danh sách dkhp chưa có môn `IT004.O14`
+
+![Alt text](image-3.png)
+
+![Alt text](image-4.png)
+
+Đăng kí môn `IT004.O14`
+
+![Alt text](image-5.png)
+
+![Alt text](image-6.png)
+
+Accept môn `IT004.O14`
+
+![Alt text](image-7.png)
+
+![Alt text](image-8.png)
+
+Sau khi đã accept môn `IT004.O14`, ta sẽ xóa môn đó ra khỏi danh sách dkhp
+
+![Alt text](image-9.png)
+
 ## RejectCourse
 
 Môn bị reject sẽ bị xóa khỏi danh sách dkhp
