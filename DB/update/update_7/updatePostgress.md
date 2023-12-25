@@ -161,7 +161,7 @@ select * from getLessonsOnDay('GV1', '3');
 
 ![Alt text](./getLessonsOnDay.png)
 
-### getLessonsOnDay
+### getListClassroomOnDay
 
 Lấy danh sách các phòng đang dùng vào thứ `_schoolday`, tiết `_lesson`
 
