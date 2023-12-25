@@ -315,6 +315,40 @@ $$ language plpgsql;
 
 -- select * from getListStudents()
 
+create or replace function getListCourse() 
+returns table (
+	"Mã lớp" varchar(100),
+	"Tên môn học" varchar(100)
+) as $$
+begin
+	return query
+	select 
+		course.id as "Mã lớp", 
+		course.name as "Tên môn học"
+	from course
+	order by course.id;
+end;
+$$ LANGUAGE plpgsql;
+
+-- select * from getListCourse(); 
+
+
+CREATE OR REPLACE FUNCTION getListProfilesByCourseId(_idCourse VARCHAR(100))
+RETURNS TABLE (
+    "MSSV/MGV" VARCHAR(100),
+    "Họ tên" VARCHAR(100)
+) AS $$
+BEGIN 
+    RETURN QUERY 
+    SELECT profile.id AS "MSSV/MGV", profile.name AS "Họ tên"
+    FROM profile, schedule
+    WHERE schedule.idcourse = _idCourse
+    AND schedule.idProfile = profile.id
+    ORDER BY profile.id;
+END;
+$$ LANGUAGE plpgsql;
+
+-- select * from getListProfilesByCourseId('IT002.O11');
 -------------------------
 ------ CRUD -----------
 CREATE OR REPLACE FUNCTION InsertAcc(
@@ -484,6 +518,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
+
+
 CREATE OR REPLACE FUNCTION updateRegistrationPeriod(p_startTime TIMESTAMP, p_endTime TIMESTAMP)
 RETURNS BOOL AS $$
 DECLARE
@@ -520,8 +557,8 @@ CREATE OR REPLACE FUNCTION updateRegisterCourse(
     IN courseClassroom VARCHAR(100),
     IN courseSemester VARCHAR(100),
     IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay DATE,
-    IN courseEndDay DATE
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
 )
 RETURNS BOOLEAN AS $$
 DECLARE
@@ -561,9 +598,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- SELECT updateregistercourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật 2', 'GV2', 'Trần Khắc Việt 2', 4, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
-
-
--- SELECT UpdateRatioScore('IT006.O14', 0.2, 0.3, 0.5, 0);
 
 CREATE OR REPLACE FUNCTION AcceptCourse(
     IN v_idProfile VARCHAR(100),
@@ -609,6 +643,12 @@ BEGIN
 
     INSERT INTO Schedule (idCourse, idProfile, idScore)
     VALUES (v_idCourse, v_idProfile, v_idScore);
+	
+	-- 	Xoá môn đã được accept khỏi danh sách dkhp 
+	delete from RegisterCourse
+	where idProfile = v_idProfile
+		and idCourse = v_idCourse;
+	
 	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
@@ -645,6 +685,11 @@ BEGIN
 
     DELETE FROM Score
     WHERE id = _idScore;
+	
+	-- Khi bị reject, sẽ xóa môn đó khỏi danh sách đăng kí học phần   	
+	DELETE FROM registercourse
+	where idcourse = _idCourse 
+		AND idprofile = _idProfile;
 
     RETURN true;
 END;

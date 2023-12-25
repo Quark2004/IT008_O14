@@ -392,6 +392,64 @@ select * from getListStudents()
 
 ![getListStudents](./image/getListStudents.png)
 
+### getListCourse()
+
+Lấy danh sách `mã môn học`, `tên môn học`
+
+```SQL
+create or replace function getListCourse()
+returns table (
+	"Mã lớp" varchar(100),
+	"Tên môn học" varchar(100)
+) as $$
+begin
+	return query
+	select
+		course.id as "Mã lớp",
+		course.name as "Tên môn học"
+	from course
+	order by course.id;
+end;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+select * from getListCourse();
+```
+
+![getListCourse](./image/getListCourse.png)
+
+### getListProfilesByCourseId
+
+Lấy danh sách `mssv/mgv` và `họ tên` theo `mã lớp`
+
+```SQL
+CREATE OR REPLACE FUNCTION getListProfilesByCourseId(_idCourse VARCHAR(100))
+RETURNS TABLE (
+    "MSSV/MGV" VARCHAR(100),
+    "Họ tên" VARCHAR(100)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT profile.id AS "MSSV/MGV", profile.name AS "Họ tên"
+    FROM profile, schedule
+    WHERE schedule.idcourse = _idCourse
+    AND schedule.idProfile = profile.id
+    ORDER BY profile.id;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+select * from getListProfilesByCourseId('IT002.O11');
+```
+
+![getListProfilesByCourseId](./image/getListProfilesByCourseId.png)
+
 ## CRUD
 
 -   Vì `ExcuteNonQuery` của `Npgsql C#` luôn return `-1` nếu **_success_** ngược lại sẽ `throw error`
@@ -690,8 +748,8 @@ CREATE OR REPLACE FUNCTION updateRegisterCourse(
     IN courseClassroom VARCHAR(100),
     IN courseSemester VARCHAR(100),
     IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay DATE,
-    IN courseEndDay DATE
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
 )
 RETURNS BOOLEAN AS $$
 DECLARE
@@ -811,10 +869,15 @@ BEGIN
 
     INSERT INTO Schedule (idCourse, idProfile, idScore)
     VALUES (v_idCourse, v_idProfile, v_idScore);
+
+	-- 	Xoá môn đã được accept khỏi danh sách dkhp
+	delete from RegisterCourse
+	where idProfile = v_idProfile
+		and idCourse = v_idCourse;
+
 	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
-
 ```
 
 _Example:_
@@ -860,6 +923,11 @@ BEGIN
 
     DELETE FROM Score
     WHERE id = _idScore;
+
+	-- Khi bị reject, sẽ xóa môn đó khỏi danh sách đăng kí học phần
+	DELETE FROM registercourse
+	where idcourse = _idCourse
+		AND idprofile = _idProfile;
 
     RETURN true;
 END;
