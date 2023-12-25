@@ -76,6 +76,7 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.pbx_avt = new System.Windows.Forms.PictureBox();
 			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
+			this.lb_notification = new System.Windows.Forms.Label();
 			this.panel_registrationTool = new System.Windows.Forms.Panel();
 			this.label20 = new System.Windows.Forms.Label();
 			this.btn_Register = new System.Windows.Forms.Button();
@@ -103,7 +104,6 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.data_RegistrationInfo = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.lb_notification = new System.Windows.Forms.Label();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -580,6 +580,17 @@
 			this.tab_CourseRegister.TabIndex = 2;
 			this.tab_CourseRegister.Text = "Đăng ký học phần";
 			// 
+			// lb_notification
+			// 
+			this.lb_notification.AutoSize = true;
+			this.lb_notification.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_notification.Location = new System.Drawing.Point(113, 64);
+			this.lb_notification.Name = "lb_notification";
+			this.lb_notification.Size = new System.Drawing.Size(963, 59);
+			this.lb_notification.TabIndex = 3;
+			this.lb_notification.Text = "CHƯA ĐẾN THỜI GIAN ĐĂNG KÝ HỌC PHẦN";
+			this.lb_notification.Visible = false;
+			// 
 			// panel_registrationTool
 			// 
 			this.panel_registrationTool.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -636,7 +647,6 @@
 			this.data_CourseRegistration.AllowUserToResizeColumns = false;
 			this.data_CourseRegistration.AllowUserToResizeRows = false;
 			this.data_CourseRegistration.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-			this.data_CourseRegistration.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -846,7 +856,6 @@
 			this.data_RegistrationInfo.AllowUserToResizeColumns = false;
 			this.data_RegistrationInfo.AllowUserToResizeRows = false;
 			this.data_RegistrationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-			this.data_RegistrationInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -886,17 +895,6 @@
 			this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.dataGridViewCheckBoxColumn1.Width = 23;
-			// 
-			// lb_notification
-			// 
-			this.lb_notification.AutoSize = true;
-			this.lb_notification.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_notification.Location = new System.Drawing.Point(113, 64);
-			this.lb_notification.Name = "lb_notification";
-			this.lb_notification.Size = new System.Drawing.Size(963, 59);
-			this.lb_notification.TabIndex = 3;
-			this.lb_notification.Text = "CHƯA ĐẾN THỜI GIAN ĐĂNG KÝ HỌC PHẦN";
-			this.lb_notification.Visible = false;
 			// 
 			// StudentForm
 			// 

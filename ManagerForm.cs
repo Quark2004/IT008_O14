@@ -143,14 +143,21 @@ namespace QLSV {
 			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
 				if (Convert.ToBoolean(row.Cells[0].Value)) {
 					string query = "SELECT AcceptCourse( :studentId , :courseId )";
-					DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[2].Value });
-					accept.Add(row.Cells[2].Value.ToString());
+					bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[2].Value });
+					if (res) {
+						accept.Add(row.Cells[2].Value.ToString());
+					} else {
+						string queryReject = "SELECT RejectCourse( :studentId , :courseId )";
+						DataProvider.Instance.ExcuteScalar(queryReject, new object[] { tb_studentId.Text, row.Cells[2].Value });
+						reject.Add(row.Cells[2].Value.ToString());
+					}
 				} else {
 					string query = "SELECT RejectCourse( :studentId , :courseId )";
 					DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[2].Value });
 					reject.Add(row.Cells[2].Value.ToString());
 				}
 			}
+			LoadStudentRegistrationList(data_studentList.CurrentRow.Cells[0].Value.ToString());
 			Form bg = new Form();
 			RegistrationResult resultWindow = new RegistrationResult(accept, reject, "accept");
 			using (resultWindow) {

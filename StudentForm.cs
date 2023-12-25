@@ -143,6 +143,7 @@ namespace QLSV
 						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
 			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
 
+			// Lỗi
 			/*for (int i = courses.Count - 1; i >= 0; i--) {
 				foreach (var course in registeredCourseLists) {
 					if (courses[i].CourseId == course.CourseId) {

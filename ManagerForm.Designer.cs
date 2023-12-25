@@ -300,7 +300,6 @@
 			this.data_courseListOfStudent.AllowUserToResizeColumns = false;
 			this.data_courseListOfStudent.AllowUserToResizeRows = false;
 			this.data_courseListOfStudent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-			this.data_courseListOfStudent.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.data_courseListOfStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.data_courseListOfStudent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
