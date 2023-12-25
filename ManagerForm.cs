@@ -138,24 +138,21 @@ namespace QLSV {
 		}
 
 		private void btn_accept_Click(object sender, EventArgs e) {
-			List<string> success = new List<string>();
-			List<string> error = new List<string>();
+			List<string> accept = new List<string>();
+			List<string> reject = new List<string>();
 			foreach (DataGridViewRow row in data_courseListOfStudent.Rows) {
 				if (Convert.ToBoolean(row.Cells[0].Value)) {
 					string query = "SELECT AcceptCourse( :studentId , :courseId )";
-					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[1].Value });
-					if (result) {
-						success.Add(row.Cells[2].Value.ToString());
-					} else {
-						error.Add(row.Cells[2].Value.ToString());
-					}
+					DataProvider.Instance.ExcuteScalar(query, new object[] {tb_studentId.Text, row.Cells[2].Value });
+					accept.Add(row.Cells[2].Value.ToString());
 				} else {
 					string query = "SELECT RejectCourse( :studentId , :courseId )";
-					bool result = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[1].Value });
+					DataProvider.Instance.ExcuteScalar(query, new object[] { tb_studentId.Text, row.Cells[2].Value });
+					reject.Add(row.Cells[2].Value.ToString());
 				}
 			}
 			Form bg = new Form();
-			RegistrationResult resultWindow = new RegistrationResult(success, error);
+			RegistrationResult resultWindow = new RegistrationResult(accept, reject, "accept");
 			using (resultWindow) {
 				bg.StartPosition = FormStartPosition.Manual;
 				bg.FormBorderStyle = FormBorderStyle.None;

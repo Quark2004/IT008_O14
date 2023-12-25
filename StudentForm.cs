@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -142,28 +143,32 @@ namespace QLSV
 						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
 			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
 
-			/*for (int i = courses.Count - 1; i >= 0; i--)
-			{
-				foreach(var course in registeredCourseLists)
-				{
-					if (courses[i].CourseId == course.CourseId)
-					{
+			/*for (int i = courses.Count - 1; i >= 0; i--) {
+				foreach (var course in registeredCourseLists) {
+					if (courses[i].CourseId == course.CourseId) {
 						courses.RemoveAt(i);
 					}
 				}
 			}*/
 
-			foreach (StudentCourseRegistration course in courses)
-			{
-				dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate.ToString("MM/dd/yyyy"), course.EndDate.ToString("MM/dd/yyyy"));
+			// Kiểm tra nếu không quá thời gian ĐKHP thì load ds môn, ngược lại thì ẩn và thông báo cho sinh viên
+			// đồng thời tắt tính năng hủy đăng ký ở tab Thông tin ĐKHP
+			if (courses != new List<StudentCourseRegistration>()) {
+				foreach (StudentCourseRegistration course in courses) {
+					dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate.ToString("MM/dd/yyyy"), course.EndDate.ToString("MM/dd/yyyy"));
+				}
+				this.data_CourseRegistration.DataSource = dt;
+				data_CourseRegistration.Columns[0].ReadOnly = false;
+				for (int k = 1; k < data_CourseRegistration.Columns.Count; k++) {
+					data_CourseRegistration.Columns[k].ReadOnly = true;
+				}
+				this.data_CourseRegistration.AllowUserToAddRows = false;
+			} else {
+				panel_registrationTool.Visible = false;
+				data_CourseRegistration.Visible = false;
+				lb_notification.Visible = true;
+				btn_CancelRegister.Enabled = false;
 			}
-			this.data_CourseRegistration.DataSource = dt;
-			data_CourseRegistration.Columns[0].ReadOnly = false;
-			for (int k = 1; k < data_CourseRegistration.Columns.Count; k++)
-			{
-				data_CourseRegistration.Columns[k].ReadOnly = true;
-			}
-			this.data_CourseRegistration.AllowUserToAddRows = false;
 		}
 
 		void LoadCourseRegistrationInfo()
@@ -274,26 +279,44 @@ namespace QLSV
 			}
 			if (isAnyChecked)
 			{
-				string noti = "";
+				List<string> registeredCourse = new List<string>();
+				List<string> errorCourse = new List<string>();
 				for (int i = data_CourseRegistration.Rows.Count - 1; i >= 0; i--)
 				{
 					DataGridViewRow row = data_CourseRegistration.Rows[i];
 					if (Convert.ToBoolean(row.Cells[0].Value))
 					{
 						string query = "SELECT JoinRegisterCourse( :id , :courseId );";
-						noti += row.Cells[2].Value.ToString() + "\n";
-						DataProvider.Instance.ExcuteNonQuery(query, new object[] { ID, row.Cells[2].Value });
-						row.Cells[0].Value = null;
-						dt.Rows.RemoveAt(i);
+						bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { ID, row.Cells[2].Value });
+						if (res) {
+							registeredCourse.Add(row.Cells[2].Value.ToString());
+							dt.Rows.RemoveAt(i);
+						} else {
+							row.Cells[0].Value = null;
+							errorCourse.Add(row.Cells[2].Value.ToString());
+						}
 					}
 				}
-				MessageBox.Show("Đăng kí thành công:\n" + noti);
-				data_RegistrationInfo.Refresh();
+				Form bg = new Form();
+				RegistrationResult resultWindow = new RegistrationResult(registeredCourse, errorCourse, "register");
+				using (resultWindow) {
+					bg.StartPosition = FormStartPosition.Manual;
+					bg.FormBorderStyle = FormBorderStyle.None;
+					bg.BackColor = Color.Black;
+					bg.Opacity = 0.7d;
+					bg.Size = this.Size;
+					bg.Location = this.Location;
+					bg.ShowInTaskbar = false;
+					bg.Show(this);
+					resultWindow.Owner = bg;
+					resultWindow.ShowDialog(bg);
+					bg.Dispose();
+				}
 				LoadCourseRegistrationInfo();
 			}
 			else
 			{
-				MessageBox.Show("Đăng ký không thành công!");
+				MessageBox.Show("Vui lòng chọn học phần", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 
@@ -310,21 +333,38 @@ namespace QLSV
 			}
 			if (isAnyChecked)
 			{
-				string noti = "";
+				List<string> rejectedCourse = new List<string>();
 				for (int i = data_RegistrationInfo.Rows.Count - 1; i >= 0; i--)
 				{
 					DataGridViewRow row = data_RegistrationInfo.Rows[i];
 					if (Convert.ToBoolean(row.Cells[0].Value))
 					{
 						string query = "SELECT LeaveRegisterCourse( :id , :courseId );";
-						DataProvider.Instance.ExcuteNonQuery(query, new object[] { ID, row.Cells[2].Value });
-						noti += row.Cells[2].Value.ToString() + "\n";
-						row.Cells[0].Value = null;
-						dtInfo.Rows.RemoveAt(i);
+						bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { ID, row.Cells[2].Value });
+						if (res) {
+							rejectedCourse.Add(row.Cells[2].Value.ToString());
+							dtInfo.Rows.RemoveAt(i);
+						}
 					}
 				}
-				MessageBox.Show("Hủy học phần thành công:\n" + noti);
+				Form bg = new Form();
+				RegistrationResult resultWindow = new RegistrationResult(rejectedCourse, new List<string>(), "cancel");
+				using (resultWindow) {
+					bg.StartPosition = FormStartPosition.Manual;
+					bg.FormBorderStyle = FormBorderStyle.None;
+					bg.BackColor = Color.Black;
+					bg.Opacity = 0.7d;
+					bg.Size = this.Size;
+					bg.Location = this.Location;
+					bg.ShowInTaskbar = false;
+					bg.Show(this);
+					resultWindow.Owner = bg;
+					resultWindow.ShowDialog(bg);
+					bg.Dispose();
+				}
 				LoadCourseRegistration();
+			} else {
+				MessageBox.Show("Vui lòng chọn môn để hủy", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 

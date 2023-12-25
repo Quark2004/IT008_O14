@@ -42,9 +42,9 @@
 			this.lb_title.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lb_title.Location = new System.Drawing.Point(131, 25);
 			this.lb_title.Name = "lb_title";
-			this.lb_title.Size = new System.Drawing.Size(304, 40);
+			this.lb_title.Size = new System.Drawing.Size(315, 38);
 			this.lb_title.TabIndex = 2;
-			this.lb_title.Text = "KẾT QUẢ ĐĂNG KÝ";
+			this.lb_title.Text = "KẾT QUẢ XÁC NHẬN";
 			// 
 			// lb_successNum
 			// 
@@ -62,9 +62,9 @@
 			this.lb_errorNum.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lb_errorNum.Location = new System.Drawing.Point(91, 241);
 			this.lb_errorNum.Name = "lb_errorNum";
-			this.lb_errorNum.Size = new System.Drawing.Size(102, 23);
+			this.lb_errorNum.Size = new System.Drawing.Size(110, 23);
 			this.lb_errorNum.TabIndex = 4;
-			this.lb_errorNum.Text = "Lớp Bị Lỗi";
+			this.lb_errorNum.Text = "Lớp Bị Hủy";
 			// 
 			// lb_successList
 			// 
