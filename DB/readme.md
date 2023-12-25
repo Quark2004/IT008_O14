@@ -861,6 +861,11 @@ BEGIN
     DELETE FROM Score
     WHERE id = _idScore;
 
+	-- Khi bị reject, sẽ xóa môn đó khỏi danh sách đăng kí học phần
+	DELETE FROM registercourse
+	where idcourse = _idCourse
+		AND idprofile = _idProfile;
+
     RETURN true;
 END;
 $$ LANGUAGE plpgsql;
