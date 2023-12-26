@@ -552,6 +552,42 @@ SELECT * FROM GetListProfileInfo();
 
 ![Alt text](./image/GetListProfileInfo.png)
 
+### getRaitoScoreByCourseId
+
+-   Lấy tỉ lệ điểm của môn học theo mã môn học
+
+```SQL
+create or replace function getRaitoScoreByCourseId(_idCourse varchar(100))
+returns table (
+	"Mã môn học" varchar(100),
+	"Tỉ lệ điểm quá trình" float,
+	"Tỉ lệ điểm giữa kì" float,
+	"Tỉ lệ điểm thực hành" float,
+	"Tỉ lệ điểm cuối kì" float
+) as $$
+begin
+	return query
+	select
+		schedule.idcourse as "Mã môn học",
+		score.ratioprocess as "Tỉ lệ điểm quá trình",
+		score.midtermscore as "Tỉ lệ điểm giữa kì",
+		score.ratiopractice as "Tỉ lệ điểm thực hành",
+		score.ratiofinal as "Tỉ lệ điểm cuối kì"
+	from schedule, score
+	where schedule.idscore = score.id
+	and schedule.idcourse = _idCourse;
+end;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+select * from getRaitoScoreByCourseId('IT003.O12');
+```
+
+![getRaitoScoreByCourseId](./image/getRaitoScoreByCourseId.png)
+
 ## CRUD
 
 -   Vì `ExcuteNonQuery` của `Npgsql C#` luôn return `-1` nếu **_success_** ngược lại sẽ `throw error`
