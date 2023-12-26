@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLSV.DTO
 {
@@ -27,20 +23,32 @@ namespace QLSV.DTO
 
         public lectureinfo(DataRow row)
         {
-            this.Id = row["MSSV"].ToString();
-            this.Name = row["Tên"].ToString();
-            if (!Convert.IsDBNull(row["Ngày sinh"]))
+            try
             {
-                this.Birthday = Convert.ToDateTime(row["Ngày sinh"]);
+                this.Id = row["MSSV"].ToString();
+                this.Name = row["Tên"].ToString();
+                if (!Convert.IsDBNull(row["Ngày sinh"]))
+                {
+                    this.Birthday = Convert.ToDateTime(row["Ngày sinh"]);
+                }
+                else
+                {
+                    this.Birthday = new DateTime();
+                }
+                this.Gender = row["Giới tính"].ToString();
+                this.EducationLevel = row["Bậc đào tạo"].ToString();
+                this.TrainingSystem = row["Hệ đào tạo"].ToString();
+
+                if (!Convert.IsDBNull(row["Ảnh đại diện"]))
+                {
+                    this.Avatar = (byte[])row["Ảnh đại diện"];
+                }
+
             }
-            else
+            catch
             {
-                this.Birthday = new DateTime();
+
             }
-            this.Gender = row["Giới tính"].ToString();
-            this.EducationLevel = row["Bậc đào tạo"].ToString();
-            this.TrainingSystem = row["Hệ đào tạo"].ToString();
-            this.Avatar = (byte[])row["Ảnh đại diện"];
         }
 
         public lectureinfo(string id, string name, DateTime birthday, string gender, string educationLevel, string trainingSystem, byte[] avatar)
