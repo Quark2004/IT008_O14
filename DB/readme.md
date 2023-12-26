@@ -898,6 +898,7 @@ BEGIN
     -- Không được sửa danh sách dkhp khi đăng mở đăng kí
 
     IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN
+-- 		Raise exception 'Không được sửa danh sách dkhp khi đăng mở đăng kí ';
         RETURN FALSE;
     END IF;
 
@@ -909,6 +910,7 @@ BEGIN
 			and "Tiết"  LIKE '%' || courseLesson || '%')
 	   ) > 0
 	 then
+-- 	 	Raise exception 'trùng lịch dạy của gv';
 	 	return false;
 	 end if;
 
@@ -917,11 +919,13 @@ BEGIN
 	if (
 		select count(*) from
 			(select * from course
-			where course.schoolday = courseSchoolDay
-			and course.lesson like '%' || courseLesson || '%'
-			and course.classroom = courseClassroom)
+				where course.id != courseId
+				and course.schoolday = courseSchoolDay
+				and course.lesson like '%' || courseLesson || '%'
+				and course.classroom = courseClassroom)
 	) > 0
 	then
+-- 		Raise exception 'trùng lịch phòng';
 		return false;
 	end if;
 
