@@ -1,7 +1,6 @@
 ﻿using QLSV.DAO;
 using QLSV.DTO;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -18,36 +17,21 @@ namespace QLSV
             InitializeComponent();
             ID = id;
             LoadProfileInfo();
+
         }
 
         private void LoadProfileInfo()
         {
-            LoadGender();
-
             StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
             tb_id.Text = info.Id;
             tb_name.Text = info.Name;
             dtp_birthDay.Text = info.Birthday != new DateTime() ? info.Birthday.ToString("MM/dd/yyyy") : "";
-            cb_gender.SelectedText = info.Gender;
-            tb_educationLevel.Text = info.EducationLevel;
-            tb_trainingSystem.Text = info.TrainingSystem;
+            cb_gender.SelectedItem = (object)info.Gender;
+            cb_educationLevel.SelectedItem = (object)info.EducationLevel;
+            cb_trainingSystem.SelectedItem = (object)info.TrainingSystem;
             Image avt = ConvertBytesToImage(info.Avatar);
             pbx_avt.Image = avt;
         }
-
-        private void LoadGender()
-        {
-            Dictionary<string, string> comboSource = new Dictionary<string, string>();
-            comboSource.Add("male", "Nam");
-            comboSource.Add("female", "Nữ");
-            comboSource.Add("orther", "Khác");
-
-            cb_gender.DataSource = new BindingSource(comboSource, null);
-            cb_gender.DisplayMember = "Value";
-            cb_gender.ValueMember = "Key";
-        }
-
-
 
         public Image ConvertBytesToImage(byte[] data)
         {
@@ -91,13 +75,10 @@ namespace QLSV
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            KeyValuePair<string, string> selectedGender = (KeyValuePair<string, string>)cb_gender.SelectedItem;
-            string gender = selectedGender.Value;
-
             byte[] avt = ConvertImageToBytes(pbx_avt.Image);
 
             string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :educationLevel ,  :trainingSystem , :avt );";
-            bool success = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_id.Text, tb_name.Text, dtp_birthDay.Value.Date, gender, tb_trainingSystem.Text, tb_educationLevel.Text, avt });
+            bool success = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_id.Text, tb_name.Text, dtp_birthDay.Value.Date, cb_gender.SelectedItem.ToString(), cb_educationLevel.SelectedItem.ToString(), cb_trainingSystem.SelectedItem.ToString(), avt });
 
             if (success)
             {

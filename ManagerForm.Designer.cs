@@ -71,8 +71,8 @@
             this.panel_studentList = new System.Windows.Forms.Panel();
             this.data_studentList = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.data_profileList = new System.Windows.Forms.DataGridView();
             this.btn_editProfile = new System.Windows.Forms.Button();
+            this.data_profileList = new System.Windows.Forms.DataGridView();
             this.tabCtrl_main.SuspendLayout();
             this.tab_account.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -388,7 +388,7 @@
             this.data_accountsList.RowHeadersWidth = 51;
             this.data_accountsList.RowTemplate.Height = 24;
             this.data_accountsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.data_accountsList.Size = new System.Drawing.Size(485, 604);
+            this.data_accountsList.Size = new System.Drawing.Size(509, 604);
             this.data_accountsList.TabIndex = 1;
             this.data_accountsList.SelectionChanged += new System.EventHandler(this.data_accountsList_SelectionChanged);
             // 
@@ -665,6 +665,16 @@
             this.tabPage2.Text = "Thông tin sinh viên";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btn_editProfile
+            // 
+            this.btn_editProfile.Location = new System.Drawing.Point(583, 554);
+            this.btn_editProfile.Name = "btn_editProfile";
+            this.btn_editProfile.Size = new System.Drawing.Size(123, 53);
+            this.btn_editProfile.TabIndex = 5;
+            this.btn_editProfile.Text = "Sửa";
+            this.btn_editProfile.UseVisualStyleBackColor = true;
+            this.btn_editProfile.Click += new System.EventHandler(this.btn_editProfile_Click);
+            // 
             // data_profileList
             // 
             this.data_profileList.AllowUserToAddRows = false;
@@ -682,16 +692,6 @@
             this.data_profileList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.data_profileList.Size = new System.Drawing.Size(1353, 542);
             this.data_profileList.TabIndex = 1;
-            // 
-            // btn_editProfile
-            // 
-            this.btn_editProfile.Location = new System.Drawing.Point(583, 554);
-            this.btn_editProfile.Name = "btn_editProfile";
-            this.btn_editProfile.Size = new System.Drawing.Size(123, 53);
-            this.btn_editProfile.TabIndex = 5;
-            this.btn_editProfile.Text = "Sửa";
-            this.btn_editProfile.UseVisualStyleBackColor = true;
-            this.btn_editProfile.Click += new System.EventHandler(this.btn_editProfile_Click);
             // 
             // ManagerForm
             // 

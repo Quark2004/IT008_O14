@@ -32,9 +32,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.dtp_birthDay = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.tb_trainingSystem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tb_educationLevel = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +42,8 @@
             this.pbx_avt = new System.Windows.Forms.PictureBox();
             this.btn_update = new System.Windows.Forms.Button();
             this.cb_gender = new System.Windows.Forms.ComboBox();
+            this.cb_educationLevel = new System.Windows.Forms.ComboBox();
+            this.cb_trainingSystem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,15 +77,6 @@
             this.label10.TabIndex = 44;
             this.label10.Text = "Ngày sinh:";
             // 
-            // tb_trainingSystem
-            // 
-            this.tb_trainingSystem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_trainingSystem.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_trainingSystem.Location = new System.Drawing.Point(247, 437);
-            this.tb_trainingSystem.Name = "tb_trainingSystem";
-            this.tb_trainingSystem.Size = new System.Drawing.Size(244, 34);
-            this.tb_trainingSystem.TabIndex = 33;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -95,15 +86,6 @@
             this.label4.Size = new System.Drawing.Size(116, 27);
             this.label4.TabIndex = 32;
             this.label4.Text = "Hệ đào tạo";
-            // 
-            // tb_educationLevel
-            // 
-            this.tb_educationLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_educationLevel.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_educationLevel.Location = new System.Drawing.Point(247, 360);
-            this.tb_educationLevel.Name = "tb_educationLevel";
-            this.tb_educationLevel.Size = new System.Drawing.Size(244, 34);
-            this.tb_educationLevel.TabIndex = 31;
             // 
             // label3
             // 
@@ -207,11 +189,42 @@
             this.cb_gender.Size = new System.Drawing.Size(244, 35);
             this.cb_gender.TabIndex = 53;
             // 
+            // cb_educationLevel
+            // 
+            this.cb_educationLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_educationLevel.Font = new System.Drawing.Font("Cambria", 13.8F);
+            this.cb_educationLevel.FormattingEnabled = true;
+            this.cb_educationLevel.Items.AddRange(new object[] {
+            "Cao đẳng",
+            "Đại học",
+            "Tiến sĩ",
+            "Thạc sĩ"});
+            this.cb_educationLevel.Location = new System.Drawing.Point(247, 359);
+            this.cb_educationLevel.Name = "cb_educationLevel";
+            this.cb_educationLevel.Size = new System.Drawing.Size(244, 35);
+            this.cb_educationLevel.TabIndex = 54;
+            // 
+            // cb_trainingSystem
+            // 
+            this.cb_trainingSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_trainingSystem.Font = new System.Drawing.Font("Cambria", 13.8F);
+            this.cb_trainingSystem.FormattingEnabled = true;
+            this.cb_trainingSystem.Items.AddRange(new object[] {
+            "Chính quy",
+            "Vừa làm, vừa học",
+            "Đào tạo từ xa"});
+            this.cb_trainingSystem.Location = new System.Drawing.Point(247, 431);
+            this.cb_trainingSystem.Name = "cb_trainingSystem";
+            this.cb_trainingSystem.Size = new System.Drawing.Size(244, 35);
+            this.cb_trainingSystem.TabIndex = 55;
+            // 
             // ModifyProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 600);
+            this.Controls.Add(this.cb_trainingSystem);
+            this.Controls.Add(this.cb_educationLevel);
             this.Controls.Add(this.cb_gender);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_changeAvatar);
@@ -219,9 +232,7 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.dtp_birthDay);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.tb_trainingSystem);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tb_educationLevel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.label2);
@@ -241,9 +252,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dtp_birthDay;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tb_trainingSystem;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_educationLevel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_id;
         private System.Windows.Forms.Label label2;
@@ -253,5 +262,7 @@
         private System.Windows.Forms.PictureBox pbx_avt;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.ComboBox cb_gender;
+        private System.Windows.Forms.ComboBox cb_educationLevel;
+        private System.Windows.Forms.ComboBox cb_trainingSystem;
     }
 }
