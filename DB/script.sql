@@ -349,11 +349,47 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- select * from getListProfilesByCourseId('IT002.O11');
+
+create or replace function getListAccounts() 
+returns table (
+	"Tên đăng nhập" varchar(100),
+	"MSSV/MGV" varchar(100),
+	"Vai trò" varchar(100)
+) as $$
+begin 
+	return query
+	select account.username as "Tên đăng nhập", useracc.idprofile as "MSSV/MGV", account.role as "Vai trò" from account, useracc
+	where account.username = useracc.idaccount 
+	and account.role != 'admin'
+	order by useracc.idprofile;
+end;
+$$ LANGUAGE plpgsql;
+
+-- select * from getListAccounts();
+
+CREATE OR REPLACE FUNCTION GetListProfileInfo()
+RETURNS TABLE("MSSV/MGV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100)) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id as "MSSV/MGV",
+           name as "Tên",
+           birthday as "Ngày sinh",
+           gender as "Giới tính",
+           level as "Bậc đào tạo",
+           trainingSystem as "Hệ đào tạo"
+    FROM Profile
+	order by id;
+END;
+$$ LANGUAGE plpgsql;
+ 
+--  SELECT * FROM GetListProfileInfo();
+
 -------------------------
 ------ CRUD -----------
 CREATE OR REPLACE FUNCTION InsertAcc(
     IN v_username VARCHAR(100),
     IN v_password VARCHAR(1000),
+	IN v_role varchar(100),
     IN v_id VARCHAR(100)
 )
 RETURNS Bool AS $$
@@ -370,8 +406,8 @@ BEGIN
         RETURN false;
     END IF;
 
-    INSERT INTO Account(username, password)
-    VALUES (v_username, v_password);
+    INSERT INTO Account(username, password, role)
+    VALUES (v_username, v_password, v_role);
 
     INSERT INTO Profile(id)
     VALUES (v_id);
@@ -383,7 +419,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- SELECT InsertAcc('student11', '123456', '21521611');
+--  SELECT InsertAcc('sv21521611', '123456', 'student', '21521611');
 
 CREATE OR REPLACE FUNCTION insertRegisterCourse(
     IN courseId VARCHAR(100),
