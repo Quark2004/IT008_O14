@@ -338,6 +338,7 @@ namespace QLSV
                 MessageBox.Show("Tạo mới tài khoản thành công");
                 LoadAccountList();
                 EnableButton(false);
+                LoadListProfileInfo();
             }
             else
             {
