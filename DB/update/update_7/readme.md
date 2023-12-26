@@ -494,23 +494,19 @@ select * from getListProfilesByCourseId('IT002.O11');
 
 ![getListProfilesByCourseId](./image/getListProfilesByCourseId.png)
 
-### getListAccounts
+### getLessonsOnDay
 
-Lấy danh sách các tài khoản
+Lấy danh sách các tiết dạy của giảng viên vào thứ `_schoolday`
 
 ```SQL
-create or replace function getListAccounts()
-returns table (
-	"Tên đăng nhập" varchar(100),
-	"MSSV/MGV" varchar(100),
-	"Vai trò" varchar(100)
+create or replace function getLessonsOnDay(_profileId varchar(100), _schoolday varchar(100))
+returns table(
+	"Tiết dạy" varchar(100)
 ) as $$
 begin
 	return query
-	select account.username as "Tên đăng nhập", useracc.idprofile as "MSSV/MGV", account.role as "Vai trò" from account, useracc
-	where account.username = useracc.idaccount
-	and account.role != 'admin'
-	order by useracc.idprofile;
+	select "Tiết" as "Tiết dạy" from GetScheduleByID(_profileId)
+	where "Thứ" = _schoolday;
 end;
 $$ LANGUAGE plpgsql;
 ```
@@ -518,39 +514,33 @@ $$ LANGUAGE plpgsql;
 _Example:_
 
 ```SQL
-select * from getListAccounts();
+select * from getLessonsOnDay('GV1', '3');
 ```
 
-![getListAccounts](./image/getListAccounts.png)
+![Alt text](./image/getLessonsOnDay.png)
 
-### GetListProfileInfo
+### getLessonsOnDay
 
-Lấy danh sách thông tin profile của tất cả user
+Lấy danh sách các phòng đang dùng vào thứ `_schoolday`, tiết `_lesson`
 
 ```SQL
-CREATE OR REPLACE FUNCTION GetListProfileInfo()
-RETURNS TABLE("MSSV/MGV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100)) AS $$
+CREATE OR REPLACE FUNCTION getListClassroomOnDay(_schoolday VARCHAR(100), _lesson VARCHAR(100))
+RETURNS TABLE (
+    "Phòng" VARCHAR(100)
+) AS $$
 BEGIN
     RETURN QUERY
-    SELECT id as "MSSV/MGV",
-           name as "Tên",
-           birthday as "Ngày sinh",
-           gender as "Giới tính",
-           level as "Bậc đào tạo",
-           trainingSystem as "Hệ đào tạo"
-    FROM Profile
-	order by id;
+    SELECT classroom AS "Phòng" FROM course
+    WHERE schoolday = _schoolday AND lesson = _lesson;
 END;
 $$ LANGUAGE plpgsql;
 ```
 
-_Example:_
-
 ```SQL
-SELECT * FROM GetListProfileInfo();
+select * from getListClassroomOnDay('3', '6789');
 ```
 
-![Alt text](./image/GetListProfileInfo.png)
+![Alt text](./image/getListClassroomOnDay.png)
 
 ## CRUD
 
@@ -580,7 +570,6 @@ Tạo account cho sinh viên có [MSSV]
 CREATE OR REPLACE FUNCTION InsertAcc(
     IN v_username VARCHAR(100),
     IN v_password VARCHAR(1000),
-	IN v_role varchar(100),
     IN v_id VARCHAR(100)
 )
 RETURNS Bool AS $$
@@ -597,8 +586,8 @@ BEGIN
         RETURN false;
     END IF;
 
-    INSERT INTO Account(username, password, role)
-    VALUES (v_username, v_password, v_role);
+    INSERT INTO Account(username, password)
+    VALUES (v_username, v_password);
 
     INSERT INTO Profile(id)
     VALUES (v_id);
@@ -614,7 +603,7 @@ $$ LANGUAGE plpgsql;
 _Example:_
 
 ```SQL
-SELECT InsertAcc('student11', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', 'student', '21521611');
+SELECT InsertAcc('student11', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', '21521611');
 ```
 
 ![InsertAcc success](./image/crudSuccess.png)
