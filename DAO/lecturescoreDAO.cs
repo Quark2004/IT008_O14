@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLSV.DAO
 {
@@ -41,10 +38,21 @@ namespace QLSV.DAO
 
             return scores;
         }
-        public string UpdateScore(string s1, string s2, float s3, float s4, float s5, float s6)
+
+        private static object ParseFloatValue(string stringValue)
+        {
+            return string.IsNullOrEmpty(stringValue) ? (object)DBNull.Value : float.Parse(stringValue);
+        }
+
+        public string UpdateScore(string mammon, string mssv, string diemQT, string diemGK, string diemTH, string diemCK)
         {
             string query = "SELECT UpdateScore( :mammon , :mssv , :diemQT , :diemGK , :diemTH , :diemCK )";
-            var data = DataProvider.Instance.ExcuteQuery(query, new object[] { s1, s2, s3, s4, s5, s6 });
+            var data = DataProvider.Instance.ExcuteQuery(query, new object[] { mammon, mssv,
+                ParseFloatValue(diemQT),
+                ParseFloatValue(diemGK),
+                ParseFloatValue(diemTH),
+                ParseFloatValue(diemCK)
+            });
             return data.Rows[0][0].ToString();
         }
     }

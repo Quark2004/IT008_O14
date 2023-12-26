@@ -2,18 +2,11 @@
 using QLSV.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
-using System.Xml.Linq;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Windows.Forms;
 
 namespace QLSV
 {
@@ -111,6 +104,8 @@ namespace QLSV
         #region load_tab_diem
         private bool check(string s)
         {
+            if (string.IsNullOrEmpty(s)) return true;
+
             if (float.TryParse(s, out float diem))
             {
                 if (diem >= 0 && diem <= 10)
@@ -242,24 +237,23 @@ namespace QLSV
             txtCK.Enabled = false;
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
-            if (check(txtQT.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
-            else
-            if (check(txtGK.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
-            else
-            if (check(txtCK.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
-            else
-            if (check(txtTH.Text) == false) diemhople(lvscoreGV.SelectedItems[0]);
+
+
+            if (!check(txtQT.Text) || !check(txtGK.Text) || !check(txtCK.Text) || !check(txtTH.Text))
+            {
+                diemKhongHopLe(lvscoreGV.SelectedItems[0]);
+            }
             else
             {
                 //xoadiem();
                 string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
-                    float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
+                   txtQT.Text, txtGK.Text, txtCK.Text, txtTH.Text);
                 HienThiThongTinDiem(mamon);
                 btnok.Enabled = false;
             }
         }
 
-        private void diemhople(ListViewItem item)
+        private void diemKhongHopLe(ListViewItem item)
         {
             txtQT.Text = item.SubItems[2].Text;
             txtGK.Text = item.SubItems[3].Text;
@@ -409,23 +403,24 @@ namespace QLSV
 
         private void LecturerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-			Form bg = new Form();
-			CloseWindow logOut = new CloseWindow();
-			using (logOut) {
-				bg.StartPosition = FormStartPosition.Manual;
-				bg.FormBorderStyle = FormBorderStyle.None;
-				bg.BackColor = Color.Black;
-				bg.Opacity = 0.7d;
-				bg.Size = this.Size;
-				bg.Location = this.Location;
-				bg.ShowInTaskbar = false;
-				bg.Show(this);
-				logOut.Owner = bg;
-				logOut.ShowDialog(bg);
-				bg.Dispose();
-			}
-			e.Cancel = logOut.IsNotClosed;
-		}
+            Form bg = new Form();
+            CloseWindow logOut = new CloseWindow();
+            using (logOut)
+            {
+                bg.StartPosition = FormStartPosition.Manual;
+                bg.FormBorderStyle = FormBorderStyle.None;
+                bg.BackColor = Color.Black;
+                bg.Opacity = 0.7d;
+                bg.Size = this.Size;
+                bg.Location = this.Location;
+                bg.ShowInTaskbar = false;
+                bg.Show(this);
+                logOut.Owner = bg;
+                logOut.ShowDialog(bg);
+                bg.Dispose();
+            }
+            e.Cancel = logOut.IsNotClosed;
+        }
 
 
         private void txt_loc_TextChanged(object sender, EventArgs e)
