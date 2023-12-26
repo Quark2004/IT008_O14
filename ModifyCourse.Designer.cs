@@ -32,13 +32,11 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.tb_numberOfCredits = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.tb_day = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.tb_period = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.tb_room = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.tb_semester = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.tb_schoolYear = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -49,6 +47,8 @@
 			this.btn_update = new System.Windows.Forms.Button();
 			this.tb_lecturerId = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
+			this.cbb_day = new System.Windows.Forms.ComboBox();
+			this.cbb_semester = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -128,15 +128,6 @@
 			this.label4.TabIndex = 6;
 			this.label4.Text = "Số tín chỉ:";
 			// 
-			// tb_day
-			// 
-			this.tb_day.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tb_day.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_day.Location = new System.Drawing.Point(201, 400);
-			this.tb_day.Name = "tb_day";
-			this.tb_day.Size = new System.Drawing.Size(244, 34);
-			this.tb_day.TabIndex = 9;
-			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
@@ -184,15 +175,6 @@
 			this.label7.Size = new System.Drawing.Size(80, 27);
 			this.label7.TabIndex = 12;
 			this.label7.Text = "Phòng:";
-			// 
-			// tb_semester
-			// 
-			this.tb_semester.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tb_semester.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tb_semester.Location = new System.Drawing.Point(807, 181);
-			this.tb_semester.Name = "tb_semester";
-			this.tb_semester.Size = new System.Drawing.Size(244, 34);
-			this.tb_semester.TabIndex = 15;
 			// 
 			// label8
 			// 
@@ -294,11 +276,43 @@
 			this.label12.TabIndex = 24;
 			this.label12.Text = "Mã GV:";
 			// 
+			// cbb_day
+			// 
+			this.cbb_day.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cbb_day.FormattingEnabled = true;
+			this.cbb_day.Items.AddRange(new object[] {
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+			this.cbb_day.Location = new System.Drawing.Point(201, 399);
+			this.cbb_day.Name = "cbb_day";
+			this.cbb_day.Size = new System.Drawing.Size(244, 35);
+			this.cbb_day.TabIndex = 26;
+			// 
+			// cbb_semester
+			// 
+			this.cbb_semester.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cbb_semester.FormattingEnabled = true;
+			this.cbb_semester.Items.AddRange(new object[] {
+            "HK1",
+            "HK2",
+            "HK3"});
+			this.cbb_semester.Location = new System.Drawing.Point(807, 182);
+			this.cbb_semester.Name = "cbb_semester";
+			this.cbb_semester.Size = new System.Drawing.Size(244, 35);
+			this.cbb_semester.TabIndex = 27;
+			// 
 			// ModifyCourse
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1169, 557);
+			this.Controls.Add(this.cbb_semester);
+			this.Controls.Add(this.cbb_day);
 			this.Controls.Add(this.tb_lecturerId);
 			this.Controls.Add(this.label12);
 			this.Controls.Add(this.btn_update);
@@ -308,13 +322,11 @@
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.tb_schoolYear);
 			this.Controls.Add(this.label9);
-			this.Controls.Add(this.tb_semester);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.tb_room);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.tb_period);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.tb_day);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.tb_numberOfCredits);
 			this.Controls.Add(this.label4);
@@ -345,13 +357,11 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox tb_numberOfCredits;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox tb_day;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox tb_period;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox tb_room;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox tb_semester;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox tb_schoolYear;
 		private System.Windows.Forms.Label label9;
@@ -362,5 +372,7 @@
 		private System.Windows.Forms.Button btn_update;
 		private System.Windows.Forms.TextBox tb_lecturerId;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.ComboBox cbb_day;
+		private System.Windows.Forms.ComboBox cbb_semester;
 	}
 }

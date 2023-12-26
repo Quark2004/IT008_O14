@@ -13,6 +13,10 @@ namespace QLSV {
 	public partial class SetCourseRegistrationPeriod : Form {
 		public SetCourseRegistrationPeriod() {
 			InitializeComponent();
+			string query = "SELECT * FROM GetListRegistrationPeriod()";
+			DataTable period = DataProvider.Instance.ExcuteQuery(query);
+			dtp_startDate.Value = Convert.ToDateTime(period.Rows[0]["Bắt đầu đăng kí học phần"]);
+			dtp_endDate.Value = Convert.ToDateTime(period.Rows[0]["Kết thúc đăng kí học phần"]);
 		}
 
 		private void btn_setPeriod_Click(object sender, EventArgs e) {

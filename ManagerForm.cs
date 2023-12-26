@@ -49,19 +49,33 @@ namespace QLSV
 
         private void btn_import_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                Workbook workbook = new Workbook();
-                workbook.LoadFromFile(openFile.FileName);
-                Worksheet worksheet = workbook.Worksheets[0];
+			string getPeriodQuery = "SELECT * FROM GetListRegistrationPeriod()";
+			DataTable period = DataProvider.Instance.ExcuteQuery(getPeriodQuery);
+			DateTime start = Convert.ToDateTime(period.Rows[0]["Bắt đầu đăng kí học phần"]);
+			DateTime end = Convert.ToDateTime(period.Rows[0]["Kết thúc đăng kí học phần"]);
+			if (DateTime.Now >= start && DateTime.Now <= end) {
+				MessageBox.Show("Đang trong thời gian ĐKHP, không thể chỉnh sửa", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} else {
+				OpenFileDialog openFile = new OpenFileDialog();
+				openFile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+				if (openFile.ShowDialog() == DialogResult.OK) {
+					Workbook workbook = new Workbook();
+					workbook.LoadFromFile(openFile.FileName);
+					Worksheet worksheet = workbook.Worksheets[0];
 
-                DataTable dt = worksheet.ExportDataTable();
+					DataTable dt = worksheet.ExportDataTable();
 
-                data_allCourse.DataSource = dt;
-            }
-        }
+					data_allCourse.DataSource = dt;
+					string clearCourseQuery = "SELECT FROM clearRegisterCourse()";
+					DataProvider.Instance.ExcuteScalar(clearCourseQuery);
+
+					foreach (DataGridViewRow row in data_allCourse.Rows) {
+						string query = "SELECT insertRegisterCourse( :courseId , :courseName , :lecturerId , :lecturerName , :numberOfCredits , :day , :period , :room , :semester , :schoolYear , :startDate , :endDate )";
+						DataProvider.Instance.ExcuteScalar(query, new object[] { row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), int.Parse(row.Cells[4].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString(), row.Cells[9].Value.ToString(), Convert.ToDateTime(row.Cells[10].Value.ToString()), Convert.ToDateTime(row.Cells[11].Value.ToString()) });
+					}
+				}
+			}
+		}
 
         private void btn_export_Click(object sender, EventArgs e)
         {
@@ -121,24 +135,27 @@ namespace QLSV
 
         private void btn_modify_Click(object sender, EventArgs e)
         {
-            DataGridViewRow modifyRow = data_allCourse.CurrentRow;
-            ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
-            Form bg = new Form();
-            using (modifyCourse)
-            {
-                bg.StartPosition = FormStartPosition.Manual;
-                bg.FormBorderStyle = FormBorderStyle.None;
-                bg.BackColor = Color.Black;
-                bg.Opacity = 0.7d;
-                bg.Size = this.Size;
-                bg.Location = this.Location;
-                bg.ShowInTaskbar = false;
-                bg.Show(this);
-                modifyCourse.Owner = bg;
-                modifyCourse.ShowDialog(bg);
-                bg.Dispose();
-            }
-        }
+			DataGridViewRow modifyRow = data_allCourse.CurrentRow;
+			if (modifyRow != null) {
+				ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
+				Form bg = new Form();
+				using (modifyCourse) {
+					bg.StartPosition = FormStartPosition.Manual;
+					bg.FormBorderStyle = FormBorderStyle.None;
+					bg.BackColor = Color.Black;
+					bg.Opacity = 0.7d;
+					bg.Size = this.Size;
+					bg.Location = this.Location;
+					bg.ShowInTaskbar = false;
+					bg.Show(this);
+					modifyCourse.Owner = bg;
+					modifyCourse.ShowDialog(bg);
+					bg.Dispose();
+				}
+			} else {
+				MessageBox.Show("Không có học phần được chọn", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         private void data_courseListOfStudent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -189,7 +206,6 @@ namespace QLSV
                     reject.Add(row.Cells[2].Value.ToString());
                 }
             }
-            LoadStudentRegistrationList(data_studentList.CurrentRow.Cells[0].Value.ToString());
             Form bg = new Form();
             RegistrationResult resultWindow = new RegistrationResult(accept, reject, "accept");
             using (resultWindow)
@@ -206,7 +222,8 @@ namespace QLSV
                 resultWindow.ShowDialog(bg);
                 bg.Dispose();
             }
-        }
+			LoadStudentRegistrationList(data_studentList.CurrentRow.Cells[0].Value.ToString());
+		}
 
         private void tb_findStudent_TextChanged(object sender, EventArgs e)
         {
