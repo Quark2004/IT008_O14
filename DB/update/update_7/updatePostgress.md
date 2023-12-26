@@ -1,83 +1,40 @@
 # Update
 
-## updateRegisterCourse
+## InsertAcc
 
-Thêm:
-
--   Check trùng lịch dạy của gv
--   Check trùng lịch phòng
-
-Chỉ được update `số tín chỉ`, `thứ`, `tiết`, `phòng`, `học kì`, `năm học`, `ngày bắt`, `ngày kết thúc`
+Insert thêm `role`
 
 ```SQL
-CREATE OR REPLACE FUNCTION updateRegisterCourse(
-    IN courseId VARCHAR(100),
-    IN profileId VARCHAR(100),
-    IN courseNumberOfCredits INT,
-    IN courseSchoolDay VARCHAR(100),
-    IN courseLesson VARCHAR(100),
-    IN courseClassroom VARCHAR(100),
-    IN courseSemester VARCHAR(100),
-    IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay TIMESTAMP,
-    IN courseEndDay TIMESTAMP
+CREATE OR REPLACE FUNCTION InsertAcc(
+    IN v_username VARCHAR(100),
+    IN v_password VARCHAR(1000),
+	IN v_role varchar(100),
+    IN v_id VARCHAR(100)
 )
-RETURNS BOOLEAN AS $$
-DECLARE
-    lastEndTime TIMESTAMP;
-    lastStartTime TIMESTAMP;
+RETURNS Bool AS $$
 BEGIN
-    SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
+    -- Check username exist
 
-    -- Không được sửa danh sách dkhp khi đăng mở đăng kí
-
-    IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN
-        RETURN FALSE;
+    IF (SELECT COUNT(*) FROM Account WHERE username = v_username) > 0 THEN
+        RETURN false;
     END IF;
 
-	-- 	Check trùng lịch dạy của gv
-	if (select count(*) from
-			(select "Thứ", "Tiết" from getschedulebyid(profileId)
-			where "Mã môn học" != courseId
-			and "Thứ" = courseSchoolDay
-			and "Tiết"  LIKE '%' || courseLesson || '%')
-	   ) > 0
-	 then
-	 	return false;
-	 end if;
+    -- Check id exist
 
+    IF (SELECT COUNT(*) FROM Profile WHERE id = v_id) > 0 THEN
+        RETURN false;
+    END IF;
 
-	-- check trùng lịch phòng
-	if (
-		select count(*) from
-			(select * from course
-			where course.schoolday = courseSchoolDay
-			and course.lesson like '%' || courseLesson || '%'
-			and course.classroom = courseClassroom)
-	) > 0
-	then
-		return false;
-	end if;
+    INSERT INTO Account(username, password, role)
+    VALUES (v_username, v_password, v_role);
 
-	if courseEndDay <= courseStartDay
-	then return false;
-	end if;
+    INSERT INTO Profile(id)
+    VALUES (v_id);
 
+    INSERT INTO UserAcc(idAccount, idProfile)
+    VALUES (v_username, v_id);
 
-    UPDATE Course
-    SET
-        numberOfCredits = courseNumberOfCredits,
-        schoolDay = courseSchoolDay,
-        lesson = courseLesson,
-        classroom = courseClassroom,
-        semester = courseSemester,
-        schoolYear = courseSchoolYear,
-        startDay = courseStartDay,
-        endDay = courseEndDay
-    WHERE
-        id = courseId;
-
-    RETURN TRUE;
+    RETURN true;
 END;
 $$ LANGUAGE plpgsql;
 ```
@@ -85,70 +42,28 @@ $$ LANGUAGE plpgsql;
 _Example:_
 
 ```SQL
-SELECT updateregistercourse('IT003.O11', 'Cấu trúc dữ liệu và giải thuật 2', 'GV2', 'Trần Khắc Việt 2', 4, '3', '1234', 'C312', 'HK1', '2023-2024', '2023-09-11', '2024-01-06')
+SELECT InsertAcc('student11', '$2a$12$2E8BpuvE2sfLPLfEnEe/bODy2s26qnyN4tKIpOHkULc1UVtVTrfZy', 'student', '21521611');
 ```
 
 # Create
 
-## GetUnregisteredListById
+## getListAccounts
 
-_Note: dùng hàm này để thay thế hàm `GetListRegisterCourse()` để xử lý UI dễ dàng hơn_
-
-Lấy các môn chưa đăng kí học phần
+Lấy danh sách các tài khoản
 
 ```SQL
-CREATE OR REPLACE FUNCTION GetUnregisteredListById(_profileId varchar(100))
-RETURNS TABLE(
-	"Mã lớp" VARCHAR(100),
-    "Tên môn học" VARCHAR(100),
-    "Mã giảng viên" VARCHAR(100),
-    "Tên giảng viên" VARCHAR(100),
-    "Số tín chỉ" INT,
-    "Thứ" VARCHAR(100),
-    "Tiết" VARCHAR(100),
-    "Phòng" VARCHAR(100),
-    "Học kì" VARCHAR(100),
-    "Năm học" VARCHAR(100),
-    "Ngày bắt đầu" DATE,
-    "Ngày kết thúc" DATE
-) AS $$
-BEGIN
-	return query
-	select * from GetListRegisterCourse() as lrc
-	where substring(lrc."Mã lớp" from 1 for position('.' in lrc."Mã lớp")-1)
-		not in
-			(select substring(lr."Mã lớp" from 1 for position('.' in lr."Mã lớp")-1) FROM GetListRegisteredByID(_profileId) as lr);
-END;
-$$ LANGUAGE plpgsql;
-```
-
-_Example:_
-
-```SQL
-select * from GetUnregisteredListById('21521602');
-```
-
-Các môn đã đăng kí học phần
-
-![Alt text](./GetUnregisteredListById_1.png)
-
-Các môn chưa đăng kí sẽ không bao gồm các môn đã đăng kí _(dù khác mã lớp nhưng cùng 1 môn cũng sẽ không được bao gồm)_
-
-![Alt text](./GetUnregisteredListById_2.png)
-
-## getLessonsOnDay
-
-Lấy danh sách các tiết dạy của giảng viên vào thứ `_schoolday`
-
-```SQL
-create or replace function getLessonsOnDay(_profileId varchar(100), _schoolday varchar(100))
-returns table(
-	"Tiết dạy" varchar(100)
+create or replace function getListAccounts()
+returns table (
+	"Tên đăng nhập" varchar(100),
+	"MSSV/MGV" varchar(100),
+	"Vai trò" varchar(100)
 ) as $$
 begin
 	return query
-	select "Tiết" as "Tiết dạy" from GetScheduleByID(_profileId)
-	where "Thứ" = _schoolday;
+	select account.username as "Tên đăng nhập", useracc.idprofile as "MSSV/MGV", account.role as "Vai trò" from account, useracc
+	where account.username = useracc.idaccount
+	and account.role != 'admin'
+	order by useracc.idprofile;
 end;
 $$ LANGUAGE plpgsql;
 ```
@@ -156,30 +71,72 @@ $$ LANGUAGE plpgsql;
 _Example:_
 
 ```SQL
-select * from getLessonsOnDay('GV1', '3');
+select * from getListAccounts();
 ```
 
-![Alt text](./getLessonsOnDay.png)
+![getListAccounts](./getListAccounts.png)
 
-### getListClassroomOnDay
+## GetListProfileInfo
 
-Lấy danh sách các phòng đang dùng vào thứ `_schoolday`, tiết `_lesson`
+Lấy danh sách thông tin profile của tất cả user
 
 ```SQL
-CREATE OR REPLACE FUNCTION getListClassroomOnDay(_schoolday VARCHAR(100), _lesson VARCHAR(100))
-RETURNS TABLE (
-    "Phòng" VARCHAR(100)
-) AS $$
+CREATE OR REPLACE FUNCTION GetListProfileInfo()
+RETURNS TABLE("MSSV/MGV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100)) AS $$
 BEGIN
     RETURN QUERY
-    SELECT classroom AS "Phòng" FROM course
-    WHERE schoolday = _schoolday AND lesson = _lesson;
+    SELECT id as "MSSV/MGV",
+           name as "Tên",
+           birthday as "Ngày sinh",
+           gender as "Giới tính",
+           level as "Bậc đào tạo",
+           trainingSystem as "Hệ đào tạo"
+    FROM Profile
+	order by id;
 END;
 $$ LANGUAGE plpgsql;
 ```
 
+_Example:_
+
 ```SQL
-select * from getListClassroomOnDay('3', '6789');
+SELECT * FROM GetListProfileInfo();
 ```
 
-![Alt text](./getListClassroomOnDay.png)
+![Alt text](./GetListProfileInfo.png)
+
+### getRaitoScoreByCourseId
+
+-   Lấy tỉ lệ điểm của môn học theo mã môn học
+
+```SQL
+create or replace function getRaitoScoreByCourseId(_idCourse varchar(100))
+returns table (
+	"Mã môn học" varchar(100),
+	"Tỉ lệ điểm quá trình" float,
+	"Tỉ lệ điểm giữa kì" float,
+	"Tỉ lệ điểm thực hành" float,
+	"Tỉ lệ điểm cuối kì" float
+) as $$
+begin
+	return query
+	select
+		schedule.idcourse as "Mã môn học",
+		score.ratioprocess as "Tỉ lệ điểm quá trình",
+		score.midtermscore as "Tỉ lệ điểm giữa kì",
+		score.ratiopractice as "Tỉ lệ điểm thực hành",
+		score.ratiofinal as "Tỉ lệ điểm cuối kì"
+	from schedule, score
+	where schedule.idscore = score.id
+	and schedule.idcourse = _idCourse;
+end;
+$$ LANGUAGE plpgsql;
+```
+
+_Example:_
+
+```SQL
+select * from getRaitoScoreByCourseId('IT003.O12');
+```
+
+![getRaitoScoreByCourseId](./getRaitoScoreByCourseId.png)

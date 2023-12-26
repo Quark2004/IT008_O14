@@ -376,36 +376,70 @@ $$ LANGUAGE plpgsql;
 
 -- select * from getListProfilesByCourseId('IT002.O11');
 
-create or replace function getLessonsOnDay(_profileId varchar(100), _schoolday varchar(100))
-returns table(
-	"Tiết dạy" varchar(100)
-) as $$ 
+create or replace function getListAccounts() 
+returns table (
+	"Tên đăng nhập" varchar(100),
+	"MSSV/MGV" varchar(100),
+	"Vai trò" varchar(100)
+) as $$
 begin 
-	return query 
-	select "Tiết" as "Tiết dạy" from GetScheduleByID(_profileId)
-	where "Thứ" = _schoolday;
+	return query
+	select account.username as "Tên đăng nhập", useracc.idprofile as "MSSV/MGV", account.role as "Vai trò" from account, useracc
+	where account.username = useracc.idaccount 
+	and account.role != 'admin'
+	order by useracc.idprofile;
 end;
 $$ LANGUAGE plpgsql;
 
--- select * from getLessonsOnDay('GV1', '3')
+-- select * from getListAccounts();
 
-CREATE OR REPLACE FUNCTION getListClassroomOnDay(_schoolday VARCHAR(100), _lesson VARCHAR(100))
-RETURNS TABLE (
-    "Phòng" VARCHAR(100)
-) AS $$ 
-BEGIN 
+CREATE OR REPLACE FUNCTION GetListProfileInfo()
+RETURNS TABLE("MSSV/MGV" VARCHAR(100), "Tên" VARCHAR(100), "Ngày sinh" TIMESTAMP, "Giới tính" VARCHAR(100), "Bậc đào tạo" VARCHAR(100), "Hệ đào tạo" VARCHAR(100)) AS $$
+BEGIN
     RETURN QUERY
-    SELECT classroom AS "Phòng" FROM course
-    WHERE schoolday = _schoolday AND lesson = _lesson;
+    SELECT id as "MSSV/MGV",
+           name as "Tên",
+           birthday as "Ngày sinh",
+           gender as "Giới tính",
+           level as "Bậc đào tạo",
+           trainingSystem as "Hệ đào tạo"
+    FROM Profile
+	order by id;
 END;
 $$ LANGUAGE plpgsql;
+ 
+--  SELECT * FROM GetListProfileInfo();
 
--- select * from getListClassroomOnDay('3', '6789');
+create or replace function getRaitoScoreByCourseId(_idCourse varchar(100))
+returns table (
+	"Mã môn học" varchar(100),
+	"Tỉ lệ điểm quá trình" float,
+	"Tỉ lệ điểm giữa kì" float,
+	"Tỉ lệ điểm thực hành" float,
+	"Tỉ lệ điểm cuối kì" float
+) as $$
+begin
+	return query
+	select 
+		schedule.idcourse as "Mã môn học",
+		score.ratioprocess as "Tỉ lệ điểm quá trình", 
+		score.midtermscore as "Tỉ lệ điểm giữa kì", 
+		score.ratiopractice as "Tỉ lệ điểm thực hành", 
+		score.ratiofinal as "Tỉ lệ điểm cuối kì" 
+	from schedule, score
+	where schedule.idscore = score.id
+	and schedule.idcourse = _idCourse;
+end;
+$$ LANGUAGE plpgsql;
+
+-- select * from getRaitoScoreByCourseId('IT003.O12');
+
 -------------------------
 ------ CRUD -----------
 CREATE OR REPLACE FUNCTION InsertAcc(
     IN v_username VARCHAR(100),
     IN v_password VARCHAR(1000),
+	IN v_role varchar(100),
     IN v_id VARCHAR(100)
 )
 RETURNS Bool AS $$
@@ -422,8 +456,8 @@ BEGIN
         RETURN false;
     END IF;
 
-    INSERT INTO Account(username, password)
-    VALUES (v_username, v_password);
+    INSERT INTO Account(username, password, role)
+    VALUES (v_username, v_password, v_role);
 
     INSERT INTO Profile(id)
     VALUES (v_id);
@@ -435,7 +469,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- SELECT InsertAcc('student11', '123456', '21521611');
+--  SELECT InsertAcc('sv21521611', '123456', 'student', '21521611');
 
 CREATE OR REPLACE FUNCTION insertRegisterCourse(
     IN courseId VARCHAR(100),
@@ -448,8 +482,8 @@ CREATE OR REPLACE FUNCTION insertRegisterCourse(
     IN courseClassroom VARCHAR(100),
     IN courseSemester VARCHAR(100),
     IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay DATE,
-    IN courseEndDay DATE
+    IN courseStartDay TIMESTAMP,
+    IN courseEndDay TIMESTAMP
 )
 RETURNS BOOLEAN AS $$
 DECLARE
