@@ -1,4 +1,5 @@
-﻿using QLSV.DAO;
+﻿using iText.IO.Codec;
+using QLSV.DAO;
 using QLSV.DTO;
 using System;
 using System.Collections.Generic;
@@ -103,24 +104,12 @@ namespace QLSV
         }
 
         #region load_tab_diem
-        private bool check(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return true;
-
-            if (float.TryParse(s, out float diem))
-            {
-                if (diem >= 0 && diem <= 10)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         ListViewItem ratio;
-        void loadratio(string course)
+        ListViewItem loadratio(string course)
         {
-            
+
             List<lectureRatioScore> ratioscores = lectureRatioScoreDAO.Instance.LoadRatioCourse(course);
             foreach (lectureRatioScore ratioscore in ratioscores)
             {
@@ -132,23 +121,30 @@ namespace QLSV
                 ratio.SubItems.Add(ratioscore.RatioFinalScore.ToString());
 
             }
+            return ratio;
         }
         void Loaddiem()
         {
             cbodiem.Text = cbodiem.Items[0].ToString();
             string[] mon = cbodiem.Items[0].ToString().Split('/');
             string mamon = mon[0];
+            txtmssv.Text = "";
             HienThiThongTinDiem(mamon);
             loadratio(mamon);
         }
         private void cbodiem_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            btnnhap.Enabled = false;
             txtmssv.Enabled = false;
             txtQT.Enabled = false;
             txtGK.Enabled = false;
             txtTH.Enabled = false;
             txtCK.Enabled = false;
+            txtmssv.Text = "";
+            txtQT.Text = "";
+            txtGK.Text = "";
+            txtTH.Text = "";
+            txtCK.Text = "";
             if (cbodiem.SelectedIndex == -1) return;
 
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
@@ -159,28 +155,28 @@ namespace QLSV
         void HienThiThongTinDiem(string mamon)
         {
             lvscoreGV.Items.Clear();
-
+            ListViewItem ratio = loadratio(mamon);
             List<lecturescore> scores = lecturescoreDAO.Instance.LoadLectureScore(mamon);
             foreach (lecturescore score in scores)
             {
                 ListViewItem lvi = new ListViewItem(score.StudentId);
-                //MessageBox.Show(score.ProcessScore.ToString());
+
                 lvi.SubItems.Add(score.StudentName);
 
 
-                if (score.ProcessScore == -1)
+                if (score.ProcessScore == -1 || ratio.SubItems[1].Text == "0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.ProcessScore.ToString());
-                if (score.MidtermScore == -1)
+                if (score.MidtermScore == -1 || ratio.SubItems[2].Text == "0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.MidtermScore.ToString());
-                if (score.PracticeScore == -1)
+                if (score.PracticeScore == -1 || ratio.SubItems[3].Text =="0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.PracticeScore.ToString());
-                if (score.FinalScore == -1)
+                if (score.FinalScore == -1 || ratio.SubItems[4].Text =="0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.FinalScore.ToString());
@@ -203,15 +199,15 @@ namespace QLSV
             txtTH.Text = lvi.SubItems[4].Text;
             txtCK.Text = lvi.SubItems[5].Text;
             temp = lvi;
+            ratiosco = false;
         }
-
-        
 
         private void btnnhap_Click(object sender, EventArgs e)
         {
             btnok.Enabled = true;
             btn_huy.Enabled = true;
             btnnhap.Enabled = false;
+            btnratio.Enabled = false;
             if (txtQT.Text != null || txtGK.Text != null || txtTH.Text != null || txtCK.Text != null)
             {
                 txtQT.Enabled = true;
@@ -229,10 +225,22 @@ namespace QLSV
                 txtTH.Enabled = true;
                 txtCK.Enabled = true;
             }
+            string[] mon = cbodiem.SelectedItem.ToString().Split('/');
+            string mamon = mon[0];
+            ListViewItem ratio = loadratio(mamon);
+            if (ratio.SubItems[1].Text == "0")
+                txtQT.Enabled = false;
+            if (ratio.SubItems[2].Text == "0")
+                txtGK.Enabled = false;
+            if (ratio.SubItems[3].Text == "0")
+                txtTH.Enabled = false;
+            if (ratio.SubItems[4].Text == "0")
+                txtCK.Enabled = false;
         }
 
         private void btnok_Click(object sender, EventArgs e)
         {
+            btnratio.Enabled = true;
             btnnhap.Enabled = false;
             btn_huy.Enabled = false;
             txtQT.Enabled = false;
@@ -242,8 +250,28 @@ namespace QLSV
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
             if (ratiosco)
-            {   
-                
+            {
+                btnok.Enabled = false;
+                float temp = float.Parse(txtQT.Text) + float.Parse(txtGK.Text) + float.Parse(txtCK.Text) + float.Parse(txtTH.Text);
+                if (temp != 1)
+                {
+                    MessageBox.Show("Tỉ lệ điểm không hợp lệ", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                else
+                {
+                    bool kq = lectureRatioScoreDAO.Instance.UpdateRatioScore(mamon,
+                    float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
+                    if (kq)
+                    {
+                        MessageBox.Show("Cập nhật tỉ lệ điểm thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        HienThiThongTinDiem(mamon);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật tỉ lệ điểm không thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             else
             {
@@ -262,6 +290,20 @@ namespace QLSV
             }
         }
 
+        private bool check(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return true;
+
+            if (float.TryParse(s, out float diem))
+            {
+                if (diem >= 0 && diem <= 10)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void diemKhongHopLe(ListViewItem item)
         {
             txtQT.Text = item.SubItems[2].Text;
@@ -275,6 +317,7 @@ namespace QLSV
         ListViewItem temp;
         private void btn_huy_Click(object sender, EventArgs e)
         {
+            btnratio.Enabled = true;
             btn_huy.Enabled = false;
             btnnhap.Enabled = false;
             btnok.Enabled = false;
@@ -282,22 +325,42 @@ namespace QLSV
             txtGK.Enabled = false;
             txtTH.Enabled = false;
             txtCK.Enabled = false;
-            temp = lvscoreGV.SelectedItems[0];
-            txtQT.Text = temp.SubItems[2].Text;
-            txtGK.Text = temp.SubItems[3].Text;
-            txtTH.Text = temp.SubItems[4].Text;
-            txtCK.Text = temp.SubItems[5].Text;
+            if (ratiosco)
+            {
+                txtQT.Text = "";
+                txtGK.Text = "";
+                txtTH.Text = "";
+                txtCK.Text = "";
+            }
+            else
+            {
+                temp = lvscoreGV.SelectedItems[0];
+                txtQT.Text = temp.SubItems[2].Text;
+                txtGK.Text = temp.SubItems[3].Text;
+                txtTH.Text = temp.SubItems[4].Text;
+                txtCK.Text = temp.SubItems[5].Text;
+            }
         }
 
         bool ratiosco = false;
         private void btnratio_Click(object sender, EventArgs e)
         {
+            btnok.Enabled = true;
+            btn_huy.Enabled = true;
             ratiosco = true;
+            txtQT.Enabled = true;
+            txtGK.Enabled = true;
+            txtTH.Enabled = true;
+            txtCK.Enabled = true;
             txtmssv.Text = "";
+            string[] mon = cbodiem.SelectedItem.ToString().Split('/');
+            string mamon = mon[0];
+            ListViewItem ratio = loadratio(mamon);
             txtQT.Text = ratio.SubItems[1].Text;
             txtGK.Text = ratio.SubItems[2].Text;
             txtTH.Text = ratio.SubItems[3].Text;
             txtCK.Text = ratio.SubItems[4].Text;
+
 
 
 
@@ -453,7 +516,25 @@ namespace QLSV
             dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", txt_loc.Text);
         }
 
-        
+        private void btn_changePassword_Click(object sender, EventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword(ID);
+            Form bg = new Form();
+            using (changePassword)
+            {
+                bg.StartPosition = FormStartPosition.Manual;
+                bg.FormBorderStyle = FormBorderStyle.None;
+                bg.BackColor = Color.Black;
+                bg.Opacity = 0.7d;
+                bg.Size = this.Size;
+                bg.Location = this.Location;
+                bg.ShowInTaskbar = false;
+                bg.Show(this);
+                changePassword.Owner = bg;
+                changePassword.ShowDialog(bg);
+                bg.Dispose();
+            }
+        }
     }
 
 }
