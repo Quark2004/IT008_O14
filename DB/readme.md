@@ -452,6 +452,10 @@ begin
 		course.id as "Mã lớp",
 		course.name as "Tên môn học"
 	from course
+	where course.id in (
+		select schedule.idcourse from Schedule, score
+		where Schedule.idscore = score.id
+	)
 	order by course.id;
 end;
 $$ LANGUAGE plpgsql;
