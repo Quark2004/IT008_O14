@@ -80,6 +80,7 @@
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\lecturecourseDAO.cs" />
     <Compile Include="DAO\lectureinfoDAO.cs" />
+    <Compile Include="DAO\lectureRatioScoreDAO.cs" />
     <Compile Include="DAO\lecturescoreDAO.cs" />
     <Compile Include="DAO\managercourseidDAO.cs" />
     <Compile Include="DAO\RegisteredCourseListDAO.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="DAO\StudentScoreDAO.cs" />
     <Compile Include="DTO\lecturecourse.cs" />
     <Compile Include="DTO\lectureinfo.cs" />
+    <Compile Include="DTO\lectureRatioScore.cs" />
     <Compile Include="DTO\lecturescore.cs" />
     <Compile Include="DTO\managercourseid.cs" />
     <Compile Include="DTO\RegisteredCourseList.cs" />

@@ -120,15 +120,16 @@ namespace QLSV
         ListViewItem ratio;
         void loadratio(string course)
         {
-            ratio.SubItems.Clear();
-            List<lecturescore> ratioscores = lecturescoreDAO.Instance.LoadRatioCourse(course);
-            foreach (lecturescore ratioscore in ratioscores)
+            
+            List<lectureRatioScore> ratioscores = lectureRatioScoreDAO.Instance.LoadRatioCourse(course);
+            foreach (lectureRatioScore ratioscore in ratioscores)
             {
-                ratio = new ListViewItem(ratioscore.StudentId);
-                ratio.SubItems.Add(ratioscore.ProcessScore.ToString());
-                ratio.SubItems.Add(ratioscore.MidtermScore.ToString());
-                ratio.SubItems.Add(ratioscore.PracticeScore.ToString());
-                ratio.SubItems.Add(ratioscore.FinalScore.ToString());
+                ratio = new ListViewItem(ratioscore.CourseId);
+                ratio.SubItems.Clear();
+                ratio.SubItems.Add(ratioscore.RatioProcessScore.ToString());
+                ratio.SubItems.Add(ratioscore.RatioMidtermScore.ToString());
+                ratio.SubItems.Add(ratioscore.RatioPracticeScore.ToString());
+                ratio.SubItems.Add(ratioscore.RatioFinalScore.ToString());
 
             }
         }
