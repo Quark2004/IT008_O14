@@ -42,11 +42,11 @@ namespace QLSV.DAO
             return scores;
         }
 
-        //public bool UpdateRatioScore(string mammon, float diemQT, float diemGK, float diemTH, float diemCK)
-        //{
-        //    string query = "SELECT UpdateRatioScore( :mamon , :diemQT , :diemGK , :diemTH , :diemCK )";
-        //    //bool data = DataProvider.Instance.ExcuteQuery(query, new object[] { mammon, diemQT,diemGK,diemTH,diemCK });
-        //    return data;
-        //}
+        public bool UpdateRatioScore(string mammon, float diemQT, float diemGK, float diemTH, float diemCK)
+        {
+            string query = "SELECT UpdateRatioScore( :mamon , :diemQT , :diemGK , :diemTH , :diemCK )";
+            bool data = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { mammon, diemQT,diemGK,diemTH,diemCK });
+            return data;
+        }
     }
 }
