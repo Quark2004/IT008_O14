@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IdentityModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -116,26 +117,28 @@ namespace QLSV
             return false;
         }
 
-        //private void xoadiem()
-        //{
-        //    temp = lvscoreGV.SelectedItems[0];
-        //    if (txtQT.Text == "")
-        //        temp.SubItems[2].Text = "";
-        //    if (txtGK.Text == "")
-        //        temp.SubItems[3].Text = "";
-        //    if (txtTH.Text == "")
-        //        temp.SubItems[4].Text = "";
-        //    if (txtCK.Text == "")
-        //        temp.SubItems[5].Text = "";
-        //    lvscoreGV.Items.Add(temp);
-        //    lvscoreGV.Items.Remove(lvscoreGV.SelectedItems[0]);
-        //}
+        ListViewItem ratio;
+        void loadratio(string course)
+        {
+            ratio.SubItems.Clear();
+            List<lecturescore> ratioscores = lecturescoreDAO.Instance.LoadRatioCourse(course);
+            foreach (lecturescore ratioscore in ratioscores)
+            {
+                ratio = new ListViewItem(ratioscore.StudentId);
+                ratio.SubItems.Add(ratioscore.ProcessScore.ToString());
+                ratio.SubItems.Add(ratioscore.MidtermScore.ToString());
+                ratio.SubItems.Add(ratioscore.PracticeScore.ToString());
+                ratio.SubItems.Add(ratioscore.FinalScore.ToString());
+
+            }
+        }
         void Loaddiem()
         {
             cbodiem.Text = cbodiem.Items[0].ToString();
             string[] mon = cbodiem.Items[0].ToString().Split('/');
             string mamon = mon[0];
             HienThiThongTinDiem(mamon);
+            loadratio(mamon);
         }
         private void cbodiem_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -201,7 +204,7 @@ namespace QLSV
             temp = lvi;
         }
 
-        ListViewItem temp;
+        
 
         private void btnnhap_Click(object sender, EventArgs e)
         {
@@ -237,19 +240,24 @@ namespace QLSV
             txtCK.Enabled = false;
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
-
-
-            if (!check(txtQT.Text) || !check(txtGK.Text) || !check(txtCK.Text) || !check(txtTH.Text))
-            {
-                diemKhongHopLe(lvscoreGV.SelectedItems[0]);
+            if (ratiosco)
+            {   
+                
             }
             else
             {
-                //xoadiem();
-                string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
-                   txtQT.Text, txtGK.Text, txtCK.Text, txtTH.Text);
-                HienThiThongTinDiem(mamon);
-                btnok.Enabled = false;
+                if (!check(txtQT.Text) || !check(txtGK.Text) || !check(txtCK.Text) || !check(txtTH.Text))
+                {
+                    diemKhongHopLe(lvscoreGV.SelectedItems[0]);
+                }
+                else
+                {
+                    //xoadiem();
+                    string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
+                       txtQT.Text, txtGK.Text, txtCK.Text, txtTH.Text);
+                    HienThiThongTinDiem(mamon);
+                    btnok.Enabled = false;
+                }
             }
         }
 
@@ -262,6 +270,8 @@ namespace QLSV
             MessageBox.Show("Điểm nhập vào không hợp lệ!", "Cập nhật điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnok.Enabled = false;
         }
+
+        ListViewItem temp;
         private void btn_huy_Click(object sender, EventArgs e)
         {
             btn_huy.Enabled = false;
@@ -276,6 +286,20 @@ namespace QLSV
             txtGK.Text = temp.SubItems[3].Text;
             txtTH.Text = temp.SubItems[4].Text;
             txtCK.Text = temp.SubItems[5].Text;
+        }
+
+        bool ratiosco = false;
+        private void btnratio_Click(object sender, EventArgs e)
+        {
+            ratiosco = true;
+            txtmssv.Text = "";
+            txtQT.Text = ratio.SubItems[1].Text;
+            txtGK.Text = ratio.SubItems[2].Text;
+            txtTH.Text = ratio.SubItems[3].Text;
+            txtCK.Text = ratio.SubItems[4].Text;
+
+
+
         }
         #endregion
 
@@ -428,7 +452,7 @@ namespace QLSV
             dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", txt_loc.Text);
         }
 
-
+        
     }
 
 }

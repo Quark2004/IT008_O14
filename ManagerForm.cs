@@ -24,11 +24,13 @@ namespace QLSV
             LoadAccountList();
             LoadAllCourse();
             LoadStudentList();
+            Loadmonhoc();
             LoadStudentRegistrationList(data_studentList.Rows[0].Cells[0].Value.ToString());
             LoadListProfileInfo();
             ID = id;
         }
         public string ID { get; set; }
+        
 
         #region ĐKHP
         void LoadAllCourse()
@@ -47,19 +49,33 @@ namespace QLSV
 
         private void btn_import_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                Workbook workbook = new Workbook();
-                workbook.LoadFromFile(openFile.FileName);
-                Worksheet worksheet = workbook.Worksheets[0];
+			string getPeriodQuery = "SELECT * FROM GetListRegistrationPeriod()";
+			DataTable period = DataProvider.Instance.ExcuteQuery(getPeriodQuery);
+			DateTime start = Convert.ToDateTime(period.Rows[0]["Bắt đầu đăng kí học phần"]);
+			DateTime end = Convert.ToDateTime(period.Rows[0]["Kết thúc đăng kí học phần"]);
+			if (DateTime.Now >= start && DateTime.Now <= end) {
+				MessageBox.Show("Đang trong thời gian ĐKHP, không thể chỉnh sửa", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} else {
+				OpenFileDialog openFile = new OpenFileDialog();
+				openFile.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+				if (openFile.ShowDialog() == DialogResult.OK) {
+					Workbook workbook = new Workbook();
+					workbook.LoadFromFile(openFile.FileName);
+					Worksheet worksheet = workbook.Worksheets[0];
 
-                DataTable dt = worksheet.ExportDataTable();
+					DataTable dt = worksheet.ExportDataTable();
 
-                data_allCourse.DataSource = dt;
-            }
-        }
+					data_allCourse.DataSource = dt;
+					string clearCourseQuery = "SELECT FROM clearRegisterCourse()";
+					DataProvider.Instance.ExcuteScalar(clearCourseQuery);
+
+					foreach (DataGridViewRow row in data_allCourse.Rows) {
+						string query = "SELECT insertRegisterCourse( :courseId , :courseName , :lecturerId , :lecturerName , :numberOfCredits , :day , :period , :room , :semester , :schoolYear , :startDate , :endDate )";
+						DataProvider.Instance.ExcuteScalar(query, new object[] { row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), int.Parse(row.Cells[4].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString(), row.Cells[9].Value.ToString(), Convert.ToDateTime(row.Cells[10].Value.ToString()), Convert.ToDateTime(row.Cells[11].Value.ToString()) });
+					}
+				}
+			}
+		}
 
         private void btn_export_Click(object sender, EventArgs e)
         {
@@ -119,24 +135,27 @@ namespace QLSV
 
         private void btn_modify_Click(object sender, EventArgs e)
         {
-            DataGridViewRow modifyRow = data_allCourse.CurrentRow;
-            ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
-            Form bg = new Form();
-            using (modifyCourse)
-            {
-                bg.StartPosition = FormStartPosition.Manual;
-                bg.FormBorderStyle = FormBorderStyle.None;
-                bg.BackColor = Color.Black;
-                bg.Opacity = 0.7d;
-                bg.Size = this.Size;
-                bg.Location = this.Location;
-                bg.ShowInTaskbar = false;
-                bg.Show(this);
-                modifyCourse.Owner = bg;
-                modifyCourse.ShowDialog(bg);
-                bg.Dispose();
-            }
-        }
+			DataGridViewRow modifyRow = data_allCourse.CurrentRow;
+			if (modifyRow != null) {
+				ModifyCourse modifyCourse = new ModifyCourse(modifyRow);
+				Form bg = new Form();
+				using (modifyCourse) {
+					bg.StartPosition = FormStartPosition.Manual;
+					bg.FormBorderStyle = FormBorderStyle.None;
+					bg.BackColor = Color.Black;
+					bg.Opacity = 0.7d;
+					bg.Size = this.Size;
+					bg.Location = this.Location;
+					bg.ShowInTaskbar = false;
+					bg.Show(this);
+					modifyCourse.Owner = bg;
+					modifyCourse.ShowDialog(bg);
+					bg.Dispose();
+				}
+			} else {
+				MessageBox.Show("Không có học phần được chọn", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         private void data_courseListOfStudent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -187,7 +206,6 @@ namespace QLSV
                     reject.Add(row.Cells[2].Value.ToString());
                 }
             }
-            LoadStudentRegistrationList(data_studentList.CurrentRow.Cells[0].Value.ToString());
             Form bg = new Form();
             RegistrationResult resultWindow = new RegistrationResult(accept, reject, "accept");
             using (resultWindow)
@@ -204,7 +222,8 @@ namespace QLSV
                 resultWindow.ShowDialog(bg);
                 bg.Dispose();
             }
-        }
+			LoadStudentRegistrationList(data_studentList.CurrentRow.Cells[0].Value.ToString());
+		}
 
         private void tb_findStudent_TextChanged(object sender, EventArgs e)
         {
@@ -396,6 +415,131 @@ namespace QLSV
 
         #endregion
 
+        #region monhoc
+        DataTable dt = new DataTable();
+        DataTable profile = new DataTable();
+
+        void Loadmonhoc()
+        {
+            btnadd.Enabled = false;
+            btndelete.Enabled = false;
+            btnok.Enabled = false;
+            btnexit.Enabled = false;
+            txtmssv.Enabled = false;
+            dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
+                        new DataColumn("Mã môn học", typeof(string)),
+                        new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
+            List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
+            foreach (StudentCourseRegistration course in courses)
+            {
+                dt.Rows.Add(course.CourseName, course.CourseId, course.LecturerName, course.NumberOfCredits, course.Day, course.Period, course.ClassRoom, course.Semester, course.SchoolYear, course.StartDate.ToString("MM/dd/yyyy"), course.EndDate.ToString("MM/dd/yyyy"));
+            }
+            this.dtmonhoc.DataSource = dt;
+            profile.Columns.AddRange(new DataColumn[2] { new DataColumn("MSSV/MGV", typeof(string)),
+                        new DataColumn("Họ tên", typeof(string)) });
+
+        }
+
+        //Hiển thị sv từng lớp
+        void Profilecourse(string id)
+        {
+            profile.Rows.Clear();
+            List<managercourseid> managercourseids = managercourseidDAO.Instance.Loadprofilebycourseid(courseid);
+
+            foreach (var managercourse in managercourseids)
+            {
+                profile.Rows.Add(managercourse.Id, managercourse.Name);
+            }
+
+            this.dtprobycourse.DataSource = profile;
+        }
+
+        //Tìm kiếm môn học
+        private void txtmonhoc_TextChanged(object sender, EventArgs e)
+        {
+            dt.DefaultView.RowFilter = string.Format("[Tên môn học] like '%{0}%' or [Mã môn học] like '%{0}%'", txtmonhoc.Text);
+
+        }
+
+        //Chọn lớp để hiển thị
+        private void dtmonhoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+            DataGridViewRow row = dtmonhoc.Rows[e.RowIndex];
+            courseid = row.Cells[1].Value.ToString();
+            Profilecourse(courseid);
+            btnadd.Enabled = true;
+        }
+
+        //tìm kiếm sv
+        private void txtsv_TextChanged(object sender, EventArgs e)
+        {
+            profile.DefaultView.RowFilter = string.Format("[MSSV/MGV] like '%{0}%' or [Họ tên] like '%{0}%'", txtsv.Text);
+
+        }
+        string courseid;
+
+        //Chọn sv để thao tác
+        private void dtprobycourse_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dtprobycourse.Rows[e.RowIndex];
+            string mssv = row.Cells[0].Value.ToString();
+            txtmssv.Text = mssv;
+            btndelete.Enabled = true;
+        }
+
+        private void btnadd_Click(object sender, EventArgs e)
+        {
+            btndelete.Enabled = false;
+            btnadd.Enabled = false;
+            btnok.Enabled = true;
+            btnexit.Enabled = true;
+            txtmssv.Enabled = true;
+            txtmssv.Text = "";
+        }
+        private void btndelete_Click(object sender, EventArgs e)
+        {
+
+            btndelete.Enabled = false;
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa sv có mssv: " + txtmssv.Text, "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
+            {
+                bool kq = managercourseidDAO.Instance.deletestudent(txtmssv.Text, courseid);
+                Profilecourse(courseid);
+            }
+            txtmssv.Text = "";
+        }
+
+        private void btnok_Click(object sender, EventArgs e)
+        {
+            btnexit.Enabled = false;
+            btnok.Enabled = false;
+            btnadd.Enabled = true;
+            txtmssv.Enabled = false;
+            bool kq = managercourseidDAO.Instance.Addstudent(txtmssv.Text, courseid);
+            if (kq)
+            {
+                MessageBox.Show("Đã thêm thành công", "Thêm sinh viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Profilecourse(courseid);
+                txtmssv.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("MSSV không hợp lệ");
+                txtmssv.Text = "";
+            }
+            
+        }
+        private void btnexit_Click(object sender, EventArgs e)
+        {
+            txtmssv.Enabled = false;
+            txtmssv.Text = "";
+            btnexit.Enabled = false;
+            btnok.Enabled = false;
+            btnadd.Enabled = true;
+        }
+        #endregion
+
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Form bg = new Form();
@@ -417,5 +561,6 @@ namespace QLSV
             e.Cancel = logOut.IsNotClosed;
         }
 
+       
     }
 }

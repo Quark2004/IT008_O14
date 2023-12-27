@@ -55,5 +55,27 @@ namespace QLSV.DAO
             });
             return data.Rows[0][0].ToString();
         }
+
+        public List<lecturescore> LoadRatioCourse(string id)
+        {
+            string query = "select * from getRaitoScoreByCourseId( :id )";
+            DataTable data = DataProvider.Instance.ExcuteQuery(query, new object[] { id });
+            List<lecturescore> scores = new List<lecturescore>();
+
+            foreach (DataRow row in data.Rows)
+            {
+                lecturescore score = new lecturescore(row);
+                scores.Add(score);
+            }
+
+            return scores;
+        }
+
+        //public bool UpdateRatioScore(string mammon, float diemQT, float diemGK, float diemTH, float diemCK)
+        //{
+        //    string query = "SELECT UpdateRatioScore( :mamon , :diemQT , :diemGK , :diemTH , :diemCK )";
+        //    //bool data = DataProvider.Instance.ExcuteQuery(query, new object[] { mammon, diemQT,diemGK,diemTH,diemCK });
+        //    return data;
+        //}
     }
 }

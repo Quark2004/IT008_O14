@@ -637,31 +637,31 @@ $$ LANGUAGE plpgsql;
 -- select updateRegistrationPeriod('2023-12-25', '2023-12-26')
 
 CREATE OR REPLACE FUNCTION updateRegisterCourse(
-    IN courseId VARCHAR(100),
-    IN profileId VARCHAR(100),
-    IN courseNumberOfCredits INT,
-    IN courseSchoolDay VARCHAR(100),
-    IN courseLesson VARCHAR(100),
-    IN courseClassroom VARCHAR(100),
-    IN courseSemester VARCHAR(100),
-    IN courseSchoolYear VARCHAR(100),
-    IN courseStartDay TIMESTAMP,
-    IN courseEndDay TIMESTAMP
-)
+		IN courseId VARCHAR(100),
+		IN profileId VARCHAR(100),
+		IN courseNumberOfCredits INT,
+		IN courseSchoolDay VARCHAR(100),
+		IN courseLesson VARCHAR(100),
+		IN courseClassroom VARCHAR(100),
+		IN courseSemester VARCHAR(100),
+		IN courseSchoolYear VARCHAR(100),
+		IN courseStartDay TIMESTAMP,
+		IN courseEndDay TIMESTAMP
+	)
 RETURNS BOOLEAN AS $$
 DECLARE
-    lastEndTime TIMESTAMP;
-    lastStartTime TIMESTAMP;
+	lastEndTime TIMESTAMP;
+	lastStartTime TIMESTAMP;
 BEGIN
-    SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
+	SELECT starttime, endtime INTO lastStartTime, lastEndTime FROM RegistrationPeriod ORDER BY starttime DESC LIMIT 1;
 
-    -- Không được sửa danh sách dkhp khi đăng mở đăng kí 
+	-- Không được sửa danh sách dkhp khi đăng mở đăng kí 
 
-    IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN 
+	IF (lastStartTime <= CURRENT_TIMESTAMP) AND (lastEndTime > CURRENT_TIMESTAMP) THEN 
 -- 		Raise exception 'Không được sửa danh sách dkhp khi đăng mở đăng kí ';
-        RETURN FALSE;
-    END IF;
-	
+		RETURN FALSE;
+	END IF;
+
 	-- 	Check trùng lịch dạy của gv
 	if (select count(*) from 
 			(select "Thứ", "Tiết" from getschedulebyid(profileId)
@@ -671,10 +671,10 @@ BEGIN
 	   ) > 0 
 	 then 
 -- 	 	Raise exception 'trùng lịch dạy của gv';
-	 	return false;
+		return false;
 	 end if;
-	
-	
+
+
 	-- check trùng lịch phòng 
 	if (
 		select count(*) from 
@@ -688,26 +688,26 @@ BEGIN
 -- 		Raise exception 'trùng lịch phòng';
 		return false;
 	end if;
-	
+
 	if courseEndDay <= courseStartDay 
 	then return false;
 	end if;
-	
 
-    UPDATE Course
-    SET
-        numberOfCredits = courseNumberOfCredits,
-        schoolDay = courseSchoolDay,
-        lesson = courseLesson,
-        classroom = courseClassroom,
-        semester = courseSemester,
-        schoolYear = courseSchoolYear,
-        startDay = courseStartDay,
-        endDay = courseEndDay
-    WHERE
-        id = courseId;
 
-    RETURN TRUE;
+	UPDATE Course
+	SET
+		numberOfCredits = courseNumberOfCredits,
+		schoolDay = courseSchoolDay,
+		lesson = courseLesson,
+		classroom = courseClassroom,
+		semester = courseSemester,
+		schoolYear = courseSchoolYear,
+		startDay = courseStartDay,
+		endDay = courseEndDay
+	WHERE
+		id = courseId;
+
+	RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
 

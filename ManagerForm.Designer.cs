@@ -23,6 +23,8 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerForm));
             this.tabCtrl_main = new System.Windows.Forms.TabControl();
             this.tab_account = new System.Windows.Forms.TabPage();
@@ -48,6 +50,20 @@
             this.lb_userName = new System.Windows.Forms.Label();
             this.data_accountsList = new System.Windows.Forms.DataGridView();
             this.tab_course = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnexit = new System.Windows.Forms.Button();
+            this.btnok = new System.Windows.Forms.Button();
+            this.btndelete = new System.Windows.Forms.Button();
+            this.btnadd = new System.Windows.Forms.Button();
+            this.txtmssv = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtsv = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtprobycourse = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.dtmonhoc = new System.Windows.Forms.DataGridView();
+            this.txtmonhoc = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tab_registration = new System.Windows.Forms.TabPage();
             this.btn_openRegistration = new System.Windows.Forms.Button();
             this.btn_modify = new System.Windows.Forms.Button();
@@ -80,6 +96,11 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_accountsList)).BeginInit();
+            this.tab_course.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtprobycourse)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtmonhoc)).BeginInit();
             this.tab_registration.SuspendLayout();
             this.panel_.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_allCourse)).BeginInit();
@@ -394,6 +415,8 @@
             // 
             // tab_course
             // 
+            this.tab_course.Controls.Add(this.panel6);
+            this.tab_course.Controls.Add(this.panel5);
             this.tab_course.Location = new System.Drawing.Point(4, 38);
             this.tab_course.Name = "tab_course";
             this.tab_course.Padding = new System.Windows.Forms.Padding(3);
@@ -401,6 +424,177 @@
             this.tab_course.TabIndex = 1;
             this.tab_course.Text = "Môn học";
             this.tab_course.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btnexit);
+            this.panel6.Controls.Add(this.btnok);
+            this.panel6.Controls.Add(this.btndelete);
+            this.panel6.Controls.Add(this.btnadd);
+            this.panel6.Controls.Add(this.txtmssv);
+            this.panel6.Controls.Add(this.label13);
+            this.panel6.Controls.Add(this.txtsv);
+            this.panel6.Controls.Add(this.label12);
+            this.panel6.Controls.Add(this.dtprobycourse);
+            this.panel6.Location = new System.Drawing.Point(858, 6);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(494, 601);
+            this.panel6.TabIndex = 1;
+            // 
+            // btnexit
+            // 
+            this.btnexit.Location = new System.Drawing.Point(300, 516);
+            this.btnexit.Name = "btnexit";
+            this.btnexit.Size = new System.Drawing.Size(128, 64);
+            this.btnexit.TabIndex = 12;
+            this.btnexit.Text = "Hủy";
+            this.btnexit.UseVisualStyleBackColor = true;
+            this.btnexit.Click += new System.EventHandler(this.btnexit_Click);
+            // 
+            // btnok
+            // 
+            this.btnok.Location = new System.Drawing.Point(90, 516);
+            this.btnok.Name = "btnok";
+            this.btnok.Size = new System.Drawing.Size(137, 64);
+            this.btnok.TabIndex = 11;
+            this.btnok.Text = "Xác nhận";
+            this.btnok.UseVisualStyleBackColor = true;
+            this.btnok.Click += new System.EventHandler(this.btnok_Click);
+            // 
+            // btndelete
+            // 
+            this.btndelete.Location = new System.Drawing.Point(300, 425);
+            this.btndelete.Name = "btndelete";
+            this.btndelete.Size = new System.Drawing.Size(128, 64);
+            this.btndelete.TabIndex = 10;
+            this.btndelete.Text = "Xóa";
+            this.btndelete.UseVisualStyleBackColor = true;
+            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
+            // 
+            // btnadd
+            // 
+            this.btnadd.Location = new System.Drawing.Point(90, 425);
+            this.btnadd.Name = "btnadd";
+            this.btnadd.Size = new System.Drawing.Size(137, 64);
+            this.btnadd.TabIndex = 9;
+            this.btnadd.Text = "Thêm";
+            this.btnadd.UseVisualStyleBackColor = true;
+            this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
+            // 
+            // txtmssv
+            // 
+            this.txtmssv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtmssv.Font = new System.Drawing.Font("Cambria", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmssv.Location = new System.Drawing.Point(232, 338);
+            this.txtmssv.Name = "txtmssv";
+            this.txtmssv.Size = new System.Drawing.Size(185, 33);
+            this.txtmssv.TabIndex = 8;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Cambria", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(50, 339);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(135, 27);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Nhập  MSSV:";
+            // 
+            // txtsv
+            // 
+            this.txtsv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtsv.Location = new System.Drawing.Point(138, 12);
+            this.txtsv.Name = "txtsv";
+            this.txtsv.Size = new System.Drawing.Size(310, 33);
+            this.txtsv.TabIndex = 6;
+            this.txtsv.TextChanged += new System.EventHandler(this.txtsv_TextChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(12, 12);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(104, 33);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "Tìm SV:";
+            // 
+            // dtprobycourse
+            // 
+            this.dtprobycourse.AllowUserToAddRows = false;
+            this.dtprobycourse.AllowUserToDeleteRows = false;
+            this.dtprobycourse.AllowUserToResizeColumns = false;
+            this.dtprobycourse.AllowUserToResizeRows = false;
+            this.dtprobycourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtprobycourse.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dtprobycourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtprobycourse.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dtprobycourse.Location = new System.Drawing.Point(3, 61);
+            this.dtprobycourse.MultiSelect = false;
+            this.dtprobycourse.Name = "dtprobycourse";
+            this.dtprobycourse.ReadOnly = true;
+            this.dtprobycourse.RowHeadersVisible = false;
+            this.dtprobycourse.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtprobycourse.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtprobycourse.RowTemplate.Height = 24;
+            this.dtprobycourse.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtprobycourse.Size = new System.Drawing.Size(488, 217);
+            this.dtprobycourse.TabIndex = 3;
+            this.dtprobycourse.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtprobycourse_CellClick);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.dtmonhoc);
+            this.panel5.Controls.Add(this.txtmonhoc);
+            this.panel5.Controls.Add(this.label11);
+            this.panel5.Location = new System.Drawing.Point(7, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(845, 601);
+            this.panel5.TabIndex = 0;
+            // 
+            // dtmonhoc
+            // 
+            this.dtmonhoc.AllowUserToAddRows = false;
+            this.dtmonhoc.AllowUserToDeleteRows = false;
+            this.dtmonhoc.AllowUserToResizeColumns = false;
+            this.dtmonhoc.AllowUserToResizeRows = false;
+            this.dtmonhoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtmonhoc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dtmonhoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtmonhoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dtmonhoc.Location = new System.Drawing.Point(3, 61);
+            this.dtmonhoc.MultiSelect = false;
+            this.dtmonhoc.Name = "dtmonhoc";
+            this.dtmonhoc.ReadOnly = true;
+            this.dtmonhoc.RowHeadersVisible = false;
+            this.dtmonhoc.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtmonhoc.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dtmonhoc.RowTemplate.Height = 24;
+            this.dtmonhoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtmonhoc.Size = new System.Drawing.Size(842, 537);
+            this.dtmonhoc.TabIndex = 2;
+            this.dtmonhoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtmonhoc_CellClick);
+            // 
+            // txtmonhoc
+            // 
+            this.txtmonhoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtmonhoc.Location = new System.Drawing.Point(186, 15);
+            this.txtmonhoc.Name = "txtmonhoc";
+            this.txtmonhoc.Size = new System.Drawing.Size(536, 33);
+            this.txtmonhoc.TabIndex = 4;
+            this.txtmonhoc.TextChanged += new System.EventHandler(this.txtmonhoc_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(20, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(135, 33);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Tìm kiếm:";
             // 
             // tab_registration
             // 
@@ -718,6 +912,13 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_accountsList)).EndInit();
+            this.tab_course.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtprobycourse)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtmonhoc)).EndInit();
             this.tab_registration.ResumeLayout(false);
             this.panel_.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.data_allCourse)).EndInit();
@@ -786,5 +987,19 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView data_profileList;
         private System.Windows.Forms.Button btn_editProfile;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtmonhoc;
+        private System.Windows.Forms.TextBox txtsv;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridView dtprobycourse;
+        private System.Windows.Forms.DataGridView dtmonhoc;
+        private System.Windows.Forms.Button btnexit;
+        private System.Windows.Forms.Button btnok;
+        private System.Windows.Forms.Button btndelete;
+        private System.Windows.Forms.Button btnadd;
+        private System.Windows.Forms.TextBox txtmssv;
+        private System.Windows.Forms.Label label13;
     }
 }
