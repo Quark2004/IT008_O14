@@ -574,7 +574,7 @@ begin
 	select
 		schedule.idcourse as "Mã môn học",
 		score.ratioprocess as "Tỉ lệ điểm quá trình",
-		score.midtermscore as "Tỉ lệ điểm giữa kì",
+		score.ratiomidterm as "Tỉ lệ điểm giữa kì",
 		score.ratiopractice as "Tỉ lệ điểm thực hành",
 		score.ratiofinal as "Tỉ lệ điểm cuối kì"
 	from schedule, score
