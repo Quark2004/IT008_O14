@@ -38,6 +38,7 @@
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -58,8 +59,7 @@
 			this.label27 = new System.Windows.Forms.Label();
 			this.label28 = new System.Windows.Forms.Label();
 			this.label29 = new System.Windows.Forms.Label();
-			this.btn_changeAvatar = new System.Windows.Forms.Button();
-			this.panel2 = new System.Windows.Forms.Panel();
+			this.panel3 = new System.Windows.Forms.Panel();
 			this.lb_educationLevel = new System.Windows.Forms.Label();
 			this.lb_TrainingSystem = new System.Windows.Forms.Label();
 			this.lb_Department = new System.Windows.Forms.Label();
@@ -74,16 +74,6 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.pbx_avt = new System.Windows.Forms.PictureBox();
-			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
-			this.lb_notification = new System.Windows.Forms.Label();
-			this.panel_registrationTool = new System.Windows.Forms.Panel();
-			this.label20 = new System.Windows.Forms.Label();
-			this.btn_Register = new System.Windows.Forms.Button();
-			this.tb_Filter = new System.Windows.Forms.TextBox();
-			this.label21 = new System.Windows.Forms.Label();
-			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
-			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.tab_Score = new System.Windows.Forms.TabPage();
 			this.lv_Score = new System.Windows.Forms.ListView();
 			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -97,6 +87,15 @@
 			this.DiemHP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.flpSchedule = new System.Windows.Forms.FlowLayoutPanel();
+			this.tab_CourseRegister = new System.Windows.Forms.TabPage();
+			this.lb_notification = new System.Windows.Forms.Label();
+			this.panel_registrationTool = new System.Windows.Forms.Panel();
+			this.label20 = new System.Windows.Forms.Label();
+			this.btn_Register = new System.Windows.Forms.Button();
+			this.tb_Filter = new System.Windows.Forms.TextBox();
+			this.label21 = new System.Windows.Forms.Label();
+			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
+			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.btn_CancelRegister = new System.Windows.Forms.Button();
@@ -104,28 +103,33 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.data_RegistrationInfo = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.label30 = new System.Windows.Forms.Label();
+			this.btn_changePassword = new System.Windows.Forms.Button();
+			this.btn_changeAvatar = new System.Windows.Forms.Button();
+			this.pbx_avt = new System.Windows.Forms.PictureBox();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
+			this.panel3.SuspendLayout();
+			this.tab_Score.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.tab_CourseRegister.SuspendLayout();
 			this.panel_registrationTool.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).BeginInit();
-			this.tab_Score.SuspendLayout();
-			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.panel4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_RegistrationInfo)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
 			// 
 			this.tabCtr_Student.Appearance = System.Windows.Forms.TabAppearance.Buttons;
 			this.tabCtr_Student.Controls.Add(this.tab_Info);
-			this.tabCtr_Student.Controls.Add(this.tab_CourseRegister);
 			this.tabCtr_Student.Controls.Add(this.tab_Score);
 			this.tabCtr_Student.Controls.Add(this.tabPage1);
+			this.tabCtr_Student.Controls.Add(this.tab_CourseRegister);
 			this.tabCtr_Student.Controls.Add(this.tabPage2);
 			this.tabCtr_Student.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabCtr_Student.ItemSize = new System.Drawing.Size(120, 32);
@@ -142,9 +146,6 @@
 			this.tab_Info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.tab_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tab_Info.Controls.Add(this.panel1);
-			this.tab_Info.Controls.Add(this.btn_changeAvatar);
-			this.tab_Info.Controls.Add(this.panel2);
-			this.tab_Info.Controls.Add(this.pbx_avt);
 			this.tab_Info.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tab_Info.ForeColor = System.Drawing.SystemColors.Control;
 			this.tab_Info.Location = new System.Drawing.Point(4, 36);
@@ -156,32 +157,46 @@
 			// 
 			// panel1
 			// 
-			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.label18);
-			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.label15);
-			this.panel1.Controls.Add(this.label4);
-			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.label14);
-			this.panel1.Controls.Add(this.label16);
-			this.panel1.Controls.Add(this.label13);
-			this.panel1.Controls.Add(this.label22);
-			this.panel1.Controls.Add(this.label23);
-			this.panel1.Controls.Add(this.label12);
-			this.panel1.Controls.Add(this.label24);
-			this.panel1.Controls.Add(this.label11);
-			this.panel1.Controls.Add(this.label25);
-			this.panel1.Controls.Add(this.label26);
-			this.panel1.Controls.Add(this.label27);
-			this.panel1.Controls.Add(this.label28);
-			this.panel1.Controls.Add(this.label29);
-			this.panel1.Location = new System.Drawing.Point(79, 86);
+			this.panel1.Controls.Add(this.btn_changePassword);
+			this.panel1.Controls.Add(this.label30);
+			this.panel1.Controls.Add(this.panel2);
+			this.panel1.Controls.Add(this.btn_changeAvatar);
+			this.panel1.Controls.Add(this.panel3);
+			this.panel1.Controls.Add(this.pbx_avt);
+			this.panel1.Location = new System.Drawing.Point(2, 2);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(133, 403);
-			this.panel1.TabIndex = 13;
+			this.panel1.Size = new System.Drawing.Size(1172, 639);
+			this.panel1.TabIndex = 0;
+			// 
+			// panel2
+			// 
+			this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel2.Controls.Add(this.label1);
+			this.panel2.Controls.Add(this.label18);
+			this.panel2.Controls.Add(this.label2);
+			this.panel2.Controls.Add(this.label3);
+			this.panel2.Controls.Add(this.label15);
+			this.panel2.Controls.Add(this.label4);
+			this.panel2.Controls.Add(this.label5);
+			this.panel2.Controls.Add(this.label14);
+			this.panel2.Controls.Add(this.label16);
+			this.panel2.Controls.Add(this.label13);
+			this.panel2.Controls.Add(this.label22);
+			this.panel2.Controls.Add(this.label23);
+			this.panel2.Controls.Add(this.label12);
+			this.panel2.Controls.Add(this.label24);
+			this.panel2.Controls.Add(this.label11);
+			this.panel2.Controls.Add(this.label25);
+			this.panel2.Controls.Add(this.label26);
+			this.panel2.Controls.Add(this.label27);
+			this.panel2.Controls.Add(this.label28);
+			this.panel2.Controls.Add(this.label29);
+			this.panel2.Location = new System.Drawing.Point(108, 115);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(133, 403);
+			this.panel2.TabIndex = 17;
 			// 
 			// label1
 			// 
@@ -385,43 +400,28 @@
 			this.label29.Size = new System.Drawing.Size(133, 68);
 			this.label29.TabIndex = 2;
 			// 
-			// btn_changeAvatar
+			// panel3
 			// 
-			this.btn_changeAvatar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.btn_changeAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-			this.btn_changeAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btn_changeAvatar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_changeAvatar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.btn_changeAvatar.Location = new System.Drawing.Point(850, 417);
-			this.btn_changeAvatar.Name = "btn_changeAvatar";
-			this.btn_changeAvatar.Size = new System.Drawing.Size(150, 72);
-			this.btn_changeAvatar.TabIndex = 7;
-			this.btn_changeAvatar.Text = "Thay đổi ảnh đại diện";
-			this.btn_changeAvatar.UseVisualStyleBackColor = false;
-			this.btn_changeAvatar.Click += new System.EventHandler(this.btn_changeAvatar_Click);
-			// 
-			// panel2
-			// 
-			this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.lb_educationLevel);
-			this.panel2.Controls.Add(this.lb_TrainingSystem);
-			this.panel2.Controls.Add(this.lb_Department);
-			this.panel2.Controls.Add(this.label17);
-			this.panel2.Controls.Add(this.lb_Class);
-			this.panel2.Controls.Add(this.lb_Gender);
-			this.panel2.Controls.Add(this.lb_Birthday);
-			this.panel2.Controls.Add(this.lb_ID);
-			this.panel2.Controls.Add(this.lb_Name);
-			this.panel2.Controls.Add(this.label6);
-			this.panel2.Controls.Add(this.label7);
-			this.panel2.Controls.Add(this.label8);
-			this.panel2.Controls.Add(this.label9);
-			this.panel2.Controls.Add(this.label10);
-			this.panel2.Location = new System.Drawing.Point(211, 86);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(368, 403);
-			this.panel2.TabIndex = 6;
+			this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel3.Controls.Add(this.lb_educationLevel);
+			this.panel3.Controls.Add(this.lb_TrainingSystem);
+			this.panel3.Controls.Add(this.lb_Department);
+			this.panel3.Controls.Add(this.label17);
+			this.panel3.Controls.Add(this.lb_Class);
+			this.panel3.Controls.Add(this.lb_Gender);
+			this.panel3.Controls.Add(this.lb_Birthday);
+			this.panel3.Controls.Add(this.lb_ID);
+			this.panel3.Controls.Add(this.lb_Name);
+			this.panel3.Controls.Add(this.label6);
+			this.panel3.Controls.Add(this.label7);
+			this.panel3.Controls.Add(this.label8);
+			this.panel3.Controls.Add(this.label9);
+			this.panel3.Controls.Add(this.label10);
+			this.panel3.Location = new System.Drawing.Point(240, 115);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(307, 403);
+			this.panel3.TabIndex = 15;
 			// 
 			// lb_educationLevel
 			// 
@@ -460,7 +460,7 @@
 			this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label17.Location = new System.Drawing.Point(-1, 334);
 			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(368, 68);
+			this.label17.Size = new System.Drawing.Size(307, 68);
 			this.label17.TabIndex = 10;
 			// 
 			// lb_Class
@@ -518,7 +518,7 @@
 			this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label6.Location = new System.Drawing.Point(-1, 267);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(368, 68);
+			this.label6.Size = new System.Drawing.Size(307, 68);
 			this.label6.TabIndex = 4;
 			// 
 			// label7
@@ -526,7 +526,7 @@
 			this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label7.Location = new System.Drawing.Point(-1, -1);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(368, 68);
+			this.label7.Size = new System.Drawing.Size(307, 68);
 			this.label7.TabIndex = 0;
 			// 
 			// label8
@@ -534,7 +534,7 @@
 			this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label8.Location = new System.Drawing.Point(-1, 66);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(368, 68);
+			this.label8.Size = new System.Drawing.Size(307, 68);
 			this.label8.TabIndex = 1;
 			// 
 			// label9
@@ -542,7 +542,7 @@
 			this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label9.Location = new System.Drawing.Point(-1, 200);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(368, 68);
+			this.label9.Size = new System.Drawing.Size(307, 68);
 			this.label9.TabIndex = 3;
 			// 
 			// label10
@@ -550,21 +550,119 @@
 			this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label10.Location = new System.Drawing.Point(-1, 133);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(368, 68);
+			this.label10.Size = new System.Drawing.Size(307, 68);
 			this.label10.TabIndex = 2;
 			// 
-			// pbx_avt
+			// tab_Score
 			// 
-			this.pbx_avt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pbx_avt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pbx_avt.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
-			this.pbx_avt.InitialImage = null;
-			this.pbx_avt.Location = new System.Drawing.Point(739, 86);
-			this.pbx_avt.Name = "pbx_avt";
-			this.pbx_avt.Size = new System.Drawing.Size(367, 310);
-			this.pbx_avt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pbx_avt.TabIndex = 0;
-			this.pbx_avt.TabStop = false;
+			this.tab_Score.BackColor = System.Drawing.Color.Silver;
+			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tab_Score.Controls.Add(this.lv_Score);
+			this.tab_Score.Location = new System.Drawing.Point(4, 36);
+			this.tab_Score.Name = "tab_Score";
+			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
+			this.tab_Score.Size = new System.Drawing.Size(1182, 647);
+			this.tab_Score.TabIndex = 3;
+			this.tab_Score.Text = "   Điểm";
+			// 
+			// lv_Score
+			// 
+			this.lv_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lv_Score.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.STT,
+            this.MaHP,
+            this.TenHP,
+            this.TinChi,
+            this.DiemQT,
+            this.DiemGK,
+            this.DiemTH,
+            this.DiemCK,
+            this.DiemHP});
+			this.lv_Score.GridLines = true;
+			this.lv_Score.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.lv_Score.HideSelection = false;
+			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
+			this.lv_Score.Name = "lv_Score";
+			this.lv_Score.Size = new System.Drawing.Size(1179, 632);
+			this.lv_Score.TabIndex = 1;
+			this.lv_Score.UseCompatibleStateImageBehavior = false;
+			this.lv_Score.View = System.Windows.Forms.View.Details;
+			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
+			// 
+			// STT
+			// 
+			this.STT.Text = "";
+			this.STT.Width = 30;
+			// 
+			// MaHP
+			// 
+			this.MaHP.Text = "Mã HP";
+			this.MaHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.MaHP.Width = 120;
+			// 
+			// TenHP
+			// 
+			this.TenHP.Text = "Tên học phần";
+			this.TenHP.Width = 220;
+			// 
+			// TinChi
+			// 
+			this.TinChi.Text = "Tín chỉ";
+			this.TinChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TinChi.Width = 65;
+			// 
+			// DiemQT
+			// 
+			this.DiemQT.Text = "Điểm QT";
+			this.DiemQT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemQT.Width = 90;
+			// 
+			// DiemGK
+			// 
+			this.DiemGK.Text = "Điểm GK";
+			this.DiemGK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemGK.Width = 90;
+			// 
+			// DiemTH
+			// 
+			this.DiemTH.Text = "Điểm TH";
+			this.DiemTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemTH.Width = 90;
+			// 
+			// DiemCK
+			// 
+			this.DiemCK.Text = "Điểm CK";
+			this.DiemCK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemCK.Width = 90;
+			// 
+			// DiemHP
+			// 
+			this.DiemHP.Text = "Điểm HP";
+			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.DiemHP.Width = 90;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.flpSchedule);
+			this.tabPage1.Location = new System.Drawing.Point(4, 36);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(1182, 647);
+			this.tabPage1.TabIndex = 4;
+			this.tabPage1.Text = "Thời khóa biểu";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// flpSchedule
+			// 
+			this.flpSchedule.AutoScroll = true;
+			this.flpSchedule.BackColor = System.Drawing.SystemColors.AppWorkspace;
+			this.flpSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flpSchedule.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flpSchedule.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.flpSchedule.Location = new System.Drawing.Point(3, 3);
+			this.flpSchedule.Name = "flpSchedule";
+			this.flpSchedule.Size = new System.Drawing.Size(1176, 641);
+			this.flpSchedule.TabIndex = 0;
 			// 
 			// tab_CourseRegister
 			// 
@@ -687,117 +785,6 @@
 			this.TrangThai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.TrangThai.Width = 23;
 			// 
-			// tab_Score
-			// 
-			this.tab_Score.BackColor = System.Drawing.Color.Silver;
-			this.tab_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tab_Score.Controls.Add(this.lv_Score);
-			this.tab_Score.Location = new System.Drawing.Point(4, 36);
-			this.tab_Score.Name = "tab_Score";
-			this.tab_Score.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_Score.Size = new System.Drawing.Size(1182, 647);
-			this.tab_Score.TabIndex = 3;
-			this.tab_Score.Text = "   Điểm";
-			// 
-			// lv_Score
-			// 
-			this.lv_Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lv_Score.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.STT,
-            this.MaHP,
-            this.TenHP,
-            this.TinChi,
-            this.DiemQT,
-            this.DiemGK,
-            this.DiemTH,
-            this.DiemCK,
-            this.DiemHP});
-			this.lv_Score.GridLines = true;
-			this.lv_Score.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.lv_Score.HideSelection = false;
-			this.lv_Score.Location = new System.Drawing.Point(-1, -1);
-			this.lv_Score.Name = "lv_Score";
-			this.lv_Score.Size = new System.Drawing.Size(1179, 632);
-			this.lv_Score.TabIndex = 1;
-			this.lv_Score.UseCompatibleStateImageBehavior = false;
-			this.lv_Score.View = System.Windows.Forms.View.Details;
-			this.lv_Score.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Score_ColumnWidthChanging);
-			// 
-			// STT
-			// 
-			this.STT.Text = "";
-			this.STT.Width = 30;
-			// 
-			// MaHP
-			// 
-			this.MaHP.Text = "Mã HP";
-			this.MaHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.MaHP.Width = 120;
-			// 
-			// TenHP
-			// 
-			this.TenHP.Text = "Tên học phần";
-			this.TenHP.Width = 220;
-			// 
-			// TinChi
-			// 
-			this.TinChi.Text = "Tín chỉ";
-			this.TinChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.TinChi.Width = 65;
-			// 
-			// DiemQT
-			// 
-			this.DiemQT.Text = "Điểm QT";
-			this.DiemQT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemQT.Width = 90;
-			// 
-			// DiemGK
-			// 
-			this.DiemGK.Text = "Điểm GK";
-			this.DiemGK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemGK.Width = 90;
-			// 
-			// DiemTH
-			// 
-			this.DiemTH.Text = "Điểm TH";
-			this.DiemTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemTH.Width = 90;
-			// 
-			// DiemCK
-			// 
-			this.DiemCK.Text = "Điểm CK";
-			this.DiemCK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemCK.Width = 90;
-			// 
-			// DiemHP
-			// 
-			this.DiemHP.Text = "Điểm HP";
-			this.DiemHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.DiemHP.Width = 90;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.flpSchedule);
-			this.tabPage1.Location = new System.Drawing.Point(4, 36);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1182, 647);
-			this.tabPage1.TabIndex = 4;
-			this.tabPage1.Text = "Thời khóa biểu";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// flpSchedule
-			// 
-			this.flpSchedule.AutoScroll = true;
-			this.flpSchedule.BackColor = System.Drawing.SystemColors.AppWorkspace;
-			this.flpSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flpSchedule.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flpSchedule.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.flpSchedule.Location = new System.Drawing.Point(3, 3);
-			this.flpSchedule.Name = "flpSchedule";
-			this.flpSchedule.Size = new System.Drawing.Size(1176, 641);
-			this.flpSchedule.TabIndex = 0;
-			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.panel4);
@@ -896,6 +883,63 @@
 			this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.dataGridViewCheckBoxColumn1.Width = 23;
 			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label30.ForeColor = System.Drawing.Color.Black;
+			this.label30.Location = new System.Drawing.Point(433, 32);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(326, 38);
+			this.label30.TabIndex = 18;
+			this.label30.Text = "THÔNG TIN CÁ NHÂN";
+			// 
+			// btn_changePassword
+			// 
+			this.btn_changePassword.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+			this.btn_changePassword.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_changePassword.ForeColor = System.Drawing.Color.Black;
+			this.btn_changePassword.Image = global::QLSV.Properties.Resources.password;
+			this.btn_changePassword.Location = new System.Drawing.Point(901, 431);
+			this.btn_changePassword.Name = "btn_changePassword";
+			this.btn_changePassword.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+			this.btn_changePassword.Size = new System.Drawing.Size(207, 71);
+			this.btn_changePassword.TabIndex = 20;
+			this.btn_changePassword.Text = "   Đổi mật khẩu";
+			this.btn_changePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_changePassword.UseVisualStyleBackColor = false;
+			this.btn_changePassword.Click += new System.EventHandler(this.btn_changePassword_Click);
+			// 
+			// btn_changeAvatar
+			// 
+			this.btn_changeAvatar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.btn_changeAvatar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+			this.btn_changeAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btn_changeAvatar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_changeAvatar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.btn_changeAvatar.Image = global::QLSV.Properties.Resources.profile;
+			this.btn_changeAvatar.Location = new System.Drawing.Point(648, 431);
+			this.btn_changeAvatar.Name = "btn_changeAvatar";
+			this.btn_changeAvatar.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.btn_changeAvatar.Size = new System.Drawing.Size(230, 72);
+			this.btn_changeAvatar.TabIndex = 16;
+			this.btn_changeAvatar.Text = "   Thay đổi ảnh đại diện";
+			this.btn_changeAvatar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_changeAvatar.UseVisualStyleBackColor = false;
+			this.btn_changeAvatar.Click += new System.EventHandler(this.btn_changeAvatar_Click);
+			// 
+			// pbx_avt
+			// 
+			this.pbx_avt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pbx_avt.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
+			this.pbx_avt.InitialImage = null;
+			this.pbx_avt.Location = new System.Drawing.Point(648, 125);
+			this.pbx_avt.Name = "pbx_avt";
+			this.pbx_avt.Size = new System.Drawing.Size(460, 300);
+			this.pbx_avt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbx_avt.TabIndex = 14;
+			this.pbx_avt.TabStop = false;
+			// 
 			// StudentForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -915,18 +959,20 @@
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).EndInit();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			this.tab_Score.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.tab_CourseRegister.ResumeLayout(false);
 			this.tab_CourseRegister.PerformLayout();
 			this.panel_registrationTool.ResumeLayout(false);
 			this.panel_registrationTool.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).EndInit();
-			this.tab_Score.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_RegistrationInfo)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -963,25 +1009,31 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.TabPage tab_Info;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Button btn_changeAvatar;
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Label lb_notification;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Label label22;
 		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.Label label26;
 		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.Label label28;
 		private System.Windows.Forms.Label label29;
+		private System.Windows.Forms.Button btn_changeAvatar;
+		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label lb_educationLevel;
 		private System.Windows.Forms.Label lb_TrainingSystem;
 		private System.Windows.Forms.Label lb_Department;
@@ -996,11 +1048,8 @@
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.PictureBox pbx_avt;
-		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label lb_notification;
+		private System.Windows.Forms.Button btn_changePassword;
+		private System.Windows.Forms.Label label30;
 	}
 }

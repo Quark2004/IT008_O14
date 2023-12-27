@@ -296,32 +296,9 @@ namespace QLSV
             return BCrypt.Net.BCrypt.EnhancedHashPassword(password, 12);
         }
 
-        private void btn_resetPass_Click(object sender, EventArgs e)
-        {
-            string newPassword = new Password(8).Next();
-            tb_passGenarator.Text = newPassword;
-
-            string username = tb_username.Text;
-            string hashPassword = HashedPassword(newPassword);
-
-            string query = "SELECT UpdatePass( :username , :password )";
-            bool success = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { username, hashPassword });
-
-            if (success)
-            {
-                MessageBox.Show($"Đặt lại mật khẩu thành công!\nGiả lập: password mới {newPassword} đã được gửi đến username: {username}", "Đặt lại mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Đặt lại mật khẩu khẩu", "Đặt lại mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void EnableButton(bool editing = false)
         {
             btn_createAccount.Enabled = !editing;
-            btn_resetPass.Enabled = !editing;
-
             btn_acceptAccount.Enabled = editing;
             btn_Cancel.Enabled = editing;
             tb_username.Enabled = editing;

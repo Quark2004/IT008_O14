@@ -377,7 +377,7 @@ namespace QLSV
 		private void btn_changeAvatar_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+			openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				MessageBox.Show("Cập nhật ảnh thành công!", "Cập nhật ảnh", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -440,24 +440,22 @@ namespace QLSV
 			e.Cancel = logOut.IsNotClosed;
 		}
 
-		private void label5_Click(object sender, EventArgs e) {
-
-		}
-
-		private void label3_Click(object sender, EventArgs e) {
-
-		}
-
-		private void label4_Click(object sender, EventArgs e) {
-
-		}
-
-		private void label2_Click(object sender, EventArgs e) {
-
-		}
-
-		private void label16_Click(object sender, EventArgs e) {
-
+		private void btn_changePassword_Click(object sender, EventArgs e) {
+			ChangePassword changePassword = new ChangePassword(ID);
+			Form bg = new Form();
+			using (changePassword) {
+				bg.StartPosition = FormStartPosition.Manual;
+				bg.FormBorderStyle = FormBorderStyle.None;
+				bg.BackColor = Color.Black;
+				bg.Opacity = 0.7d;
+				bg.Size = this.Size;
+				bg.Location = this.Location;
+				bg.ShowInTaskbar = false;
+				bg.Show(this);
+				changePassword.Owner = bg;
+				changePassword.ShowDialog(bg);
+				bg.Dispose();
+			}
 		}
 	}
 }

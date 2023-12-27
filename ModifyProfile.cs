@@ -57,22 +57,6 @@ namespace QLSV
             }
         }
 
-        private void btn_changeAvatar_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show("Cập nhật ảnh thành công!", "Cập nhật ảnh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pbx_avt.Image = Image.FromFile(openFileDialog.FileName);
-                byte[] avt = ConvertImageToBytes(pbx_avt.Image);
-                StudentInfo info = StudentInfoDAO.Instance.LoadStudentInfo(ID);
-                string query = "SELECT UpdateProfile( :id , :name , :birthday , :gender , :trainingSystem , :educationLevel , :avt );";
-                DataProvider.Instance.ExcuteNonQuery(query, new object[] { info.Id, info.Name, info.Birthday, info.Gender, info.TrainingSystem, info.EducationLevel, avt });
-                Refresh();
-            }
-        }
-
         private void btn_update_Click(object sender, EventArgs e)
         {
             byte[] avt = ConvertImageToBytes(pbx_avt.Image);
