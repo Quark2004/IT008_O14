@@ -11,7 +11,6 @@ namespace QLSV.DTO
     {
         private string studentId;
         private string studentName;
-       // private int numberOfCredits;
         private float processScore;
         private float midtermScore;
         private float practiceScore;
@@ -20,7 +19,6 @@ namespace QLSV.DTO
 
         public string StudentId { get => studentId; set => studentId = value; }
         public string StudentName { get => studentName; set => studentName = value; }
-        //public int NumberOfCredits { get => numberOfCredits; set => numberOfCredits = value; }
         public float ProcessScore { get => processScore; set => processScore = value; }
         public float MidtermScore { get => midtermScore; set => midtermScore = value; }
         public float PracticeScore { get => practiceScore; set => practiceScore = value; }

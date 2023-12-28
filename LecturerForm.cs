@@ -1,6 +1,7 @@
 ﻿using iText.IO.Codec;
 using QLSV.DAO;
 using QLSV.DTO;
+using Spire.Pdf.Exporting.XPS.Schema;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -104,7 +105,7 @@ namespace QLSV
         }
 
         #region load_tab_diem
-        
+
 
         ListViewItem ratio;
         ListViewItem loadratio(string course)
@@ -130,11 +131,13 @@ namespace QLSV
             string mamon = mon[0];
             txtmssv.Text = "";
             HienThiThongTinDiem(mamon);
+           
             loadratio(mamon);
         }
         private void cbodiem_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnnhap.Enabled = false;
+            btnratio.Enabled = true;
             txtmssv.Enabled = false;
             txtQT.Enabled = false;
             txtGK.Enabled = false;
@@ -150,6 +153,7 @@ namespace QLSV
             string[] mon = cbodiem.SelectedItem.ToString().Split('/');
             string mamon = mon[0];
             HienThiThongTinDiem(mamon);
+           
         }
 
         void HienThiThongTinDiem(string mamon)
@@ -162,8 +166,6 @@ namespace QLSV
                 ListViewItem lvi = new ListViewItem(score.StudentId);
 
                 lvi.SubItems.Add(score.StudentName);
-
-
                 if (score.ProcessScore == -1 || ratio.SubItems[1].Text == "0")
                     lvi.SubItems.Add("");
                 else
@@ -172,11 +174,11 @@ namespace QLSV
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.MidtermScore.ToString());
-                if (score.PracticeScore == -1 || ratio.SubItems[3].Text =="0")
+                if (score.PracticeScore == -1 || ratio.SubItems[3].Text == "0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.PracticeScore.ToString());
-                if (score.FinalScore == -1 || ratio.SubItems[4].Text =="0")
+                if (score.FinalScore == -1 || ratio.SubItems[4].Text == "0")
                     lvi.SubItems.Add("");
                 else
                     lvi.SubItems.Add(score.FinalScore.ToString());
@@ -185,8 +187,9 @@ namespace QLSV
                 else
                     lvi.SubItems.Add(score.CourseScore.ToString());
                 lvscoreGV.Items.Add(lvi);
-
+                //MessageBox.Show(lvi.SubItems[2].ToString());
             }
+            
         }
         private void lvscoreGV_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -238,6 +241,17 @@ namespace QLSV
                 txtCK.Enabled = false;
         }
 
+        private bool checkratio(string id)
+        {
+            List<lecturescore> scores = lecturescoreDAO.Instance.LoadLectureScore(id);
+            foreach (lecturescore score in scores)
+            {
+                if (score.ProcessScore.ToString() != "-1" || score.MidtermScore.ToString() != "-1"
+                    || score.PracticeScore.ToString() != "-1" || score.FinalScore.ToString() != "-1")
+                    return false;
+            }
+            return true;
+        }
         private void btnok_Click(object sender, EventArgs e)
         {
             btnratio.Enabled = true;
@@ -252,25 +266,36 @@ namespace QLSV
             if (ratiosco)
             {
                 btnok.Enabled = false;
-                float temp = float.Parse(txtQT.Text) + float.Parse(txtGK.Text) + float.Parse(txtCK.Text) + float.Parse(txtTH.Text);
-                if (temp != 1)
+                if (checkratio(mamon))
                 {
-                    MessageBox.Show("Tỉ lệ điểm không hợp lệ", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-                else
-                {
-                    bool kq = lectureRatioScoreDAO.Instance.UpdateRatioScore(mamon,
-                    float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
-                    if (kq)
+                    float temp = float.Parse(txtQT.Text) + float.Parse(txtGK.Text) + float.Parse(txtCK.Text) + float.Parse(txtTH.Text);
+                    if (temp != 1)
                     {
-                        MessageBox.Show("Cập nhật tỉ lệ điểm thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        HienThiThongTinDiem(mamon);
+                        MessageBox.Show("Tỉ lệ điểm không hợp lệ", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật tỉ lệ điểm không thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        bool kq = lectureRatioScoreDAO.Instance.UpdateRatioScore(mamon,
+                        float.Parse(txtQT.Text), float.Parse(txtGK.Text), float.Parse(txtCK.Text), float.Parse(txtTH.Text));
+                        if (kq)
+                        {
+                            MessageBox.Show("Cập nhật tỉ lệ điểm thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            HienThiThongTinDiem(mamon);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật tỉ lệ điểm không thành công", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không thể thay đổi tỉ lệ điểm của môn này", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtQT.Text = string.Empty;
+                    txtGK.Text = string.Empty;
+                    txtTH.Text = string.Empty;
+                    txtCK.Text = string.Empty;
                 }
             }
             else
@@ -281,9 +306,19 @@ namespace QLSV
                 }
                 else
                 {
-                    //xoadiem();
+                    ListViewItem ratio = loadratio(mamon);
+                    string qt, gk, th, ck;
+                    if (ratio.SubItems[1].Text == "0") qt = "0";
+                    else qt = txtQT.Text;
+                    if (ratio.SubItems[2].Text == "0") gk = "0";
+                    else gk = txtGK.Text;
+                    if (ratio.SubItems[3].Text == "0") th = "0";
+                    else th = txtTH.Text;
+                    if (ratio.SubItems[4].Text == "0") ck = "0";
+                    else ck = txtCK.Text;
                     string kq = lecturescoreDAO.Instance.UpdateScore(mamon, txtmssv.Text.ToString(),
-                       txtQT.Text, txtGK.Text, txtCK.Text, txtTH.Text);
+                       qt, gk, ck, th);
+                   
                     HienThiThongTinDiem(mamon);
                     btnok.Enabled = false;
                 }
@@ -345,8 +380,10 @@ namespace QLSV
         bool ratiosco = false;
         private void btnratio_Click(object sender, EventArgs e)
         {
+            btnratio.Enabled = false;
             btnok.Enabled = true;
             btn_huy.Enabled = true;
+            btnnhap.Enabled = false;
             ratiosco = true;
             txtQT.Enabled = true;
             txtGK.Enabled = true;
