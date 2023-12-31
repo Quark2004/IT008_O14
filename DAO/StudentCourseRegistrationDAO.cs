@@ -27,14 +27,27 @@ namespace QLSV.DAO
 
 		private StudentCourseRegistrationDAO() { }
 
-		public List<StudentCourseRegistration> LoadStudentCourseRegistration()
+		public List<StudentCourseRegistration> LoadStudentCourseRegistration(string id)
 		{
-			string query = "SELECT * FROM GetListRegisterCourse()";
-			DataTable data = DataProvider.Instance.ExcuteQuery(query);
+			string query = "SELECT * FROM GetUnregisteredListById( :id )";
+			DataTable data = DataProvider.Instance.ExcuteQuery(query, new object[] {id});
 			List<StudentCourseRegistration> courses = new List<StudentCourseRegistration>();
 
 			foreach (DataRow row in data.Rows)
 			{
+				StudentCourseRegistration course = new StudentCourseRegistration(row);
+				courses.Add(course);
+			}
+
+			return courses;
+		}
+
+		public List<StudentCourseRegistration> LoadStudentCourseRegistration() {
+			string query = "SELECT * FROM GetListRegisterCourse()";
+			DataTable data = DataProvider.Instance.ExcuteQuery(query);
+			List<StudentCourseRegistration> courses = new List<StudentCourseRegistration>();
+
+			foreach (DataRow row in data.Rows) {
 				StudentCourseRegistration course = new StudentCourseRegistration(row);
 				courses.Add(course);
 			}

@@ -38,6 +38,8 @@
 			this.tabCtr_Student = new System.Windows.Forms.TabControl();
 			this.tab_Info = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.btn_changePassword = new System.Windows.Forms.Button();
+			this.label30 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
@@ -59,6 +61,7 @@
 			this.label27 = new System.Windows.Forms.Label();
 			this.label28 = new System.Windows.Forms.Label();
 			this.label29 = new System.Windows.Forms.Label();
+			this.btn_changeAvatar = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.lb_educationLevel = new System.Windows.Forms.Label();
 			this.lb_TrainingSystem = new System.Windows.Forms.Label();
@@ -74,6 +77,7 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
+			this.pbx_avt = new System.Windows.Forms.PictureBox();
 			this.tab_Score = new System.Windows.Forms.TabPage();
 			this.lv_Score = new System.Windows.Forms.ListView();
 			this.STT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -97,30 +101,27 @@
 			this.data_CourseRegistration = new System.Windows.Forms.DataGridView();
 			this.TrangThai = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.panel4 = new System.Windows.Forms.Panel();
+			this.panel_cancelTool = new System.Windows.Forms.Panel();
 			this.btn_CancelRegister = new System.Windows.Forms.Button();
 			this.tb_Filter2 = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.data_RegistrationInfo = new System.Windows.Forms.DataGridView();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.label30 = new System.Windows.Forms.Label();
-			this.btn_changePassword = new System.Windows.Forms.Button();
-			this.btn_changeAvatar = new System.Windows.Forms.Button();
-			this.pbx_avt = new System.Windows.Forms.PictureBox();
+			this.lb_noti2 = new System.Windows.Forms.Label();
 			this.tabCtr_Student.SuspendLayout();
 			this.tab_Info.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
 			this.tab_Score.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tab_CourseRegister.SuspendLayout();
 			this.panel_registrationTool.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).BeginInit();
 			this.tabPage2.SuspendLayout();
-			this.panel4.SuspendLayout();
+			this.panel_cancelTool.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_RegistrationInfo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabCtr_Student
@@ -168,6 +169,33 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1172, 639);
 			this.panel1.TabIndex = 0;
+			// 
+			// btn_changePassword
+			// 
+			this.btn_changePassword.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+			this.btn_changePassword.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_changePassword.ForeColor = System.Drawing.Color.Black;
+			this.btn_changePassword.Image = global::QLSV.Properties.Resources.password;
+			this.btn_changePassword.Location = new System.Drawing.Point(901, 431);
+			this.btn_changePassword.Name = "btn_changePassword";
+			this.btn_changePassword.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+			this.btn_changePassword.Size = new System.Drawing.Size(207, 71);
+			this.btn_changePassword.TabIndex = 20;
+			this.btn_changePassword.Text = "   Đổi mật khẩu";
+			this.btn_changePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_changePassword.UseVisualStyleBackColor = false;
+			this.btn_changePassword.Click += new System.EventHandler(this.btn_changePassword_Click);
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label30.ForeColor = System.Drawing.Color.Black;
+			this.label30.Location = new System.Drawing.Point(433, 32);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(326, 38);
+			this.label30.TabIndex = 18;
+			this.label30.Text = "THÔNG TIN CÁ NHÂN";
 			// 
 			// panel2
 			// 
@@ -400,6 +428,24 @@
 			this.label29.Size = new System.Drawing.Size(133, 68);
 			this.label29.TabIndex = 2;
 			// 
+			// btn_changeAvatar
+			// 
+			this.btn_changeAvatar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.btn_changeAvatar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+			this.btn_changeAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btn_changeAvatar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_changeAvatar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.btn_changeAvatar.Image = global::QLSV.Properties.Resources.profile;
+			this.btn_changeAvatar.Location = new System.Drawing.Point(648, 431);
+			this.btn_changeAvatar.Name = "btn_changeAvatar";
+			this.btn_changeAvatar.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.btn_changeAvatar.Size = new System.Drawing.Size(230, 72);
+			this.btn_changeAvatar.TabIndex = 16;
+			this.btn_changeAvatar.Text = "   Thay đổi ảnh đại diện";
+			this.btn_changeAvatar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btn_changeAvatar.UseVisualStyleBackColor = false;
+			this.btn_changeAvatar.Click += new System.EventHandler(this.btn_changeAvatar_Click);
+			// 
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -553,6 +599,18 @@
 			this.label10.Size = new System.Drawing.Size(307, 68);
 			this.label10.TabIndex = 2;
 			// 
+			// pbx_avt
+			// 
+			this.pbx_avt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pbx_avt.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
+			this.pbx_avt.InitialImage = null;
+			this.pbx_avt.Location = new System.Drawing.Point(648, 125);
+			this.pbx_avt.Name = "pbx_avt";
+			this.pbx_avt.Size = new System.Drawing.Size(460, 300);
+			this.pbx_avt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbx_avt.TabIndex = 14;
+			this.pbx_avt.TabStop = false;
+			// 
 			// tab_Score
 			// 
 			this.tab_Score.BackColor = System.Drawing.Color.Silver;
@@ -682,7 +740,7 @@
 			// 
 			this.lb_notification.AutoSize = true;
 			this.lb_notification.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lb_notification.Location = new System.Drawing.Point(113, 64);
+			this.lb_notification.Location = new System.Drawing.Point(97, 64);
 			this.lb_notification.Name = "lb_notification";
 			this.lb_notification.Size = new System.Drawing.Size(963, 59);
 			this.lb_notification.TabIndex = 3;
@@ -787,7 +845,9 @@
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.panel4);
+			this.tabPage2.BackColor = System.Drawing.Color.Silver;
+			this.tabPage2.Controls.Add(this.lb_noti2);
+			this.tabPage2.Controls.Add(this.panel_cancelTool);
 			this.tabPage2.Controls.Add(this.data_RegistrationInfo);
 			this.tabPage2.Location = new System.Drawing.Point(4, 36);
 			this.tabPage2.Name = "tabPage2";
@@ -795,18 +855,17 @@
 			this.tabPage2.Size = new System.Drawing.Size(1182, 647);
 			this.tabPage2.TabIndex = 5;
 			this.tabPage2.Text = "Thông tin ĐKHP";
-			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// panel4
+			// panel_cancelTool
 			// 
-			this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel4.Controls.Add(this.btn_CancelRegister);
-			this.panel4.Controls.Add(this.tb_Filter2);
-			this.panel4.Controls.Add(this.label19);
-			this.panel4.Location = new System.Drawing.Point(0, 0);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(1182, 67);
-			this.panel4.TabIndex = 3;
+			this.panel_cancelTool.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.panel_cancelTool.Controls.Add(this.btn_CancelRegister);
+			this.panel_cancelTool.Controls.Add(this.tb_Filter2);
+			this.panel_cancelTool.Controls.Add(this.label19);
+			this.panel_cancelTool.Location = new System.Drawing.Point(0, 0);
+			this.panel_cancelTool.Name = "panel_cancelTool";
+			this.panel_cancelTool.Size = new System.Drawing.Size(1182, 67);
+			this.panel_cancelTool.TabIndex = 3;
 			// 
 			// btn_CancelRegister
 			// 
@@ -883,62 +942,16 @@
 			this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.dataGridViewCheckBoxColumn1.Width = 23;
 			// 
-			// label30
+			// lb_noti2
 			// 
-			this.label30.AutoSize = true;
-			this.label30.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label30.ForeColor = System.Drawing.Color.Black;
-			this.label30.Location = new System.Drawing.Point(433, 32);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(326, 38);
-			this.label30.TabIndex = 18;
-			this.label30.Text = "THÔNG TIN CÁ NHÂN";
-			// 
-			// btn_changePassword
-			// 
-			this.btn_changePassword.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-			this.btn_changePassword.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_changePassword.ForeColor = System.Drawing.Color.Black;
-			this.btn_changePassword.Image = global::QLSV.Properties.Resources.password;
-			this.btn_changePassword.Location = new System.Drawing.Point(901, 431);
-			this.btn_changePassword.Name = "btn_changePassword";
-			this.btn_changePassword.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-			this.btn_changePassword.Size = new System.Drawing.Size(207, 71);
-			this.btn_changePassword.TabIndex = 20;
-			this.btn_changePassword.Text = "   Đổi mật khẩu";
-			this.btn_changePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_changePassword.UseVisualStyleBackColor = false;
-			this.btn_changePassword.Click += new System.EventHandler(this.btn_changePassword_Click);
-			// 
-			// btn_changeAvatar
-			// 
-			this.btn_changeAvatar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.btn_changeAvatar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-			this.btn_changeAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btn_changeAvatar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_changeAvatar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.btn_changeAvatar.Image = global::QLSV.Properties.Resources.profile;
-			this.btn_changeAvatar.Location = new System.Drawing.Point(648, 431);
-			this.btn_changeAvatar.Name = "btn_changeAvatar";
-			this.btn_changeAvatar.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.btn_changeAvatar.Size = new System.Drawing.Size(230, 72);
-			this.btn_changeAvatar.TabIndex = 16;
-			this.btn_changeAvatar.Text = "   Thay đổi ảnh đại diện";
-			this.btn_changeAvatar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btn_changeAvatar.UseVisualStyleBackColor = false;
-			this.btn_changeAvatar.Click += new System.EventHandler(this.btn_changeAvatar_Click);
-			// 
-			// pbx_avt
-			// 
-			this.pbx_avt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pbx_avt.ErrorImage = global::QLSV.Properties.Resources._282158686_d524241b_14e1_4f6a_a1e2_9ec0396e1ff7;
-			this.pbx_avt.InitialImage = null;
-			this.pbx_avt.Location = new System.Drawing.Point(648, 125);
-			this.pbx_avt.Name = "pbx_avt";
-			this.pbx_avt.Size = new System.Drawing.Size(460, 300);
-			this.pbx_avt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbx_avt.TabIndex = 14;
-			this.pbx_avt.TabStop = false;
+			this.lb_noti2.AutoSize = true;
+			this.lb_noti2.Font = new System.Drawing.Font("Cambria", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lb_noti2.Location = new System.Drawing.Point(99, 66);
+			this.lb_noti2.Name = "lb_noti2";
+			this.lb_noti2.Size = new System.Drawing.Size(963, 59);
+			this.lb_noti2.TabIndex = 4;
+			this.lb_noti2.Text = "CHƯA ĐẾN THỜI GIAN ĐĂNG KÝ HỌC PHẦN";
+			this.lb_noti2.Visible = false;
 			// 
 			// StudentForm
 			// 
@@ -961,6 +974,7 @@
 			this.panel2.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).EndInit();
 			this.tab_Score.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tab_CourseRegister.ResumeLayout(false);
@@ -969,10 +983,10 @@
 			this.panel_registrationTool.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_CourseRegistration)).EndInit();
 			this.tabPage2.ResumeLayout(false);
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
+			this.tabPage2.PerformLayout();
+			this.panel_cancelTool.ResumeLayout(false);
+			this.panel_cancelTool.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.data_RegistrationInfo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbx_avt)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1001,7 +1015,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpSchedule;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn TrangThai;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel panel_cancelTool;
 		private System.Windows.Forms.Button btn_CancelRegister;
 		private System.Windows.Forms.TextBox tb_Filter2;
 		private System.Windows.Forms.Label label19;
@@ -1051,5 +1065,6 @@
 		private System.Windows.Forms.PictureBox pbx_avt;
 		private System.Windows.Forms.Button btn_changePassword;
 		private System.Windows.Forms.Label label30;
+		private System.Windows.Forms.Label lb_noti2;
 	}
 }

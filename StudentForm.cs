@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLSV
@@ -29,6 +30,7 @@ namespace QLSV
             LoadInfo();
             LoadTKB();
 			LoadScore();
+			OpenRegistration();
 			LoadCourseRegistration();
 			LoadCourseRegistrationInfo();
 			lv_Score.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -87,6 +89,7 @@ namespace QLSV
 					foreach (string str in values)
 					{
 						string[] info = str.Split('|').ToArray();
+						List<lectureRatioScore> ratioscores = lectureRatioScoreDAO.Instance.LoadRatioCourse(info[0]);
 						ListViewItem listItem = new ListViewItem(i.ToString());
 
 						for (int j = 0; j < info.Length; j++)
@@ -99,7 +102,9 @@ namespace QLSV
 							} else {
 								float isScore;
 								if (float.TryParse(info[j], out isScore)) {
-									listItem.SubItems.Add(isScore.ToString("0.##"));
+									if ((j == 3 && ratioscores[0].RatioProcessScore == 0) || (j == 4 && ratioscores[0].RatioMidtermScore == 0) || (j == 5 && ratioscores[0].RatioPracticeScore == 0) || (j == 6 && ratioscores[0].RatioFinalScore == 0)) {
+										listItem.SubItems.Add("");
+									} else listItem.SubItems.Add(isScore.ToString("0.##"));
 								} else {
 									listItem.SubItems.Add(info[j]);
 								}
@@ -134,15 +139,27 @@ namespace QLSV
 			}
 		}
 
+		void OpenRegistration() {
+			string query = "SELECT * FROM GetListRegistrationPeriod()";
+			DataTable period = DataProvider.Instance.ExcuteQuery(query);
+			DateTime startDate = Convert.ToDateTime(period.Rows[0]["Bắt đầu đăng kí học phần"]);
+			if (DateTime.Now < startDate) {
+				panel_registrationTool.Visible = false;
+				data_CourseRegistration.Visible = false;
+				lb_notification.Visible = true;
+				panel_cancelTool.Visible = false;
+				lb_noti2.Visible = true;
+				data_RegistrationInfo.Visible = false;
+			}
+		}
+
 		void LoadCourseRegistration()
 		{
 			dt = new DataTable();
-			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration();
+			List<StudentCourseRegistration> courses = StudentCourseRegistrationDAO.Instance.LoadStudentCourseRegistration(ID);
 			dt.Columns.AddRange(new DataColumn[11] { new DataColumn("Tên môn học", typeof(string)),
 						new DataColumn("Mã môn học", typeof(string)),
 						new DataColumn("Tên giảng viên",typeof(string)),new DataColumn("Số tín",typeof(int)),new DataColumn("Thứ",typeof(string)),new DataColumn("Tiết",typeof(string)),new DataColumn("Phòng",typeof(string)),new DataColumn("Học kì",typeof(string)),new DataColumn("Năm học",typeof(string)),new DataColumn("Ngày bắt đầu",typeof(DateTime)), new DataColumn("Ngày kết thúc",typeof(DateTime)) });
-			List<RegisteredCourseList> registeredCourseLists = RegisteredCourseListDAO.Instance.LoadRegisteredCourseList(ID);
-
 			// Lỗi
 			/*for (int i = courses.Count - 1; i >= 0; i--) {
 				foreach (var course in registeredCourseLists) {
@@ -291,7 +308,6 @@ namespace QLSV
 						bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { ID, row.Cells[2].Value });
 						if (res) {
 							registeredCourse.Add(row.Cells[2].Value.ToString());
-							dt.Rows.RemoveAt(i);
 						} else {
 							row.Cells[0].Value = null;
 							errorCourse.Add(row.Cells[2].Value.ToString());
@@ -314,6 +330,7 @@ namespace QLSV
 					bg.Dispose();
 				}
 				LoadCourseRegistrationInfo();
+				LoadCourseRegistration();
 			}
 			else
 			{

@@ -28,7 +28,7 @@ namespace QLSV {
 			lb_successNum.Text = Success.Count + " " + lb_successNum.Text;
 			lb_errorNum.Text = Error.Count + " " + lb_errorNum.Text;
 			foreach (string item in Success) {
-				lb_successList.Text += item + (Action != "cancel" ? ": Sinh viên đăng ký thành công\n" : ": Sinh viên hủy thành công");
+				lb_successList.Text += item + (Action != "cancel" ? ": Sinh viên đăng ký thành công\n" : ": Sinh viên hủy thành công\n");
 			}
 			if (Action != "cancel") {
 				foreach (string item in Error) {
