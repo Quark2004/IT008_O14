@@ -31,10 +31,12 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
 			this.lb_login = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tb_userName = new System.Windows.Forms.TextBox();
 			this.lb_userName = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.tb_password = new System.Windows.Forms.TextBox();
 			this.lb_password = new System.Windows.Forms.Label();
@@ -44,7 +46,9 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pic_login = new System.Windows.Forms.PictureBox();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.pn_login.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pic_login)).BeginInit();
@@ -64,6 +68,7 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.pictureBox2);
 			this.panel2.Controls.Add(this.label1);
 			this.panel2.Controls.Add(this.tb_userName);
 			this.panel2.Controls.Add(this.lb_userName);
@@ -72,12 +77,22 @@
 			this.panel2.Size = new System.Drawing.Size(417, 96);
 			this.panel2.TabIndex = 1;
 			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Image = global::QLSV.Properties.Resources.user1;
+			this.pictureBox2.Location = new System.Drawing.Point(17, 11);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(16, 16);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pictureBox2.TabIndex = 3;
+			this.pictureBox2.TabStop = false;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.Red;
-			this.label1.Location = new System.Drawing.Point(156, 3);
+			this.label1.Location = new System.Drawing.Point(202, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(22, 27);
 			this.label1.TabIndex = 2;
@@ -103,7 +118,7 @@
 			this.lb_userName.AutoSize = true;
 			this.lb_userName.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lb_userName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.lb_userName.Location = new System.Drawing.Point(11, 6);
+			this.lb_userName.Location = new System.Drawing.Point(47, 10);
 			this.lb_userName.Name = "lb_userName";
 			this.lb_userName.Size = new System.Drawing.Size(134, 23);
 			this.lb_userName.TabIndex = 0;
@@ -111,6 +126,7 @@
 			// 
 			// panel3
 			// 
+			this.panel3.Controls.Add(this.pictureBox3);
 			this.panel3.Controls.Add(this.label2);
 			this.panel3.Controls.Add(this.tb_password);
 			this.panel3.Controls.Add(this.lb_password);
@@ -119,12 +135,22 @@
 			this.panel3.Size = new System.Drawing.Size(417, 96);
 			this.panel3.TabIndex = 2;
 			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Image = global::QLSV.Properties.Resources.padlock1;
+			this.pictureBox3.Location = new System.Drawing.Point(16, 11);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(16, 16);
+			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pictureBox3.TabIndex = 4;
+			this.pictureBox3.TabStop = false;
+			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Cambria", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.Red;
-			this.label2.Location = new System.Drawing.Point(105, 3);
+			this.label2.Location = new System.Drawing.Point(150, 7);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(22, 27);
 			this.label2.TabIndex = 3;
@@ -148,7 +174,7 @@
 			this.lb_password.AutoSize = true;
 			this.lb_password.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lb_password.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.lb_password.Location = new System.Drawing.Point(11, 6);
+			this.lb_password.Location = new System.Drawing.Point(47, 11);
 			this.lb_password.Name = "lb_password";
 			this.lb_password.Size = new System.Drawing.Size(89, 23);
 			this.lb_password.TabIndex = 0;
@@ -234,8 +260,10 @@
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.pn_login.ResumeLayout(false);
 			this.pn_login.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -260,6 +288,8 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pictureBox3;
 	}
 }
 
