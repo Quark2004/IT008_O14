@@ -413,9 +413,21 @@ namespace QLSV
             cboloaidiem.Items.Add("Điểm GK");
             cboloaidiem.Items.Add("Điểm CK");
             cboloaidiem.Items.Add("Điểm HP");
-
+            if (cbothongke.SelectedIndex == -1)
+            {
+                cboloaidiem.Enabled = false;
+                button4.Enabled = false;
+            }
+        }
+        private void cbothongke_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboloaidiem.Enabled = true;
         }
 
+        private void cboloaidiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button4.Enabled = true;
+        }
         private int check(float t)
         {
             if (t < 5.0)
@@ -572,6 +584,8 @@ namespace QLSV
                 bg.Dispose();
             }
         }
+
+        
     }
 
 }
