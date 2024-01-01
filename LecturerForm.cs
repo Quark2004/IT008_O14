@@ -430,13 +430,13 @@ namespace QLSV
         }
         private int check(float t)
         {
-            if (t < 5.0)
+            if (t < (float)5.0)
                 return 0;
-            if (t >= 5.0 && t <= 6.4)
+            if (t >= (float)5.0 && t <= (float)6.4)
                 return 1;
-            if (t >= 6.5 && t <= 7.9)
+            if (t >= (float)6.5 && t < (float)8.0)
                 return 2;
-            if (t >= 8.0)
+            if (t >= (float)8.0 && t <= (float)10.0)
                 return 3;
             return 4;
         }
@@ -480,6 +480,7 @@ namespace QLSV
                         break;
                     case "Điểm HP":
                         temp = float.Parse(t.CourseScore.ToString());
+                       //MessageBox.Show(check(temp).ToString());
                         dt.Rows[check(temp)]["SL"] = (int)dt.Rows[check(temp)]["SL"] + 1;
                         break;
                     default:
