@@ -37,6 +37,12 @@ namespace QLSV {
 		private void btn_update_Click(object sender, EventArgs e) {
 			string query = "SELECT updateRegisterCourse( :courseId , :lecturerId , :numberOfCredits , :day , :period , :room , :semester , :schoolYear , :startDate , :endDate )";
 			bool res = (bool)DataProvider.Instance.ExcuteScalar(query, new object[] { tb_courseId.Text, tb_lecturerId.Text, int.Parse(tb_numberOfCredits.Text), cbb_day.Text, tb_period.Text, tb_room.Text, cbb_semester.Text, tb_schoolYear.Text, dtp_startDate.Value.Date, dtp_endDate.Value.Date });
+			if (res) {
+				MessageBox.Show("Chỉnh sửa học phần thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				this.Close();
+			} else {
+				MessageBox.Show("Thay đổi không hợp lệ, vui lòng kiểm tra lại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 	}
 }
