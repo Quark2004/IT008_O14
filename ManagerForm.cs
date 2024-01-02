@@ -168,6 +168,7 @@ namespace QLSV
                     modifyCourse.ShowDialog(bg);
                     bg.Dispose();
                 }
+                LoadAllCourse();
             }
             else
             {
@@ -406,6 +407,7 @@ namespace QLSV
             }
 
             LoadListProfileInfo();
+            LoadStudentList();
         }
 
         #endregion
