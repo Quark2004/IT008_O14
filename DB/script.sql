@@ -634,7 +634,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- select updateRegistrationPeriod('2023-12-25', '2023-12-26')
+
+-- select updateRegistrationPeriod('2024-01-05', '2024-01-06')
 
 CREATE OR REPLACE FUNCTION updateRegisterCourse(
 		IN courseId VARCHAR(100),
@@ -712,7 +713,9 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- SELECT updateregistercourse('IT003.O11', 'GV2', 4, '5', '6789', 'C3.12', 'HK2', '2023-2024', '2023-09-11', '2024-01-06');
+select * from getlistregistercourse()
 
+SELECT * FROM GetListRegisterCourse()
 CREATE OR REPLACE FUNCTION AcceptCourse(
     IN v_idProfile VARCHAR(100),
     IN v_idCourse VARCHAR(100)
@@ -891,7 +894,6 @@ $$ LANGUAGE plpgsql;
 -- ===============================================================
 
 
-
 INSERT INTO public.account (username, password, role) VALUES ('admin', '$2a$12$dHT/7Q//H1zIiy6NlOtWu.pNw8IvxoWfx6qERkLH1YyKNZ81YMyve', 'admin');
 INSERT INTO public.account (username, password, role) VALUES ('gv1', '$2a$12$NqGrVo//fTzgGnZGmWM2B.62eLDiuni56FSCb14l1XvlXEIo5KyMG', 'teacher');
 INSERT INTO public.account (username, password, role) VALUES ('gv2', '$2a$12$IigUmWdfupuWId/QdAZV3.bNzDY6FEPDrBRXpvvKoq26.C.bWUYJS', 'teacher');
@@ -1028,12 +1030,12 @@ INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classro
 INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O15', 'Đại số tuyến tính', 3, '5', '6789', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
 INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O13', 'Cơ sở dữ liệu', 3, '6', '1234', 'B1.14', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
 
-
 --
 -- TOC entry 4921 (class 0 OID 213552)
 -- Dependencies: 216
 -- Data for Name: profile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
+
 
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521601', 'Trần Thế Sơn', '2004-05-07 00:00:00', 'Nam', 'Đại học', 'Chính quy', NULL);
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521602', 'Võ Khánh Hằng', '2004-06-06 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
@@ -1215,8 +1217,7 @@ INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '2
 -- Data for Name: registrationperiod; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.registrationperiod (starttime, endtime) VALUES ('2023-12-14 00:00:00', '2024-12-31 00:00:00');
-
+INSERT INTO public.registrationperiod (starttime, endtime) VALUES ('2023-12-14 00:00:00', '2023-12-31 00:00:00');
 
 --
 -- TOC entry 4926 (class 0 OID 213590)
