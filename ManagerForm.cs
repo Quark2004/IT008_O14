@@ -90,7 +90,8 @@ namespace QLSV
             {
                 if (saveFile.ShowDialog() == DialogResult.OK)
                 {
-                    using (ExcelPackage pck = new ExcelPackage(new FileInfo(saveFile.FileName)))
+					ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+					using (ExcelPackage pck = new ExcelPackage(new FileInfo(saveFile.FileName)))
                     {
                         ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
                         for (int i = 0; i < data_allCourse.Columns.Count; i++)
@@ -110,8 +111,16 @@ namespace QLSV
                         }
                         pck.Save();
                     }
-                }
-            }
+					try {
+						using (FileStream fs = File.Open(saveFile.FileName, FileMode.Open, FileAccess.Read, FileShare.None)) {
+                            MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						}
+					} catch (IOException ex) {
+                        MessageBox.Show("Không thể lưu file", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+
+				}
+			}
         }
 
         private void LoadStudentRegistrationList(string id)
