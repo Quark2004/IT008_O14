@@ -634,8 +634,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
--- select updateRegistrationPeriod('2024-01-05', '2024-01-06')
+-- select updateRegistrationPeriod('2023-12-25', '2023-12-26')
 
 CREATE OR REPLACE FUNCTION updateRegisterCourse(
 		IN courseId VARCHAR(100),
@@ -713,9 +712,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- SELECT updateregistercourse('IT003.O11', 'GV2', 4, '5', '6789', 'C3.12', 'HK2', '2023-2024', '2023-09-11', '2024-01-06');
-select * from getlistregistercourse()
 
-SELECT * FROM GetListRegisterCourse()
 CREATE OR REPLACE FUNCTION AcceptCourse(
     IN v_idProfile VARCHAR(100),
     IN v_idCourse VARCHAR(100)
@@ -894,6 +891,7 @@ $$ LANGUAGE plpgsql;
 -- ===============================================================
 
 
+
 INSERT INTO public.account (username, password, role) VALUES ('admin', '$2a$12$dHT/7Q//H1zIiy6NlOtWu.pNw8IvxoWfx6qERkLH1YyKNZ81YMyve', 'admin');
 INSERT INTO public.account (username, password, role) VALUES ('gv1', '$2a$12$NqGrVo//fTzgGnZGmWM2B.62eLDiuni56FSCb14l1XvlXEIo5KyMG', 'teacher');
 INSERT INTO public.account (username, password, role) VALUES ('gv2', '$2a$12$IigUmWdfupuWId/QdAZV3.bNzDY6FEPDrBRXpvvKoq26.C.bWUYJS', 'teacher');
@@ -1002,40 +1000,13 @@ INSERT INTO public.account (username, password, role) VALUES ('sv21521698', '$2a
 INSERT INTO public.account (username, password, role) VALUES ('sv21521699', '$2a$12$hApudIeEfGDhf9Z/9bKtUeyD25QS1sRHQNMxeaWgZtqYMGilzmKd.', 'student');
 
 
---
--- TOC entry 4924 (class 0 OID 213581)
--- Dependencies: 219
--- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O17', 'Cơ sở dữ liệu', 3, '3', '1234', 'B3.12', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O14', 'Cơ sở dữ liệu', 3, '2', '6789', 'B3.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O15', 'Cơ sở dữ liệu', 3, '2', '6789', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O18', 'Cơ sở dữ liệu', 3, '3', '6789', 'B4.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O13', 'Cấu trúc dữ liệu và giải thuật', 3, '6', '678', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O14', 'Cấu trúc dữ liệu và giải thuật', 3, '3', '6789', 'B6.06', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O12', 'Cấu trúc dữ liệu và giải thuật', 3, '4', '678', 'C106', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O11', 'Cấu trúc dữ liệu và giải thuật', 3, '3', '1234', 'C314', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O11', 'Giải tích', 4, '4', '12345', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O14', 'Giải tích', 4, '4', '67890', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O15', 'Giải tích', 4, '2', '12345', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O18', 'Giải tích', 4, '2', '67890', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT002.O11', 'Lập trình hướng đối tượng', 3, '6', '1234', 'B3.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT002.O12', 'Lập trình hướng đối tượng', 3, '6', '1234', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT006.O16', 'Kiến trúc máy tính', 3, '2', '678', 'B4.20', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT006.O14', 'Kiến trúc máy tính', 3, '2', '345', 'B5.08', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O12', 'Đại số tuyến tính', 3, '6', '6789', 'B1.14', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O11', 'Đại số tuyến tính', 3, '3', '1234', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O14', 'Đại số tuyến tính', 3, '5', '1234', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O15', 'Đại số tuyến tính', 3, '5', '6789', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
-INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O13', 'Cơ sở dữ liệu', 3, '6', '1234', 'B1.14', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
 
 --
 -- TOC entry 4921 (class 0 OID 213552)
 -- Dependencies: 216
 -- Data for Name: profile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521601', 'Trần Thế Sơn', '2004-05-07 00:00:00', 'Nam', 'Đại học', 'Chính quy', NULL);
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521602', 'Võ Khánh Hằng', '2004-06-06 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
@@ -1143,411 +1114,6 @@ INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, a
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521694', 'Trịnh Huỳnh Trang', '2004-08-21 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521698', 'Nguyễn Thị Ngọc Mỹ', '2004-11-24 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
 INSERT INTO public.profile (id, name, birthday, gender, level, trainingsystem, avatar) VALUES ('21521699', 'Nguyễn Thị Uyên Chi', '2004-08-16 00:00:00', 'Nữ', 'Đại học', 'Chính quy', NULL);
-
-
---
--- TOC entry 4930 (class 0 OID 213629)
--- Dependencies: 225
--- Data for Name: registercourse; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O11', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O11', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O14', '21521602');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O12', '21521602');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT004.O14', '21521602');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT003.O14', '21521602');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O15', '21521603');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O14', '21521603');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT004.O15', '21521603');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521603');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O18', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O12', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521605');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O15', '21521605');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521605');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521605');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O12', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O17', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O14', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O11', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O15', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O11', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521609');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521609');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521609');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O14', '21521609');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O11', '21521609');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521610');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O12', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O14', '21521601');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521602');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521603');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521604');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521605');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521606');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521607');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521608');
-INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521609');
-
-
---
--- TOC entry 4932 (class 0 OID 213646)
--- Dependencies: 227
--- Data for Name: registrationperiod; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.registrationperiod (starttime, endtime) VALUES ('2023-12-14 00:00:00', '2023-12-31 00:00:00');
-
---
--- TOC entry 4926 (class 0 OID 213590)
--- Dependencies: 221
--- Data for Name: score; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 10, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 7, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 5, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 7, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 7, 5, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 5, 9, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 10, 5, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 10, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 10, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 10, 5, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 9, 10, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 8, 6, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 5, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 9, 7, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 8, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 9, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 9, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 5, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 8, 7, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 5, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 6, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 7, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 5, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 9, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 10, 5, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 5, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 7, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 9, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 5, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 6, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 8, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 7, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 8, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 10, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 6, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 8, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 6, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 5, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 8, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 8, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 10, 7, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 5, 7, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 10, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 7, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 10, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 8, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 8, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 7, 7, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 10, 8, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 5, 10, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 7, 5, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 8, 9, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 6, 5, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 5, 9, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 9, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 9, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 7, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 10, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 5, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 5, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 7, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 8, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 7, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 5, 5, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 7, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 7, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 6, 9, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 5, 8, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 8, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 8, 7, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 10, 6, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 6, 6, 10, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 8, 9, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 9, 6, 5, 0.1, 0.2, 0.3, 0.4);
-INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 10, 9, 0.1, 0.2, 0.3, 0.4);
-
-
---
--- TOC entry 4928 (class 0 OID 213605)
--- Dependencies: 223
--- Data for Name: schedule; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O13', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O17', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O14', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT003.O14', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT003.O12', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT004.O15', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT004.O18', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT003.O13', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT003.O11', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA006.O14', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA006.O18', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA003.O12', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA003.O15', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV4', 'IT002.O12', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV4', 'IT006.O16', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV5', 'IT002.O11', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV5', 'IT006.O14', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA006.O11', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA006.O15', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA003.O11', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA003.O14', NULL, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT006.O14', 1, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT004.O14', 2, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'MA003.O11', 3, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'MA006.O11', 4, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT003.O12', 5, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT002.O12', 6, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT004.O14', 7, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT003.O14', 8, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'MA006.O14', 9, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT002.O12', 10, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'MA003.O12', 11, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'MA006.O15', 12, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT004.O15', 13, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'MA003.O14', 14, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT002.O12', 15, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT003.O13', 16, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT006.O14', 17, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'MA006.O18', 18, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT004.O18', 19, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT003.O12', 20, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'MA003.O15', 21, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT002.O11', 22, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT004.O15', 23, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'MA006.O14', 24, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'MA003.O15', 25, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT002.O12', 26, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT003.O13', 27, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT006.O16', 28, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT004.O17', 29, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT003.O14', 30, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'MA006.O14', 31, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT002.O11', 32, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'MA003.O12', 33, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT006.O14', 34, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT004.O15', 35, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'MA003.O11', 36, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'MA006.O11', 37, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT002.O12', 38, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT003.O13', 39, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT006.O14', 40, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA003.O11', 41, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT004.O18', 42, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA006.O11', 43, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA006.O14', 44, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA003.O15', 45, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT002.O11', 46, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT006.O14', 47, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT006.O16', 48, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT003.O11', 49, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'MA006.O14', 50, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'MA003.O14', 51, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT002.O12', 52, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT006.O16', 53, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'MA003.O11', 54, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT004.O18', 55, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'MA006.O14', 56, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT002.O12', 57, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT003.O13', 58, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521611', 'IT004.O14', 59, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521612', 'IT004.O14', 60, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521613', 'IT004.O14', 61, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521614', 'IT004.O14', 62, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521615', 'IT004.O14', 63, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521616', 'IT004.O14', 64, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521617', 'IT004.O14', 65, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521618', 'IT004.O14', 66, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521619', 'IT004.O14', 67, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521620', 'IT004.O14', 68, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521621', 'IT004.O14', 69, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521622', 'IT004.O14', 70, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521623', 'IT004.O14', 71, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521624', 'IT004.O14', 72, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521625', 'IT004.O14', 73, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521626', 'IT004.O14', 74, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521627', 'IT004.O14', 75, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521628', 'IT004.O14', 76, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521629', 'IT004.O14', 77, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521630', 'IT004.O14', 78, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521631', 'IT004.O14', 79, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521632', 'IT004.O14', 80, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521633', 'IT004.O14', 81, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521634', 'IT004.O14', 82, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521635', 'IT004.O14', 83, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521636', 'IT004.O14', 84, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521637', 'IT004.O14', 85, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521638', 'IT004.O14', 86, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521639', 'IT004.O14', 87, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521640', 'IT004.O14', 88, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521641', 'IT004.O14', 89, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521642', 'IT004.O14', 90, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521643', 'IT004.O14', 91, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521644', 'IT004.O14', 92, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521645', 'IT004.O14', 93, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521646', 'IT004.O14', 94, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521647', 'IT004.O14', 95, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521648', 'IT004.O14', 96, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521649', 'IT004.O14', 97, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521650', 'IT004.O14', 98, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521651', 'IT004.O14', 99, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521652', 'IT004.O14', 100, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521653', 'IT004.O14', 101, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521654', 'IT004.O14', 102, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521655', 'IT004.O14', 103, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521656', 'IT004.O14', 104, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521657', 'IT004.O14', 105, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521658', 'IT004.O14', 106, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521659', 'IT004.O14', 107, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521660', 'IT004.O14', 108, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521661', 'IT004.O14', 109, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521662', 'IT004.O14', 110, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521663', 'IT004.O14', 111, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521664', 'IT004.O14', 112, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521665', 'IT004.O14', 113, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521666', 'IT004.O14', 114, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521667', 'IT004.O14', 115, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521668', 'IT004.O14', 116, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521669', 'IT004.O14', 117, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521670', 'IT004.O14', 118, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521671', 'IT004.O14', 119, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521672', 'IT004.O14', 120, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521673', 'IT004.O14', 121, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521674', 'IT004.O14', 122, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521675', 'IT004.O14', 123, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521676', 'IT004.O14', 124, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521677', 'IT004.O14', 125, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521678', 'IT004.O14', 126, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521679', 'IT004.O14', 127, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521680', 'IT004.O14', 128, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521681', 'IT004.O14', 129, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521682', 'IT004.O14', 130, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521683', 'IT004.O14', 131, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521684', 'IT004.O14', 132, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521685', 'IT004.O14', 133, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521686', 'IT004.O14', 134, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521687', 'IT004.O14', 135, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521688', 'IT004.O14', 136, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521689', 'IT004.O14', 137, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521690', 'IT004.O14', 138, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521691', 'IT004.O14', 139, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521692', 'IT004.O14', 140, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521693', 'IT004.O14', 141, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521694', 'IT004.O14', 142, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521695', 'IT004.O14', 143, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521696', 'IT004.O14', 144, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521697', 'IT004.O14', 145, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521698', 'IT004.O14', 146, NULL);
-INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521699', 'IT004.O14', 147, NULL);
 
 
 --
@@ -1662,3 +1228,442 @@ INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521696', '2152169
 INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521697', '21521697');
 INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521698', '21521698');
 INSERT INTO public.useracc (idaccount, idprofile) VALUES ('sv21521699', '21521699');
+
+
+--
+-- TOC entry 4932 (class 0 OID 213646)
+-- Dependencies: 227
+-- Data for Name: registrationperiod; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.registrationperiod (starttime, endtime) VALUES ('2024-12-14 00:00:00', '2024-12-31 00:00:00');
+
+
+-- ===============================================================
+-- ========================= User Action =========================
+-- ===============================================================
+
+
+--
+-- TOC entry 4924 (class 0 OID 213581)
+-- Dependencies: 219
+-- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O17', 'Cơ sở dữ liệu', 3, '3', '1234', 'B3.12', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O14', 'Cơ sở dữ liệu', 3, '2', '6789', 'B3.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O15', 'Cơ sở dữ liệu', 3, '2', '6789', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O18', 'Cơ sở dữ liệu', 3, '3', '6789', 'B4.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O13', 'Cấu trúc dữ liệu và giải thuật', 3, '6', '678', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O14', 'Cấu trúc dữ liệu và giải thuật', 3, '3', '6789', 'B6.06', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O12', 'Cấu trúc dữ liệu và giải thuật', 3, '4', '678', 'C106', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT003.O11', 'Cấu trúc dữ liệu và giải thuật', 3, '3', '1234', 'C314', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O11', 'Giải tích', 4, '4', '12345', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O14', 'Giải tích', 4, '4', '67890', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O15', 'Giải tích', 4, '2', '12345', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA006.O18', 'Giải tích', 4, '2', '67890', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2024-01-06');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT002.O11', 'Lập trình hướng đối tượng', 3, '6', '1234', 'B3.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT002.O12', 'Lập trình hướng đối tượng', 3, '6', '1234', 'B3.18', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT006.O16', 'Kiến trúc máy tính', 3, '2', '678', 'B4.20', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT006.O14', 'Kiến trúc máy tính', 3, '2', '345', 'B5.08', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O12', 'Đại số tuyến tính', 3, '6', '6789', 'B1.14', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O11', 'Đại số tuyến tính', 3, '3', '1234', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O14', 'Đại số tuyến tính', 3, '5', '1234', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('MA003.O15', 'Đại số tuyến tính', 3, '5', '6789', 'B1.16', 'HK1', '2023-2024', '2023-09-11', '2023-12-30');
+-- INSERT INTO public.course (id, name, numberofcredits, schoolday, lesson, classroom, semester, schoolyear, startday, endday) VALUES ('IT004.O13', 'Cơ sở dữ liệu', 3, '6', '1234', 'B1.14', 'HK1', '2023-2024', '2023-09-11', '2023-12-02');
+
+-- --
+-- -- TOC entry 4930 (class 0 OID 213629)
+-- -- Dependencies: 225
+-- -- Data for Name: registercourse; Type: TABLE DATA; Schema: public; Owner: postgres
+-- --
+
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O11', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O11', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O14', '21521602');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O12', '21521602');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT004.O14', '21521602');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT003.O14', '21521602');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA006.O15', '21521603');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('MA003.O14', '21521603');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ('IT004.O15', '21521603');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521603');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O18', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O12', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521605');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O15', '21521605');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521605');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521605');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O12', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O17', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O14', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O11', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O15', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O11', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O15', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521609');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521609');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521609');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O14', '21521609');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O11', '21521609');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA006.O14', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'MA003.O11', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O18', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O13', '21521610');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT003.O12', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT004.O14', '21521601');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521602');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521603');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521604');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521605');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521606');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O12', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521607');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT002.O11', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O14', '21521608');
+-- INSERT INTO public.registercourse (idcourse, idprofile) VALUES ( 'IT006.O16', '21521609');
+
+
+-- --
+-- -- TOC entry 4926 (class 0 OID 213590)
+-- -- Dependencies: 221
+-- -- Data for Name: score; Type: TABLE DATA; Schema: public; Owner: postgres
+-- --
+
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.2, 0.3, 0, 0.5);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( NULL, NULL, NULL, NULL, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 10, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 7, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 5, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 7, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 7, 5, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 5, 9, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 10, 5, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 10, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 10, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 10, 5, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 9, 10, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 8, 6, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 5, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 9, 7, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 8, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 9, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 9, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 5, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 8, 7, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 5, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 6, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 7, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 5, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 9, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 10, 5, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 5, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 7, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 9, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 5, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 6, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 8, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 7, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 8, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 10, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 6, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 6, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 8, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 6, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 5, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 7, 8, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 8, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 6, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 10, 7, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 5, 7, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 10, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 7, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 9, 10, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 8, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 6, 8, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 7, 7, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 10, 8, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 5, 10, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 7, 5, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 6, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 8, 9, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 6, 5, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 9, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 5, 9, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 9, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 9, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 7, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 10, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 8, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 6, 5, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 5, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 7, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 8, 8, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 7, 7, 7, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 5, 5, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 7, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 7, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 6, 9, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 5, 8, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 9, 10, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 10, 8, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 9, 8, 7, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 6, 8, 10, 6, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 6, 6, 10, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 8, 5, 8, 9, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 5, 9, 6, 5, 0.1, 0.2, 0.3, 0.4);
+-- INSERT INTO public.score (processscore, midtermscore, finalscore, practicescore, ratioprocess, ratiomidterm, ratiopractice, ratiofinal) VALUES ( 10, 7, 10, 9, 0.1, 0.2, 0.3, 0.4);
+
+
+-- --
+-- -- TOC entry 4928 (class 0 OID 213605)
+-- -- Dependencies: 223
+-- -- Data for Name: schedule; Type: TABLE DATA; Schema: public; Owner: postgres
+-- --
+
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O13', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O17', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT004.O14', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT003.O14', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV1', 'IT003.O12', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT004.O15', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT004.O18', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT003.O13', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV2', 'IT003.O11', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA006.O14', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA006.O18', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA003.O12', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV3', 'MA003.O15', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV4', 'IT002.O12', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV4', 'IT006.O16', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV5', 'IT002.O11', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV5', 'IT006.O14', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA006.O11', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA006.O15', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA003.O11', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( 'GV6', 'MA003.O14', NULL, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT006.O14', 1, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT004.O14', 2, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'MA003.O11', 3, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'MA006.O11', 4, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT003.O12', 5, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521601', 'IT002.O12', 6, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT004.O14', 7, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT003.O14', 8, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'MA006.O14', 9, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'IT002.O12', 10, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521602', 'MA003.O12', 11, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'MA006.O15', 12, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT004.O15', 13, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'MA003.O14', 14, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT002.O12', 15, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521603', 'IT003.O13', 16, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT006.O14', 17, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'MA006.O18', 18, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT004.O18', 19, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT003.O12', 20, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'MA003.O15', 21, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521604', 'IT002.O11', 22, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT004.O15', 23, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'MA006.O14', 24, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'MA003.O15', 25, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT002.O12', 26, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521605', 'IT003.O13', 27, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT006.O16', 28, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT004.O17', 29, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT003.O14', 30, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'MA006.O14', 31, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'IT002.O11', 32, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521606', 'MA003.O12', 33, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT006.O14', 34, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT004.O15', 35, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'MA003.O11', 36, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'MA006.O11', 37, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT002.O12', 38, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521607', 'IT003.O13', 39, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT006.O14', 40, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA003.O11', 41, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT004.O18', 42, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA006.O11', 43, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA006.O14', 44, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'MA003.O15', 45, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521608', 'IT002.O11', 46, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT006.O14', 47, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT006.O16', 48, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT003.O11', 49, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'MA006.O14', 50, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'MA003.O14', 51, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521609', 'IT002.O12', 52, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT006.O16', 53, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'MA003.O11', 54, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT004.O18', 55, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'MA006.O14', 56, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT002.O12', 57, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521610', 'IT003.O13', 58, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521611', 'IT004.O14', 59, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521612', 'IT004.O14', 60, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521613', 'IT004.O14', 61, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521614', 'IT004.O14', 62, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521615', 'IT004.O14', 63, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521616', 'IT004.O14', 64, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521617', 'IT004.O14', 65, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521618', 'IT004.O14', 66, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521619', 'IT004.O14', 67, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521620', 'IT004.O14', 68, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521621', 'IT004.O14', 69, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521622', 'IT004.O14', 70, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521623', 'IT004.O14', 71, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521624', 'IT004.O14', 72, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521625', 'IT004.O14', 73, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521626', 'IT004.O14', 74, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521627', 'IT004.O14', 75, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521628', 'IT004.O14', 76, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521629', 'IT004.O14', 77, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521630', 'IT004.O14', 78, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521631', 'IT004.O14', 79, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521632', 'IT004.O14', 80, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521633', 'IT004.O14', 81, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521634', 'IT004.O14', 82, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521635', 'IT004.O14', 83, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521636', 'IT004.O14', 84, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521637', 'IT004.O14', 85, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521638', 'IT004.O14', 86, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521639', 'IT004.O14', 87, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521640', 'IT004.O14', 88, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521641', 'IT004.O14', 89, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521642', 'IT004.O14', 90, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521643', 'IT004.O14', 91, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521644', 'IT004.O14', 92, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521645', 'IT004.O14', 93, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521646', 'IT004.O14', 94, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521647', 'IT004.O14', 95, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521648', 'IT004.O14', 96, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521649', 'IT004.O14', 97, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521650', 'IT004.O14', 98, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521651', 'IT004.O14', 99, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521652', 'IT004.O14', 100, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521653', 'IT004.O14', 101, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521654', 'IT004.O14', 102, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521655', 'IT004.O14', 103, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521656', 'IT004.O14', 104, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521657', 'IT004.O14', 105, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521658', 'IT004.O14', 106, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521659', 'IT004.O14', 107, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521660', 'IT004.O14', 108, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521661', 'IT004.O14', 109, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521662', 'IT004.O14', 110, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521663', 'IT004.O14', 111, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521664', 'IT004.O14', 112, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521665', 'IT004.O14', 113, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521666', 'IT004.O14', 114, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521667', 'IT004.O14', 115, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521668', 'IT004.O14', 116, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521669', 'IT004.O14', 117, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521670', 'IT004.O14', 118, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521671', 'IT004.O14', 119, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521672', 'IT004.O14', 120, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521673', 'IT004.O14', 121, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521674', 'IT004.O14', 122, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521675', 'IT004.O14', 123, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521676', 'IT004.O14', 124, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521677', 'IT004.O14', 125, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521678', 'IT004.O14', 126, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521679', 'IT004.O14', 127, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521680', 'IT004.O14', 128, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521681', 'IT004.O14', 129, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521682', 'IT004.O14', 130, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521683', 'IT004.O14', 131, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521684', 'IT004.O14', 132, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521685', 'IT004.O14', 133, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521686', 'IT004.O14', 134, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521687', 'IT004.O14', 135, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521688', 'IT004.O14', 136, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521689', 'IT004.O14', 137, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521690', 'IT004.O14', 138, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521691', 'IT004.O14', 139, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521692', 'IT004.O14', 140, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521693', 'IT004.O14', 141, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521694', 'IT004.O14', 142, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521695', 'IT004.O14', 143, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521696', 'IT004.O14', 144, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521697', 'IT004.O14', 145, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521698', 'IT004.O14', 146, NULL);
+-- INSERT INTO public.schedule (idprofile, idcourse, idscore, note) VALUES ( '21521699', 'IT004.O14', 147, NULL);
