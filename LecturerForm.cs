@@ -126,13 +126,14 @@ namespace QLSV
         }
         void Loaddiem()
         {
-            cbodiem.Text = cbodiem.Items[0].ToString();
-            string[] mon = cbodiem.Items[0].ToString().Split('/');
-            string mamon = mon[0];
-            txtmssv.Text = "";
-            HienThiThongTinDiem(mamon);
-           
-            loadratio(mamon);
+            if (cbodiem.Items.Count > 0) {
+				cbodiem.Text = cbodiem.Items[0].ToString();
+				string[] mon = cbodiem.Items[0].ToString().Split('/');
+				string mamon = mon[0];
+				txtmssv.Text = "";
+				HienThiThongTinDiem(mamon);
+				loadratio(mamon);
+			}
         }
         private void cbodiem_SelectedIndexChanged(object sender, EventArgs e)
         {

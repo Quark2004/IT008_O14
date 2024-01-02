@@ -342,7 +342,17 @@ namespace QLSV
 
         private void btn_acceptAccount_Click(object sender, EventArgs e)
         {
-            string hashPassword = HashedPassword(tb_passGenarator.Text);
+            if (tb_username.Text == "") {
+                MessageBox.Show("Yêu cầu nhập tên đăng nhập", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+			if (tb_idProfile.Text == "") {
+				MessageBox.Show("Yêu cầu nhập MSSV/MGV", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			string hashPassword = HashedPassword(tb_passGenarator.Text);
 
             string query = "SELECT InsertAcc( :username , :password , :role , :idProfile )";
 
