@@ -374,6 +374,10 @@ namespace QLSV
             data_profileList.DataSource = profileList;
         }
 
+        private void txtinfor_TextChanged(object sender, EventArgs e)
+        {
+            profileList.DefaultView.RowFilter = string.Format("[MSSV/MGV] like '%{0}%' or [Tên] like '%{0}%'", txtinfor.Text);
+        }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
@@ -384,6 +388,8 @@ namespace QLSV
             EnableButton(false);
             tb_passGenarator.Text = "";
         }
+
+       
 
         private void btn_editProfile_Click(object sender, EventArgs e)
         {
@@ -576,6 +582,6 @@ namespace QLSV
             e.Cancel = logOut.IsNotClosed;
         }
 
-
+       
     }
 }
