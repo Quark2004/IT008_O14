@@ -269,6 +269,11 @@ namespace QLSV
                 btnok.Enabled = false;
                 if (checkratio(mamon))
                 {
+                    if (!checkTrulyRatio(txtQT.Text) || !checkTrulyRatio(txtTH.Text) || !checkTrulyRatio(txtGK.Text) || !checkTrulyRatio(txtCK.Text))
+                    {
+                        MessageBox.Show("Tỉ lệ điểm không hợp lệ", "Cập nhật tỉ lệ điểm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     float temp = float.Parse(txtQT.Text) + float.Parse(txtGK.Text) + float.Parse(txtCK.Text) + float.Parse(txtTH.Text);
                     if (temp != 1)
                     {
@@ -340,6 +345,16 @@ namespace QLSV
             return false;
         }
 
+        private bool checkTrulyRatio(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+
+            if (float.TryParse(s, out float diem))
+            {
+                return true;
+            }
+            return false;
+        }
         private void diemKhongHopLe(ListViewItem item)
         {
             txtQT.Text = item.SubItems[2].Text;
